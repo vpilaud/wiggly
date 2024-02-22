@@ -973,17 +973,36 @@ This is indeed an incompatibility degree in the sense that
 \end{itemize}
 \end{remark}
 
+\begin{lemma}
+\label{lem:wallCrossingInequalities}
+Let~$T$ and~$T'$ be two adjacent wiggly pseudotriangulations with~$T \ssm \{\alpha\} = T' \ssm \{\alpha'\}$, and let~$\beta$ and~$\beta'$ be the wiggly arcs defined in \cref{prop:uerp}.
+Then
+\begin{itemize}
+\item if $\alpha$ and~$\alpha'$ are not pointed, then~$\kappa(\alpha) + \kappa(\alpha') > \big( \kappa(\beta) + \kappa(\beta') \big) / 2$,
+\item if~$\alpha$ and~$\alpha'$ are crossing, then~${\kappa(\alpha) + \kappa(\alpha') > \kappa(\beta) + \kappa(\beta')}$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Any crossing between a wiggly arc~$\gamma$ and~$\beta$ or~$\beta'$ translates to a crossing with~$\alpha$ or~$\alpha'$.
+When~$\alpha$ and~$\alpha'$ are not pointed, a crossing with~$\alpha$ or~$\alpha'$ can correspond to a crossing with~$\beta$ and a crossing with~$\beta'$, so that~$\delta(\alpha, \gamma) + \delta(\alpha', \gamma) \ge \big( \delta(\beta, \gamma) + \delta(\beta', \gamma) \big) / 2$.
+When~$\alpha$ and~$\alpha'$ are crossing, then there is a correspondence between the crossings with~$\alpha$ or~$\alpha'$ and the crossings with~$\beta$ or~$\beta'$, so that~$\delta(\alpha, \gamma) + \delta(\alpha', \gamma) \ge \delta(\beta, \gamma) + \delta(\beta', \gamma)$
+The result follows by summation, and since~$\delta(\alpha, \alpha') = 1$.
+\end{proof}
+
 \begin{theorem}
 \label{thm:wigglyhedron}
 The wiggly fan~$\wigglyFan_n$ is the normal fan of a simplicial $(2n-1)$-dimensional polytope, called the \defn{wigglyhedron}~$\wigglyhedron_n$, and defined equivalently~as
 \begin{itemize}
-\item the intersection of the halfspaces~$\set{\b{x} \in \HH}{\dotprod{\b{g}(\alpha)}{\b{x}} \le \nu(\alpha)}$ for all internal wiggly arcs~$\alpha$,
-\item the convex hull of the points~$\sum_{\alpha \in T} \kappa(\alpha) \, \b{c}(\alpha, T)$ for all wiggly pseudotriangulations~$T$.
+\item the intersection of the halfspaces~$\set{\b{x} \in \HH}{\dotprod{\b{g}(\alpha)}{\b{x}} \le \kappa(\alpha)}$ for all internal wiggly arcs~$\alpha$,
+\item the convex hull of the points~$\b{p}(T) \eqdef \sum\limits_{\alpha \in T} \kappa(\alpha) \, \b{c}(\alpha, T)$ for all wiggly pseudotriangulations~$T$.
 \end{itemize}
 \end{theorem}
 
 \begin{proof}
-\vincent{todo}
+By \cref{prop:characterizationPolytopalFan,lem:linearDependences,lem:wallCrossingInequalities}, the wiggly fan is indeed the normal fan of the polytope~$\wigglyhedron_n$ defined by the inequalities~$\dotprod{\b{g}(\alpha)}{\b{x}} \le \kappa(\alpha)$ for all internal wiggly arcs~$\alpha$.
+For any wiggly pseudotriangulation~$T$ and any wiggly arc~$\alpha$ of~$T$, we have~$\dotprod{\b{g}(\alpha)}{\b{p}(T)} = \sum_{\beta \in T} \kappa(\beta) \dotprod{\b{g}(\alpha)}{\b{c}(\beta, T)} = \kappa(\alpha)$ since~$\b{g}(T)$ and~$\b{c}(T)$ are dual bases by \cref{prop:dualBases}.
+Hence, $\b{p}(T)$ is indeed the point of~$\wigglyhedron_n$ corresponding to~$T$, which is located at the intersection of the hyperplanes~$\dotprod{\b{g}(\alpha)}{\b{x}} = \kappa(\alpha)$ for all internal wiggly arcs~$\alpha$ in~$T$.
 \end{proof}
 
 In fact, the wigglyhedron even recovers the wiggly lattice of \cref{subsec:wigglyPermutations}.
