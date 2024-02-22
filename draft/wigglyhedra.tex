@@ -193,14 +193,14 @@ It was originally motivated by her joint work with Anand Deopurkar and Anthony L
 
 Fix an integer~$n \ge 1$.
 In this section, we define two combinatorial families, the wiggly pseudotriangulations of~$n+2$ points and the wiggly permutations of~$[2n]$, and we prove that they are in bijection.
-These two perspectives enable us to endow this combinatorial families with additional structures : the wiggly pseudotriangulations are actually the facets of the wiggly complex, while the wiggly permutations are actually the elements of the wiggly lattice.
+These two perspectives enable us to endow these combinatorial families with additional structures: the wiggly pseudotriangulations are actually the facets of the wiggly complex, while the wiggly permutations are actually the elements of the wiggly lattice.
 
 %%%%%%%%%%%%
 
 \subsection{Wiggly pseudotriangulations and the wiggly complex}
 \label{subsec:wigglyPseudotriangulations}
 
-We start with wiggly pseudodissections of points on a line.
+We start with wiggly pseudodissections of $n+2$ points on a line.
 The following definitions are illustrated in \cref{fig:incompatible}.
 
 \begin{definition}
@@ -231,7 +231,7 @@ The following definitions are illustrated~in~\cref{fig:pseudodissections}.
 A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs which contains the exterior wiggly arcs~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$. We denote by~$D^\circ \eqdef D \ssm \{\alpha_\mathrm{top}, \alpha_\mathrm{bot}\}$.
 %
 \begin{figure}[b]
-\centerline{\includegraphics[scale=1.3]{pseudodissections}}
+\centerline{\includegraphics[scale=1.5]{pseudodissections}}
 \caption{Three wiggly pseudodissections. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ pseudotriangles, and are obtained from each other by flipping the wiggly arc separating their yellow and blue pseudotriangles.}
 \label{fig:pseudodissections}
 \end{figure}
@@ -601,7 +601,7 @@ where~$X^\mathrm{tc}$ denotes the transitive closure of~$X$.
 %
 \begin{figure}
 \centering
-\includegraphics[scale=1]{wigglyFlipGraph}
+\includegraphics[scale=1.1]{wigglyFlipGraph}
 \caption{The wiggly lattice~$\wigglyLattice_2$ on wiggly pseudotriangulations (left) and on wiggly permutations (right).}
 \label{fig:wigglyLattice}
 \end{figure}
@@ -632,7 +632,7 @@ Each wiggly permutation~$\sigma$ covers (resp.~is covered by) as many wiggly per
 \vincent{todo}
 \end{proof}
 
-We close this section by the following conjecture (checked computationally up to~$n = 4$).
+We close this section by the following conjecture (checked computationally up to~$n = 3$).
 
 \begin{conjecture}
 \label{conj:Hamiltonian}
@@ -707,7 +707,7 @@ To show that the resulting cones indeed form a fan, we will need the following s
 
 \begin{proposition}
 \label{prop:characterizationFan}
-Consider a closed simplicial pseudomanifold~$\Delta$ with ground set~$V$ and a set of vectors~$(\b{r}_v)_{v \in V}$ of~$\R^d$, and define~$\b{R}_\triangle \eqdef \set{\b{r}_v}{v \in \triangle}$ for any~$\triangle \in \Delta$.
+Consider a closed simplicial $(d-1)$-dimensional pseudomanifold~$\Delta$ with ground set~$V$ and a set of vectors~$(\b{r}_v)_{v \in V}$ of~$\R^d$, and define~$\b{R}_\triangle \eqdef \set{\b{r}_v}{v \in \triangle}$ for any~$\triangle \in \Delta$.
 Then the collection of cones~$\set{\R_{\ge 0}\b{R}_\triangle}{\triangle \in \Delta}$ forms a complete simplicial fan of~$\R^d$ if and~only~if
 \begin{itemize}
 \item there exists a vector~$\b{v}$ of~$\R^d$ contained in only one of the cones~$\R_{\ge 0}\b{R}_\triangle$ for~$\triangle \in \Delta$,
@@ -762,7 +762,7 @@ We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{
 \subsection{$\b{g}$-vectors and $\b{c}$-vectors}
 \label{subsec:gcvectors}
 
-We now define two families of vectors.
+We now define two families of vectors, illustrated in \cref{fig:pseudotriangulationMatrices}.
 %
 \begin{figure}
 \centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
