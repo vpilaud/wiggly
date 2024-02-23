@@ -155,7 +155,7 @@
 
 \title{Wigglyhedra}
 
-\thanks{VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).}
+\thanks{VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).}
 
 \author{Asilata Bapat}
 \address{The Australian National University}
@@ -567,7 +567,7 @@ n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
 
 Recall that the \defn{inversion set} of a permutation~$\sigma$ of~$[2n]$ is the set
 \[
-\inv(\sigma) \eqdef \set{(\sigma_i, \sigma_j)}{1 \le i < j \le 2n \text{ and } \sigma_i > \sigma_j}.
+\inv(\sigma) \eqdef \set{\big( \sigma(i), \sigma(j) \big)}{1 \le i < j \le 2n \text{ and } \sigma(i) > \sigma(j)}.
 \]
 We denote by~$\ninv(\sigma)$ the non-inversions of~$\sigma$, that is the complement of~$\inv(\sigma)$.
 Note that~$\inv(\sigma)$ and~$\ninv(\sigma)$ are transitive: $\{(k,j), (j,i)\} \subseteq \inv(\sigma)$ implies~$(k,i) \in \inv(\sigma)$ for all~${1 \le i < j < k \le 2n}$, and similarly for~$\ninv$.
@@ -621,15 +621,21 @@ By \cref{lem:inversionSetsWigglyPermutations}, we conclude that~$\tau = \rho \jo
 The proof is similar for~$\rho \meet \sigma$, using $\ninv$ instead of~$\inv$.
 \end{proof}
 
-Recall that an \defn{ascent} (resp.~\defn{descent}) in a permutation~$\sigma$ is a position~$i$ such that~$\sigma_i < \sigma_{i+1}$ (resp.~$\sigma_i > \sigma_{i+1}$).
+Recall that an \defn{ascent} (resp.~\defn{descent}) in a permutation~$\sigma$ is a position~$j$ such that~$\sigma(j) < \sigma(j+1)$ (resp.~$\sigma(j) > \sigma(j+1)$).
 
 \begin{proposition}
 Each wiggly permutation~$\sigma$ covers (resp.~is covered by) as many wiggly permutations as its number of descents (resp.~ascents), so that the cover graph of~$\wigglyLattice_n$ is regular of degree~$2n-1$.
 \end{proposition}
 
 \begin{proof}
-%For a descent~$i$, consider...
-\vincent{todo}
+Consider an ascent~$j$ of~$\sigma$.
+Let~$i \eqdef \min \big( j, \sigma^{-1} \big( \sigma(j)+1 \big) \big)$ if~$\sigma(j)$ is odd, and $i \eqdef j$ otherwise.
+Let~$k \eqdef \max \big( j+1, \sigma^{-1} \big( \sigma(j+1)+1 \big) \big)$ if~$\sigma(j+1)$ is odd, and $k \eqdef j+1$ otherwise.
+Let~$\sigma^j \eqdef \sigma(1) \dots \sigma(i-1) \sigma(j+1) \dots \sigma(k) \sigma(i) \dots \sigma(j) \sigma(k+1) \dots \sigma(2n)$.
+Then~$\sigma^j$ is the minimal wiggly permutation such that~$\inv(\sigma^j) \supseteq \inv(\sigma) \cup \big\{ \big( \sigma(j+1), \sigma(j) \big) \big\}$.
+Moreover,~$\sigma^j \ne \sigma^{j'}$ for distinct ascents~$j \ne j'$.
+As any permutation~$\sigma'$ larger than~$\sigma$ satisfies~${\inv(\sigma') \supseteq \inv(\sigma) \cup \{\sigma(j+1), \sigma(j)\}}$ for some ascent~$j$ of~$\sigma$, we thus obtain that~$j \to \sigma^j$ is a bijection from the ascents of~$\sigma$ to the wiggly permutations covering~$\sigma$.
+The proof is symmetrical for the bijection from descents of~$\sigma$ to wiggly permutations covered by~$\sigma$.
 \end{proof}
 
 We close this section by the following conjecture (checked computationally up to~$n = 3$).
@@ -959,8 +965,7 @@ The \defn{incompatibility degree}~$\delta(\alpha, \alpha')$ of two wiggly arcs~$
 \begin{itemize}
 \item $0$ if~$\alpha$ and~$\alpha'$ are pointed and non-crossing,
 \item $1$ is~$\alpha$ and~$\alpha'$ are not pointed (\ie $i = j'$ or~$i' = j$),
-\item the number of crossings of~$\alpha$ and~$\alpha'$ if they are crossing.
-\vincent{give an equivalent definition with subsets...}
+\item the number of crossings of~$\alpha$ and~$\alpha'$ if they are crossing (\ie the number of~$p \in \{0, \dots, n\}$ with $p \in (A \cap B') \cup (\{i,j\} \cap B') \cup (A \cap \{i',j'\})$ and~$p+1 \in (A' \cap B) \cup (\{i',j'\} \cap B) \cup (A' \cap \{i,j\})$, or the opposite).
 \end{itemize}
 The \defn{incompatibility number} of a wiggly arc~$\alpha$ is~$\kappa(\alpha) \eqdef \sum_{\alpha'} \delta(\alpha, \alpha')$.
 \end{definition}
