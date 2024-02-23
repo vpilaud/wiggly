@@ -204,9 +204,9 @@ We start with wiggly pseudodissections of $n+2$ points on a line.
 The following definitions are illustrated in \cref{fig:incompatible}.
 
 \begin{definition}
-A \defn{wiggly arc} is a quadruple $(i,j,A,B)$ where $0 \le i < j \le n+1$ and the sets~$A$ and~$B$ form a partition of~$\{i+1, \dots, j-1\}$.
-We represent it by an $x$-monotone curve wiggling around the horizontal axis, starting at point~$i$, ending at point~$j$, and passing above the points of~$A$ and below the points of~$B$.
-The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~$\alpha_\mathrm{bot} \eqdef (0, n+1, \varnothing, [n])$ are called \defn{external}, all others are called \defn{internal}.
+A \defn{wiggly arc} is a quadruple $\alpha \eqdef (i,j,A,B)$ where $0 \le i < j \le n+1$ and the sets~$A$ and~$B$ form a partition of~${]i,j[} \eqdef \{i+1, \dots, j-1\}$.
+We represent $\alpha$ by an $x$-monotone curve wiggling around the horizontal axis, starting at point~$i$, ending at point~$j$, and passing above the points of~$A$ and below the points of~$B$.
+The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~$\alpha_\mathrm{bot} \eqdef (0, n+1, \varnothing, [n])$ are called \defn{external}, all other wiggly arcs are called \defn{internal}.
 \end{definition}
 
 \begin{definition}
@@ -236,6 +236,8 @@ A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs
 \label{fig:pseudodissections}
 \end{figure}
 \end{definition}
+
+\vincent{Here, I am using the fact that a set of pairwise non-crossing arcs can be drawn simultaneously non-crossing. I am not sure I want to enter these details.}
 
 \begin{definition}
 A wiggly pseudodissection~$D$ decomposes the digon bounded by~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$ into cells, that we call \defn{wiggly cells}.
@@ -267,8 +269,8 @@ As illustrated in \cref{fig:pseudoquadrangles}, a wiggly pseudoquadrangle~$q$ ca
 \item or no point in its interior and $6$ points on its boundary, $4$ corners and $2$ hinges. We then distinguish three situations, depending on the position of the two pairs~$p, p'$ of wiggly arcs incident to the two hinges of~$c$, as illustrated in \cref{fig:pseudoquadrangles} (where~$p$ and~$p'$ are colored in red and orange):
 \begin{enumerate}[(a)]
 \item those where $p$ and $p'$ are not consecutive along~$c$, and do not overlap vertically,
-\item those where $p$ and $p'$ are not consecutive along~$c$, but overlap vertically.
-\item those where~$p$ and~$p'$ are consecutive along~$c$,
+\item those where $p$ and $p'$ are not consecutive along~$c$, but overlap vertically,
+\item those where~$p$ and~$p'$ are consecutive along~$c$.
 \end{enumerate}
 \end{enumerate}
 %
@@ -346,7 +348,7 @@ Then the wiggly arc~$\beta \eqdef \big( i, m, {]i,m[} \cap (A \cup A'), {]i,m[} 
 
 Assume now that the external boundary of~$c$ is a not digon.
 Consider a hinge~$j$ of~$c$.
-Assume by symmetry that the boundary of~$c$ contains the two wiggly arcs~$\alpha \eqdef (i, j, A, B)$ and~$\alpha' \eqdef (i', j, A', B')$, such that~$\alpha$ is below~$\alpha'$. % (\ie $k \in A'$ or~$k' \in B$).
+Assume by symmetry that the boundary of~$c$ contains two wiggly arcs~$\alpha \eqdef (i, j, A, B)$ and~$\alpha' \eqdef (i', j, A', B')$, such that~$\alpha$ is below~$\alpha'$. % (\ie $k \in A'$ or~$k' \in B$).
 Let~$\gamma \eqdef (k, \ell, X, Y)$ denote the uppermost wiggly arc of the boundary of~$c$ such that~$j \in Y$ (it exists since~$j$ is a  hinge of~$c$), and let~$X' \eqdef {]j,\ell[} \cap X$ and~$Y' \eqdef {]j,\ell[} \cap Y$.
 Then the two wiggly arcs~$\beta \eqdef \big( i, \ell, A \cup X', B \cup \{j\} \cup Y')$ and~$\beta' \eqdef \big( i', \ell, A'  \cup \{j\} \cup X', B \cup Y')$ are both compatible with~$D$ (any arc incompatible with~$\beta$ is incompatible with~$\alpha$ or~$\gamma$, and similarly for~$\beta'$) and cannot both belong to~$D$ (otherwise, $c$ would be a wiggly pseudotriangle bounded by~$\alpha, \alpha', \gamma', \gamma$).
 \end{proof}
@@ -356,7 +358,6 @@ Note that in the proof of \cref{prop:wigglyPseudotriangulations}, we actually ob
 \[
 \sum_{c \in C} (\delta_c-3) = \sum_{c \in D} \beta_c/2 + 2 \sum_{c \in D} (\kappa_c-1) - 2\gamma = (1+\iota) + 2(\kappa-1) - 2(\iota+\kappa-n) = 2n-1-\iota.
 \]
-In other words, the number of wiggly arcs of~$D$ is $2n-1$ minus the number of wiggly cells of~$D$ which are not wiggly pseudotriangles.
 \end{remark}
 
 \begin{definition}
@@ -458,13 +459,14 @@ h(\wigglyComplex_5) & = (1, 109, 1960, 11254, 25868, 25868, 11254, 1960, 109, 1)
 \begin{remark}
 Note that the number of vertices of~$\wigglyComplex_n$ is the number~$\sum_{j = 0}^n 2^j (n+1-j)$ of wiggly arcs on~$n+2$ points.
 The number of facets of~$\wigglyComplex_n$ is the number of wiggly pseudotriangulations of~$n+2$ points, which is a bit harder to compute.
-For this, denote by $f_n(x)$ the polynomial where the coefficient of~$x^i$ is the number of wiggly pseudotriangulations of~$n+2$ points with~$i$ internal arcs ending at the last point~$n+1$.
+For this, denote by $f_n(x)$ the polynomial where the coefficient of~$x^i$ is the number of wiggly pseudotriangulations of~$n+2$ points with~$i$ internal wiggly arcs ending at the last point~$n+1$.
 For instance,
 \begin{align*}
-	f_0(x) & = 1 \\
-	f_1(x) & = x + 1 \\
-	f_2(x) & = 3 x^3 + 5 x^2 + 4 x + 2 \\
-	f_3(x) & = 15 x^5 + 35 x^4 + 44 x^3 + 40 x^2 + 28 x + 14
+	f_0(x) & = 1, \\
+	f_1(x) & = x + 1, \\
+	f_2(x) & = 3 x^3 + 5 x^2 + 4 x + 2, \\
+	f_3(x) & = 15 x^5 + 35 x^4 + 44 x^3 + 40 x^2 + 28 x + 14, \\
+	f_4(x) & = 105 x^7 + 315 x^6 + 520 x^5 + 630 x^4 + 620 x^3 + 514 x^2 + 352 x + 176.
 \end{align*}
 We use this additional variable~$x$ to obtain a recursive formula for~$f_n(x)$, discussing on the wiggly pseudotriangle~$t_n$ with a hinge at~$n$.
 Namely, there are two types of wiggly pseudotriangulations of~$n+2$ points:
@@ -485,6 +487,13 @@ This enables to quickly compute the generating series of the number of wiggly ps
 \end{remark}
 
 Finally, we will need the following observation, illustrated in \cref{fig:incompatible2}.
+%
+\begin{figure}
+\centering
+\includegraphics[scale=1.3]{incompatible2}
+\caption{The arcs~$\beta$ and~$\beta'$ of \cref{prop:uerp}.}
+\label{fig:incompatible2}
+\end{figure}
 
 \begin{proposition}
 \label{prop:uerp}
@@ -496,15 +505,7 @@ Then any wiggly arc compatible with both~$\alpha$ and~$\alpha'$ is also compatib
 \item $\beta \eqdef \big( i, j', {]i,j'[} \ssm (B \cup B'), {]i,j'[} \cap (B \cup B') \big)$ and~$\beta' \eqdef \big( i', j, {]i',j[} \cap (A \cup A'), {]i',j[} \ssm (A \cup A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing with~$i \in A'$ or~$i' \in B$.
 (In other words, then~$\beta$ is the wiggly arc starting at~$i$ and ending at~$j'$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i'$ and ending~at~$j$ which follows the upper hull of~$\alpha$ and~$\alpha'$.)
 \end{itemize}
-See \cref{fig:incompatible2} for illustrations.
-%
-\begin{figure}
-\centering
-\includegraphics[scale=1.3]{incompatible2}
-\caption{The arcs~$\beta$ and~$\beta'$ of \cref{prop:uerp}.}
-\label{fig:incompatible2}
-\end{figure}
-%
+%See \cref{fig:incompatible2} for illustrations.
 (By exchanging~$\alpha$ and~$\alpha'$, similar statements hold if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$, or if~$\alpha$ and~$\alpha'$ are crossing with~$i \in B'$ or~$i' \in A$.)
 \end{proposition}
 
@@ -518,7 +519,7 @@ Any wiggly arc crossing~$\beta$ would be either non pointed or crossing~$\alpha$
 \subsection{Wiggly permutations and the wiggly lattice}
 \label{subsec:wigglyPermutations}
 
-We now consider wiggly permutations, defined as follows.
+We now consider wiggly permutations of~$[2n]$, defined as follows.
 
 \begin{definition}
 A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns:
@@ -621,19 +622,55 @@ By \cref{lem:inversionSetsWigglyPermutations}, we conclude that~$\tau = \rho \jo
 The proof is similar for~$\rho \meet \sigma$, using $\ninv$ instead of~$\inv$.
 \end{proof}
 
+We now aim at describing the cover relations of the wiggly lattice.
 Recall that an \defn{ascent} (resp.~\defn{descent}) in a permutation~$\sigma$ is a position~$j$ such that~$\sigma(j) < \sigma(j+1)$ (resp.~$\sigma(j) > \sigma(j+1)$).
+
+\begin{lemma}
+Consider an ascent~$j$ of a wiggly permutation~$\sigma$ of~$[2n]$.
+Let~$i \eqdef \min \big( j, \sigma^{-1} \big( \sigma(j)+1 \big) \big)$ if~$\sigma(j)$ is odd, and $i \eqdef j$ otherwise.
+Let~$k \eqdef \max \big( j+1, \sigma^{-1} \big( \sigma(j+1)+1 \big) \big)$ if~$\sigma(j+1)$ is odd, and $k \eqdef j+1$ otherwise.
+Then
+\[
+\sigma^j \eqdef \sigma(1) \dots \sigma(i-1) \sigma(j+1) \dots \sigma(k) \sigma(i) \dots \sigma(j) \sigma(k+1) \dots \sigma(2n).
+\]
+is the minimal wiggly permutation such that~$\inv(\sigma) \cup \big\{ \big( \sigma(j+1), \sigma(j) \big) \big\} \subseteq \inv(\sigma^j)$.
+\end{lemma}
+
+\begin{proof}
+We start with a few observations.
+Let~$i < p \le j$ (resp.~$j+1 \le q < k$).
+As~$\sigma$ is a wiggly permutation, we have~$\sigma(p) < \sigma(i)$ (resp.~$\sigma(q) > \sigma(k)$).
+Hence~$\big( \sigma(i), \sigma(p) \big)$ (resp.~$\big( \sigma(q), \sigma(k) \big)$) belongs to~$\inv(\sigma)$.
+Moreover, since~$j$ is an ascent of~$\sigma$, we obtain that~$\sigma(p) < \sigma(q)$ for all~${i \le p \le j < q \le k}$.
+Hence, $\inv(\sigma^j) = \inv(\sigma) \cup \bigset{ \big( \sigma(q), \sigma(p) \big) }{i \le p \le j < q \le k}$.
+
+We now prove that~$\sigma^j$ is indeed a wiggly permutation of~$[2n]$.
+We consider~$v \in [n]$ and~$u < 2v-1$ such that~$(2v-1, u) \in \inv(\sigma^j)$, and we show that~$(2v, u) \in \inv(\sigma^j)$.
+If~$(2v, u) \in \inv(\sigma)$, we are done as~$\inv(\sigma) \subset \inv(\sigma^j)$.
+If~$(2v, u) \not\in \inv(\sigma)$, then~$(2v-1, u) \not\in \inv(\sigma)$ by \cref{lem:inversionSetsWigglyPermutations}, and~$i \le \sigma^{-1}(u) \le j < \sigma^{-1}(2v-1) \le k$ since~${\inv(\sigma^j) \ssm \inv(\sigma) = \bigset{ \big( \sigma(q), \sigma(p) \big) }{i \le p \le j < q \le k}}$.
+We have~$\sigma^{-1}(2v) \le k$ since~$\sigma$ is a wiggly permutation.
+As~$(2v, u) \not\in \inv(\sigma)$ and~$\sigma(p) < \sigma(q)$ for all~$i \le p \le j < q \le k$, we conclude that~$j < \sigma^{-1}(2v) < k$.
+Hence, we obtain that ${i \le \sigma^{-1}(u) \le j < \sigma^{-1}(2v) \le k}$, so that~$(2v,u) \in \inv(\sigma^j)$.
+Similarly~${(w, 2v-1) \in \inv(\sigma^j)}$ implies~$(w, 2v) \in \inv(\sigma^j)$ for all~$v \in [n]$ and~$w > 2v$.
+We conclude that~$\sigma^j$ is indeed a wiggly permutation of~$[2n]$ by \cref{lem:inversionSetsWigglyPermutations}.
+
+Consider now any wiggly transposition~$\tau$ such that~$\inv(\sigma) \cup \big\{ \big( \sigma(j+1), \sigma(j) \big) \big\} \subseteq \inv(\tau)$.
+By \cref{lem:inversionSetsWigglyPermutations}, we obtain that~$\inv(\tau)$ also contains % both~$\big( \sigma(j+1), \sigma(i) \big)$ and~$\big( \sigma(k), \sigma(j) \big)$, hence also~
+$\big( \sigma(k), \sigma(i) \big)$.
+Since~$\inv(\sigma) \subset \inv(\tau)$ and~$\inv(\sigma)$ contains~$\big( \sigma(i), \sigma(p) \big)$ and~$\big( \sigma(q), \sigma(k) \big)$ for all~$i < p \le j$ and~$j+1 \le q < k$, we conclude by transitivity that~$\inv(\tau)$ contains~$\big( \sigma(q), \sigma(p) \big)$ for all~$i \le p \le j < q \le k$.
+\end{proof}
 
 \begin{proposition}
 Each wiggly permutation~$\sigma$ covers (resp.~is covered by) as many wiggly permutations as its number of descents (resp.~ascents), so that the cover graph of~$\wigglyLattice_n$ is regular of degree~$2n-1$.
 \end{proposition}
 
 \begin{proof}
-Consider an ascent~$j$ of~$\sigma$.
-Let~$i \eqdef \min \big( j, \sigma^{-1} \big( \sigma(j)+1 \big) \big)$ if~$\sigma(j)$ is odd, and $i \eqdef j$ otherwise.
-Let~$k \eqdef \max \big( j+1, \sigma^{-1} \big( \sigma(j+1)+1 \big) \big)$ if~$\sigma(j+1)$ is odd, and $k \eqdef j+1$ otherwise.
-Let~$\sigma^j \eqdef \sigma(1) \dots \sigma(i-1) \sigma(j+1) \dots \sigma(k) \sigma(i) \dots \sigma(j) \sigma(k+1) \dots \sigma(2n)$.
-Then~$\sigma^j$ is the minimal wiggly permutation such that~$\inv(\sigma^j) \supseteq \inv(\sigma) \cup \big\{ \big( \sigma(j+1), \sigma(j) \big) \big\}$.
-Moreover,~$\sigma^j \ne \sigma^{j'}$ for distinct ascents~$j \ne j'$.
+%Consider an ascent~$j$ of~$\sigma$.
+%Let~$i \eqdef \min \big( j, \sigma^{-1} \big( \sigma(j)+1 \big) \big)$ if~$\sigma(j)$ is odd, and $i \eqdef j$ otherwise.
+%Let~$k \eqdef \max \big( j+1, \sigma^{-1} \big( \sigma(j+1)+1 \big) \big)$ if~$\sigma(j+1)$ is odd, and $k \eqdef j+1$ otherwise.
+%Let~$\sigma^j \eqdef \sigma(1) \dots \sigma(i-1) \sigma(j+1) \dots \sigma(k) \sigma(i) \dots \sigma(j) \sigma(k+1) \dots \sigma(2n)$.
+%Then~$\sigma^j$ is the minimal wiggly permutation such that~$\inv(\sigma^j) \supseteq \inv(\sigma) \cup \big\{ \big( \sigma(j+1), \sigma(j) \big) \big\}$.
+Observe that~$\sigma^j \ne \sigma^{j'}$ for distinct ascents~$j \ne j'$.
 As any permutation~$\sigma'$ larger than~$\sigma$ satisfies~${\inv(\sigma') \supseteq \inv(\sigma) \cup \{\sigma(j+1), \sigma(j)\}}$ for some ascent~$j$ of~$\sigma$, we thus obtain that~$j \to \sigma^j$ is a bijection from the ascents of~$\sigma$ to the wiggly permutations covering~$\sigma$.
 The proof is symmetrical for the bijection from descents of~$\sigma$ to wiggly permutations covered by~$\sigma$.
 \end{proof}
