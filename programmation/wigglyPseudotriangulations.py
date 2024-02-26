@@ -569,6 +569,66 @@ def wigglyhedron(n, method='inequalities'):
     if method == 'vertices': return wigglyhedron_from_vertices(n)
     print('method should be inequalities or vertices')
 
+### CAMBRIAN LATTICES
+
+@cached_function
+def cambrian_face(signature):
+    r"""
+    Return a collection of wiggly arcs corresponding to a given signature.
+    """
+    n = len(signature)
+    return Set([(0, i+1, tuple([]), tuple(range(1,i+1))) for i in range(n) if signature[i] < 0] + [(0, i+1, tuple(range(1,i+1)), tuple([])) for i in range(n) if signature[i] > 0]) # left - left
+    # return Set([(i+1, n+1, tuple([]), tuple(range(i+2,n+1))) for i in range(n) if signature[i] < 0] + [(0, i+1, tuple(range(1,i+1)), tuple([])) for i in range(n) if signature[i] > 0]) # right - left
+    # return Set([(0, i+1, tuple([]), tuple(range(1,i+1))) for i in range(n) if signature[i] < 0] + [(i+1, n+1, tuple(range(i+2,n+1)), tuple([])) for i in range(n) if signature[i] > 0]) # left - right
+    # return Set([(i+1, n+1, tuple([]), tuple(range(i+2,n+1))) for i in range(n) if signature[i] < 0] + [(i+1, n+1, tuple(range(i+2,n+1)), tuple([])) for i in range(n) if signature[i] > 0]) # right - right
+
+@cached_function
+def cambrian_complex(signature):
+    r"""
+    Return the subcomplex of the wiggly complex corresponding to the given Cambrian associahedron.
+    """
+    return wiggly_complex(len(signature)).link(cambrian_face(signature))
+
+@cached_function
+def cambrian_wiggly_permutations(signature):
+    r"""
+    Return the set of Cambrian wiggly permutations for the given signature.
+    """
+    n = len(signature)
+    return [wp for wp in wiggly_permutations(n) if all(wp.inverse()(2*j+2) < wp.inverse()(i+1) for j in range(n) if signature[j] < 0 for i in range(2*j+1)) and all(wp.inverse()(i+1) <= wp.inverse()(2*j+1) for j in range(n) if signature[j] > 0 for i in range(2*j+2))] # left - left
+    # return [wp for wp in wiggly_permutations(n) if all(wp.inverse()(2*j+1) < wp.inverse()(k+1) for j in range(n) if signature[j] < 0 for k in range(2*j+1, 2*n)) and all(wp.inverse()(i+1) <= wp.inverse()(2*j+1) for j in range(n) if signature[j] > 0 for i in range(2*j+2))] # right - left
+    # return [wp for wp in wiggly_permutations(n) if all(wp.inverse()(2*j+2) < wp.inverse()(i+1) for j in range(n) if signature[j] < 0 for i in range(2*j+1)) and all(wp.inverse()(i+1) <= wp.inverse()(2*j+2) for j in range(n) if signature[j] > 0 for i in range(2*j, 2*n))] # left - right
+    # return [wp for wp in wiggly_permutations(n) if all(wp.inverse()(2*j+1) < wp.inverse()(k+1) for j in range(n) if signature[j] < 0 for k in range(2*j+1, 2*n)) and all(wp.inverse()(i+1) <= wp.inverse()(2*j+2) for j in range(n) if signature[j] > 0 for i in range(2*j, 2*n))] # right - right
+
+@cached_function
+def cambrian_wiggly_permutations_digraph(signature):
+    r"""
+    Return the graph of oriented flips on Cambrian wiggly permutations for the given signature.
+
+    EXAMPLES::
+    """
+    return DiGraph(dict((wp, [flip(wp, j) for j in wp.descents(positive=True)  if flip(wp, j) in cambrian_wiggly_permutations(signature)]) for wp in cambrian_wiggly_permutations(signature)))
+
+@cached_function
+def cambrian_wiggly_permutations_lattice(signature):
+    r"""
+    Return the lattice on Cambrian wiggly permutations for the given signature.
+
+    EXAMPLES::
+        sage: cambrian_wiggly_permutations_lattice((1,-1,1,-1,1)).is_isomorphic(permutree_congruence([1,-1,1,-1,1]).quotient())
+        True
+    """
+    return LatticePoset(cambrian_wiggly_permutations_digraph(signature))
+
+@cached_function
+def cambrian_wiggly_permutations_sublattice(signature):
+    r"""
+    Return the sublattice of the wiggly lattice corresponding to the given Cambrian lattice.
+    """
+    n = len(signature)
+    f = cambrian_face(signature)
+    return wiggly_permutations_lattice(n).sublattice([wpt2wp(list(f) + list(g)) for g in cambrian_complex(signature).facets()])
+
 ### MULTI WIGGLY COMPLEXES
 ### This is very much in progress. Does not work at the moment.
 

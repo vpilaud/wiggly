@@ -134,6 +134,7 @@
 % specific wiggly
 \newcommand{\wigglyComplex}{\mathrm{WC}} % wiggly complex
 \newcommand{\wigglyFlipGraph}{\mathrm{WFG}} % wiggly flip graph
+\newcommand{\wigglyIncreasingFlipGraph}{\mathrm{WIFG}} % wiggly increasing flip graph
 \newcommand{\wigglyLattice}{\mathrm{WL}} % wiggly lattice
 \newcommand{\wigglyFan}{\mathrm{WF}} % wiggly fan
 \newcommand{\wigglyhedron}{\polytope{W}} % wigglyhedron
@@ -422,6 +423,26 @@ As $\alpha'$ is inside~$q$ and compatible with~$c$, it is also compatible with~$
 We obtain that~$T' \eqdef Q \cup \{\alpha'\}$ is the only wiggly pseudotriangulation other than~$T$ containing~$Q$.
 \end{proof}
 
+The following definition is illustrated in \cref{fig:incompatible2}.
+%
+\begin{figure}
+\centering
+\includegraphics[scale=1.3]{incompatible2}
+\caption{The arcs~$\alpha$ and~$\alpha'$ of \cref{def:wigglyIncreasingFlipGraph}.}
+\label{fig:incompatible2}
+\end{figure}
+
+\begin{definition}
+\label{def:wigglyIncreasingFlipGraph}
+Let~$\alpha \eqdef (i, j, A, B)$ and~$\alpha' \eqdef (i', j', A', B')$ be two wiggly arcs and~$T$ and~$T'$ be two wiggly pseudotriangulations, such that~$T \ssm \{\alpha\} = T' \ssm \{\alpha'\}$.
+We say that the flip from~$T$ to~$T'$ is \defn{increasing} if 
+\begin{itemize}
+\item $\alpha$ starts where~$\alpha'$ ends (that is, $i = j'$), or 
+\item $\alpha$ crosses~$\alpha'$ from north-west to south-east (that is, there exists~$k \in [n-1]$ such that $k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$).
+\end{itemize}
+The \defn{wiggly increasing flip graph}~$\wigglyIncreasingFlipGraph_n$ is the directed graph with a vertex for each wiggly pseudotriangulation and a edge for each increasing~flip.
+\end{definition}
+
 \begin{definition}
 The \defn{wiggly complex}~$\wigglyComplex_n$ is the simplicial complex of pairwise pointed and non-crossing subsets of internal wiggly arcs.
 In other words, it is the clique complex of the compatibility graph on internal wiggly arcs.
@@ -486,13 +507,19 @@ This enables to quickly compute the generating series of the number of wiggly ps
 \]
 \end{remark}
 
-Finally, we will need the following observation, illustrated in \cref{fig:incompatible2}.
+\begin{remark}
+\label{rem:wigglyComplexAutomorphism}
+The vertical and horizontal reflections provide two obvious automorphisms of the wiggly complex~$\wigglyComplex_n$ (and thus of the wiggly flip graph~$\wigglyFlipGraph_n$).
+Moreover, the vertical reflection is an anti-automorphism of the wiggly increasing flip graph~$\wigglyIncreasingFlipGraph_n$ (while the horizontal reflection is not).
+\end{remark}
+
+Finally, we will need the following observation, illustrated in \cref{fig:incompatible3}.
 %
 \begin{figure}
 \centering
-\includegraphics[scale=1.3]{incompatible2}
+\includegraphics[scale=1.3]{incompatible3}
 \caption{The arcs~$\beta$ and~$\beta'$ of \cref{prop:uerp}.}
-\label{fig:incompatible2}
+\label{fig:incompatible3}
 \end{figure}
 
 \begin{proposition}
@@ -502,10 +529,10 @@ Then any wiggly arc compatible with both~$\alpha$ and~$\alpha'$ is also compatib
 \begin{itemize}
 \item $\beta \eqdef (i, j', A \cup A', B \cup B' \cup \{j\})$ and~$\beta' \eqdef (i, j', A \cup A' \cup \{j\}, B \cup B')$ if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$,
 (In other words, ~$\beta$ and~$\beta'$ are the two wiggly arcs starting at~$\min(i,i')$ and ending at~$\max(j,j')$ which follow $\alpha$ on~$]i,j[$ and~$\alpha'$ on~$]i',j'[$.)
-\item $\beta \eqdef \big( i, j', {]i,j'[} \ssm (B \cup B'), {]i,j'[} \cap (B \cup B') \big)$ and~$\beta' \eqdef \big( i', j, {]i',j[} \cap (A \cup A'), {]i',j[} \ssm (A \cup A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing with~$i \in A'$ or~$i' \in B$.
-(In other words, then~$\beta$ is the wiggly arc starting at~$i$ and ending at~$j'$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i'$ and ending~at~$j$ which follows the upper hull of~$\alpha$ and~$\alpha'$.)
+\item $\beta \eqdef \big( i, j', {]i,j'[} \ssm (B \cup B'), {]i,j'[} \cap (B \cup B') \big)$ and~$\beta' \eqdef \big( i', j, {]i',j[} \cap (A \cup A'), {]i',j[} \ssm (A \cup A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing and there is~$k \in [n-1]$ such that~$k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$.
+(In other words, $\beta$ is the wiggly arc starting at~$i$ and ending at~$j'$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i'$ and ending~at~$j$ which follows the upper hull of~$\alpha$ and~$\alpha'$.)
 \end{itemize}
-%See \cref{fig:incompatible2} for illustrations.
+%See \cref{fig:incompatible3} for illustrations.
 (By exchanging~$\alpha$ and~$\alpha'$, similar statements hold if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$, or if~$\alpha$ and~$\alpha'$ are crossing with~$i \in B'$ or~$i' \in A$.)
 \end{proposition}
 
@@ -622,6 +649,11 @@ By \cref{lem:inversionSetsWigglyPermutations}, we conclude that~$\tau = \rho \jo
 The proof is similar for~$\rho \meet \sigma$, using $\ninv$ instead of~$\inv$.
 \end{proof}
 
+\begin{remark}
+\label{rem:wigglyLatticeAntiIsomorphism}
+The map~$\sigma_1 \dots \sigma_{2n} \mapsto (2n+1-\sigma_1) \dots (2n+1-\sigma_n)$ obviously provides an anti-isomorphism of the wiggly lattice~$\wigglyLattice_n$.
+\end{remark}
+
 We now aim at describing the cover relations of the wiggly lattice.
 Recall that an \defn{ascent} (resp.~\defn{descent}) in a permutation~$\sigma$ is a position~$j$ such that~$\sigma(j) < \sigma(j+1)$ (resp.~$\sigma(j) > \sigma(j+1)$).
 
@@ -717,13 +749,17 @@ j \eqdef \min \{n+1\} \cup \set{j \in [n]}{2j \in \sigma([k]) \not\ni 2j-1} \!.
 \end{definition}
 
 \begin{proposition}
-The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} define inverse bijections between the wiggly pseudotriangulations and the wiggly permutations, which induce a graph isomorphism between the wiggly flip graph~$\wigglyFlipGraph_n$ and the cover graph of the wiggly lattice~$\wigglyLattice_n$.
+The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} define inverse bijections between the wiggly pseudotriangulations and the wiggly permutations, which induce a directed graph isomorphism between the wiggly increasing flip graph~$\wigglyIncreasingFlipGraph_n$ and the Hasse diagram of the wiggly lattice~$\wigglyLattice_n$.
 \end{proposition}
 
 \begin{proof}
 %We first have to prove that~$\Phi$ and~$\Psi$ are well-defined.
 \vincent{todo}
 \end{proof}
+
+\begin{remark}
+The map~$\Phi$ sends the wiggly complex automorphism of \cref{rem:wigglyComplexAutomorphism} given by the vertical reflection to the wiggly lattice anti-isomorphism of \cref{rem:wigglyLatticeAntiIsomorphism}.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -871,7 +907,7 @@ We first find a vector contained in the cone~$\R_{\ge 0} \langle \b{g}(T) \rangl
 
 \begin{lemma}
 \label{lem:-+...-+}
-Let~$\b{v} \eqdef \sum_{k \in [n]} (\b{e}_{2k} - \b{e}_{2k-1}) = (-1, 1, \dots, -1, 1)$, let~$\alpha_0 \eqdef (0, 1, \varnothing, \varnothing)$, and let~$\underline{\alpha}_i \eqdef (0, i+1, [i], \varnothing)$ and~$\overline{\alpha}_i \eqdef (0, i+1, \varnothing, [i])$ for all~${i \in [n]}$.
+Let~$\b{v} \eqdef \sum_{k \in [n]} (\b{e}_{2k} - \b{e}_{2k-1}) = (-1, 1, \dots, -1, 1)$, let~$\alpha_0 \eqdef (0, 1, \varnothing, \varnothing)$, and for~${i \in [n]}$, let~$\underline{\alpha}_i \eqdef (0, i+1, [i], \varnothing)$ and~$\overline{\alpha}_i \eqdef (0, i+1, \varnothing, [i])$.
 Then~$\{\alpha_0\} \cup \bigcup_{i \in [n]} \{\underline{\alpha}_i, \overline{\alpha}_i\}$ is the only wiggly pseudotriangulation~$T$ such that~$\b{v} \in \R_{\ge 0} \langle \b{g}(T) \rangle$.
 \end{lemma}
 
@@ -921,18 +957,6 @@ Then~$\{\beta, \beta'\} \in T \cap T'$ and
 \item if $\alpha$ and~$\alpha'$ are not pointed, then~$\b{g}(\alpha) + \b{g}(\alpha') = \big( \b{g}(\beta) + \b{g}(\beta') \big) / 2$,
 \item if~$\alpha$ and~$\alpha'$ are crossing, then~${\b{g}(\alpha) + \b{g}(\alpha') = \b{g}(\beta) + \b{g}(\beta')}$.
 \end{itemize}
-%Let~$\alpha \eqdef (i, j, A, B)$ and~$\alpha' \eqdef (i', j', A', B')$ be two exchangeable wiggly arcs, and let~$T$ and~$T'$ be two adjacent wiggly pseudotriangulations such that~$T \ssm \{\alpha\} = T' \ssm \{\alpha'\}$.
-%Then
-%\begin{description}
-%\item[if $\alpha$ and~$\alpha'$ are not pointed] Assume without loss of generality that~$i' = j$, and consider %the wiggly arcs~
-%$\beta \eqdef (i, j', A \cup A', B \cup B' \cup \{j\})$ and~$\beta' \eqdef (i, j', A \cup A' \cup \{j\}, B \cup B')$.
-%(In other words, ~$\beta$ and~$\beta'$ are the two wiggly arcs starting at~$\min(i,i')$ and ending at~$\max(j,j')$ which follow $\alpha$ on~$]i,j[$ and~$\alpha'$ on~$]i',j'[$.)
-%Then~$\{\beta, \beta'\} \in T \cap T'$ and~$\b{g}(\alpha) + \b{g}(\alpha') = \big( \b{g}(\beta) + \b{g}(\beta') \big) / 2$.
-%\item[if~$\alpha$ and~$\alpha'$ are crossing] Assume without loss of generality that~$i \in A'$ or~$i' \in B$, and consider %the wiggly arcs~
-%$\beta \eqdef \big( i, j', {]i,j'[} \ssm (B \cup B'), {]i,j'[} \cap (B \cup B') \big)$ and~$\beta' \eqdef \big( i', j, {]i',j[} \cap (A \cup A'), {]i',j[} \ssm (A \cup A') \big)$. \linebreak
-%(In other words, if~$p$ denotes the crossing point of~$\alpha$ and~$\alpha'$, then~$\beta$ is the wiggly arc starting at~$i$ and ending at~$j'$ which follows~$\alpha$ on~$]i,p[$ and~$\alpha'$ on~$]p,j'[$, and~$\beta'$ is the wiggly arc starting at~$i'$ and ending~at~$j$ which follows~$\alpha$ on~$]i',p[$ and~$\alpha$ on~$]p,j[$.)
-%Then~${\{\beta, \beta'\} \in T \cap T'}$ and~${\b{g}(\alpha) + \b{g}(\alpha') = \b{g}(\beta) + \b{g}(\beta')}$.
-%\end{description}
 \end{lemma}
 
 \begin{proof}
@@ -961,7 +985,7 @@ hence
 = \hat{\b{g}}(\beta) + \hat{\b{g}}(\beta').
 \end{align*}
 
-If~$\alpha$ and~$\alpha'$ are crossing with~$i \in A'$ or~$i' \in B$, then we have
+If~$\alpha$ and~$\alpha'$ are crossing and there is~$k \in [n-1]$ with $k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$, then we have
 \begin{gather*}
 \alpha^+ \cup \alpha'^+ = \beta^+ \cup \beta'^+ \qquad\text{and}\qquad \alpha^+ \cap \alpha'^+ = \beta^+ \cap \beta'^+, \\
 \alpha^- \cup \alpha'^- = \beta^- \cup \beta'^- \qquad\text{and}\qquad \alpha^- \cap \alpha'^- = \beta^- \cap \beta'^-.
@@ -1008,12 +1032,22 @@ The \defn{incompatibility number} of a wiggly arc~$\alpha$ is~$\kappa(\alpha) \e
 \end{definition}
 
 \begin{remark}
-This is indeed an incompatibility degree in the sense that
+Note that~$\delta$ is indeed an incompatibility degree in the sense that
 \begin{itemize}
 \item $\alpha$ and~$\alpha'$ are compatible if and only if~$\delta(\alpha, \alpha') = 0$,
 \item $\alpha$ and~$\alpha'$ are exchangeable if and only if~$\delta(\alpha, \alpha') = 1$.
 \end{itemize}
+Observe also that~$\delta$ (and thus~$\kappa$) is preserved by the automorphisms of \cref{rem:wigglyComplexAutomorphism}.
 \end{remark}
+
+\begin{example}
+Observe that
+$\kappa \big( (0, j, {[1,j[}, \varnothing) \big) 
+= \kappa \big( (0, j, \varnothing, {[1,j[}) \big) 
+%= \kappa \big( (n+1-j, n+1, {]n+1-j, n]}, \varnothing) \big) 
+%= \kappa \big( (n+1-j, n+1, \varnothing, {]n+1-j, n]}) \big) 
+= (2^j-1)(2^{n+1-j}-1)$.
+\end{example}
 
 \begin{lemma}
 \label{lem:wallCrossingInequalities}
@@ -1056,6 +1090,67 @@ The Hasse diagram of the wiggly lattice~$\wigglyLattice_n$ is isomorphic to the 
 \begin{proof}
 \vincent{todo}
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Cambrian considerations}
+
+In this section, we fix a signature~$\delta \in \{+,-\}^n$. By convention, we set~$\delta_0 = \delta_{n+1} = 0$.
+
+\begin{definition}
+The \defn{$\delta$-gon} is a convex $(n+2)$-gon with a point at abscissa~$i$ and ordinate of the sign of~$\delta_i$  for all~$0 \le i \le n+1$
+A \defn{$\delta$-triangulation} is a set of ordered pairs~$(i,j)$ which are the internal diagonals of a triangulation of the $\delta$-gon.
+The \defn{$\delta$-triangulation lattice} is the transitive closure of the slope increasing flip graph on $\delta$-triangulations.
+%If~$T$ and~$T'$ are two $\delta$-triangulations with~$T \ssm \{d\} = T' \ssm \{d'\}$, then the flip from~$T$ to~$T'$ is \defn{increasing} if the slope of~$d$ is smaller than the slope of~$d'$.
+\end{definition}
+
+\begin{definition}
+A \defn{$\delta$-permutation} is a permutation of~$[n]$ which avoids~$\cdots ik \cdots j \cdots$ with~$i < j < k$ and~$\delta_j = -$, and~$\cdots j \cdots ik \cdots$ with~$i < j < k$ and~$\delta_j = +$.
+The \defn{$\delta$-permutation lattice} is the sublattice of the weak order induced by $\delta$-permutations.
+\end{definition}
+
+\begin{definition}
+\label{def:CambrianWigglyPseudotriangulations}
+The \defn{$\delta$-wiggly arcs} are the arcs~$(0, j, {[1,j[}, \varnothing)$ for~$\delta_j > 0$ and~$(0, j, \varnothing, {[1,j[})$ for~$\delta_j < 0$.
+A \defn{$\delta$-wiggly pseudotriangulation} is a wiggly pseudotriangulation containing all $\delta$-wiggly arcs.
+The \defn{$\delta$-wiggly pseudotriangulation lattice} is the transitive closure of the increasing flip graph on $\delta$-wiggly pseudotriangulations.
+\end{definition}
+
+\begin{definition}
+\label{def:CambrianWigglyPermutations}
+A \defn{$\delta$-wiggly permutation} is a wiggly permutation~$\sigma$ of~$[2n]$ such that
+% for all~$j \in [n]$, we have~ and~$\sigma^{-1}(i) < \sigma^{-1}(2j-1)$ if~$\delta_j > 0$ and~$\sigma^{-1}(i) > \sigma^{-1}(2j)$ if~$\delta_j < 0$ for all~$i \in [2j-2]$.
+%\begin{itemize}
+%\item $\sigma^{-1}(2j-1) > \sigma^{-1}(2j)$ for all~$j \in [n]$,
+%\item $\sigma^{-1}(i) < \sigma^{-1}(2j-1)$ if~$\delta_j > 0$ and~$\sigma^{-1}(i) > \sigma^{-1}(2j)$ if~$\delta_j < 0$ for all~$j \in [n]$ and~$i \in [2j-2]$.
+%\end{itemize}
+\[
+\delta_j = {+} \quad \Longrightarrow \quad \sigma^{-1}(i) \le \sigma^{-1}(2j-1)
+\qquad\text{and}\qquad
+\delta_j = {-} \quad \Longrightarrow \quad \sigma^{-1}(2j) \le \sigma^{-1}(i)
+\]
+%$\delta_j > 0 \implies \sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ and~$\delta_j < 0 \implies \sigma^{-1}(i) \ge \sigma^{-1}(2j)$
+for all~$1 \le i \le 2j \le 2n$.
+The \defn{$\delta$-wiggly permutation lattice} is the interval of the wiggly permutation lattice~$\wigglyLattice_n$ given by $\delta$-wiggly permutations.
+\end{definition}
+
+\begin{proposition}
+\label{prop:CambrianIntervals}
+For any signature~$\delta \in \{+,-\}^n$, the $\delta$-triangulation lattice, $\delta$-permutation lattice, \mbox{$\delta$-wiggly} pseudotriangulation lattice, and $\delta$-wiggly permutation lattice are all isomorphic, and are known as the \defn{$\delta$-Cambrian lattice}~\cite{Reading-CambrianLattices}.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{remark}
+We had to make a choice in \cref{def:CambrianWigglyPseudotriangulations,def:CambrianWigglyPermutations}.
+For~$\delta_j = {+}$, we could replace ``$(0, j, {[1,j[}, \varnothing)$'' by~``$(j, n+1, {]j,n]}, \varnothing)$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
+Independently, for~$\delta_j = {-}$, we could replace ``$(0, j, \varnothing, {[1,j[})$'' by~``$(j, n+1, \varnothing, {]j,n]})$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(2j) \le \sigma^{-1}(i)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(2j-1) \le \sigma^{-1}(i)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
+%\end{itemize}
+\end{remark}
+
+\vincent{todo: find an explicit affine map between the Hohlweg-Lange $\delta$-associahedron and the face of the wigglyhedron corresponding to all $\delta$-wiggly arcs.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
