@@ -128,8 +128,6 @@
 % geometry
 \newcommandx{\Fan}[1][1=D]{\mathcal{F}_{#1}} % fan
 \newcommand{\polytope}[1]{\mathds{#1}} % font polytope
-\newcommandx{\Zono}[1][1=D]{\polytope{Z}_{#1}} % zonotope
-\newcommandx{\Asso}[1][1=n]{\polytope{A}_{#1}} % associahedron
 
 % specific wiggly
 \newcommand{\wigglyComplex}{\mathrm{WC}} % wiggly complex
@@ -138,6 +136,7 @@
 \newcommand{\wigglyLattice}{\mathrm{WL}} % wiggly lattice
 \newcommand{\wigglyFan}{\mathrm{WF}} % wiggly fan
 \newcommand{\wigglyhedron}{\polytope{W}} % wigglyhedron
+\newcommand{\Asso}{\polytope{A}\mathsf{sso}} % associahedron
 
 % formating the table of contents
 \setcounter{tocdepth}{4}
@@ -962,7 +961,7 @@ Then~$\{\beta, \beta'\} \in T \cap T'$ and
 \begin{proof}
 In both situations, we will just prove that the same linear dependence holds on the vectors~$\hat{\b{g}}(\alpha), \hat{\b{g}}(\alpha'), \hat{\b{g}}(\beta), \hat{\b{g}}(\beta')$, which will imply the statement as~$\pi$ is a linear map.
 
-If~$\alpha$ and~$\alpha'$ are non pointed with~$i' = j$, then we have
+If~$\alpha$ and~$\alpha'$ are non pointed, then we have
 \[
 \alpha^+ \sqcup \alpha'^+ = \beta^+ \sqcup \{2j-1, 2j\} = \beta'^+
 \qquad\text{and}\qquad 
@@ -985,7 +984,7 @@ hence
 = \hat{\b{g}}(\beta) + \hat{\b{g}}(\beta').
 \end{align*}
 
-If~$\alpha$ and~$\alpha'$ are crossing and there is~$k \in [n-1]$ with $k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$, then we have
+If~$\alpha$ and~$\alpha'$ cross, then we have
 \begin{gather*}
 \alpha^+ \cup \alpha'^+ = \beta^+ \cup \beta'^+ \qquad\text{and}\qquad \alpha^+ \cap \alpha'^+ = \beta^+ \cap \beta'^+, \\
 \alpha^- \cup \alpha'^- = \beta^- \cup \beta'^- \qquad\text{and}\qquad \alpha^- \cap \alpha'^- = \beta^- \cap \beta'^-.
@@ -1098,8 +1097,8 @@ The Hasse diagram of the wiggly lattice~$\wigglyLattice_n$ is isomorphic to the 
 In this section, we fix a signature~$\delta \in \{+,-\}^n$. By convention, we set~$\delta_0 = \delta_{n+1} = 0$.
 
 \begin{definition}
-The \defn{$\delta$-gon} is a convex $(n+2)$-gon with a point at abscissa~$i$ and ordinate of the sign of~$\delta_i$  for all~$0 \le i \le n+1$
-A \defn{$\delta$-triangulation} is a set of ordered pairs~$(i,j)$ which are the internal diagonals of a triangulation of the $\delta$-gon.
+The \defn{$\delta$-gon} is a convex $(n+2)$-gon with a point with abscissa~$i$ and with ordinate of the same sign as~$\delta_i$  for all~$0 \le i \le n+1$.
+A \defn{$\delta$-triangulation} is a triangulation of the $\delta$-gon.
 The \defn{$\delta$-triangulation lattice} is the transitive closure of the slope increasing flip graph on $\delta$-triangulations.
 %If~$T$ and~$T'$ are two $\delta$-triangulations with~$T \ssm \{d\} = T' \ssm \{d'\}$, then the flip from~$T$ to~$T'$ is \defn{increasing} if the slope of~$d$ is smaller than the slope of~$d'$.
 \end{definition}
@@ -1111,7 +1110,7 @@ The \defn{$\delta$-permutation lattice} is the sublattice of the weak order indu
 
 \begin{definition}
 \label{def:CambrianWigglyPseudotriangulations}
-The \defn{$\delta$-wiggly arcs} are the arcs~$(0, j, {[1,j[}, \varnothing)$ for~$\delta_j > 0$ and~$(0, j, \varnothing, {[1,j[})$ for~$\delta_j < 0$.
+The \defn{$\delta$-wiggly arcs} are the arcs~$(0, j, {[1,j[}, \varnothing)$ for~$\delta_j = {+}$ and~$(0, j, \varnothing, {[1,j[})$ for~$\delta_j = {-}$.
 A \defn{$\delta$-wiggly pseudotriangulation} is a wiggly pseudotriangulation containing all $\delta$-wiggly arcs.
 The \defn{$\delta$-wiggly pseudotriangulation lattice} is the transitive closure of the increasing flip graph on $\delta$-wiggly pseudotriangulations.
 \end{definition}
@@ -1134,8 +1133,15 @@ for all~$1 \le i \le 2j \le 2n$.
 The \defn{$\delta$-wiggly permutation lattice} is the interval of the wiggly permutation lattice~$\wigglyLattice_n$ given by $\delta$-wiggly permutations.
 \end{definition}
 
+\begin{remark}
+We had to make a choice in \cref{def:CambrianWigglyPseudotriangulations,def:CambrianWigglyPermutations}.
+For~$\delta_j = {+}$, we could replace ``$(0, j, {[1,j[}, \varnothing)$'' by~``$(j, n+1, {]j,n]}, \varnothing)$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
+Independently, for~$\delta_j = {-}$, we could replace ``$(0, j, \varnothing, {[1,j[})$'' by~``$(j, n+1, \varnothing, {]j,n]})$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(2j) \le \sigma^{-1}(i)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(2j-1) \le \sigma^{-1}(i)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
+\cref{prop:CambrianLattice,prop:CambrianFan} would still hold.
+\end{remark}
+
 \begin{proposition}
-\label{prop:CambrianIntervals}
+\label{prop:CambrianLattice}
 For any signature~$\delta \in \{+,-\}^n$, the $\delta$-triangulation lattice, $\delta$-permutation lattice, \mbox{$\delta$-wiggly} pseudotriangulation lattice, and $\delta$-wiggly permutation lattice are all isomorphic, and are known as the \defn{$\delta$-Cambrian lattice}~\cite{Reading-CambrianLattices}.
 \end{proposition}
 
@@ -1143,14 +1149,23 @@ For any signature~$\delta \in \{+,-\}^n$, the $\delta$-triangulation lattice, $\
 \vincent{todo}
 \end{proof}
 
-\begin{remark}
-We had to make a choice in \cref{def:CambrianWigglyPseudotriangulations,def:CambrianWigglyPermutations}.
-For~$\delta_j = {+}$, we could replace ``$(0, j, {[1,j[}, \varnothing)$'' by~``$(j, n+1, {]j,n]}, \varnothing)$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
-Independently, for~$\delta_j = {-}$, we could replace ``$(0, j, \varnothing, {[1,j[})$'' by~``$(j, n+1, \varnothing, {]j,n]})$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(2j) \le \sigma^{-1}(i)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(2j-1) \le \sigma^{-1}(i)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
-%\end{itemize}
-\end{remark}
+Recall that the $\delta$-Cambrian lattice can be realized by the $\delta$-Cambrian fan~\cite{ReadingSpeyer} and the $\delta$-associahedron of~\cite{HohlwegLange}.
+Namely, to each diagonal~$(i,j)$ of the $\delta$-gon, we associate the subset~$X(\delta)$ of points of the $\delta$-gon distinct from~$0$ and~$n+1$, and located below the line~$(i,j)$, including~$i$ if and only if~$\delta_i = {+}$ and~$j$ if and only if~$\delta_j = {+}$.
+The \defn{$\delta$-Cambrian fan} is the fan with a ray~$\b{g}(d) \eqdef \pi(\one_{X(d)})$ for each internal diagonal~$d$ of the $\delta$-gon and a cone~$\R_{\ge0} \setangle{\b{g}(d)}{d \in D^\circ}$ for each dissection~$D$ of the $\delta$-gon.
+The \defn{$\delta$-associahedron} is the polytope defined by the equality~$\dotprod{\one_n}{\b{x}} = \binom{n+1}{2}$ and the inequalities~$\dotprod{\b{g}(d)}{\b{x}} \le \binom{|X(d)|+1}{2}$ for all internal diagonals~$d$ of the $\delta$-gon.
+
+\begin{proposition}
+\label{prop:CambrianFan}
+The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of the wigglyhedron~$\wigglyhedron_n$ corresponding to the wiggly pseudodissection formed by the $\delta$-wiggly arcs.
+\end{proposition}
+
+\begin{proof}
+The maps of \cref{prop:CambrianLattice} preserve the $\b{g}$-vector linear dependences.
+\vincent{explain}
+\end{proof}
 
 \vincent{todo: find an explicit affine map between the Hohlweg-Lange $\delta$-associahedron and the face of the wigglyhedron corresponding to all $\delta$-wiggly arcs.}
+\vincent{todo: add picture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
