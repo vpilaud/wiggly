@@ -9,7 +9,7 @@
 \usepackage{tikz}
 %\usepackage{tkz-graph}
 %\usepackage{tikz-qtree}
-\usetikzlibrary{trees, decorations, decorations.markings, shapes, arrows, matrix, calc, fit, intersections, patterns, angles}
+\usetikzlibrary{trees, decorations, decorations.markings, shapes, arrows, matrix, calc, fit, intersections, patterns, angles, cd}
 \usepackage[external]{forest}
 %\tikzexternalize
 \graphicspath{{figures/}{figures/nodes/}}
@@ -425,8 +425,7 @@ We obtain that~$T' \eqdef Q \cup \{\alpha'\}$ is the only wiggly pseudotriangula
 The following definition is illustrated in \cref{fig:incompatible2}.
 %
 \begin{figure}
-\centering
-\includegraphics[scale=1.3]{incompatible2}
+\centerline{\includegraphics[scale=1.3]{incompatible2}}
 \caption{The arcs~$\alpha$ and~$\alpha'$ of \cref{def:wigglyIncreasingFlipGraph}.}
 \label{fig:incompatible2}
 \end{figure}
@@ -515,8 +514,7 @@ Moreover, the vertical reflection is an anti-automorphism of the wiggly increasi
 Finally, we will need the following observation, illustrated in \cref{fig:incompatible3}.
 %
 \begin{figure}
-\centering
-\includegraphics[scale=1.3]{incompatible3}
+\centerline{\includegraphics[scale=1.3]{incompatible3}}
 \caption{The arcs~$\beta$ and~$\beta'$ of \cref{prop:uerp}.}
 \label{fig:incompatible3}
 \end{figure}
@@ -627,8 +625,7 @@ where~$X^\mathrm{tc}$ denotes the transitive closure of~$X$.
 %The following statements are illustrated on \cref{fig:wigglyLattice}\,(right) when~${n = 2}$.
 %
 \begin{figure}
-\centering
-\includegraphics[scale=1.1]{wigglyFlipGraph}
+\centerline{\includegraphics[scale=1.1]{wigglyFlipGraph}}
 \caption{The wiggly lattice~$\wigglyLattice_2$ on wiggly pseudotriangulations (left) and on wiggly permutations (right).}
 \label{fig:wigglyLattice}
 \end{figure}
@@ -1013,8 +1010,7 @@ The wiggly fan coarsens the $\b{c}$-vector fan.
 We now construct the wigglyhedron illustrated in \cref{fig:wigglyhedron} when~${n = 2}$.
 %
 \begin{figure}[t]
-\centering
-\input{wigglyhedron}
+\centerline{\input{wigglyhedron}}
 \caption{The wigglyhedron~$\wigglyhedron_2$.}
 \label{fig:wigglyhedron}
 \end{figure}
@@ -1095,8 +1091,21 @@ The Hasse diagram of the wiggly lattice~$\wigglyLattice_n$ is isomorphic to the 
 \section{Cambrian considerations}
 
 In this section, we fix a signature~$\delta \in \{+,-\}^n$. By convention, we set~$\delta_0 = \delta_{n+1} = 0$.
+We connect the $\delta$-Cambrian lattice~\cite{Reading-CambrianLattices} to the wiggly lattice of \cref{sec:combinatorics} and the $\delta$-associahedron of~\cite{HohlwegLange} to the wigglyhedron of \cref{sec:geometry}.
+\cref{def:CambrianTriangulations,def:CambrianPermutations,def:CambrianWigglyPseudotriangulations,def:CambrianWigglyPermutations,prop:CambrianLattice} are illustrated in \cref{fig:wigglyCambrian}.
+
+\begin{figure}
+\centerline{\includegraphics[scale=1.1]{wigglyCambrian1}}
+\vspace{-.3cm}
+\centerline{\includegraphics[scale=1.1]{wigglyCambrian2}}
+\vspace{-.5cm}
+\centerline{\includegraphics[scale=1.1]{wigglyCambrian3}}
+\caption{Cambrian lattices as intervals of wiggly lattices.}
+\label{fig:wigglyCambrian}
+\end{figure}
 
 \begin{definition}
+\label{def:CambrianTriangulations}
 The \defn{$\delta$-gon} is a convex $(n+2)$-gon with a point with abscissa~$i$ and with ordinate of the same sign as~$\delta_i$  for all~$0 \le i \le n+1$.
 A \defn{$\delta$-triangulation} is a triangulation of the $\delta$-gon.
 The \defn{$\delta$-triangulation lattice} is the transitive closure of the slope increasing flip graph on $\delta$-triangulations.
@@ -1104,7 +1113,8 @@ The \defn{$\delta$-triangulation lattice} is the transitive closure of the slope
 \end{definition}
 
 \begin{definition}
-A \defn{$\delta$-permutation} is a permutation of~$[n]$ which avoids~$\cdots ik \cdots j \cdots$ with~$i < j < k$ and~$\delta_j = -$, and~$\cdots j \cdots ik \cdots$ with~$i < j < k$ and~$\delta_j = +$.
+\label{def:CambrianPermutations}
+A \defn{$\delta$-permutation} is a permutation of~$[n]$ which avoids~$\cdots ik \cdots j \cdots$ with~$i < j < k$ and~$\delta_j = -$, and~$\cdots j \cdots ki \cdots$ with~$i < j < k$ and~$\delta_j = +$.
 The \defn{$\delta$-permutation lattice} is the sublattice of the weak order induced by $\delta$-permutations.
 \end{definition}
 
@@ -1146,7 +1156,31 @@ For any signature~$\delta \in \{+,-\}^n$, the $\delta$-triangulation lattice, $\
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+We only describe the following bijections
+\begin{center}
+\begin{tikzcd}[column sep=3cm]
+\text{$\delta$-triangulations} \arrow[d] & \text{$\delta$-permutations} \arrow[l] \\
+\text{$\delta$-wiggly pseudotriangulations} \arrow[r] & \text{$\delta$-wiggly permutations} \arrow[u]
+%\text{$\delta$-triangulations} \arrow[d, "\lambda"'] & \text{$\delta$-permutations} \arrow[l, "\zeta"'] \\
+%\text{$\delta$-wiggly pseudotriangulations} \arrow[r, "\mu"'] & \text{$\delta$-wiggly permutations} \arrow[u, "\nu"']
+\end{tikzcd}
+\end{center}
+illustrated in \cref{fig:wigglyCambrian}.
+We let the readers convince themselves that they are well-defined, that they compose to the identity, and that they preserve the flip structure. (We also invite the reader to work out the explicit description of the 8 missing arrows.)
+For~$I \subseteq [n]$, we set~$I^+ \eqdef \set{i \in I}{\delta_i = {+}}$ and~$I^- \eqdef \set{i \in I}{\delta_i = {-}}$.
+
+\para{From $\delta$-triangulations to $\delta$-wiggly pseudotriangulations}
+Replace each diagonal~$(i,j)$ of the $\delta$-gon by the wiggly arc~$(0, j, [i] \cup {]i,j[}^-, {]i,j[}^+)$ if~$\delta_i \ge 0$ and~$(0, j, {]i,j[}^-, [i] \cup {]i,j[}^+)$ if~$\delta_i \le 0$.
+
+\para{From $\delta$-wiggly pseudotriangulations to $\delta$-wiggly permutations}
+Already described in \cref{def:bijection1}.
+
+\para{From $\delta$-wiggly permutations to $\delta$-permutations}
+For all~$j \in [n]$, erase~$2j-1$ and replace~$2j$ by~$j$ if~$\delta_j = {+}$, and erase~$2j$ and replace~$2j-1$ by~$j$ if~$\delta_j = {-}$.
+
+\para{From $\delta$-permutations to $\delta$-triangulations}
+Already described in~\cite{Reading-CambrianLattices}.
+Given a permutation~$\pi$, construct the union of the upper hulls of the point sets~$[n]^- \symdif \pi([j])$ for all~$j \in \{0, \dots, n\}$.
 \end{proof}
 
 Recall that the $\delta$-Cambrian lattice can be realized by the $\delta$-Cambrian fan~\cite{ReadingSpeyer} and the $\delta$-associahedron of~\cite{HohlwegLange}.
@@ -1190,8 +1224,7 @@ Note that, by construction, $\wigglyFlipGraph_P$ is regular.
 See \cref{fig:wigglyComplexSquarre} for an illustration.
 %
 \begin{figure}[!h]
-\centering
-\includegraphics[scale=1]{wigglyComplexSquare}
+\centerline{\includegraphics[scale=1]{wigglyComplexSquare}}
 \caption{The wiggly complex~$\wigglyComplex_P$ (left) and the wiggly flip graph~$\wigglyFlipGraph_P$ (right) of a point set~$P$.}
 \label{fig:wigglyComplexSquarre}
 \end{figure}

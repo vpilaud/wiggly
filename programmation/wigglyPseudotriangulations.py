@@ -463,6 +463,12 @@ def wp2wpt(wp):
 
 ### WIGGLYHEDRON
 
+def basis_vector(i,m):
+    r"""
+    Return the i-th vector of the standard basis.
+    """
+    return vector([0]*(i-1) + [1] + [0]*(m-i))
+
 def g_vector(arc, n, essential=True):
     r"""
     Return the g-vector of an arc.
