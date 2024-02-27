@@ -1173,7 +1173,7 @@ For~$I \subseteq [n]$, we set~$I^+ \eqdef \set{i \in I}{\delta_i = {+}}$ and~$I^
 Replace each diagonal~$(i,j)$ of the $\delta$-gon by the wiggly arc~$(0, j, [i] \cup {]i,j[}^-, {]i,j[}^+)$ if~$\delta_i \ge 0$ and~$(0, j, {]i,j[}^-, [i] \cup {]i,j[}^+)$ if~$\delta_i \le 0$.
 
 \para{From $\delta$-wiggly pseudotriangulations to $\delta$-wiggly permutations}
-Already described in \cref{def:bijection1}.
+Specialization of \cref{def:bijection1}.
 
 \para{From $\delta$-wiggly permutations to $\delta$-permutations}
 For all~$j \in [n]$, erase~$2j-1$ and replace~$2j$ by~$j$ if~$\delta_j = {+}$, and erase~$2j$ and replace~$2j-1$ by~$j$ if~$\delta_j = {-}$.
@@ -1194,18 +1194,22 @@ The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of 
 \end{proposition}
 
 \begin{proof}
-The maps of \cref{prop:CambrianLattice} preserve the $\b{g}$-vector linear dependences.
-\vincent{explain}
+Following the proof of \cref{prop:CambrianLattice}, consider the map~$\zeta$ sending a diagonal~$(i,j)$ of the $\delta$-gon to the wiggly arc $(0, j, [i] \cup {]i,j[}^-, {]i,j[}^+)$ if~$\delta_i \ge 0$ and~$(0, j, {]i,j[}^-, [i] \cup {]i,j[}^+)$ if~$\delta_i \le 0$.
+Let~$a \eqdef (i,j)$ and~$a' \eqdef (i',j')$ be two crossing diagonals of the~$\delta$-gon.
+Then any $\delta$-triangulations~$T$ and~$T'$ with~$T \ssm \{a\} = T' \ssm \{a'\}$ contain the diagonals~$b \eqdef (i',j)$ and~$b' \eqdef (i,j')$ of the $\delta$-gon, and~$\b{g}(a) + \b{g}(a') = \b{g}(b) + \b{g}(b')$.
+Moreover, if~$\alpha \eqdef \zeta(a)$, $\alpha' \eqdef \zeta(a')$, $\beta \eqdef \zeta(b)$ and~$\beta' \eqdef \zeta(b')$, then~$\b{g}(\alpha) + \b{g}(\alpha') = \b{g}(\beta) + \b{g}(\beta')$.
+We thus conclude that $\zeta$ preserves the linear dependences among $\b{g}$-vectors.
+Hence, there is a linear map~$Z : \HH_n \to \HH_{2n}$ such that~$Z \big( \b{g}(d) \big) = \b{g} \big( \zeta(d) \big)$ for all diagonals~$d$ of the $\delta$-gon.
+This map is a normal equivalence from $\delta$-associahedron~$\Asso_\delta$ to the face of the wigglyhedron~$\wigglyhedron_n$ corresponding to the wiggly pseudodissection formed by the $\delta$-wiggly~arcs.
 \end{proof}
 
-\vincent{todo: find an explicit affine map between the Hohlweg-Lange $\delta$-associahedron and the face of the wigglyhedron corresponding to all $\delta$-wiggly arcs.}
-\vincent{todo: add picture}
+%\vincent{todo: find an explicit affine map between the Hohlweg-Lange $\delta$-associahedron and the face of the wigglyhedron corresponding to all $\delta$-wiggly arcs.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Wiggly pseudotriangulations of planar point sets}
 
-We now extend \cref{thm:wigglyhedron,conj:Hamiltonian} to wiggly pseudotriangulations of arbitrary point sets in the plane (neither necessarily aligned, nor necessarily in general position).
+We now consider \cref{thm:wigglyhedron,conj:Hamiltonian} for wiggly pseudotriangulations of arbitrary point sets in the plane (neither necessarily aligned, nor necessarily in general position).
 
 \begin{definition}
 Fix a point set~$P$ of the plane, and an arbitrary total order~$<$ on~$P$.
