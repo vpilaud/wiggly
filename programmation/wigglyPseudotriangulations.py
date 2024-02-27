@@ -522,7 +522,7 @@ def wiggly_fan(n):
     return Fan(cones = [[arc_dict[arc] for arc in f] for f in wiggly_complex(n).faces()[2*n-2]], rays = [g_vector(arc, n) for arc in arcs(n)])
 
 @cached_function
-def wigglyhedron_from_inequalities(n):
+def wigglyhedron_from_inequalities(n, essential=True):
     r"""
     Return the wigglyhedron.
     Here, it is constructed using its inequality description.
@@ -537,26 +537,21 @@ def wigglyhedron_from_inequalities(n):
         A 5-dimensional polyhedron in QQ^5 defined as the convex hull of 176 vertices
         sage: wigglyhedron_from_inequalities(4)
         A 7-dimensional polyhedron in QQ^7 defined as the convex hull of 3232 vertices
-
-        sage: directed_skeleton(wigglyhedron(3)).is_isomorphic(wiggly_permutations_digraph(3))
-        True
-        sage: directed_skeleton(wigglyhedron(4)).is_isomorphic(wiggly_permutations_digraph(4))
-        True
     """
     m = len(relevant_arcs(n))
-    return Polyhedron(ieqs = [[incompatibility_numbers_dictionary(n)[tuplize(arc)]] + list(-g_vector(arc, n)) for arc in relevant_arcs(n)])
+    return Polyhedron(ieqs = [[incompatibility_numbers_dictionary(n)[tuplize(arc)]] + list(-g_vector(arc, n, essential=essential)) for arc in relevant_arcs(n)])
 
-def wiggly_vertex(pt):
+def wiggly_vertex(pt, essential=True):
     r"""
     Return the vertex corresponding to the wiggly pseudotriangulation pt.
     """
     pt = ordered_arcs(pt)
     n = (len(pt)+1)//2
-    cvect = c_vectors(wpt2wp(pt))
+    cvect = c_vectors(wpt2wp(pt), essential=essential)
     return add([incompatibility_numbers_dictionary(n)[tuplize(pt[i])] * cvect[i] for i in range(len(pt))])
 
 @cached_function
-def wigglyhedron_from_vertices(n):
+def wigglyhedron_from_vertices(n, essential=True):
     r"""
     Return the wigglyhedron.
     Here, it is constructed using its vertex description.
@@ -564,16 +559,35 @@ def wigglyhedron_from_vertices(n):
 
     EXAMPLES::
     """
-    return Polyhedron([wiggly_vertex(pt) for pt in wiggly_complex(n).facets()])
+    return Polyhedron([wiggly_vertex(pt, essential=essential) for pt in wiggly_complex(n).facets()])
 
 @cached_function
-def wigglyhedron(n, method='inequalities'):
+def wigglyhedron(n, method='inequalities', essential=True):
     r"""
     Return the wigglyhedron, using wigglyhedron_from_inequalities or wigglyhedron_from_vertices depending on the parameter method.
     """
-    if method == 'inequalities': return wigglyhedron_from_inequalities(n)
-    if method == 'vertices': return wigglyhedron_from_vertices(n)
+    if method == 'inequalities': return wigglyhedron_from_inequalities(n, essential=essential)
+    if method == 'vertices': return wigglyhedron_from_vertices(n, essential=essential)
     print('method should be inequalities or vertices')
+
+@cached_function
+def directed_skeleton_wigglyhedron(n, essential=True, direction=None):
+    r"""
+    Return the skeleton of the wigglyhedron directed in the given direction.
+
+    EXAMPLES::
+        sage: n = 3; directed_skeleton_wigglyhedron(n).is_isomorphic(wiggly_permutations_digraph(n))
+        True
+        sage: n = 3; directed_skeleton_wigglyhedron(n, essential=False).is_isomorphic(wiggly_permutations_digraph(n))
+        True
+    """
+    if not direction:
+        direction = vector(add([[4*n*i,4*n*i] for i in range(1,n+1)], [])) + vector([i for i in range(1,2*n+1)])
+    if essential:
+        return directed_skeleton(wigglyhedron(n), essentialize_weight(direction))
+    else:
+        return directed_skeleton(wigglyhedron(n, method='vertices', essential=False), direction)
+True
 
 ### CAMBRIAN LATTICES
 
