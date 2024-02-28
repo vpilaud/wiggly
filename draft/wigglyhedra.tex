@@ -757,7 +757,28 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
 
 \begin{proof}
 %We first have to prove that~$\Phi$ and~$\Psi$ are well-defined.
-\vincent{todo}
+  \vincent{todo}
+  Let us first prove that for any wiggly permutation \(\sigma\), the set \(\Psi(\sigma)\) is a wiggly pseudotriangulation.
+  By~\cref{prop:wigglyPseudotriangulations}, it suffices to check that for each \(k \neq k'\) in \([2n-1]\), the arcs 
+  \(\alpha(\sigma,k)\) and \(\alpha(\sigma,k')\) are distinct and compatible.
+  First suppose that \(k \leq k'\) and \(\alpha(\sigma,k) = \alpha(\sigma,k') = (i,j,A,B)\).
+  It is easy to see that for any \(l \in [n]\), we have \(2l \in \sigma([k']) \ssm \sigma([k])\) if and only if \(2l -1 \in \sigma([k']) \ssm \sigma([k])\).
+  If \(2l \in \sigma([k']) \ssm \sigma([k])\); equivalently \(2l - 1 \in \sigma([k']) \ssm \sigma([k])\), it is easy to check that
+  \[i < l < j.\]
+  \asilata[inline]{Fix definitions to check distinctness.}
+  We check compatibility.
+  Suppose that
+  \[\alpha(\sigma,k) = (i,j,A,B) \text{ and }\alpha(\sigma,k') = (i',j',A',B').\]
+  It is clear from the definition that \(i \neq j'\), as the sets over which we take the max and min to define \(i\) and \(j'\) respectively are disjoint.
+  Similarly, we have \(j \neq i'\).
+  Therefore the two arcs are pointed.
+  To check that the arcs are non-crossing, we must show that the sets
+  \[(A \cap B') \cup (\{i,j\} \cap B') \cup (A \cap \{i',j'\}) \text{ and } (A' \cap B) \cup (\{i',j'\} \cap B) \cup (A' \cap \{i,j\})\]
+  are both empty.
+  We check the first; the second is similar.
+  \asilata[inline]{Fix definitions to check non-crossing-ness.}  
+  
+
 \end{proof}
 
 \begin{remark}
