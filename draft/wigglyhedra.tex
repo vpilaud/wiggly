@@ -186,6 +186,7 @@
 This problem arose from recent discussions with Asilata Bapat~\cite{BapatPilaud}.
 It was originally motivated by her joint work with Anand Deopurkar and Anthony Licata on categorical representation theory and stability conditions, but it can be stated in purely combinatorial terms.
 
+Analogies to cluster algebras and gentle algebras.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
@@ -226,7 +227,7 @@ Two wiggly arcs~$(i,j,A,B)$ and~$(i',j',A',B')$ are
 \end{definition}
 
 We consider sets of compatible wiggly arcs.
-The following definitions are illustrated~in~\cref{fig:pseudodissections}.\asilata{It looks like the degree of the green cell is 6 in the figure, not 8.}
+The following definitions are illustrated~in~\cref{fig:pseudodissections}.
 
 \begin{definition}
 A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs which contains the exterior wiggly arcs~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$. We denote by~$D^\circ \eqdef D \ssm \{\alpha_\mathrm{top}, \alpha_\mathrm{bot}\}$.
@@ -737,18 +738,13 @@ We define~$\Phi(T)$ as the permutation obtained by reading these labels from bot
 
 \begin{definition}
 \label{def:bijection2}
-For a wiggly permutation~$\sigma$ of~$[2n]$, we define~$\Psi(\sigma) \eqdef \set{\alpha(\sigma, k)}{k \in [2n-1]}$, where for~$k \in [2n-1]$, we have~$\alpha(\sigma, k) \eqdef \big( i, j, {]i,j[} \cap \sigma([k]), {]i,j[} \ssm \sigma([k]) \big)$ with
-\[
-i \eqdef \max \{0\} \cup \set{i \in [n]}{2i-1 \in \sigma([k]) \not\ni 2i} 
-\;\text{and}\;
-j \eqdef \min \{n+1\} \cup \set{j \in [n]}{2j \in \sigma([k]) \not\ni 2j-1} \!.
-\]
-\asilata[inline]{I think the correct definition of \(\alpha(\sigma,k)\) is as follows.
-  \[\alpha(\sigma,k) = \big(i,j, {]i,j[} \cap \tau(k), {]i,j[} \ssm \tau(k)\big),\]
-  where
-  \[\tau(k) = \{l \in [n] \mid 2l - 1 \in \sigma([k])\text{ and } 2l \in \sigma([k])\}.\]
-}
-
+For a wiggly permutation~$\sigma$ of~$[2n]$, we define~$\Psi(\sigma) \eqdef \set{\alpha(\sigma, k)}{k \in [2n-1]}$, where for~$k \in [2n-1]$, we have~$\alpha(\sigma, k) \eqdef ( i, j, A, B)$ with
+\begin{align*}
+i & \eqdef \max \{0\} \cup \set{i \in [n]}{2i-1 \in \sigma([k]) \not\ni 2i}, \\
+j & \eqdef \min \{n+1\} \cup \set{j \in [n]}{2j \in \sigma([k]) \not\ni 2j-1}, \\
+A & \eqdef \set{\ell \in {]i,j[}}{\{2\ell-1, 2\ell\} \subseteq \sigma([k])}, \\
+B & \eqdef \set{\ell \in {]i,j[}}{\{2\ell-1, 2\ell\} \cap \sigma([k]) = \varnothing}.
+\end{align*}
 \end{definition}
 
 \begin{proposition}
@@ -1236,8 +1232,11 @@ This map is a normal equivalence from $\delta$-associahedron~$\Asso_\delta$ to t
 %\vincent{todo: find an explicit affine map between the Hohlweg-Lange $\delta$-associahedron and the face of the wigglyhedron corresponding to all $\delta$-wiggly arcs.}
 
 \begin{remark}
-Compare to universal associahedra of~\cite{HohlwegPilaudStella}.
-\vincent{todo}
+In their work on polytopal realizations of $\b{g}$-vector fans of finite type cluster algebras~\cite{HohlwegPilaudStella}, C.~Hohlweg, V.~Pilaud and S.~Stella already constructed a \defn{universal associahedron}~$\polytope{U}_n$ which somehow contains all Cambrian fans (actually all $\b{g}$-vector fans from any initial cluster seed).
+More precisely, the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$  appears as a section of the normal fan of the universal associahedron~$\polytope{U}_n$, which is a $(n^2+n-4)/2$-dimensional polytope.
+In contrast, \cref{prop:CambrianFan} states that the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$ appears as a link of the normal fan of the wigglyhedron~$\wigglyhedron_n$, which is a $(2n-1)$-dimensional polytope.
+There seem to be no connection between these two universal polytopes.
+However, this certainly raises the question to construct analogues of the wigglyhedron for all finite Coxeter groups.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
