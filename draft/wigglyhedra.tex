@@ -752,8 +752,56 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
 \end{proposition}
 
 \begin{proof}
-%We first have to prove that~$\Phi$ and~$\Psi$ are well-defined.
-\vincent{todo}
+  % We first have to prove that~$\Phi$ and~$\Psi$ are well-defined.
+  We break the proof into several steps.
+  \subsection*{\(\Phi(T)\) is a well-defined wiggly permutation for each wiggly pseudotriangulation \(T\).}
+  Let \(\sigma = \Phi(T)\), and for any \(j \in [n]\), let \(t_j\) be the pseudotriangle of \(T\) that has hinge \(j\).
+  Suppose that \(2j-1\) appears before \(2j\) in \(\sigma\) for some fixed \(j\).
+  This means that the pseudotriangle \(t_j\) has its unlabelled corner to the left of its labelled corners.
+  In other words, its hinge opens to the right (see, e.g., the triangle labelled by the \(2\)nd hinge in~\cref{fig:bijection}).
+
+  Consider any label \(i\) that we encounter as we traverse from \(2j-1\) to \(2j\).
+  This label belongs to some pseudotriangle \(t_h\), such that \(j\) is either a labelled or an unlabelled corner of \(t_h\).
+  Moreover, the corner angle of \(t_h\) is sandwiched within the convex angle at \(j\) formed by \(t_j\).
+  If \(j\) is an unlabelled corner of \(t_h\), then \(t_h\) also opens to the right at \(h\).
+  If \(j\) is a labelled corner of \(t_h\), then \(t_h\) opens to the left.
+  In both cases, it is clear that \(h > j\), and hence \(i > 2j-1\).
+  In other words, \(\sigma\) avoids the pattern \(2j-1 \cdots i \cdots 2j\) for \(i > 2j-1\).
+  
+  The other case (when \(2j\) appears before \(2j-1\) in \(\sigma\)) is similar.
+  
+  \subsection*{\(\Psi(\sigma)\) is a wiggly pseudotriangulation for each wiggly permutation \(\sigma\).}
+  By~\cref{prop:wigglyPseudotriangulations}, it suffices to check that for each \(k \neq k'\) in \([2n-1]\), the arcs 
+  \(\alpha(\sigma,k)\) and \(\alpha(\sigma,k')\) are distinct and compatible.
+  
+  To check distinctness, suppose that \(\alpha(\sigma,k) = (i,j,A,B)\) equals \((\sigma,k') = (i',j',A',B')\) for some \(k \leq k'\).
+  Note that \(i = i',j = j'\) are both in \(\sigma([k])\), and also \(\sigma([k]) \subseteq \sigma([k'])\).
+  For any \(l \in \sigma([k']) \ssm \sigma([k])\), the conditions on wiggly permutations imply that
+  \[i < \left\lceil \frac{l}{2} \right\rceil < j.\]
+  Furthermore, from the definitions of \(i\) and \(j\), we see that for any \(l \in \sigma([k']) \ssm \sigma([k])\), we have
+  \[2 \left\lceil \frac{l}{2} \right\rceil \in \sigma([k']) \text{ if and only if } 2\left\lceil \frac{l}{2} \right\rceil - 1 \in \sigma([k']).\]
+  Now it follows from the fact that \(A' = A\) that there is no element \(l \in \sigma([k']) \setminus \sigma([k])\); that is, \(k = k'\).
+
+  We check compatibility.
+  Suppose that for some \(k < k'\), we have 
+  \[\alpha(\sigma,k) = (i,j,A,B) \text{ and }\alpha(\sigma,k') = (i',j',A',B').\]
+  It is clear from the definition that \(i \neq j'\), as the sets over which we take the max and min to define \(i\) and \(j'\) respectively are disjoint.
+  Similarly, we have \(j \neq i'\).
+  Therefore the two arcs are pointed.
+  To check that the arcs are non-crossing, we must show that the sets
+  \[(A \cap B') \cup (\{i,j\} \cap B') \cup (A \cap \{i',j'\}) \text{ and } (A' \cap B) \cup (\{i',j'\} \cap B) \cup (A' \cap \{i,j\})\]
+  are both empty.
+  We check the first; the second is similar.
+  Recall that \(\sigma([k]) \subset \sigma([k'])\).
+  For any \(l \in B'\), we have \(2l, 2l-1 \notin \sigma([k'])\), and hence \(2l, 2l-1 \notin \sigma([k])\), which means that \(l \notin A\).
+  So \(A \cap B' = \emptyset\).
+  Since \(2i - 1, 2j \in \sigma([k]) \subset \sigma([k'])\), we see that \(\{i,j\} \cap B' = \emptyset\).
+  Since \(2i', 2j'-1 \notin \sigma([k'])\) hence not in \(\sigma([k])\), we see that \(A \cap \{i',j'\} = \emptyset\).
+  \subsection*{The maps \(\Phi\) and \(\Psi\) are inverse bijections that induce the directed graph isomorphism claimed in the statement.}
+  \asilata{Todo.}
+\item 
+
+
 \end{proof}
 
 \begin{remark}
