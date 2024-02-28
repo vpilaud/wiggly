@@ -115,6 +115,7 @@
 % marginal comments
 \usepackage{todonotes}
 \newcommand{\vincent}[1]{\todo[color=blue!30]{\rm #1 \\ \hfill --- V.}}
+\newcommand{\asilata}[2][]{\todo[size=\scriptsize, color=orange!30,#1]{\rm #2 \\ \hfill --- A.}}
 
 % lattices
 \newcommand{\meet}{\wedge} % meet
@@ -742,6 +743,12 @@ i \eqdef \max \{0\} \cup \set{i \in [n]}{2i-1 \in \sigma([k]) \not\ni 2i}
 \;\text{and}\;
 j \eqdef \min \{n+1\} \cup \set{j \in [n]}{2j \in \sigma([k]) \not\ni 2j-1} \!.
 \]
+\asilata[inline]{I think the correct definition of \(\alpha(\sigma,k)\) is as follows.
+  \[\alpha(\sigma,k) = \big(i,j, {]i,j[} \cap \tau(k), {]i,j[} \ssm \tau(k)\big),\]
+  where
+  \[\tau(k) = \{l \in [n] \mid 2l - 1 \in \sigma([k])\text{ and } 2l \in \sigma([k])\}.\]
+}
+
 \end{definition}
 
 \begin{proposition}
