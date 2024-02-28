@@ -1095,16 +1095,16 @@ Hence, $\b{p}(T') - \b{p}(T)$ is a positive multiple of~$-\b{c}(\alpha, T)$.
 From \cref{def:cvectors}, we observe that
 \begin{itemize}
 \item $\dotprod{\b{c}(\alpha, T)}{\b{e}_{2i-1} + \b{e}_{2i}} = 1/2$ if~$i = \bar u \ne \bar v$, $-1/2$ if~$i = \bar v \ne \bar u$, and $0$ otherwise,
-\item $\dotprod{\b{c}(\alpha, T)}{\b{e}_j}| \le 1/2$ for all~$j \in [2n]$.
+\item $|\dotprod{\b{c}(\alpha, T)}{\b{e}_j}| \le 1/2$ for all~$j \in [2n]$.
 \end{itemize}
 We now distinguish two situations.
 If~$\bar u \ne \bar v$, then
 \[
-\dotprod{-\b{c}(\alpha, T)}{\b{\omega}} = \sum_{i \in [n]} 4ni \dotprod{-\b{c}(\alpha, T)}{\b{e}_{2i-1} + \b{e}_{2i}} + \sum_{j \in [2n]} j \dotprod{-\b{c}(\alpha, T)}{\b{e}_j} \ge 2n(\bar v - \bar u) + n > 0.
+\dotprod{-\b{c}(\alpha, T)}{\b{\omega}} = \sum_{i \in [n]} 4ni \dotprod{-\b{c}(\alpha, T)}{\b{e}_{2i-1} + \b{e}_{2i}} + \sum_{j \in [2n]} j \dotprod{-\b{c}(\alpha, T)}{\b{e}_j} \ge 2n(\bar v - \bar u) - n > 0.
 \]
 If~$\bar u = \bar v$, then~$u = 2k-1$ and~$v = 2k$ for some~$k \in [n]$, and we have
 \[
-\dotprod{\b{c}(\alpha, T)}{\b{\omega}} = \sum_{i \in [n]} 4ni \dotprod{-\b{c}(\alpha, T)}{\b{e}_{2i-1} + \b{e}_{2i}} + \sum_{j \in [2n]} j \dotprod{-\b{c}(\alpha, T)}{\b{e}_j} = 1/2 > 0.
+\dotprod{\b{c}(\alpha, T)}{\b{\omega}} = \!\! \sum_{i \in [n]} 4ni \dotprod{-\b{c}(\alpha, T)}{\b{e}_{2i-1} + \b{e}_{2i}} + \!\! \sum_{j \in [2n]} j \dotprod{-\b{c}(\alpha, T)}{\b{e}_j} = \frac{2k}{2}-\frac{2k-1}{2} = 1/2 > 0.
 \]
 We conclude in both cases that~$\dotprod{\b{c}(\alpha, T)}{\b{\omega}} > 0$, so that we recover the increasing flip graph by orienting the graph of the wigglyhedron~$\wigglyhedron_n$ in direction~$\b{\omega}$.
 \end{proof}
@@ -1227,6 +1227,11 @@ This map is a normal equivalence from $\delta$-associahedron~$\Asso_\delta$ to t
 \end{proof}
 
 %\vincent{todo: find an explicit affine map between the Hohlweg-Lange $\delta$-associahedron and the face of the wigglyhedron corresponding to all $\delta$-wiggly arcs.}
+
+\begin{remark}
+Compare to universal associahedra of~\cite{HohlwegPilaudStella}.
+\vincent{todo}
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
