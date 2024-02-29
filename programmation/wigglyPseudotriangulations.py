@@ -85,6 +85,12 @@ def tuplize(arc):
     """
     return (arc[0], arc[1], tuple(sorted(arc[2])), tuple(sorted(arc[3])))
 
+def are_non_pointed(arc1, arc2):
+    r"""
+    Check if two arcs arc1 and arc2 are non pointed.
+    """
+    return arc1[0] == arc2[1] or arc1[1] == arc2[0]
+
 def are_crossing(arc1, arc2):
     r"""
     Check if two arcs arc1 and arc2 are crossing.
@@ -99,9 +105,7 @@ def compatible(arc1, arc2):
     r"""
     Check if two arcs arc1 and arc2 are compatible.
     """
-    (i1, j1, A1, B1) = arc1
-    (i2, j2, A2, B2) = arc2
-    return arc1 != arc2 and i1 != j2 and j1 != i2 and not are_crossing(arc1, arc2)
+    return arc1 != arc2 and not are_non_pointed(arc1, arc2) and not are_crossing(arc1, arc2)
 
 def incompatibility_degree(arc1, arc2):
     r"""
@@ -671,9 +675,10 @@ def multi_wiggly_elements(n, k):
             if lt(arc, X[1]):
                 Y = (copy(X[0]), arc, copy(X[2]))
                 Y[0].append(arc)
-                for arcb in X[0]:
-                    if not compatible(arc, arcb):
-                        Y[2].add_edge(arc, arcb)
+                if not any(are_non_pointed(arc, arcb) for arcb in X[0]):
+                    for arcb in X[0]:
+                        if not compatible(arc, arcb):
+                            Y[2].add_edge(arc, arcb)
                 if Y[2].clique_number() < k+1:
                     res.append(Y)
         return res
@@ -682,4 +687,4 @@ def multi_wiggly_elements(n, k):
 
 @cached_function
 def multi_wiggly_complex(n, k):
-    return SimplicialComplex([x[0] for x in multiWigglyElements(n, k)])
+    return SimplicialComplex([x[0] for x in multi_wiggly_elements(n, k)])

@@ -868,8 +868,8 @@ Consider an interior wiggly arc~$\alpha$ in a wiggly pseudotriangulation~$T$, de
 The \defn{$\b{c}$-vector} of~$\alpha$ in~$T$ is the vector~$\b{c}(\alpha, T)$ with coordinates
 \begin{itemize}
 \item $\b{c}(\alpha, T)_{2w-1} = - \b{c}(\alpha, T)_{2w} = (-1)^{w \in A} (-1)^{u>v}/4$ for all~$w$ strictly between~$\bar u$ and~$\bar v$,
-\item $\b{c}(\alpha, T)_u = 1/2$ if~$\bar v$ and the wiggly arcs incident to~$\bar u$ are on the same side of~$\bar u$, and $\b{c}(\alpha, T)_{2\bar u-1} = \b{c}(\alpha, T)_{2\bar u} = 1/4$ otherwise,
-\item $\b{c}(\alpha, T)_v = -1/2$ if~$\bar u$ and the wiggly arcs incident to~$\bar v$ are on the same side of~$\bar v$, and $\b{c}(\alpha, T)_{2\bar v-1} = \b{c}(\alpha, T)_{2\bar v} = -1/4$ otherwise,
+\item $\b{c}(\alpha, T)_u = 1/2$ if~$\bar u = \bar v$, or if~$\bar u$ and the wiggly arcs incident to~$\bar u$ are on the same side of~$\bar u$, and $\b{c}(\alpha, T)_{2\bar u-1} = \b{c}(\alpha, T)_{2\bar u} = 1/4$ otherwise,
+\item $\b{c}(\alpha, T)_v = -1/2$ if~$\bar u = \bar v$, or if~$\bar u$ and the wiggly arcs incident to~$\bar v$ are on the same side of~$\bar v$, and $\b{c}(\alpha, T)_{2\bar v-1} = \b{c}(\alpha, T)_{2\bar v} = -1/4$ otherwise,
 \item $\b{c}(\alpha, T)_w = 0$ for all other coordinates.
 \end{itemize}
 Set~$\b{c}(T) \eqdef \set{\b{c}(\alpha, T)}{\alpha \in T^\circ}$
@@ -881,12 +881,50 @@ For any wiggly pseudotriangulation~$T$, the sets~$\b{g}(T)$ and~$\b{c}(T)$ are d
 \end{proposition}
 
 \begin{proof}
-We first prove that~$\dotprod{\hat{\b{g}}(\alpha)}{\b{c}(\alpha', T)} = \delta_{\alpha, \alpha'}$ for any~$\alpha, \alpha' \in T$, where~$\delta$ is the Kronecker~$\delta$.
-\vincent{todo}
-
+We claim that~$\dotprod{\hat{\b{g}}(\alpha)}{\b{c}(\alpha', T)} = \delta_{\alpha, \alpha'}$ for~$\alpha, \alpha' \in T$, where~$\delta$ is the Kronecker~$\delta$.
 Note that, with~$\alpha = (0, n+1, [n], \varnothing)$, it implies that~$\dotprod{\one_{2n}}{\b{c}(\alpha', T)} = 0$ for any~${\alpha' \in T}$.
 Hence, we obtain that~$\dotprod{\b{g}(\alpha)}{\b{c}(\alpha', T)} = \dotprod{\pi(\hat{\b{g}}(\alpha))}{\b{c}(\alpha', T)} = \dotprod{\hat{\b{g}}(\alpha)}{\b{c}(\alpha', T)} = \delta_{\alpha, \alpha'}$ for any~$\alpha, \alpha' \in T$.
 We conclude that~$\b{g}(T) \eqdef \set{\b{g}(\alpha)}{\alpha \in T^\circ}$ and~$\b{c}(T) \eqdef \set{\b{c}(\alpha, T)}{\alpha \in T^\circ}$ form dual bases of~$\HH_{2n}$.
+
+The proof of the claim is a boring case analysis.
+Let~$i < j$ be the endpoints of~$\alpha$, and let~$u$ and~$v$ the labels (in the corner labeling of~$T$) incident to~$\alpha'$ and respectively below and above~$\alpha'$, and~$\bar u \eqdef \lceil u/2 \rceil$ and~$\bar v \eqdef \lceil v/2 \rceil$.
+By symmetry, we can assume that~$u < v$ so that~$\bar u \le \bar v$.
+Let us write~$\hat{\b{g}}(\alpha) \eqdef (g_1, \dots, g_{2n})$ and~$\b{c}(\alpha', T) \eqdef (c_1, \dots, c_{2n})$, and define~$gc_k \eqdef g_{2k-1}c_{2k-1} + g_{2k}c_{2k}$.
+Hence, we have~$\dotprod{\hat{\b{g}}(\alpha)}{\b{c}(\alpha', T)} = \sum_{k \in [n]} gc_k = \sum_{k \in \{i, j, \bar u, \bar v\}} gc_k$.
+Indeed, the last equality holds since~$g_{2k-1} = g_{2k}$ for all~$k \in [n] \ssm \{i,j\}$ and~$c_{2k-1} = -c_{2k}$ for all~$k \in [n] \ssm \{\bar u, \bar v\}$.
+
+Assume first that~$\alpha = \alpha'$.
+Hence, we have~$i \le \bar u \le \bar v \le j$.
+We distinguish two cases:
+\begin{enumerate}
+\item If~$i = \bar u = \bar v < j$, then~$u = 2i-1$ and~$v = 2i$, so that~$gc_i = 1 \cdot 1/2 + (-1) \cdot (-1/2) = 1$ and~$gc_j = 0$, thus~$\sum_{k \in \{i, j, \bar u, \bar v\}} gc_k = gc_i + gc_j = 1$.
+\item Otherwise, $i \le \bar u < \bar v \le j$.
+If~$i = \bar u$, we have~$u = 2i-1$ so that~$gc_{\bar u} = 1 \cdot 1/2 + (-1) \cdot 0 = 1/2$.
+If~$i < \bar u$, we have~$gc_i = 0$ (since~$c_{2i-1} = c_{2i} = 0$) and~$gc_{\bar u} = 1/2$ (since~$g_{2\bar u-1} = g_{2\bar u} = 1$ and~${c_{2\bar u-1} + c_{2\bar u} = 1/2}$).
+In both cases, we get that~$\sum_{k \in \{i, \bar u\}} gc_k = 1/2$.
+By symmetric arguments, we conclude~${\sum_{k \in \{i, j, \bar u, \bar v\}} gc_k = \sum_{k \in \{i, \bar u\}} gc_k + \sum_{k \in \{j, \bar v\}} gc_k = 1/2 + 1/2 = 1}$.
+\end{enumerate}
+
+Assume now that~$\alpha \ne \alpha'$.
+\vincent{I am really unhappy with this proof. I can do the case analysis, but it is really unsatisfactory. I am waiting to see if I find another idea...}
+We distinguish ten cases:
+\begin{enumerate}
+\item If~$j < \bar u$, then~$c_{2i-1} = c_{2i} = c_{2j-1} = c_{2j} = 0$ and~$g_{2 \bar u-1} = g_{2 \bar u} = g_{2 \bar v-1} = g_{2 \bar v} = 0$.
+\item If~$j = \bar u < \bar v$, then~$c_{2i-1} \! = \! c_{2i} \! = \! 0$, $g_{2j-1} \! = \! -g_{2j}$ and~$c_{2j-1} \! = \! c_{2j}$,  and~${g_{2 \bar v-1} \! = \! g_{2 \bar v} = 0}$.
+\item If~$i < \bar u < j < \bar v$, then~$c_{2i-1} = c_{2i} = 0$, $g_{2 \bar u-1} = g_{2 \bar u} = 1$ and~$c_{2 \bar u-1} + c_{2 \bar u} = 1/2$, $g_{2j-1} = -g_{2j} = -1$ and~$c_{2j-1} - c_{2j} = 1/2$, and~$g_{2 \bar v-1} = g_{2 \bar v} = 0$.
+\item If~$i < \bar u < j = \bar v$, then~$c_{2i-1} = c_{2i} = 0$, $g_{2 \bar u-1} = g_{2 \bar u} = 1$ and~$c_{2 \bar u-1} + c_{2\bar u} = 1/2$, $g_{2j-1} = -g_{2j} = -1$ and~$c_{2j-1} - c_{2j} = 1/2$.
+\item If~$i < \bar u \le \bar v < j$, then~$c_{2i-1} = c_{2i} = 0$, $g_{2 \bar u-1} = g_{2 \bar u} = g_{2 \bar v-1} = g_{2 \bar v}$ and~$c_{2 \bar u-1} + c_{2\bar u} + c_{2j-1} + c_{2j} = 0$, and~$c_{2j-1} = c_{2j} = 0$.
+\item If~$i = \bar u < j < \bar v$, then \dots
+\item If~$i = \bar u < j = \bar v$, then \dots
+\item If~$i = \bar u < \bar v < j$, then \dots
+\item If~$\bar u < i < j < \bar v$, then \dots
+\item If~$\bar u < i < j = \bar v$, then \dots
+\item If~$\bar u < i < \bar v < j$, then \dots
+\item If~$\bar u < i = \bar v < j$, then \dots
+\item If~$\bar u < \bar v < i < j$, then \dots
+\end{enumerate}
+(Note that~$\bar u = \bar v$ implies that~$\{i,j\} \notin \bar u$.)
+In all cases, we check that~${\sum_{k \in \{i, j, \bar u, \bar v\}} gc_k = 0}$.
 \end{proof}
 
 %%%%%%%%%%%%
@@ -1075,7 +1113,7 @@ The wiggly fan~$\wigglyFan_n$ is the normal fan of a simplicial $(2n-1)$-dimensi
 
 \begin{proof}
 By \cref{prop:characterizationPolytopalFan,lem:linearDependences,lem:wallCrossingInequalities}, the wiggly fan is indeed the normal fan of the polytope~$\wigglyhedron_n$ defined by the inequalities~$\dotprod{\b{g}(\alpha)}{\b{x}} \le \kappa(\alpha)$ for all internal wiggly arcs~$\alpha$.
-For any wiggly pseudotriangulation~$T$ and any wiggly arc~$\alpha$ of~$T$, we have~$\dotprod{\b{g}(\alpha)}{\b{p}(T)} = \sum_{\beta \in T} \kappa(\beta) \dotprod{\b{g}(\alpha)}{\b{c}(\beta, T)} = \kappa(\alpha)$ since~$\b{g}(T)$ and~$\b{c}(T)$ are dual bases by \cref{prop:dualBases}.
+For any wiggly pseudotriangulation~$T$ and any wiggly arc~$\alpha$ of~$T$, we have~$\dotprod{\b{g}(\alpha)}{\b{p}(T)} = \sum_{\alpha' \in T} \kappa(\beta) \dotprod{\b{g}(\alpha)}{\b{c}(\alpha', T)} = \kappa(\alpha)$ since~$\b{g}(T)$ and~$\b{c}(T)$ are dual bases by \cref{prop:dualBases}.
 Hence, $\b{p}(T)$ is indeed the point of~$\wigglyhedron_n$ corresponding to~$T$, which is located at the intersection of the hyperplanes~$\dotprod{\b{g}(\alpha)}{\b{x}} = \kappa(\alpha)$ for all internal wiggly arcs~$\alpha$ in~$T$.
 \end{proof}
 
