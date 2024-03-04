@@ -655,7 +655,7 @@ The map~$\sigma_1 \dots \sigma_{2n} \mapsto (2n+1-\sigma_1) \dots (2n+1-\sigma_n
 We now aim at describing the cover relations of the wiggly lattice.
 Recall that an \defn{ascent} (resp.~\defn{descent}) in a permutation~$\sigma$ is a position~$j$ such that~$\sigma(j) < \sigma(j+1)$ (resp.~$\sigma(j) > \sigma(j+1)$).
 
-\begin{lemma}
+\begin{lemma}\label{lem:wigglyCoverRelation}
 Consider an ascent~$j$ of a wiggly permutation~$\sigma$ of~$[2n]$.
 Let~$i \eqdef \min \big( j, \sigma^{-1} \big( \sigma(j)+1 \big) \big)$ if~$\sigma(j)$ is odd, and $i \eqdef j$ otherwise.
 Let~$k \eqdef \max \big( j+1, \sigma^{-1} \big( \sigma(j+1)+1 \big) \big)$ if~$\sigma(j+1)$ is odd, and $k \eqdef j+1$ otherwise.
@@ -754,12 +754,12 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
 \begin{proof}
   % We first have to prove that~$\Phi$ and~$\Psi$ are well-defined.
   We break the proof into several steps.
-  \subsection*{\(\Phi(T)\) is a well-defined wiggly permutation for each wiggly pseudotriangulation \(T\).}
+
+  First, we show that \(\Phi(T)\) is a well-defined wiggly permutation for each wiggly pseudotriangulation \(T\).
   Let \(\sigma = \Phi(T)\), and for any \(j \in [n]\), let \(t_j\) be the pseudotriangle of \(T\) that has hinge \(j\).
   Suppose that \(2j-1\) appears before \(2j\) in \(\sigma\) for some fixed \(j\).
   This means that the pseudotriangle \(t_j\) has its unlabelled corner to the left of its labelled corners.
   In other words, its hinge opens to the right (see, e.g., the triangle labelled by the \(2\)nd hinge in~\cref{fig:bijection}).
-
   Consider any label \(i\) that we encounter as we traverse from \(2j-1\) to \(2j\).
   This label belongs to some pseudotriangle \(t_h\), such that \(j\) is either a labelled or an unlabelled corner of \(t_h\).
   Moreover, the corner angle of \(t_h\) is sandwiched within the convex angle at \(j\) formed by \(t_j\).
@@ -767,10 +767,9 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
   If \(j\) is a labelled corner of \(t_h\), then \(t_h\) opens to the left.
   In both cases, it is clear that \(h > j\), and hence \(i > 2j-1\).
   In other words, \(\sigma\) avoids the pattern \(2j-1 \cdots i \cdots 2j\) for \(i > 2j-1\).
+  The other case (in which \(2j\) appears before \(2j-1\) in \(\sigma\)) is similar.
   
-  The other case (when \(2j\) appears before \(2j-1\) in \(\sigma\)) is similar.
-  
-  \subsection*{\(\Psi(\sigma)\) is a wiggly pseudotriangulation for each wiggly permutation \(\sigma\).}
+  Next, we show that \(\Psi(\sigma)\) is a wiggly pseudotriangulation for each wiggly permutation \(\sigma\).
   By~\cref{prop:wigglyPseudotriangulations}, it suffices to check that for each \(k \neq k'\) in \([2n-1]\), the arcs 
   \(\alpha(\sigma,k)\) and \(\alpha(\sigma,k')\) are distinct and compatible.
   
@@ -797,8 +796,25 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
   So \(A \cap B' = \emptyset\).
   Since \(2i - 1, 2j \in \sigma([k]) \subset \sigma([k'])\), we see that \(\{i,j\} \cap B' = \emptyset\).
   Since \(2i', 2j'-1 \notin \sigma([k'])\) hence not in \(\sigma([k])\), we see that \(A \cap \{i',j'\} = \emptyset\).
-  \subsection*{The maps \(\Phi\) and \(\Psi\) are inverse bijections that induce the directed graph isomorphism claimed in the statement.}
-  \asilata{Todo.}
+
+  Finally, we show that the maps \(\Phi\) and \(\Psi\) are inverse bijections.
+  Let \(\sigma\) be a wiggly permutation, so that \(\Psi(\sigma)\) is a wiggly pseudotriangulation.
+  The following are easy to check for any \(k \in [n]\).
+  Let \(m = \lceil \sigma(k)/2 \rceil\).
+  \begin{enumerate}
+  \item If both \(2m\) and \(2m -1\) appear in \(\sigma([k])\), then \(k\) is the smallest number for which \(\alpha(\sigma,k)\) passes above the point \(m\).
+  \item If \(\sigma(k) = 2m\) and \(2m - 1 \notin \sigma([k])\), then \(k\) is the smallest number for which \(\alpha(\sigma,k)\) has its right endpoint at \(m\).
+  \item If \(\sigma(k) = 2m - 1\) and \(2m \notin \sigma([k])\), then \(k\) is the smallest number for which \(\alpha(\sigma,k)\) has its left endpoint at \(m\).
+  \end{enumerate}
+  It follows from the above that in the wiggly pseudotriangulation \(\Psi(\sigma)\), the arc \(\alpha(\sigma,k)\) is precisely the arc lying immediately above the angle \(\sigma(k)\), where we regard \(\alpha(\sigma,2n)\) to be the top irrelevant arc.
+  In other words, we have \(\Phi(\Psi(\sigma)) = \sigma\).
+
+  Similarly, let \(T\) be a wiggly pseudotriangulation so that \(\sigma = \Phi(T)\) is a wiggly permutation.
+  One can check that for any angle in \(T\), namely any \(l \in [2n]\), the arc immediately above \(l\) is precisely the one constructed as \(\alpha(\sigma,\sigma^{-1}(l))\).
+  This shows that \(\Psi(\Phi(T)) = T\).
+
+  Finally, one can check using~\cref{lem:wigglyCoverRelation} that increasing flips in triangulations correspond precisely to edges in the wiggly lattice.
+  \asilata{Todo: more details here?}
 \item 
 
 
