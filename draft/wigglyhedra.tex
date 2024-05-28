@@ -191,15 +191,23 @@ It was originally motivated by her joint work with Anand Deopurkar and Anthony L
 Analogies to cluster algebras and gentle algebras.
 
 \subsection{Curves in a disk and a triangulated category associated to a quiver}
-There is an algebraic/categorical model of curves in a disk with marked points, due to Khovanov and Seidel~\cite{kho.sei:02}, which we describe in this section.
-This model identifies curves in a disk with objects in a certain triangulated category, and the correspondence has several useful features.
-For instance, the number of intersections between two curves is the number of morphisms in the category between the corresponding objects.
-Furthermore, the Artin braid group is the fundamental group of the unordered configuration space of points in a disk, and thus acts on the set of curves in the disk.
-The associated triangulated category also carries an action by the Artin braid group, and the Khovanov--Seidel map from curves to objects is equivariant with respect to this group action.
+Curves up to isotopy in a disk with marked points constitute a geometric model of certain objects in a triangulated category.
+This correspondence, due to Khovanov--Seidel~\cite{kho.sei:02}, and will enable us to build categorical interpretations of the combinatorial results obtained in this paper.
+The aim of this section is to give a concise account of this correspondence and some of its useful features; we refer the reader to~\cite{kho.sei:02} for details.
 
-We now give a concise account of this correspondence.
-We omit the details that do not play a starring role in the remainder of this paper, and direct the reader to the original references.
-Recall that the \emph{type \(A_m\)} Dynkin graph is an undirected graph with \(m\) vertices and \(m-1\) edges; each edge connecting successive pairs of points as shown in~\cref{fig:a5-dynkin}.
+The triangulated category of interest will be the category \(\mathcal{C}_m = D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
+The algebra \(A_m\) is defined as the quotient of the path algebra of the quiver with \(m+1\) vertices depicted in~\cref{fig:am-quiver}.
+\begin{figure}[h]
+  \centering
+  \begin{tikzcd}
+    0 \arrow[bend left]{r}& 1 \arrow[bend left]{r} \arrow[bend left]{l}& 2 \arrow[bend left]{r}\arrow[bend left]{l}& \cdots \arrow[bend left]{r}\arrow[bend left]{l}& m \arrow[bend left]{l}
+  \end{tikzcd}
+  \caption{The doubled quiver of the type \(A_5\) Dynkin graph.}
+  \label{fig:am-quiver}
+\end{figure}
+
+
+Recall that the type \(A_m\) Dynkin graph is an undirected graph with \(m\) vertices and \(m-1\) edges; each edge connects successive pairs of points as shown in~\cref{fig:a5-dynkin}.
 \begin{figure}[h]
   \centering
   \begin{tikzcd}
@@ -217,9 +225,11 @@ Given an undirected graph as above, we can construct its \emph{doubled quiver}, 
   \caption{The doubled quiver of the type \(A_5\) Dynkin graph.}
   \label{fig:a5-doubled}
 \end{figure}
-The \emph{zig-zag algebra} of the doubled quiver of an undirected graph is a finite-dimensional quotient of the path algebra of the doubled quiver of that graph (see~\cite[Section 3]{hue.kho:01} for the precise definition).
+The \emph{zig-zag algebra} of an undirected graph is a finite-dimensional quotient of the path algebra of the doubled quiver of that graph (see~\cite[Section 3]{hue.kho:01} for the precise definition).
 
-Then there is a triangulated category \(\mathcal{C}_m\) associated to the Dynkin graph of type \(A_m\), constructed as a differential graded version of the homotopy category of projective modules over the zig-zag algebra of the doubled quiver of type \(A_m\).
+Let \(Z_m\) be the zig-zag algebra of the type \(A_m\) graph.
+Let \(\mathcal{C}_m\) be \(K^b(Z-\text{proj})\), which is the bounded homotopy category of graded projective modules over \(Z_m\)
+The category \(\mathcal{C}_m\) is triangulated.
 The precise definition of this category appears in, e.g.,~\cite{sei.tho:01,tho:06} for type \(A_m\) and in~\cite{bap.deo.lic:20} for general undirected graphs.
 
 The category \(\mathcal{C}_m\) is linear over a fixed field \(k\), triangulated, and 2-Calabi--Yau.
