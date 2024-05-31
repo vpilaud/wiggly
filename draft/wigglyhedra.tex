@@ -190,78 +190,6 @@ It was originally motivated by her joint work with Anand Deopurkar and Anthony L
 
 Analogies to cluster algebras and gentle algebras.
 
-\subsection{Curves in a disk and a triangulated category associated to a quiver}
-Curves up to isotopy in a disk with marked points constitute a geometric model of certain objects in a triangulated category.
-This correspondence, due to Khovanov--Seidel~\cite{kho.sei:02}, and will enable us to build categorical interpretations of the combinatorial results obtained in this paper.
-The aim of this section is to give a concise account of this correspondence and some of its useful features; we refer the reader to~\cite{kho.sei:02} for details.
-
-The category of interest is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
-That is, a subcategory of the bounded derived category of (finitely generated) \(A_m\)-modules.
-The algebra \(A_m\), called the \emph{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
-\begin{figure}[h]
-  \centering
-  \begin{tikzcd}
-    1 \arrow[bend left]{r} & 2 \arrow[bend left]{r}\arrow[bend left]{l}& \cdots \arrow[bend left]{r}\arrow[bend left]{l}& m \arrow[bend left]{l}
-  \end{tikzcd}
-  \caption{The quiver \(Q_m\). The algebra \(A_m\) is a quotient of the path algebra \(kQ_m\).}
-  \label{fig:am-quiver}
-\end{figure}
-Let \(kQ_m\) be the path algebra of \(Q_m\), graded by path length.
-Let \(e_i\) denote the idempotent path at the vertex \(i\), and let \((i|j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
-A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\cdots|i_n)\).
-
-The zigzag algebra \(A_m\) is the quotient of \(kQ_m\) by the following relations:
-\begin{itemize}
-\item set \((i|j|l) = 0\) whenever \(i \neq l\);
-\item set \((i|j|i) = (i|l|i)\) for every \(j\) and \(l\) such that there are arrows between \(i\) and \(j\) and between \(i\) and \(l\).
-\end{itemize}
-See~\cite[Section 3]{hue.kho:01} for further details, and~\cite[Remark 6.6]{bap.deo.lic:20} for a more detailed discussion.
-Let \(P_i\) denote the indecomposable projective \(A_m\)-module defined as \(P_i = A_m\cdot e_i\).
-For any integer \(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
-Set \(\mathcal{C}_m\) to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\) (see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22} for further discussion).
-
-The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
-For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{i,j}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of homological degree \(i\) and internal degree \(j\).
-In other words, we have
-\[\Hom^{i,j}(X,Y) = \Hom(X,Y\langle i \rangle[j]).\]
-Furthermore, for any integers \(a\) and \(b\), we have
-\[\Hom^{i,j}(X\langle a \rangle[b], Y\langle a \rangle[b]) = \Hom^{i,j}(X,Y).\]
-
-\begin{remark}\label{rem:generating-morphisms}
-  The generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
-  \begin{itemize}
-  \item \(\Hom^{a,b}(P_i,P_i) = 0\) if \(b \neq 0\) and \(a \neq 0, 2\);
-  \item \(\Hom^{a,0}(P_i,P_i) = k\) if \(a = 0, 2\);
-  \item \(\Hom^{a,b}(P_i, P_{i\pm1}) = 0\) if \(b \neq 0\) and \(a \neq 1\);
-  \item \(\Hom^{1,0}(P_i, P_{i\pm1}) = k\), and
-  \item \(\Hom^{a,b}(P_i, P_j) = 0 \) otherwise.
-  \end{itemize}
-\end{remark}
-
-The category \(\mathcal{C}_m\) has a standard bounded \(t\)-structure, whose heart consists of the \emph{linear complexes}.
-\asilata{Say more about linear complexes.}
-
-\subsection{The Khovanov--Seidel curve model}
-Now consider \(n+2\) marked points on a disk, arranged on a straight horizontal line, and labelled \(0,1, \ldots, n+1\).
-We consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
-For convenience, we also refer to such an isotopy class as a \emph{curve}.
-The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of \(\mathcal{C}_{n+1}\) (up to grading\asilata{Should this say homological?} shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
-
-In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
-It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
-In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
-In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects (\cite[Lemma 4.11]{kho.sei:02}).
-
-\begin{lemma}
-Every wiggly arc corresponds to an object in the heart of the standard \(t\)-structure.  
-\end{lemma}
-\begin{proof}
-  The procedure to build up the complex of projective modules from a curve explicitly describes the differentials.
-  Each component of these differentials is a map from a shift of \(P_i\) to a shift of \(P_j\).
-  It can be seen from~\cref{rem:generating-morphisms} that any component that maps from \(P_i\) to \(P_j\) for \(i \neq j\) keeps the complex linear; it is only when we have a looping map from \(P_i\) to \(P_i\langle 2 \rangle\) that we move out of the standard heart.
-  \asilata{Now figure out what to say about \(t\)-structures, namely that wiggly arcs are exactly those whose associated complexes lie in the heart of the standard \(t\)-structure.}
-\end{proof}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
@@ -286,7 +214,7 @@ We represent $\alpha$ by an $x$-monotone curve wiggling around the horizontal ax
 The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~$\alpha_\mathrm{bot} \eqdef (0, n+1, \varnothing, [n])$ are called \defn{external}, all other wiggly arcs are called \defn{internal}.
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:compatible}
 Two wiggly arcs~$(i,j,A,B)$ and~$(i',j',A',B')$ are 
 \begin{itemize}
 \item \defn{non pointed} if~$i = j'$ or~$i' = j$,
@@ -1490,6 +1418,113 @@ A few additional questions to arouse your curiosity:
 \item What is the multi wiggly complex?
 \end{enumerate}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Categorical interpretation of wiggly pseudotriangulations}
+The aim of this section is to explain a categorical interpretation of wiggly arcs.
+We recall results of Khovanov--Seidel~\cite{kho.sei:02} that realise wiggly arcs as objects of a triangulated category, such that intersections between wiggly arcs correspond to morphism in this category.
+We also discuss categorical conditions for two wiggly arcs to be compatible as in~\cref{def:compatible}.
+
+% Curves up to isotopy in a disk with marked points constitute a geometric model of certain objects in a triangulated category.
+% This correspondence, due to Khovanov--Seidel~\cite{kho.sei:02}, and will enable us to build categorical interpretations of the combinatorial results obtained in this paper.
+% The aim of this section is to give a concise account of this correspondence and some of its useful features; we refer the reader to~\cite{kho.sei:02} for details.
+
+\subsection{A triangulated category associated to a quiver}
+We begin by describing the category of interest, which is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
+That is, a subcategory of the bounded derived category of (finitely generated) \(A_m\)-modules.
+The algebra \(A_m\), called the \emph{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
+\begin{figure}[h]
+  \centering
+  \begin{tikzcd}
+    1 \arrow[bend left]{r} & 2 \arrow[bend left]{r}\arrow[bend left]{l}& \cdots \arrow[bend left]{r}\arrow[bend left]{l}& m \arrow[bend left]{l}
+  \end{tikzcd}
+  \caption{The quiver \(Q_m\). The algebra \(A_m\) is a quotient of the path algebra \(kQ_m\).}
+  \label{fig:am-quiver}
+\end{figure}
+Let \(kQ_m\) be the path algebra of \(Q_m\), graded by path length.
+Let \(e_i\) denote the idempotent path at the vertex \(i\), and let \((i|j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
+A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\cdots|i_n)\).
+
+\begin{definition}
+  The zigzag algebra \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by the following relations:
+  \begin{itemize}
+  \item \((i|j|l) = 0\) whenever \(i \neq l\);
+  \item \((i|j|i) = (i|l|i)\) for every \(j\) and \(l\) such that there are arrows between \(i\) and \(j\) and between \(i\) and \(l\).
+  \end{itemize}
+\end{definition}
+
+See~\cite[Section 3]{hue.kho:01} for further details on the definition, and~\cite[Remark 6.6]{bap.deo.lic:20} for more discussion.
+Let \(P_i\) denote the indecomposable projective \(A_m\)-module defined as \(P_i = A_m\cdot e_i\).
+For any integer \(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
+Set \(\mathcal{C}_m\) to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\) (see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22} for further discussion on the construction).
+
+The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
+For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{i,j}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of homological degree \(i\) and internal degree \(j\).
+In other words, we have
+\[\Hom^{i,j}(X,Y) = \Hom(X,Y\langle i \rangle[j]).\]
+Furthermore, for any integers \(a\) and \(b\), we have
+\[\Hom^{i,j}(X\langle a \rangle[b], Y\langle a \rangle[b]) = \Hom^{i,j}(X,Y).\]
+
+\begin{remark}\label{rem:generating-morphisms}
+  The generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
+  \begin{itemize}
+  \item \(\Hom^{a,b}(P_i,P_i) = 0\) if \(b \neq 0\) and \(a \neq 0, 2\);
+  \item \(\Hom^{a,0}(P_i,P_i) = k\) if \(a = 0, 2\);
+  \item \(\Hom^{a,b}(P_i, P_{i\pm1}) = 0\) if \(b \neq 0\) and \(a \neq 1\);
+  \item \(\Hom^{1,0}(P_i, P_{i\pm1}) = k\), and
+  \item \(\Hom^{a,b}(P_i, P_j) = 0 \) otherwise.
+  \end{itemize}
+\end{remark}
+
+The category \(\mathcal{C}_m\) has a standard bounded \(t\)-structure, whose heart consists of the \emph{linear complexes}.
+\asilata{Say more about linear complexes.}
+
+\subsection{The Khovanov--Seidel curve model}
+In this section we briefly recall the procedure to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
+In fact, the procedure works on more general arcs as well --- namely, those that are not necessarily \(x\)-monotone.
+All the results of this section are due to Khovanov and Seidel~\cite{kho.sei:02}.
+
+Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0,1, \ldots, n+1\) as in~\cref{sec:combinatorics}.
+In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
+For convenience, we refer to such an isotopy class as an \emph{arc}.
+
+The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of \(\mathcal{C}_{n+1}\) (up to grading\asilata{Should this say homological?} shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
+
+In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
+It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
+In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
+In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects (\cite[Lemma 4.11]{kho.sei:02}).
+
+\begin{lemma}
+Every wiggly arc corresponds to an object in the heart of the standard \(t\)-structure.  
+\end{lemma}
+\begin{proof}
+  The procedure to build up the complex of projective modules from a curve explicitly describes the differentials.
+  Each component of these differentials is a map from a shift of \(P_i\) to a shift of \(P_j\).
+  It can be seen from~\cref{rem:generating-morphisms} that any component that maps from \(P_i\) to \(P_j\) for \(i \neq j\) keeps the complex linear; it is only when we have a looping map from \(P_i\) to \(P_i\langle 2 \rangle\) that we move out of the standard heart.
+  \asilata{Now figure out what to say about \(t\)-structures, namely that wiggly arcs are exactly those whose associated complexes lie in the heart of the standard \(t\)-structure.}
+\end{proof}
+
+\subsection{Categorical conditions on compatibility of arcs}
+
+\begin{proposition}
+  Let \(X \in \mathcal{C}_{n+1}\) be a spherical object.
+  Consider its cohomology filtration
+  \[
+    \begin{tikzcd}[column sep=0.3cm]
+      0 = X_0 \arrow{rr} && X_1 \arrow{dl} \arrow{rr} && \cdots \arrow{rr} \arrow{dl} && X_{k-1} \arrow{rr} \arrow{dl} && X_k = X \arrow{dl}\\
+      & H^1(X) \arrow[dashed]{ul}{+1} && H^2(X) \arrow[dashed]{ul}{+1} && \cdots \arrow[dashed]{ul} &&H^k(X) \arrow[dashed]{ul}{+1}
+    \end{tikzcd}
+  \]
+  Consider the set of objects \(\{H^j(X)\}\) taken without multiplicity, and let \(T\) be corresponding set of wiggly curves.
+  We have the following results.
+  \begin{enumerate}
+  \item 
+    \(T\) is a subset of a wiggly pseudotriangulation.
+  \item \(T\) contains at most one of the two irrelevant arcs.
+  \end{enumerate}
+\end{proposition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
