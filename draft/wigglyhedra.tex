@@ -40,6 +40,7 @@
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{defprop}[theorem]{Definition/Proposition}
 \crefname{notation}{Notation}{Notations}
 \crefname{problem}{Problem}{Problems}
  
@@ -91,6 +92,7 @@
 \DeclareMathOperator{\Ima}{Im} % image
 \DeclareMathOperator{\Vol}{Vol} % (mixed) volume
 \DeclareMathOperator{\Hom}{Hom} % hom-spaces
+\DeclareMathOperator{\Ext}{Ext} % extensions
 
 % others
 \newcommand{\ie}{\textit{i.e.}~} % id est
@@ -1454,34 +1456,91 @@ A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\
   \end{itemize}
 \end{definition}
 
-See~\cite[Section 3]{hue.kho:01} for further details on the definition, and~\cite[Remark 6.6]{bap.deo.lic:20} for more discussion.
+\begin{remark}
+  The definition of the zigzag algebra as used here originally appeared in~\cite[Section 3]{hue.kho:01}.
+  This is an ``un-signed'' version of the zigzag algebra.
+  It is technically better to use a ``signed'' version of the zigzag algebra, and the comparison between the two is discussed in~\cite[Remark 6.6]{bap.deo.lic:20}.
+  As the two versions are isomorphic in our example, we ignore this technicality and use the easier definition.
+\end{remark}
+
 Let \(P_i\) denote the indecomposable projective \(A_m\)-module defined as \(P_i = A_m\cdot e_i\).
 For any integer \(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
-Set \(\mathcal{C}_m\) to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\) (see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22} for further discussion on the construction).
+Let \(\mathcal{C}_m\) be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\) (see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22} for further discussion on the construction).
 
 The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
-For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{i,j}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of homological degree \(i\) and internal degree \(j\).
+For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{g,h}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of internal degree \(g\) and homological degree \(h\).
 In other words, we have
-\[\Hom^{i,j}(X,Y) = \Hom(X,Y\langle i \rangle[j]).\]
+\[\Hom^{g,h}(X,Y) = \Hom(X,Y\langle g \rangle[h]).\]
 Furthermore, for any integers \(a\) and \(b\), we have
-\[\Hom^{i,j}(X\langle a \rangle[b], Y\langle a \rangle[b]) = \Hom^{i,j}(X,Y).\]
+\[\Hom^{g,h}(X\langle g' \rangle[h'], Y\langle g' \rangle[h']) = \Hom^{g,h}(X,Y).\]
 
 \begin{remark}\label{rem:generating-morphisms}
-  The generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
+  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
   \begin{itemize}
-  \item \(\Hom^{a,b}(P_i,P_i) = 0\) if \(b \neq 0\) and \(a \neq 0, 2\);
-  \item \(\Hom^{a,0}(P_i,P_i) = k\) if \(a = 0, 2\);
-  \item \(\Hom^{a,b}(P_i, P_{i\pm1}) = 0\) if \(b \neq 0\) and \(a \neq 1\);
+  \item \(\Hom^{g,h}(P_i,P_i) = 0\) if \(g \neq 0, 2\) and \(h \neq 0\);
+  \item \(\Hom^{g,0}(P_i,P_i) = k\) if \(g = 0, 2\);
+  \item \(\Hom^{g,h}(P_i, P_{i\pm1}) = 0\) if \(g \neq 1\) and \(h \neq 0\);
   \item \(\Hom^{1,0}(P_i, P_{i\pm1}) = k\), and
-  \item \(\Hom^{a,b}(P_i, P_j) = 0 \) otherwise.
+  \item \(\Hom^{g,h}(P_i, P_j) = 0 \) otherwise.
   \end{itemize}
 \end{remark}
 
-The category \(\mathcal{C}_m\) has a standard bounded \(t\)-structure, whose heart consists of the \emph{linear complexes}.
-\asilata{Say more about linear complexes.}
+We now describe the full subcategory of \emph{linear complexes} of \(\mathcal{C}_m\).
+It is convenient to think of an object \(P^{\bullet}\) of \(\mathcal{C}_m\)
+as bigraded (projective) \(A_m\)-module equipped with a differential \(d \colon P^{\bullet} \to P^{\bullet}\).
+More precisely, we can write
+\[P^{\bullet} = \bigoplus M_i\langle g \rangle[h],\]
+where \(g\) is the internal grading shift, and \(h\) is the homological grading shift, and 
+each object \(M_i\) is a direct sum of copies of objects in \(\{P_1,\ldots, P_m\}\).
+
+Recall that an object of the form \(M_i[h]\) is placed in homological degree \(-h\);
+since the differential \(d\) raises the homological degree by one, it \emph{lowers} the homological shift by one.
+That is, we have
+\[d \colon M_i\langle g \rangle[h] \to \bigoplus M_{i'}\langle g' \rangle[h-1].\]
+In other words, \(d\) maps \(P^h\) to \(P^{h-1}\).
+\begin{definition}\label{def:linear-complex}
+  Let \(P^{\bullet}\) be an object of \(\mathcal{C}_m\), described as a bigraded module
+  \[P^{\bullet} = \bigoplus M_i\langle g \rangle[h]\]
+  together with an internal differential \(d \colon P^{\bullet} \to P^{\bullet + 1}\).
+  We say that \(P^{\bullet}\) has \emph{level \(\ell\)} for some \(\ell \in \mathbb{Z}\) if for each bigraded piece \(M_i \langle g \rangle[h]\) of \(P^{\bullet}\), we have \(g + h = \ell\).
+  We say that \(P^{\bullet}\) is \emph{linear} if \(P^{\bullet}\) has level \(\ell = 0\).
+
+\end{definition}
+Let \(\mathcal{A}_m\) be the smallest full subcategory of \(\mathcal{C}_m\) that is closed under isomorphism, which contains all the linear complexes.
+\begin{proposition}\label{prop:standard-heart}
+  The category \(\mathcal{A}_m\) is abelian.
+  Furthermore, it is the heart of a bounded \(t\)-structure on \(\mathcal{C}_m\), which we call the \emph{standard \(t\)-structure} on \(\mathcal{C}_m\).
+\end{proposition}
+\asilata{Find a reference for this and possibly a cleaner statement.}
+
+Also recall the following statements for future use.
+\begin{defprop}\label{defprop:cohomology}
+  Let \((\mathcal{C}^{\le 0}, \mathcal{C}^{\geq 0})\) be a bounded \(t\)-structure on a triangulated category \(\mathcal{C}\) with heart \(\mathcal{A} = \mathcal{C}^{\leq 0} \cap \mathcal{C}^{\geq 0}\).
+  For each integer \(i\), we have the \(i\)th truncation functors
+  \[\tau^{\leq i} \colon \mathcal{C} \to \mathcal{C}^{\leq i}\]
+  and
+  \[\tau^{\geq i} \colon \mathcal{C} \to \mathcal{C}^{\geq i},\]
+  which are left and right adjoint respectively\asilata{Check left vs right.} to the inclusion functors \(\mathcal{C}^{\leq 0} \to \mathcal{C}\) and \(\mathcal{C}^{\geq 0} \to \mathcal{C}\).
+  The \(i\)th cohomology functor is defined to be the composition \(\tau^{\leq i} \circ \tau^{\geq i}\).
+  It is equal to the composition \(\tau^{\geq i} \circ \tau^{\leq i}\), and maps an object of \(\mathcal{C}\) to an object of \(\mathcal{A}\).
+\end{defprop}
+In the presence of a bounded \(t\)-structure, every object of \(\mathcal{C}\) has a canonical filtration whose factors are shifts of its cohomology objects.
+\begin{defprop}\label{defprop:cohomology-filtration}
+  Let \(\mathcal{C}\) be any triangulated category, and \(\mathcal{A} \subset \mathcal{C}\) the heart of a bounded \(t\)-structure on \(\mathcal{C}\).
+  Let \(X\) be a non-zero object of \(\mathcal{C}\), and let \(k\) and \(l\) be the maximum and minimum integers respectively for which \(H^k(X)\) and \(H^{l}(X)\) are non-zero.
+  \asilata{Find references for cohomology and cohomology filtration.}
+  Then \(X\) has a unique filtration of the form
+  \[
+    \begin{tikzcd}[column sep=0.1cm]
+      0  \arrow{rr} && X_{-l} \arrow{dl} \arrow{rr} && \cdots \arrow{rr} \arrow{dl} && X_{-k+1} \arrow{rr} \arrow{dl} && X_{-k} = X \arrow{dl}\\
+      & H^l(X)[-l] \arrow[dashed]{ul}{+1} && H^{l+1}(X)[-l-1] \arrow[dashed]{ul}{+1} && \cdots \arrow[dashed]{ul} &&H^k(X)[-k] \arrow[dashed]{ul}{+1}
+    \end{tikzcd}
+  \]  
+\end{defprop}
+
 
 \subsection{The Khovanov--Seidel curve model}
-In this section we briefly recall the procedure to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
+In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general arcs as well --- namely, those that are not necessarily \(x\)-monotone.
 All the results of this section are due to Khovanov and Seidel~\cite{kho.sei:02}.
 
@@ -1497,27 +1556,54 @@ In particular, the self-intersection number of a single segment is computed to b
 In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects (\cite[Lemma 4.11]{kho.sei:02}).
 
 \begin{lemma}
-Every wiggly arc corresponds to an object in the heart of the standard \(t\)-structure.  
+  Every wiggly arc corresponds to an object in the heart \(\mathcal{A}_m\) of the standard \(t\)-structure on \(\mathcal{C}_m\).
 \end{lemma}
 \begin{proof}
-  The procedure to build up the complex of projective modules from a curve explicitly describes the differentials.
-  Each component of these differentials is a map from a shift of \(P_i\) to a shift of \(P_j\).
-  It can be seen from~\cref{rem:generating-morphisms} that any component that maps from \(P_i\) to \(P_j\) for \(i \neq j\) keeps the complex linear; it is only when we have a looping map from \(P_i\) to \(P_i\langle 2 \rangle\) that we move out of the standard heart.
-  \asilata{Now figure out what to say about \(t\)-structures, namely that wiggly arcs are exactly those whose associated complexes lie in the heart of the standard \(t\)-structure.}
+  Let \(P^{\bullet}\) be the complex built from an arbitrary (not necessarily wiggly) arc.
+  The procedure to build up the complex of projective modules from a curve explicitly describes the differentials.  
+  
+  Each component of these differentials is a map of the form
+  \[P_i\langle g \rangle[h] \to P_j\langle g' \rangle[h-1].\]
+  First consider a component of the differential from some \(P_i\langle g \rangle\) to some \(P_j\langle g' \rangle\) for \(i \neq j\).
+  We see from~\cref{rem:generating-morphisms} that any such map must take \(P_i\langle g \rangle\) to \(P_j \langle g+1 \rangle\).
+  In other words, the differentials has the form
+  \[P_i\langle g \rangle[h] \to P_j\langle g+1 \rangle[h-1]\]
+  if \(i \neq j\).
+  Since \(P_i\langle g \rangle[h]\) and \(P_j\langle g+1 \rangle[h-1]\) have the same level, any differential from a graded shift of \(P_i\) to a graded shift of \(P_j\) keeps the level unchanged.
+  The other possibility is a map from \(P_i\langle g \rangle\) to \(P_i\langle g' \rangle\).
+  Once again, it is clear from~\cref{rem:generating-morphisms} that such differentials have the form
+  \[P_i \langle g \rangle[h] \to P_i\langle g' \rangle[h-1],\]
+  where \(g'\) is either \(g\) or \(g + 2\).
+  Any component of the form
+  \[P_i \langle g \rangle[h] \to P_i\langle g \rangle[h-1]\]
+  is necessarily a multiple of the identity map, and identity maps do not appear in the Khovanov--Seidel complex.
+  Hence the only possibility is multiples of the loop map, which have the form
+  \[P_i \langle g \rangle[h] \to P_i\langle g+2 \rangle[h-1].\]  
+  Therefore any portion of the differential from a graded shift of a \(P_i\) to another graded shift of itself raises the level by one.
+
+  Computing the \(j\)th cohomology of \(P^{\bullet}\) simply amounts to truncating the complex to level \(j\).
+  The object \(P^{\bullet}\) is in the heart if and only if it is concentrated in a single cohomological degree, which means that its differential has no components of the form
+  \[P_i \langle g \rangle[h] \to P_i\langle g+2 \rangle[h-1].\]
+  This is the case if and only if the corresponding curve does not loop back around any point; that is, if and only if it is \(x\)-monotone.
+  The lemma is proved.
 \end{proof}
 
-\subsection{Categorical conditions on compatibility of arcs}
+\subsection{Cohomology filtrations of spherical objects}
+In this section we explain how wiggly pseudotriangulations govern the combinatorial structure of a natural categorical decomposition of spherical objects of \(\mathcal{C}_m\).
 
+Recall from~\cref{defprop:cohomology-filtration} that any object \(X\) of \(\mathcal{C}_m\) has a canonical cohomology filtration whose factors are homological shifts of objects in \(\mathcal{A}_m\).
+For general \(X\), the cohomology filtration can be arbitrary.
+However, it turns out that the cohomology filtration is highly constrained if \(X\) is spherical, and these constraints are given by wiggly pseudotriangulations, as explained in the following proposition.
 \begin{proposition}
   Let \(X \in \mathcal{C}_{n+1}\) be a spherical object.
   Consider its cohomology filtration
   \[
     \begin{tikzcd}[column sep=0.3cm]
-      0 = X_0 \arrow{rr} && X_1 \arrow{dl} \arrow{rr} && \cdots \arrow{rr} \arrow{dl} && X_{k-1} \arrow{rr} \arrow{dl} && X_k = X \arrow{dl}\\
-      & H^1(X) \arrow[dashed]{ul}{+1} && H^2(X) \arrow[dashed]{ul}{+1} && \cdots \arrow[dashed]{ul} &&H^k(X) \arrow[dashed]{ul}{+1}
+      0 \arrow{rr} && X_{-l} \arrow{dl} \arrow{rr} && \cdots \arrow{rr} \arrow{dl} && X_{-k} = X \arrow{dl}\\
+      & H^l(X)[-l] \arrow[dashed]{ul}{+1} && H^{l+1}(X)[-l-1] \arrow[dashed]{ul}{+1} & \cdots & H^k(X)[-k] \arrow[dashed]{ul}{+1}
     \end{tikzcd}
   \]
-  Consider the set of objects \(\{H^j(X)\}\) taken without multiplicity, and let \(T\) be corresponding set of wiggly curves.
+  Consider the set of all nonzero objects \(\{H^j(X)\}\) taken without multiplicity, and let \(T\) be corresponding set of wiggly curves.
   We have the following results.
   \begin{enumerate}
   \item 
@@ -1525,6 +1611,32 @@ Every wiggly arc corresponds to an object in the heart of the standard \(t\)-str
   \item \(T\) contains at most one of the two irrelevant arcs.
   \end{enumerate}
 \end{proposition}
+\begin{proof}
+  The proof of this proposition is an easy consequence of analysing cohomology filtration from the point of view of arcs on the disk with marked points.
+  \asilata{TODO.}
+\end{proof}
+
+\subsection{Categorical constraints on compatibility of curves}
+In this section, we give a categorical criterion for two wiggly arcs to be compatible as in~\cref{def:compatible}.
+As such, this section is somewhat dual to the previous section --- our criterion determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
+\begin{proposition}
+  Consider two wiggly arcs \(\alpha\) and \(\alpha'\), and let \(X\) and \(X'\) be objects in the standard heart \(\mathcal{A}_m\) corresponding to \(\alpha\) and \(\alpha'\) respectively.
+  Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X\langle g \rangle, X\langle g' \rangle) = 0\) for any two integers \(g\) and \(g'\).
+\end{proposition}
+\begin{remark}
+  This proposition is similar to the condition of being compatible in a cluster-tilting object.
+  \asilata{Expand and make precise.}
+\end{remark}
+\begin{remark}
+  As stated, this proposition is not expected to be true in greater generality.
+  However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
+  \asilata{Decide what to say here, because the forthcoming work is far from complete, although I do have counterexamples in type \(D_4\). Discussing how to interpret these counterexamples may not involve too much more work?}
+\end{remark}
+\begin{question}
+  How to best relate this section to the previous one purely categorically?
+  That is, given the categorical constraint on compatibility of arcs, is it also clear that it gives a constraint on objects appearing in the cohomology filtration?
+  \asilata{Make more precise.}
+\end{question}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
