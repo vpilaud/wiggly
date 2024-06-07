@@ -1025,7 +1025,7 @@ We now show that the $\b{g}$-vectors of \cref{def:gvectors} support a polyhedral
 
 \begin{theorem}
 \label{thm:wigglyFan}
-The collection of cones~$\R_{\ge 0} \langle \b{g}(A) \rangle$ for all~$A$ in the wiggly complex~$\wigglyComplex_n$ forms a complete simplicial fan of~$\HH_{2n}$, called \defn{wiggly fan}~$\wigglyFan_n$.
+The collection of cones~$\R_{\ge 0} \langle \b{g}(A) \rangle$ for all~$A$ in the wiggly complex~$\wigglyComplex_n$ forms a complete simplicial fan of~$\HH_{2n}$, called the \defn{wiggly fan}~$\wigglyFan_n$.
 \end{theorem}
 
 To prove \cref{thm:wigglyFan}, we just need to check the conditions of \cref{prop:characterizationFan}.
@@ -1366,6 +1366,7 @@ More precisely, the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$  appea
 In contrast, \cref{prop:CambrianFan} states that the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$ appears as a link of the normal fan of the wigglyhedron~$\wigglyhedron_n$, which is a $(2n-1)$-dimensional polytope.
 There seem to be no connection between these two universal polytopes.
 However, this certainly raises the question to construct analogues of the wigglyhedron for all finite Coxeter groups.
+\asilata{I can come up with a possible categorical pathway towards the wiggly flip graph for arbitrary finite Coxeter groups, related to~\cref{prop:hn-filtration}. But I have no idea how to construct the polytope!}
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1449,7 +1450,7 @@ Let \(e_i\) denote the idempotent path at the vertex \(i\), and let \((i|j)\) de
 A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\cdots|i_n)\).
 
 \begin{definition}
-  The zigzag algebra \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by the following relations:
+  The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by the following relations:
   \begin{itemize}
   \item \((i|j|l) = 0\) whenever \(i \neq l\);
   \item \((i|j|i) = (i|l|i)\) for every \(j\) and \(l\) such that there are arrows between \(i\) and \(j\) and between \(i\) and \(l\).
@@ -1458,8 +1459,8 @@ A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\
 
 \begin{remark}
   The definition of the zigzag algebra as used here originally appeared in~\cite[Section 3]{hue.kho:01}.
-  This is an ``un-signed'' version of the zigzag algebra.
-  It is technically better to use a ``signed'' version of the zigzag algebra, and the comparison between the two is discussed in~\cite[Remark 6.6]{bap.deo.lic:20}.
+  This is the ``un-signed'' zigzag algebra.
+  It is technically better to use a ``signed'' zigzag algebra, and the comparison between the two is discussed in~\cite[Remark 6.6]{bap.deo.lic:20}.
   As the two versions are isomorphic in our example, we ignore this technicality and use the easier definition.
 \end{remark}
 
@@ -1502,8 +1503,8 @@ In other words, \(d\) maps \(P^h\) to \(P^{h-1}\).
   Let \(P^{\bullet}\) be an object of \(\mathcal{C}_m\), described as a bigraded module
   \[P^{\bullet} = \bigoplus M_i\langle g \rangle[h]\]
   together with an internal differential \(d \colon P^{\bullet} \to P^{\bullet + 1}\).
-  We say that \(P^{\bullet}\) has \emph{level \(\ell\)} for some \(\ell \in \mathbb{Z}\) if for each bigraded piece \(M_i \langle g \rangle[h]\) of \(P^{\bullet}\), we have \(g + h = \ell\).
-  We say that \(P^{\bullet}\) is \emph{linear} if \(P^{\bullet}\) has level \(\ell = 0\).
+  We say that \(P^{\bullet}\) has \defn{level \(\ell\)} for some \(\ell \in \mathbb{Z}\) if for each bigraded piece \(M_i \langle g \rangle[h]\) of \(P^{\bullet}\), we have \(g + h = \ell\).
+  We say that \(P^{\bullet}\) is \defn{linear} if \(P^{\bullet}\) has level \(\ell = 0\).
 
 \end{definition}
 Let \(\mathcal{A}_m\) be the smallest full subcategory of \(\mathcal{C}_m\) that is closed under isomorphism, which contains all the linear complexes.
@@ -1521,7 +1522,7 @@ Also recall the following statements for future use.
   and
   \[\tau^{\geq i} \colon \mathcal{C} \to \mathcal{C}^{\geq i},\]
   which are left and right adjoint respectively\asilata{Check left vs right.} to the inclusion functors \(\mathcal{C}^{\leq 0} \to \mathcal{C}\) and \(\mathcal{C}^{\geq 0} \to \mathcal{C}\).
-  The \(i\)th cohomology functor is defined to be the composition \(\tau^{\leq i} \circ \tau^{\geq i}\).
+  The \(i\)th \defn{cohomology functor} is defined to be the composition \(\tau^{\leq i} \circ \tau^{\geq i}\).
   It is equal to the composition \(\tau^{\geq i} \circ \tau^{\leq i}\), and maps an object of \(\mathcal{C}\) to an object of \(\mathcal{A}\).
 \end{defprop}
 In the presence of a bounded \(t\)-structure, every object of \(\mathcal{C}\) has a canonical filtration whose factors are shifts of its cohomology objects.
@@ -1529,7 +1530,7 @@ In the presence of a bounded \(t\)-structure, every object of \(\mathcal{C}\) ha
   Let \(\mathcal{C}\) be any triangulated category, and \(\mathcal{A} \subset \mathcal{C}\) the heart of a bounded \(t\)-structure on \(\mathcal{C}\).
   Let \(X\) be a non-zero object of \(\mathcal{C}\), and let \(k\) and \(l\) be the maximum and minimum integers respectively for which \(H^k(X)\) and \(H^{l}(X)\) are non-zero.
   \asilata{Find references for cohomology and cohomology filtration.}
-  Then \(X\) has a unique filtration of the form
+  Then \(X\) has a unique \defn{cohomology filtration}, which is the unique filtration of the form
   \[
     \begin{tikzcd}[column sep=0.1cm]
       0  \arrow{rr} && X_{-l} \arrow{dl} \arrow{rr} && \cdots \arrow{rr} \arrow{dl} && X_{-k+1} \arrow{rr} \arrow{dl} && X_{-k} = X \arrow{dl}\\
@@ -1594,7 +1595,7 @@ In this section we explain how wiggly pseudotriangulations govern the combinator
 Recall from~\cref{defprop:cohomology-filtration} that any object \(X\) of \(\mathcal{C}_m\) has a canonical cohomology filtration whose factors are homological shifts of objects in \(\mathcal{A}_m\).
 For general \(X\), the cohomology filtration can be arbitrary.
 However, it turns out that the cohomology filtration is highly constrained if \(X\) is spherical, and these constraints are given by wiggly pseudotriangulations, as explained in the following proposition.
-\begin{proposition}
+\begin{proposition}\label{prop:hn-filtration}
   Let \(X \in \mathcal{C}_{n+1}\) be a spherical object.
   Consider its cohomology filtration
   \[
@@ -1618,11 +1619,14 @@ However, it turns out that the cohomology filtration is highly constrained if \(
 
 \subsection{Categorical constraints on compatibility of curves}
 In this section, we give a categorical criterion for two wiggly arcs to be compatible as in~\cref{def:compatible}.
-As such, this section is somewhat dual to the previous section --- our criterion determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
+As such, this section is somewhat dual to the previous section --- the criterion in this section determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
 \begin{proposition}
   Consider two wiggly arcs \(\alpha\) and \(\alpha'\), and let \(X\) and \(X'\) be objects in the standard heart \(\mathcal{A}_m\) corresponding to \(\alpha\) and \(\alpha'\) respectively.
   Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X\langle g \rangle, X\langle g' \rangle) = 0\) for any two integers \(g\) and \(g'\).
 \end{proposition}
+\begin{proof}
+  \asilata{TODO.}
+\end{proof}
 \begin{remark}
   This proposition is similar to the condition of being compatible in a cluster-tilting object.
   \asilata{Expand and make precise.}
