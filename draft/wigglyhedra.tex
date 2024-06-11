@@ -41,6 +41,7 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{defprop}[theorem]{Definition/Proposition}
+\newtheorem{warning}[theorem]{Warning}
 \crefname{notation}{Notation}{Notations}
 \crefname{problem}{Problem}{Problems}
  
@@ -1466,8 +1467,12 @@ A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\
 
 Let \(P_i\) denote the indecomposable projective \(A_m\)-module defined as \(P_i = A_m\cdot e_i\).
 For any integer \(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
-Let \(\mathcal{C}_m\) be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\) (see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22} for further discussion on the construction).
-
+There is an embedding of \(A_m\text{-mod}\) into \(D^b(A_m\text{-mod})\), which sends any \(A_m\)-module as a complex of \(A_m\)-modules that is concentrated in degree \(0\).
+In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects of \(D^b(A_m\text{-mod})\).
+\begin{definition}
+  The category \(\mathcal{C}_m\) is defined to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\).
+\end{definition}
+For further discussion on the construction, see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22}.
 The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
 For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{g,h}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of internal degree \(g\) and homological degree \(h\).
 In other words, we have
@@ -1490,19 +1495,24 @@ We now describe the full subcategory of \emph{linear complexes} of \(\mathcal{C}
 It is convenient to think of an object \(P^{\bullet}\) of \(\mathcal{C}_m\)
 as bigraded (projective) \(A_m\)-module equipped with a differential \(d \colon P^{\bullet} \to P^{\bullet}\).
 More precisely, we can write
-\[P^{\bullet} = \bigoplus M_i\langle g \rangle[h],\]
+\[P^{\bullet} = \bigoplus_{g,h,i} M_i\langle g \rangle[h],\]
 where \(g\) is the internal grading shift, and \(h\) is the homological grading shift, and 
 each object \(M_i\) is a direct sum of copies of objects in \(\{P_1,\ldots, P_m\}\).
+Set \(P^h\) to be the direct sum of all summands that have homological grading shift \(h\).
+That is, in the notation above, we have
+\[P^{h} = \bigoplus_{g,i} M_i\langle g \rangle[h].\]
 
-Recall that an object of the form \(M_i[h]\) is placed in homological degree \(-h\);
-since the differential \(d\) raises the homological degree by one, it \emph{lowers} the homological shift by one.
-That is, we have
-\[d \colon M_i\langle g \rangle[h] \to \bigoplus M_{i'}\langle g' \rangle[h-1].\]
-In other words, \(d\) maps \(P^h\) to \(P^{h-1}\).
+\begin{warning}
+  By convention, if \(M_i\) is an \(A_m\)-module, then the object \(M_i[h]\) is placed in homological degree \(-h\).
+  Since the differential \(d\) raises the homological degree by one, it lowers the homological shift by one.
+  That is, we have
+  \[d \colon M_i\langle g \rangle[h] \to \bigoplus_{g',i'} M_{i'}\langle g' \rangle[h-1].\]
+  In other words, \(d\) maps \(P^h\) to \(P^{h-1}\).
+\end{warning}
 \begin{definition}\label{def:linear-complex}
   Let \(P^{\bullet}\) be an object of \(\mathcal{C}_m\), described as a bigraded module
   \[P^{\bullet} = \bigoplus M_i\langle g \rangle[h]\]
-  together with an internal differential \(d \colon P^{\bullet} \to P^{\bullet + 1}\).
+  together with an internal differential \(d \colon P^{\bullet} \to P^{\bullet}\) as above.
   We say that \(P^{\bullet}\) has \defn{level \(\ell\)} for some \(\ell \in \mathbb{Z}\) if for each bigraded piece \(M_i \langle g \rangle[h]\) of \(P^{\bullet}\), we have \(g + h = \ell\).
   We say that \(P^{\bullet}\) is \defn{linear} if \(P^{\bullet}\) has level \(\ell = 0\).
 
