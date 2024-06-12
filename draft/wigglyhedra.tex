@@ -1568,46 +1568,64 @@ It is easy to check that the (minimal) intersection numbers between any two such
 In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
 In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects (\cite[Lemma 4.11]{kho.sei:02}).
 
-Let us first characterise wiggly arcs in terms of objects of \(\mathcal{C}_m\).
-\begin{lemma}
-  Every wiggly arc corresponds, up to grading shift, to an indecomposable spherical object in the heart \(\mathcal{A}_m\) of the standard \(t\)-structure on \(\mathcal{C}_m\).
-\end{lemma}
+\begin{proposition}\label{prop:cohomology-pieces}
+  Let \(\alpha\) be any arc, and let \(X = X^{\bullet}\) be a chain complex that corresponds to \(\alpha\) under the Khovanov--Seidel reconstruction.
+  Recall that for any integer \(j\), the cohomology object \(H^j(X)\) is an object of \(\mathcal{A}_m\), and hence a direct sum of indecomposable objects of \(\mathcal{A}_m\).
+  \begin{enumerate}
+  \item The object \(X\) is an indecomposable spherical object of \(\mathcal{A}_m\) up to shift if and only if \(\alpha\) is a wiggly arc.
+    In this case, \(H^j(X) \neq 0\) for exactly one \(j\), such that \(X \cong H^j(X)[-j]\).
+  \item If \(\alpha\) is a general arc, each indecomposable summand of \(H^j(X)\) for any \(j\) is a spherical indecomposable object of \(\mathcal{A}_m\) that arises from a wiggly arc, up to shift.
+  \end{enumerate}
+\end{proposition}
 \begin{proof}
-  Let \(P^{\bullet}\) be the complex built from an arbitrary (not necessarily wiggly) arc.
-  The results of~\cite{kho.sei:02} imply that \(P^{\bullet}\) is spherical and indecomposable; we now show that it belongs to \(\mathcal{A}_m\) up to grading shift if and only if the arc is a wiggly arc.
+  Let \(X\) be a complex built from an arbitrary (not necessarily wiggly) arc \(\alpha\).
+  The results of~\cite{kho.sei:02} imply that \(X\) is spherical and indecomposable.
+  Let us now analyse the indecomposable summands of its cohomology objects.
   
-  Recall that the procedure to build up the complex of projective modules from an arc explicitly describes the differentials.    
+  Recall that the procedure to build up \(X\) from \(\alpha\) explicitly describes the differentials.    
   Each component of these differentials is a map of the form
   \[P_i\langle g \rangle[h] \to P_j\langle g' \rangle[h-1].\]
-  First consider a component of the differential from some \(P_i\langle g \rangle\) to some \(P_j\langle g' \rangle\) for \(i \neq j\).
-  We see from~\cref{rem:generating-morphisms} that any such map must take \(P_i\langle g \rangle\) to \(P_j \langle g+1 \rangle\).
-  In other words, the differentials has the form
-  \[P_i\langle g \rangle[h] \to P_j\langle g+1 \rangle[h-1]\]
-  if \(i \neq j\).
-  Since \(P_i\langle g \rangle[h]\) and \(P_j\langle g+1 \rangle[h-1]\) have the same level, any differential from a graded shift of \(P_i\) to a graded shift of \(P_j\) keeps the level unchanged.
-  The other possibility is a map from \(P_i\langle g \rangle\) to \(P_i\langle g' \rangle\).
-  Once again, it is clear from~\cref{rem:generating-morphisms} that such differentials have the form
-  \[P_i \langle g \rangle[h] \to P_i\langle g' \rangle[h-1],\]
-  where \(g'\) is either \(g\) or \(g + 2\).
-  Any component of the form
-  \[P_i \langle g \rangle[h] \to P_i\langle g \rangle[h-1]\]
-  is necessarily a multiple of the identity map, and identity maps do not appear in the Khovanov--Seidel complex.
-  Hence the only possibility is multiples of the loop map, which have the form
-  \[P_i \langle g \rangle[h] \to P_i\langle g+2 \rangle[h-1].\]  
-  Therefore any portion of the differential from a graded shift of a \(P_i\) to another graded shift of itself raises the level by one.
+  Let us see how these maps interact with the level.
+  
+  First consider a non-zero component \(P_i\langle g \rangle[h] \to P_j\langle g' \rangle[h-1]\) for \(i \neq j\).
+  We see from~\cref{rem:generating-morphisms} that \(g' = g+1\).
+  In other words, this component has the form
+  \(P_i\langle g \rangle[h] \to P_j\langle g+1 \rangle[h-1]\),
+  and hence does not change the level.
+  
+  Now consider a non-zero component \(P_i\langle g \rangle[h] \to P_i\langle g' \rangle[h-1]\).
+  Once again, it is clear from~\cref{rem:generating-morphisms} that we either have \(g' = g\) or \(g' = g + 2\).
+  Any component of the form \(P_i \langle g \rangle[h] \to P_i\langle g \rangle[h-1]\)
+  is necessarily a multiple of the identity map, which do not appear in the Khovanov--Seidel complex.
+  The only remaining possibility is a ``loop'' map \(P_i \langle g \rangle[h] \to P_i\langle g+2 \rangle[h-1]\), which raises the level by one.
 
-  Computing the \(j\)th cohomology of \(P^{\bullet}\) simply amounts to truncating the complex to level \(j\).
-  The object \(P^{\bullet}\) is in the heart if and only if it is concentrated in a single cohomological degree, which means that its differential has no components of the form
-  \[P_i \langle g \rangle[h] \to P_i\langle g+2 \rangle[h-1].\]
-  This is the case if and only if the corresponding curve does not loop back around any point; that is, if and only if it is \(x\)-monotone.
-  The lemma is proved.
+  Computing the \(j\)th cohomology \(H^j(X)\) simply amounts to truncating the complex to level \(j\).
+  Explicitly, the truncation is a new chain complex in which we only keep the terms of \(X\) that have level \(j\), together with all maps between them, and forget all the other terms.
+  From the calculation above, we see that the resulting complex only has components in its differential of the form \(P_i\langle g \rangle[h] \to P_j\langle g+1 \rangle[h-1]\) for \(i \neq j\); in particular, we kill all the ``loop'' components.
+  The resulting chain complex breaks up into indecomposable summands, each of which is an object of \(\mathcal{A}_m[j]\), and this direct sum is \(H^j(X)[j]\).
+  
+  The object \(X\) is in the heart up to shift if and only if it is concentrated in a single cohomological degree \(j\).
+  Truncating to level \(j\) as described above, we do not delete any of the terms of \(X\).
+  This can happen if and only if the differential of \(X\) contains no loop components,
+  which appear in the complex if and only if \(\alpha\) loops around a point.
+  Thus \(X\) is in the heart up to shift if and only if \(\alpha\) is  \(x\)-monotone.
+  This proves the first part of the proposition.
+
+  More generally, consider the indecomposable pieces of the level-\(j\) truncations of \(X\) for various \(j\), up to shift.
+  As explained above, in terms of the curve \(\alpha\), this corresponds to breaking up the curve \(\alpha\) into \(x\)-monotone portions.
+  More precisely, we begin at an endpoint \(p_0\) of \(\alpha\) and follow the curve until it either ends at a point \(p_1\), or stops being \(x\)-monotone by bending around a point \(p_1\).
+  In this case, we take the portion of \(\alpha\) between \(p_0\) and \(p_1\), calling it \(\alpha_1\), and setting its endpoints to be \(p_0\) and \(p_1\) respectively.
+  Note that \(p_0 \neq p_1\) because \(\alpha\) is \(x\)-monotone between \(p_0\) and \(p_1\).
+  We continue with the remainder of \(\alpha\) starting at \(p_1\), greedily taking the maximal \(x\)-monotone portion each time, to obtain pieces \(\alpha_1,\alpha_2, \ldots, \alpha_k\), which are all wiggly arcs.
+  These wiggly arcs correspond to complexes \(X_1, \ldots, X_k\), which are indecomposable spherical objects of \(\mathcal{A}_m\), up to shift.
+  It is clear from the construction of the associated complex that these objects, up to shift, are exactly the indecomposable pieces of the cohomology truncations \(H^j(X)\) for various \(j\).
+  This argument proves the second part of the proposition.
 \end{proof}
 
 \subsection{Cohomology filtrations of spherical objects}
 In this section we explain how wiggly pseudotriangulations govern the combinatorial structure of a natural categorical decomposition of spherical objects of \(\mathcal{C}_m\).
 
-Recall from~\cref{defprop:cohomology-filtration} that any object \(X\) of \(\mathcal{C}_m\) has a canonical cohomology filtration whose factors are homological shifts of objects in \(\mathcal{A}_m\).
-For general \(X\), the cohomology filtration can be arbitrary.
+For a general object \(X\) of \(\mathcal{C}_m\), the indecomposable factors of the cohomology filtration can be arbitrary.
 However, it turns out that the cohomology filtration is highly constrained if \(X\) is spherical, and these constraints are given by wiggly pseudotriangulations.
 \begin{proposition}\label{prop:hn-filtration}
   Let \(X \in \mathcal{C}_{n+1}\) be a spherical object.
@@ -1619,7 +1637,7 @@ However, it turns out that the cohomology filtration is highly constrained if \(
     \end{tikzcd}
   \]
   Consider the set of all possible indecomposable summands of the cohomology objects \(\{H^j(X)\}\) taken without multiplicity.
-  Let \(T\) be corresponding set of wiggly curves.
+  Let \(T\) be corresponding set of wiggly arcs, as explained in~\cref{prop:cohomology-pieces}.
   We have the following results.
   \begin{enumerate}
   \item 
@@ -1628,8 +1646,31 @@ However, it turns out that the cohomology filtration is highly constrained if \(
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  The proof of this proposition is an easy consequence of analysing cohomology filtration from the point of view of arcs on the disk with marked points.
-  \asilata{TODO.}
+  The proof of this proposition is an easy consequence of analysing the cohomology filtration from the point of view of arcs on the disk with marked points.
+  Let \(X_1, \ldots, X_k\) be the objects in \(T\) without repetition, which arise from wiggly arcs \(\alpha_1, \ldots, \alpha_k\) as explained in the proof of~\cref{prop:cohomology-pieces}.
+  Let \(\beta = (i,j,A,B)\) and \(\beta' = (i',j', A',B')\) be two distinct wiggly arcs among \(\{\alpha_1, \ldots,\alpha_k\}\).
+  We check that \(\beta\) and \(\beta'\) are compatible in the sense of~\cref{def:compatible}.
+  
+  Recall that \(\beta\) and \(\beta'\) are two pieces of the arc \(\alpha\).
+  Therefore \(\beta\) and \(\beta'\) cannot cross, because \(\alpha\) does not cross itself.
+  Suppose that \(\beta\) and \(\beta'\) are non-pointed, and without loss of generality, suppose that \(i' = j\).
+  This means that the piece \(\beta\) was cut from \(\alpha\) either because \(i' = j\) is an endpoint of \(\alpha\), or because \(\alpha\) loops around the right of the point \(i'\).
+  Moreover, if \(i'\) is an endpoint of \(\alpha\), then the portion of \(\alpha\) closest to \(i'\) lies to the left of \(i'\).
+  
+  Similarly, the piece \(\beta'\) was cut from \(\alpha\) either because \(i' = j\) is an endpoint of \(\alpha\), or because \(\alpha\) loops around the left of the point \(j\).
+  Moreover, if \(j\) is an endpoint of \(\alpha\), then the portion of \(\alpha\) closest to \(j\) lies to the right of \(j\).
+
+  We have four possible combinations:
+  \begin{enumerate}
+  \item \(i' = j\) is an endpoint such that \(\alpha\) goes left starting at \(i'\), and \(i' = j\) is an endpoint such that \(\alpha\) goes right starting at \(j\);
+  \item \(i' = j\) is an endpoint such that \(\alpha\) goes left starting at \(i'\), and \(\alpha\) loops around the left of the point \(j\);
+  \item \(\alpha\) loops around the right of the point \(i' = j\), and \(i' = j\) is an endpoint such that \(\alpha\) goes right starting at \(j\); 
+  \item \(\alpha\) loops around the right of the point \(i' = j\), and \(\alpha\) loops around the left of the point \(j\).
+  \end{enumerate}
+  It is clear that none of these possibilities can occur within the arc \(\alpha\), and hence \(\beta\) and \(\beta'\) must be pointed.
+  Therefore \(T = \{\alpha_1, \ldots, \alpha_k\}\) is a subset of a wiggly pseudotriangulation.
+
+  \(T\) cannot contain both external edges because otherwise, the curve \(\alpha\) will not be able to have a second endpoint.\asilata{I am struggling to explain this, even though it should be obvious.}
 \end{proof}
 
 \subsection{Categorical constraints on compatibility of curves}
