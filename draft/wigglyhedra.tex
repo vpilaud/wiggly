@@ -245,7 +245,7 @@ A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs
 \end{figure}
 \end{definition}
 
-\vincent{Here, I am using the fact that a set of pairwise non-crossing arcs can be drawn simultaneously non-crossing. I am not sure I want to enter these details.}
+%\vincent{Here, I am using the fact that a set of pairwise non-crossing arcs can be drawn simultaneously non-crossing. I am not sure I want to enter these details.}
 
 \begin{definition}
 A wiggly pseudodissection~$D$ decomposes the digon bounded by~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$ into cells, that we call \defn{wiggly cells}.
@@ -404,7 +404,7 @@ See \cref{fig:diagonalsPseudoquadrangles} where the two diagonals appear in red 
 %\end{description}
 \end{proof}
 
-\vincent{Asilata has an alternative description of the flip...}
+%\vincent{Asilata has an alternative description of the flip...}
 
 We are now ready to consider the wiggly flip graph and the wiggly complex.
 The following definitions are illustrated in \cref{fig:wigglyComplex} when~$n = 2$.
@@ -556,6 +556,7 @@ Any wiggly arc crossing~$\beta$ would be either non pointed or crossing~$\alpha$
 We now consider wiggly permutations of~$[2n]$, defined as follows.
 
 \begin{definition}
+\label{def:wigglyPermutation}
 A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns:
 \begin{itemize}
 \item $(2j-1) \cdots i \cdots (2j)$ for~$j \in [n]$ and~$i < 2j-1$,
@@ -600,12 +601,12 @@ n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
 \]
 \end{remark}
 
-Recall that the \defn{inversion set} of a permutation~$\sigma$ of~$[2n]$ is the set
-\[
-\inv(\sigma) \eqdef \set{\big( \sigma(i), \sigma(j) \big)}{1 \le i < j \le 2n \text{ and } \sigma(i) > \sigma(j)}.
-\]
-We denote by~$\ninv(\sigma)$ the non-inversions of~$\sigma$, that is the complement of~$\inv(\sigma)$.
-Note that~$\inv(\sigma)$ and~$\ninv(\sigma)$ are transitive: $\{(k,j), (j,i)\} \subseteq \inv(\sigma)$ implies~$(k,i) \in \inv(\sigma)$ for all~${1 \le i < j < k \le 2n}$, and similarly for~$\ninv$.
+Recall that the \defn{inversion set} and \defn{non-inversion set} of a permutation~$\sigma$ of~$[2n]$ are the sets
+\begin{align*}
+\inv(\sigma) & \eqdef \set{\big( \sigma(i), \sigma(j) \big)}{1 \le i < j \le 2n \text{ and } \sigma(i) > \sigma(j)}, \\
+\ninv(\sigma) & \eqdef \set{\big( \sigma(i), \sigma(j) \big)}{1 \le i < j \le 2n \text{ and } \sigma(i) < \sigma(j)}.
+\end{align*}
+Note that~$\inv(\sigma)$ and~$\ninv(\sigma)$ are transitive: $\{(c,b), (b,a)\} \subseteq \inv(\sigma)$ implies~$(c,a) \in \inv(\sigma)$ for all~${1 \le a < b < c \le 2n}$, and similarly for~$\ninv$.
 The inversion sets of wiggly permutations are characterized as follows.
 
 \begin{lemma}
@@ -721,6 +722,7 @@ The cover graph of the wiggly lattice~$\wigglyLattice_n$ is Hamiltonian.
 \end{conjecture}
 
 Note that unfortunately, wiggly permutations do not form a zigzag language in the sense of~\cite{HartungHoangMutzeWilliams} (which would have guarantied the existence of a Gray code).
+\vincent{Ask Aaron what he prefers here...}
 
 %%%%%%%%%%%%
 
@@ -740,7 +742,7 @@ The following two definitions are illustrated in \cref{fig:wigglyLattice,fig:bij
 \begin{definition}
 \label{def:bijection1}
 Consider a wiggly pseudotriangulation~$T$.
-Rotating counterclockwise inside each wiggly pseudotriangle of~$T$, we label by~$2h-1$ (resp.~$2h+1$) the corner immediately preceding (resp.~following) the hinge~$h$ (the remaining corner remains unlabeled).
+Rotating counterclockwise inside each wiggly pseudotriangle of~$T$, we label by~$2h-1$ (resp.~$2h+1$) the corner immediately preceding (resp.~following) the hinge~$h$ (the remaining corner remains unlabelled).
 We define~$\Phi(T)$ as the permutation obtained by reading these labels from bottom to top, meaning that for each internal wiggly arc~$\alpha$ of~$T$, the label incident to~$\alpha$ and below~$\alpha$ appears just before the label incident to~$\alpha$ and above~$\alpha$.
 \end{definition}
 
@@ -760,6 +762,7 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
 \end{proposition}
 
 \begin{proof}
+\vincent{I disagree with some points in this proof, so I put an alternative one below...}
   % We first have to prove that~$\Phi$ and~$\Psi$ are well-defined.
   We break the proof into several steps.
 
@@ -822,10 +825,64 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
   This shows that \(\Psi(\Phi(T)) = T\).
 
   Finally, one can check using~\cref{lem:wigglyCoverRelation} that increasing flips in triangulations correspond precisely to edges in the wiggly lattice.
-  \asilata{Todo: more details here?}
-\item 
+\end{proof}
 
+\begin{proof}
+First, we show that \(\Phi(T)\) is a well-defined wiggly permutation for each wiggly pseudotriangulation \(T\).
+Observe first that~\(\Phi(T)\) is by construction a permutation~$\sigma$ of~$[2n]$.
+For any \(j \in [n]\), let \(t_j\) be the pseudotriangle of \(T\) that has hinge \(j\).
+Suppose that \(2j-1\) appears before \(2j\) in \(\sigma\) for some fixed \(j \in [n]\).
+This means that the pseudotriangle~\(t_j\) has its unlabelled corner to the left of its labelled corners.
+In other words, its hinge opens to the right (see \eg $t_2$ in~\cref{fig:bijection}).
+Consider any label \(i\) that we encounter as we traverse from \(2j-1\) to \(2j\).
+This label belongs to some pseudotriangle \(t_h\) with~$h > j$.
+In other words, \(\sigma\) avoids the pattern \(2j-1 \cdots i \cdots 2j\) for \(i < 2j-1\).
+The other case (in which \(2j\) appears before \(2j-1\) in \(\sigma\)) is symmetric.
 
+Next, we show that \(\Psi(\sigma)\) is a wiggly pseudotriangulation for each wiggly permutation \(\sigma\).
+Observe first that for any~$1 \le u < v \le n$, we cannot see~$\{2u, 2v-1\}$ before~$\{2u-1, 2v\}$ in~$\sigma$ as it contains no forbidden pattern of \cref{def:wigglyPermutation}.
+Using the notations of \cref{def:bijection2}, this implies that~$i < j$ and that~${]i,j[} = A \sqcup B$, so that~$\alpha(\sigma,k) \eqdef (i, j, A, B)$ is indeed a wiggly arc for each~$k \in [2n-1]$.
+By~\cref{prop:wigglyPseudotriangulations}, it thus suffices to check that for each \(k \neq k'\) in \([2n-1]\), the arcs 
+\(\alpha(\sigma,k)\) and~\(\alpha(\sigma,k')\) are distinct and compatible.
+\begin{enumerate}
+\item \textbf{Distinctness.}
+Suppose by contradiction that \(\alpha(\sigma,k) = (i,j,A,B) = \alpha(\sigma,k')\) for some~\({k < k'}\).
+Let~${\ell \in \sigma([k'] \ssm [k])}$ and~$\bar\ell \eqdef \lceil \ell/2 \rceil$.
+As~$\ell \notin \sigma([k])$, we have~$\bar\ell \notin A$.
+As~$\ell \in \sigma([k'])$, we have~$\bar\ell \notin B$.
+As~$\{2i-1, 2j\} \subseteq \sigma([k])$ and~$\{2i, 2j-1\} \cap \sigma([k']) = \varnothing$ and~$\sigma$ avoids the forbidden pattern of \cref{def:wigglyPermutation}, we have~$2i < \ell < 2j-1$, so that~$i < \bar\ell < j$.
+This contradicts the fact that~${]i,j[} = A \sqcup B$.
+
+\item \textbf{Compatibility.}
+Let $\alpha(\sigma, k) = (i,j,A,B)$ and $\alpha(\sigma, k') = (i',j',A',B')$ for some \(k < k'\).
+It is clear from the definition that \(i \neq j'\), as the sets over which we take the $\max$ and $\min$ to define \(i\) and \(j'\) respectively are disjoint.
+Similarly, \(j \neq i'\).
+Hence, the two arcs are pointed.
+To check that the arcs are non-crossing, we show $(A \cap B') \cup (\{i,j\} \cap B') \cup (A \cap \{i',j'\}) = \varnothing$.
+Indeed~$A \cap B' = \varnothing$ since~$A \subseteq A'$ because~$\sigma([k]) \subseteq \sigma([k'])$.
+Moreover, \(\{i,j\} \cap B' = \emptyset\) since~\(\{2i - 1, 2j\} \subseteq \sigma([k]) \subseteq \sigma([k'])\).
+Finally, \(A \cap \{i',j'\} = \emptyset\) since~\(\{2i', 2j'-1\} \cap \sigma([k]) \subseteq \{2i', 2j'-1\} \cap \sigma([k']) = \varnothing\).
+\end{enumerate}
+
+\vincent{I am working here...}
+Next, we show that the maps \(\Phi\) and \(\Psi\) are inverse bijections.
+Let \(\sigma\) be a wiggly permutation, so that \(\Psi(\sigma)\) is a wiggly pseudotriangulation.
+Let~$k \in [2n-1]$ and~$m \eqdef \lceil \sigma(k)/2 \rceil$.
+Then observe that
+\begin{itemize}
+\item if $\{2m, 2m-1\} \subseteq \sigma([k])$, then~$k$ is minimal such that~$\alpha(\sigma,k)$ passes above the point~$m$,
+\item if~$\sigma(k) = 2m$ and~$2m-1 \notin \sigma([k])$, then~$k$ is minimal such that~$\alpha(\sigma,k)$ has right endpoint~$m$,
+\item if~$\sigma(k) = 2m-1$ and~$2m \notin \sigma([k])$, then~$k$ is minimal such that~$\alpha(\sigma,k)$ has left endpoint~$m$.
+\end{itemize}
+It follows that in the wiggly pseudotriangulation~\(\Psi(\sigma)\), the arc \(\alpha(\sigma, k)\) is precisely the arc lying immediately above the angle labelled by~\(\sigma(k)\).
+Therefore, we have~\(\Phi(\Psi(\sigma)) = \sigma\).
+
+Conversely, let \(T\) be a wiggly pseudotriangulation, so that \(\sigma = \Phi(T)\) is a wiggly permutation.
+Then for any \(k \in [2n-1]\), the arc immediately above the angle of~$T$ labelled by~$\sigma(k)$ is precisely the one constructed as~\(\alpha(\sigma, k)\).
+This shows that \(\Psi(\Phi(T)) = T\).
+
+Finally, one can check using~\cref{lem:wigglyCoverRelation} that increasing flips in triangulations correspond precisely to edges in the wiggly lattice.
+\vincent{Indeed, we need more here. Todo.}
 \end{proof}
 
 \begin{remark}
@@ -913,6 +970,7 @@ We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{
 \label{subsec:gcvectors}
 
 We now define two families of vectors, illustrated in \cref{fig:pseudotriangulationMatrices}.
+\vincent{Move that to the corresponding sections, and delete this section.}
 %
 \begin{figure}
 \centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
@@ -1416,6 +1474,7 @@ For any point set~$P$ in the plane, the wiggly flip graph~$\wigglyFlipGraph_P$ i
 \section{Further questions}
 
 A few additional questions to arouse your curiosity:
+\vincent{Integrate that to the previous section}
 \begin{enumerate}
 \item Can the construction of \cref{thm:wigglyhedron} be adapted to provide a more combinatorial construction of the polytope of pseudotriangulations~\cite{RoteSantosStreinu-polytope}, that would only depend on the order type (aka oriented matroid~\cite{BjornerLasVergnasSturmfelsWhiteZiegler}) of the point configuration?
 \item What is the dual interpretation of wiggly pseudotriangulations as pseudoline arrangements? (see~\cite{PilaudPocchiola} for context) Can this interpretation be extended to other finite Coxeter groups? (see~\cite{CeballosLabbeStump} for context).
@@ -1472,7 +1531,7 @@ In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects o
 \begin{definition}
   The category \(\mathcal{C}_m\) is defined to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\).
 \end{definition}
-For further discussion on the construction, see, e.g.,~\cite[Sect.~2.3.3]{bap.deo.lic:22}.
+For further discussion on the construction, see \eg~\cite[Sect.~2.3.3]{bap.deo.lic:22}.
 The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
 For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{g,h}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of internal degree \(g\) and homological degree \(h\).
 In other words, we have
@@ -1526,7 +1585,7 @@ That is, in the notation above, we have
 For any integer \(N\), let \(\mathcal{C}_m^{\le N} \subset \mathcal{C}_m\) be the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, containing all complexes of level \(\geq -N\).
 For any integer \(N\), let \(\mathcal{C}_m^{\geq N} \subset \mathcal{C}_m\) be the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, containing all complexes of level \(\leq -N\).
 
-We refer the reader to e.g.~\cite[Sect.~1.3]{bel.ber.del:82} for the definition of a \(t\)-structure on a triangulated category.
+We refer the reader to \eg~\cite[Sect.~1.3]{bel.ber.del:82} for the definition of a \(t\)-structure on a triangulated category.
 The following proposition is easily checked using the calculations in~\cref{rem:generating-morphisms} and standard techniques involving categories of complexes; we omit the proof.
 \begin{proposition}
   The pair of subcategories \((\mathcal{C}_m^{\leq 0}, \mathcal{C}_m^{\geq 0})\) forms a bounded \(t\)-structure on \(\mathcal{C}_m\).
@@ -1559,6 +1618,7 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 
 
 \subsection{The Khovanov--Seidel curve model}
+\vincent{Add a picture summarizing this section... Asilata drafts it, I will make it.}
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general arcs as well --- namely, those that are not necessarily \(x\)-monotone.
 All the results of this section are due to Khovanov and Seidel~\cite{kho.sei:02}.
