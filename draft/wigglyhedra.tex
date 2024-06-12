@@ -864,7 +864,6 @@ Moreover, \(\{i,j\} \cap B' = \emptyset\) since~\(\{2i - 1, 2j\} \subseteq \sigm
 Finally, \(A \cap \{i',j'\} = \emptyset\) since~\(\{2i', 2j'-1\} \cap \sigma([k]) \subseteq \{2i', 2j'-1\} \cap \sigma([k']) = \varnothing\).
 \end{enumerate}
 
-\vincent{I am working here...}
 Next, we show that the maps \(\Phi\) and \(\Psi\) are inverse bijections.
 Let \(\sigma\) be a wiggly permutation, so that \(\Psi(\sigma)\) is a wiggly pseudotriangulation.
 Let~$k \in [2n-1]$ and~$m \eqdef \lceil \sigma(k)/2 \rceil$.
@@ -881,8 +880,16 @@ Conversely, let \(T\) be a wiggly pseudotriangulation, so that \(\sigma = \Phi(T
 Then for any \(k \in [2n-1]\), the arc immediately above the angle of~$T$ labelled by~$\sigma(k)$ is precisely the one constructed as~\(\alpha(\sigma, k)\).
 This shows that \(\Psi(\Phi(T)) = T\).
 
-Finally, one can check using~\cref{lem:wigglyCoverRelation} that increasing flips in triangulations correspond precisely to edges in the wiggly lattice.
-\vincent{Indeed, we need more here. Todo.}
+Finally, consider a cover relation~$\sigma \lessdot \sigma^j$ in the wiggly lattice~$\wigglyLattice_n$ as described in~\cref{lem:wigglyCoverRelation}.
+Using the notations of~\cref{lem:wigglyCoverRelation}, bserve that
+\begin{itemize}
+\item $\alpha(\sigma^j, \ell) = \alpha(\sigma, \ell)$ for all~$\ell < i$ or~$\ell > k$,
+\item $\alpha(\sigma^j, \ell) = \alpha(\sigma, \ell+k-j)$ for all~$i \le \ell < j$, and
+\item $\alpha(\sigma^j, \ell) = \alpha(\sigma, \ell-j+i-1)$ for all~$j < \ell \le k$.
+\end{itemize}
+Hence, $\Psi(\sigma) \ssm \{\alpha(\sigma, j)\} = \Psi(\sigma^j) \ssm \{\alpha(\sigma^j, j)\}$.
+This implies that~$\Psi$ is a morphism of directed graph from the Hasse diagram of the wiggly lattice~$\wigglyLattice_n$ to the wiggly increasing flip graph~$\wigglyIncreasingFlipGraph_n$.
+As the underlying undirected graphs are both regular of degree~$2n-1$, we conclude that~$\Phi$ and~$\Psi$ induce directed graph isomorphisms between the wiggly increasing flip graph~$\wigglyIncreasingFlipGraph_n$ and the Hasse diagram of the wiggly lattice~$\wigglyLattice_n$.
 \end{proof}
 
 \begin{remark}
