@@ -1491,7 +1491,7 @@ Furthermore, for any integers \(a\) and \(b\), we have
   \end{itemize}
 \end{remark}
 
-We now describe the \(t\)-structure induced by the full subcategory of \emph{linear complexes} of \(\mathcal{C}_m\); a variant of this construction is described in~\cite[Section 2.5]{lic.que:21}.
+We now describe the \(t\)-structure induced by the full subcategory of \emph{linear complexes} of \(\mathcal{C}_m\); a variant of this construction is also described in~\cite[Section 2.5]{lic.que:21}.
 It is convenient to think of an object \(P^{\bullet}\) of \(\mathcal{C}_m\)
 as bigraded (projective) \(A_m\)-module equipped with a differential \(d \colon P^{\bullet} \to P^{\bullet}\).
 More precisely, we can write
@@ -1561,20 +1561,22 @@ Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0
 In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
 For convenience, we refer to such an isotopy class as an \emph{arc}.
 
-The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of \(\mathcal{C}_{n+1}\) (up to grading\asilata{Should this say homological?} shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
+The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of \(\mathcal{C}_{n+1}\) (up to grading shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
 
 In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
 It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
 In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
 In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects (\cite[Lemma 4.11]{kho.sei:02}).
 
+Let us first characterise wiggly arcs in terms of objects of \(\mathcal{C}_m\).
 \begin{lemma}
-  Every wiggly arc corresponds to an object in the heart \(\mathcal{A}_m\) of the standard \(t\)-structure on \(\mathcal{C}_m\).
+  Every wiggly arc corresponds, up to grading shift, to an indecomposable spherical object in the heart \(\mathcal{A}_m\) of the standard \(t\)-structure on \(\mathcal{C}_m\).
 \end{lemma}
 \begin{proof}
   Let \(P^{\bullet}\) be the complex built from an arbitrary (not necessarily wiggly) arc.
-  The procedure to build up the complex of projective modules from a curve explicitly describes the differentials.  
+  The results of~\cite{kho.sei:02} imply that \(P^{\bullet}\) is spherical and indecomposable; we now show that it belongs to \(\mathcal{A}_m\) up to grading shift if and only if the arc is a wiggly arc.
   
+  Recall that the procedure to build up the complex of projective modules from an arc explicitly describes the differentials.    
   Each component of these differentials is a map of the form
   \[P_i\langle g \rangle[h] \to P_j\langle g' \rangle[h-1].\]
   First consider a component of the differential from some \(P_i\langle g \rangle\) to some \(P_j\langle g' \rangle\) for \(i \neq j\).
@@ -1606,7 +1608,7 @@ In this section we explain how wiggly pseudotriangulations govern the combinator
 
 Recall from~\cref{defprop:cohomology-filtration} that any object \(X\) of \(\mathcal{C}_m\) has a canonical cohomology filtration whose factors are homological shifts of objects in \(\mathcal{A}_m\).
 For general \(X\), the cohomology filtration can be arbitrary.
-However, it turns out that the cohomology filtration is highly constrained if \(X\) is spherical, and these constraints are given by wiggly pseudotriangulations, as explained in the following proposition.
+However, it turns out that the cohomology filtration is highly constrained if \(X\) is spherical, and these constraints are given by wiggly pseudotriangulations.
 \begin{proposition}\label{prop:hn-filtration}
   Let \(X \in \mathcal{C}_{n+1}\) be a spherical object.
   Consider its cohomology filtration
@@ -1616,7 +1618,8 @@ However, it turns out that the cohomology filtration is highly constrained if \(
       & H^l(X)[-l] \arrow[dashed]{ul}{+1} && H^{l+1}(X)[-l-1] \arrow[dashed]{ul}{+1} & \cdots & H^k(X)[-k] \arrow[dashed]{ul}{+1}
     \end{tikzcd}
   \]
-  Consider the set of all nonzero objects \(\{H^j(X)\}\) taken without multiplicity, and let \(T\) be corresponding set of wiggly curves.
+  Consider the set of all possible indecomposable summands of the cohomology objects \(\{H^j(X)\}\) taken without multiplicity.
+  Let \(T\) be corresponding set of wiggly curves.
   We have the following results.
   \begin{enumerate}
   \item 
