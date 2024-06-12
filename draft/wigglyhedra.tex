@@ -1480,19 +1480,7 @@ Furthermore, for any integers \(a\) and \(b\), we have
 \[\Hom^{g,h}(X\langle g' \rangle[h'], Y\langle g' \rangle[h']) = \Hom^{g,h}(X,Y).\]
 
 \begin{remark}\label{rem:generating-morphisms}
-  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
-  \begin{itemize}
-  \item \(\Hom^{g,h}(P_i,P_i) = 0\) if \(g \neq 0, 2\) and \(h \neq 0\),
-  \item \(\Hom^{g,0}(P_i,P_i) = k\) if \(g = 0, 2\),
-  \item \(\Hom^{g,h}(P_i, P_{i\pm1}) = 0\) if \(g \neq 1\) and \(h \neq 0\),
-  \item \(\Hom^{1,0}(P_i, P_{i\pm1}) = k\), and
-  \item \(\Hom^{g,h}(P_i, P_j) = 0 \) otherwise.
-  \end{itemize}
-\end{remark}
-
-\vincent{What about this remark instead?}
-\begin{remark}\label{rem:generating-morphisms}
-  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy \(\Hom^{0,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_{i\pm1}) = k\) and \(\Hom^{g,h}(P_i, P_j) = 0\) in all other cases.
+  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy \(\Hom^{0,0}(P_i,P_i) = \Hom^{2,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_{i\pm1}) = k\) and \(\Hom^{g,h}(P_i, P_j) = 0\) in all other cases.
 \end{remark}
 
 We now describe the \(t\)-structure induced by the full subcategory of \defn{linear complexes} of \(\mathcal{C}_m\).
@@ -1531,7 +1519,7 @@ The following proposition is easily checked using the calculations in~\cref{rem:
   The pair of subcategories \((\mathcal{C}_m^{\leq 0}, \mathcal{C}_m^{\geq 0})\) forms a bounded \(t\)-structure on \(\mathcal{C}_m\).
 \end{proposition}
 We call this \(t\)-structure the \defn{standard \(t\)-structure} on \(\mathcal{C}_m\).
-Set \(\mathcal{A}_m = \mathcal{C}^{\leq 0}_m \cap \mathcal{C}_m^{\geq 0}\); this is the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, which contains all linear complexes.
+Set \(\mathcal{A}_m = \mathcal{C}^{\leq 0}_m \cap \mathcal{C}_m^{\geq 0}\) to be the heart of this \(t\)-structure; this is the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, which contains all linear complexes.
 It follows that \(\mathcal{A}_m\) is abelian.
 
 Also record the following statements for future use; the first may be found in~\cite[Sect.~1.3]{bel.ber.del:82}
@@ -1560,7 +1548,6 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 \subsection{The Khovanov--Seidel curve model}
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general arcs as well --- namely, those that are not necessarily \(x\)-monotone.
-All the results of this section are due to Khovanov and Seidel~\cite{kho.sei:02}.
 
 Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0,1, \ldots, n+1\) as in~\cref{sec:combinatorics}.
 In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
