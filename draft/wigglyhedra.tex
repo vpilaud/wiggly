@@ -1425,7 +1425,6 @@ More precisely, the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$  appea
 In contrast, \cref{prop:CambrianFan} states that the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$ appears as a link of the normal fan of the wigglyhedron~$\wigglyhedron_n$, which is a $(2n-1)$-dimensional polytope.
 There seem to be no connection between these two universal polytopes.
 However, this certainly raises the question to construct analogues of the wigglyhedron for all finite Coxeter groups.
-\asilata{I can come up with a possible categorical pathway towards the wiggly flip graph for arbitrary finite Coxeter groups, related to~\cref{prop:hn-filtration}. But I have no idea how to construct the polytope!}
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1540,19 +1539,7 @@ Furthermore, for any integers \(a\) and \(b\), we have
 \[\Hom^{g,h}(X\langle g' \rangle[h'], Y\langle g' \rangle[h']) = \Hom^{g,h}(X,Y).\]
 
 \begin{remark}\label{rem:generating-morphisms}
-  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
-  \begin{itemize}
-  \item \(\Hom^{g,h}(P_i,P_i) = 0\) if \(g \neq 0, 2\) and \(h \neq 0\),
-  \item \(\Hom^{g,0}(P_i,P_i) = k\) if \(g = 0, 2\),
-  \item \(\Hom^{g,h}(P_i, P_{i\pm1}) = 0\) if \(g \neq 1\) and \(h \neq 0\),
-  \item \(\Hom^{1,0}(P_i, P_{i\pm1}) = k\), and
-  \item \(\Hom^{g,h}(P_i, P_j) = 0 \) otherwise.
-  \end{itemize}
-\end{remark}
-
-\vincent{What about this remark instead?}
-\begin{remark}\label{rem:generating-morphisms}
-  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy \(\Hom^{0,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_{i\pm1}) = k\) and \(\Hom^{g,h}(P_i, P_j) = 0\) in all other cases.
+  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy \(\Hom^{0,0}(P_i,P_i) = \Hom^{2,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_{i\pm1}) = k\) and \(\Hom^{g,h}(P_i, P_j) = 0\) in all other cases.
 \end{remark}
 
 We now describe the \(t\)-structure induced by the full subcategory of \defn{linear complexes} of \(\mathcal{C}_m\).
@@ -1591,7 +1578,7 @@ The following proposition is easily checked using the calculations in~\cref{rem:
   The pair of subcategories \((\mathcal{C}_m^{\leq 0}, \mathcal{C}_m^{\geq 0})\) forms a bounded \(t\)-structure on \(\mathcal{C}_m\).
 \end{proposition}
 We call this \(t\)-structure the \defn{standard \(t\)-structure} on \(\mathcal{C}_m\).
-Set \(\mathcal{A}_m = \mathcal{C}^{\leq 0}_m \cap \mathcal{C}_m^{\geq 0}\); this is the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, which contains all linear complexes.
+Set \(\mathcal{A}_m = \mathcal{C}^{\leq 0}_m \cap \mathcal{C}_m^{\geq 0}\) to be the heart of this \(t\)-structure; this is the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, which contains all linear complexes.
 It follows that \(\mathcal{A}_m\) is abelian.
 
 Also record the following statements for future use; the first may be found in~\cite[Sect.~1.3]{bel.ber.del:82}
@@ -1621,7 +1608,6 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 \vincent{Add a picture summarizing this section... Asilata drafts it, I will make it.}
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general arcs as well --- namely, those that are not necessarily \(x\)-monotone.
-All the results of this section are due to Khovanov and Seidel~\cite{kho.sei:02}.
 
 Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0,1, \ldots, n+1\) as in~\cref{sec:combinatorics}.
 In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
@@ -1633,6 +1619,7 @@ In particular, the line segment joining point \(i\) to point \(i+1\) is sent to 
 It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
 In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
 In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects~\cite[Lem.~4.11]{kho.sei:02}.
+\asilata{Add picture of curve cutting.}
 
 \begin{proposition}\label{prop:cohomology-pieces}
   Let \(\alpha\) be any arc, and let \(X = X^{\bullet}\) be a chain complex that corresponds to \(\alpha\) under the Khovanov--Seidel reconstruction.
@@ -1744,7 +1731,7 @@ In this section, we give a categorical criterion for two wiggly arcs to be compa
 As such, this section is somewhat dual to the previous section --- the criterion in this section determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
 \begin{proposition}
   Consider two wiggly arcs \(\alpha\) and \(\alpha'\), and let \(X\) and \(X'\) be objects in the standard heart \(\mathcal{A}_m\) corresponding to \(\alpha\) and \(\alpha'\) respectively.
-  Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X\langle g \rangle, X\langle g' \rangle) = 0\) for any two integers \(g\) and \(g'\).
+  Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X, X') = 0\).
 \end{proposition}
 \begin{proof}
   \asilata{TODO.}
@@ -1754,16 +1741,17 @@ As such, this section is somewhat dual to the previous section --- the criterion
   \asilata{Expand and make precise.}
 \end{remark}
 \begin{remark}
-  As stated, this proposition is not expected to be true in greater generality.
-  For instance, it does not hold for the zigzag algebra of Dynkin type~$D_4$.
+  As stated, this proposition in combination with~\cref{prop:hn-filtration} is not expected to be true in greater generality.
+  For instance, for the zigzag algebra of Dynkin type~\(D_4\), one can find two indecomposable spherical objects with a non-trivial \(\Ext^1\) that nevertheless appear together in the cohomology filtration of another spherical object.
   However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
-  \asilata{Decide what to say here, because the forthcoming work is far from complete, although I do have counterexamples in type \(D_4\). Discussing how to interpret these counterexamples may not involve too much more work?}
 \end{remark}
 \begin{question}
   How to best relate this section to the previous one purely categorically?
   That is, given the categorical constraint on compatibility of arcs, is it also clear that it gives a constraint on objects appearing in the cohomology filtration?
   \asilata{Make more precise.}
 \end{question}
+
+\asilata{Write something about \(g\)-vectors.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
