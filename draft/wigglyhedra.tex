@@ -1437,7 +1437,7 @@ We also discuss categorical conditions for two wiggly arcs to be compatible as i
 \subsection{A triangulated category associated to a quiver}
 We begin by describing the category of interest, which is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
 That is, a subcategory of the bounded derived category of (finitely generated) \(A_m\)-modules.
-The algebra \(A_m\), called the \emph{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
+The algebra~\(A_m\), called the \defn{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
 \begin{figure}[h]
   \centering
   \begin{tikzcd}
@@ -1455,24 +1455,25 @@ A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\
   \begin{itemize}
   \item \((i|j|l) = 0\) whenever \(i \neq l\);
   \item \((i|j|i) = (i|l|i)\) for every \(j\) and \(l\) such that there are arrows between \(i\) and \(j\) and between \(i\) and \(l\).
+  \vincent{why not write $i-1$ and~$i+1$?}
   \end{itemize}
 \end{definition}
 
 \begin{remark}
-  The definition of the zigzag algebra as used here originally appeared in~\cite[Section 3]{hue.kho:01}.
+  The definition of the zigzag algebra as used here originally appeared in~\cite[Sect.~3]{hue.kho:01}.
   This is the ``un-signed'' zigzag algebra.
-  It is technically better to use a ``signed'' zigzag algebra, and the comparison between the two is discussed in~\cite[Remark 6.6]{bap.deo.lic:20}.
+  It is technically better to use a ``signed'' zigzag algebra, and the comparison between the two is discussed in~\cite[Rem.~6.6]{bap.deo.lic:20}.
   As the two versions are isomorphic in our example, we ignore this technicality and use the easier definition.
 \end{remark}
 
 Let \(P_i\) denote the indecomposable projective \(A_m\)-module defined as \(P_i = A_m\cdot e_i\).
-For any integer \(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
+For any integer~\(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
 There is an embedding of \(A_m\text{-mod}\) into \(D^b(A_m\text{-mod})\), which sends any \(A_m\)-module as a complex of \(A_m\)-modules that is concentrated in degree \(0\).
 In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects of \(D^b(A_m\text{-mod})\).
 \begin{definition}
   The category \(\mathcal{C}_m\) is defined to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\).
 \end{definition}
-For further discussion on the construction, see, e.g.,~\cite[Section 2.3.3]{bap.deo.lic:22}.
+For further discussion on the construction, see, e.g.,~\cite[Sect.~2.3.3]{bap.deo.lic:22}.
 The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
 For \(X, Y \in \mathcal{C}_m\), let \(\Hom^{g,h}(X,Y)\) denote the space of morphisms in \(\mathcal{C}_m\) of internal degree \(g\) and homological degree \(h\).
 In other words, we have
@@ -1483,15 +1484,16 @@ Furthermore, for any integers \(a\) and \(b\), we have
 \begin{remark}\label{rem:generating-morphisms}
   It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy the following:
   \begin{itemize}
-  \item \(\Hom^{g,h}(P_i,P_i) = 0\) if \(g \neq 0, 2\) and \(h \neq 0\);
-  \item \(\Hom^{g,0}(P_i,P_i) = k\) if \(g = 0, 2\);
-  \item \(\Hom^{g,h}(P_i, P_{i\pm1}) = 0\) if \(g \neq 1\) and \(h \neq 0\);
+  \item \(\Hom^{g,h}(P_i,P_i) = 0\) if \(g \neq 0, 2\) and \(h \neq 0\),
+  \item \(\Hom^{g,0}(P_i,P_i) = k\) if \(g = 0, 2\),
+  \item \(\Hom^{g,h}(P_i, P_{i\pm1}) = 0\) if \(g \neq 1\) and \(h \neq 0\),
   \item \(\Hom^{1,0}(P_i, P_{i\pm1}) = k\), and
   \item \(\Hom^{g,h}(P_i, P_j) = 0 \) otherwise.
   \end{itemize}
 \end{remark}
 
-We now describe the \(t\)-structure induced by the full subcategory of \emph{linear complexes} of \(\mathcal{C}_m\); a variant of this construction is also described in~\cite[Section 2.5]{lic.que:21}.
+We now describe the \(t\)-structure induced by the full subcategory of \defn{linear complexes} of \(\mathcal{C}_m\).
+A variant of this construction is also described in~\cite[Sect.~2.5]{lic.que:21}.
 It is convenient to think of an object \(P^{\bullet}\) of \(\mathcal{C}_m\)
 as bigraded (projective) \(A_m\)-module equipped with a differential \(d \colon P^{\bullet} \to P^{\bullet}\).
 More precisely, we can write
@@ -1513,7 +1515,7 @@ That is, in the notation above, we have
   Let \(P^{\bullet}\) be an object of \(\mathcal{C}_m\), described as a bigraded module
   \[P^{\bullet} = \bigoplus M_i\langle g \rangle[h]\]
   together with an internal differential \(d \colon P^{\bullet} \to P^{\bullet}\) as above.
-  We say that \(P^{\bullet}\) has \defn{level \(\ell\)} for some \(\ell \in \mathbb{Z}\) if for each bigraded piece \(M_i \langle g \rangle[h]\) of \(P^{\bullet}\), we have \(g + h = \ell\).
+  We say that \(P^{\bullet}\) has \defn{level \(\ell\)} for some~\(\ell \in \mathbb{Z}\) if for each bigraded piece \(M_i \langle g \rangle[h]\) of \(P^{\bullet}\), we have \(g + h = \ell\).
   We say that \(P^{\bullet}\) is \defn{linear} if \(P^{\bullet}\) has level \(\ell = 0\).
 
 \end{definition}
@@ -1530,15 +1532,16 @@ Set \(\mathcal{A}_m = \mathcal{C}^{\leq 0}_m \cap \mathcal{C}_m^{\geq 0}\); this
 It follows that \(\mathcal{A}_m\) is abelian.
 
 Also record the following statements for future use; the first may be found in~\cite[1.3]{bel.ber.del:82}
+\vincent{is that a section?}
 \begin{defprop}\label{defprop:cohomology}
-  Let \((\mathcal{C}^{\le 0}, \mathcal{C}^{\geq 0})\) be a \(t\)-structure on a triangulated category \(\mathcal{C}\) with heart \(\mathcal{A} = \mathcal{C}^{\leq 0} \cap \mathcal{C}^{\geq 0}\).
+  Let \((\mathcal{C}^{\le 0}, \mathcal{C}^{\geq 0})\) be a \(t\)-structure on a triangulated category \(\mathcal{C}\) with heart~\(\mathcal{A} = \mathcal{C}^{\leq 0} \cap \mathcal{C}^{\geq 0}\).
   For each integer \(i\), we have the \(i\)th truncation functors
   \[\tau^{\leq i} \colon \mathcal{C} \to \mathcal{C}^{\leq i} \quad\text{and}\quad \tau^{\geq i} \colon \mathcal{C} \to \mathcal{C}^{\geq i},\]
   which are right and left adjoint respectively to the inclusion functors \(\mathcal{C}^{\leq 0} \to \mathcal{C}\) and \(\mathcal{C}^{\geq 0} \to \mathcal{C}\).
   The \(i\)th \defn{cohomology functor} is defined to be the composition \(\tau^{\leq i} \circ \tau^{\geq i}\).
   It is canonically isomorphic to the composition \(\tau^{\geq i} \circ \tau^{\leq i}\), and maps an object of \(\mathcal{C}\) to an object of \(\mathcal{A}\).
 \end{defprop}
-The next statement, which is easy to check from the definitions, is mentioned in~\cite[Section 3.3]{bayer2011tour}.
+The next statement, easy to check from the definitions, is mentioned in~\cite[Sect.~3.3]{bayer2011tour}.
 \begin{defprop}\label{defprop:cohomology-filtration}
   Let \(\mathcal{C}\) be any triangulated category, and \(\mathcal{A} \subset \mathcal{C}\) the heart of a bounded \(t\)-structure on \(\mathcal{C}\).
   Let \(X\) be a non-zero object of \(\mathcal{C}\), and let \(k\) and \(l\) be the maximum and minimum integers respectively for which \(H^k(X)\) and \(H^{l}(X)\) are non-zero.
@@ -1559,14 +1562,14 @@ All the results of this section are due to Khovanov and Seidel~\cite{kho.sei:02}
 
 Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0,1, \ldots, n+1\) as in~\cref{sec:combinatorics}.
 In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
-For convenience, we refer to such an isotopy class as an \emph{arc}.
+For convenience, we refer to such an isotopy class as an \defn{arc}.
 
-The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of \(\mathcal{C}_{n+1}\) (up to grading shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
+The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of~\(\mathcal{C}_{n+1}\) (up to grading shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
 
 In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
 It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
 In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
-In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects (\cite[Lemma 4.11]{kho.sei:02}).
+In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects~\cite[Lem.~4.11]{kho.sei:02}.
 
 \begin{proposition}\label{prop:cohomology-pieces}
   Let \(\alpha\) be any arc, and let \(X = X^{\bullet}\) be a chain complex that corresponds to \(\alpha\) under the Khovanov--Seidel reconstruction.
@@ -1602,7 +1605,7 @@ In fact, it is true for any pair of curves that its minimal intersection number 
   Computing the \(j\)th cohomology \(H^j(X)\) simply amounts to truncating the complex to level \(j\).
   Explicitly, the truncation is a new chain complex in which we only keep the terms of \(X\) that have level \(j\), together with all maps between them, and forget all the other terms.
   From the calculation above, we see that the resulting complex only has components in its differential of the form \(P_i\langle g \rangle[h] \to P_j\langle g+1 \rangle[h-1]\) for \(i \neq j\); in particular, we kill all the ``loop'' components.
-  The resulting chain complex breaks up into indecomposable summands, each of which is an object of \(\mathcal{A}_m[j]\), and this direct sum is \(H^j(X)[j]\).
+  The resulting chain complex breaks up into indecomposable summands, each of which is an object of~\(\mathcal{A}_m[j]\), and this direct sum is \(H^j(X)[j]\).
   
   The object \(X\) is in the heart up to shift if and only if it is concentrated in a single cohomological degree \(j\).
   Truncating to level \(j\) as described above, we do not delete any of the terms of \(X\).
@@ -1611,8 +1614,8 @@ In fact, it is true for any pair of curves that its minimal intersection number 
   Thus \(X\) is in the heart up to shift if and only if \(\alpha\) is  \(x\)-monotone.
   This proves the first part of the proposition.
 
-  More generally, consider the indecomposable pieces of the level-\(j\) truncations of \(X\) for various \(j\), up to shift.
-  As explained above, in terms of the curve \(\alpha\), this corresponds to breaking up the curve \(\alpha\) into \(x\)-monotone portions.
+  More generally, consider the indecomposable pieces of the level-\(j\) truncations of \(X\) for various~\(j\), up to shift.
+  As explained above, in terms of the curve \(\alpha\), this corresponds to breaking up the curve~\(\alpha\) into \(x\)-monotone portions.
   More precisely, we begin at an endpoint \(p_0\) of \(\alpha\) and follow the curve until it either ends at a point \(p_1\), or stops being \(x\)-monotone by bending around a point \(p_1\).
   In this case, we take the portion of \(\alpha\) between \(p_0\) and \(p_1\), calling it \(\alpha_1\), and setting its endpoints to be \(p_0\) and \(p_1\) respectively.
   Note that \(p_0 \neq p_1\) because \(\alpha\) is \(x\)-monotone between \(p_0\) and \(p_1\).
@@ -1652,12 +1655,12 @@ However, it turns out that the cohomology filtration is highly constrained if \(
   We check that \(\beta\) and \(\beta'\) are compatible in the sense of~\cref{def:compatible}.
   
   Recall that \(\beta\) and \(\beta'\) are two pieces of the arc \(\alpha\).
-  Therefore \(\beta\) and \(\beta'\) cannot cross, because \(\alpha\) does not cross itself.
+  Therefore \(\beta\) and \(\beta'\) cannot cross, because~\(\alpha\) does not cross itself.
   Suppose that \(\beta\) and \(\beta'\) are non-pointed, and without loss of generality, suppose that \(i' = j\).
   This means that the piece \(\beta\) was cut from \(\alpha\) either because \(i' = j\) is an endpoint of \(\alpha\), or because \(\alpha\) loops around the right of the point \(i'\).
   Moreover, if \(i'\) is an endpoint of \(\alpha\), then the portion of \(\alpha\) closest to \(i'\) lies to the left of \(i'\).
   
-  Similarly, the piece \(\beta'\) was cut from \(\alpha\) either because \(i' = j\) is an endpoint of \(\alpha\), or because \(\alpha\) loops around the left of the point \(j\).
+  Similarly, the piece \(\beta'\) was cut from \(\alpha\) either because \(i' = j\) is an endpoint of \(\alpha\), or because~\(\alpha\) loops around the left of the point \(j\).
   Moreover, if \(j\) is an endpoint of \(\alpha\), then the portion of \(\alpha\) closest to \(j\) lies to the right of \(j\).
 
   We have four possible combinations:
