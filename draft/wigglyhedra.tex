@@ -1367,7 +1367,6 @@ More precisely, the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$  appea
 In contrast, \cref{prop:CambrianFan} states that the $\delta$-Cambrian fan for each~$\delta \in \{+,-\}^n$ appears as a link of the normal fan of the wigglyhedron~$\wigglyhedron_n$, which is a $(2n-1)$-dimensional polytope.
 There seem to be no connection between these two universal polytopes.
 However, this certainly raises the question to construct analogues of the wigglyhedron for all finite Coxeter groups.
-\asilata{I can come up with a possible categorical pathway towards the wiggly flip graph for arbitrary finite Coxeter groups, related to~\cref{prop:hn-filtration}. But I have no idea how to construct the polytope!}
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1570,6 +1569,7 @@ In particular, the line segment joining point \(i\) to point \(i+1\) is sent to 
 It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
 In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
 In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects~\cite[Lem.~4.11]{kho.sei:02}.
+\asilata{Add picture of curve cutting.}
 
 \begin{proposition}\label{prop:cohomology-pieces}
   Let \(\alpha\) be any arc, and let \(X = X^{\bullet}\) be a chain complex that corresponds to \(\alpha\) under the Khovanov--Seidel reconstruction.
@@ -1681,7 +1681,7 @@ In this section, we give a categorical criterion for two wiggly arcs to be compa
 As such, this section is somewhat dual to the previous section --- the criterion in this section determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
 \begin{proposition}
   Consider two wiggly arcs \(\alpha\) and \(\alpha'\), and let \(X\) and \(X'\) be objects in the standard heart \(\mathcal{A}_m\) corresponding to \(\alpha\) and \(\alpha'\) respectively.
-  Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X\langle g \rangle, X\langle g' \rangle) = 0\) for any two integers \(g\) and \(g'\).
+  Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X, X') = 0\).
 \end{proposition}
 \begin{proof}
   \asilata{TODO.}
@@ -1700,6 +1700,8 @@ As such, this section is somewhat dual to the previous section --- the criterion
   That is, given the categorical constraint on compatibility of arcs, is it also clear that it gives a constraint on objects appearing in the cohomology filtration?
   \asilata{Make more precise.}
 \end{question}
+
+\asilata{Write something about \(g\)-vectors.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
