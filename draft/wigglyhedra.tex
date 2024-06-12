@@ -1446,16 +1446,15 @@ The algebra~\(A_m\), called the \defn{zigzag algebra}, is defined as a quotient 
   \label{fig:am-quiver}
 \end{figure}
 Let \(kQ_m\) be the path algebra of \(Q_m\), graded by path length.
-Let \(e_i\) denote the idempotent path at the vertex \(i\), and let \((i|j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
-A longer path, which is a composition of arrows, will be denoted by \((i_1|i_2|\cdots|i_n)\).
+Let \(e_i\) denote the idempotent path at the vertex \(i\), and let \((i, j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
+A longer path, which is a composition of arrows, will be denoted by \((i_1, i_2, \dots, i_n)\).
 
 \begin{definition}
-  The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by the following relations:
-  \begin{itemize}
-  \item \((i|j|l) = 0\) whenever \(i \neq l\);
-  \item \((i|j|i) = (i|l|i)\) for every \(j\) and \(l\) such that there are arrows between \(i\) and \(j\) and between \(i\) and \(l\).
-  \vincent{why not write $i-1$ and~$i+1$?}
-  \end{itemize}
+  The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by the relations: \((i-1, i, i+1) = 0 = (i+1, i, i-1)\) and \((i, i-1, i) = (i, i+1, i)\) for all~\(1 < i < m\).
+%  \begin{itemize}
+%  \item \((i-1, i, i+1) = (i+1, i, i-1\) for all~\(1 < i < m\),
+%  \item \((i, i-1, i) = (i, i+1, i)\) for every \(j\) and \(l\) such that there are arrows between \(i\) and \(j\) and between \(i\) and \(l\).
+%  \end{itemize}
 \end{definition}
 
 \begin{remark}
@@ -1491,6 +1490,11 @@ Furthermore, for any integers \(a\) and \(b\), we have
   \end{itemize}
 \end{remark}
 
+\vincent{What about this remark instead?}
+\begin{remark}\label{rem:generating-morphisms}
+  It is easy to check that the generating objects \(P_i\) (and hence their graded and homological shifts) satisfy \(\Hom^{0,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_i) = \Hom^{1,0}(P_i,P_{i\pm1}) = k\) and \(\Hom^{g,h}(P_i, P_j) = 0\) in all other cases.
+\end{remark}
+
 We now describe the \(t\)-structure induced by the full subcategory of \defn{linear complexes} of \(\mathcal{C}_m\).
 A variant of this construction is also described in~\cite[Sect.~2.5]{lic.que:21}.
 It is convenient to think of an object \(P^{\bullet}\) of \(\mathcal{C}_m\)
@@ -1521,7 +1525,7 @@ That is, in the notation above, we have
 For any integer \(N\), let \(\mathcal{C}_m^{\le N} \subset \mathcal{C}_m\) be the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, containing all complexes of level \(\geq -N\).
 For any integer \(N\), let \(\mathcal{C}_m^{\geq N} \subset \mathcal{C}_m\) be the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, containing all complexes of level \(\leq -N\).
 
-We refer the reader to e.g.~\cite[1.3]{bel.ber.del:82} for the definition of a \(t\)-structure on a triangulated category.
+We refer the reader to e.g.~\cite[Sect.~1.3]{bel.ber.del:82} for the definition of a \(t\)-structure on a triangulated category.
 The following proposition is easily checked using the calculations in~\cref{rem:generating-morphisms} and standard techniques involving categories of complexes; we omit the proof.
 \begin{proposition}
   The pair of subcategories \((\mathcal{C}_m^{\leq 0}, \mathcal{C}_m^{\geq 0})\) forms a bounded \(t\)-structure on \(\mathcal{C}_m\).
@@ -1530,8 +1534,7 @@ We call this \(t\)-structure the \defn{standard \(t\)-structure} on \(\mathcal{C
 Set \(\mathcal{A}_m = \mathcal{C}^{\leq 0}_m \cap \mathcal{C}_m^{\geq 0}\); this is the smallest full subcategory of \(\mathcal{C}_m\) closed under isomorphism, which contains all linear complexes.
 It follows that \(\mathcal{A}_m\) is abelian.
 
-Also record the following statements for future use; the first may be found in~\cite[1.3]{bel.ber.del:82}
-\vincent{is that a section?}
+Also record the following statements for future use; the first may be found in~\cite[Sect.~1.3]{bel.ber.del:82}
 \begin{defprop}\label{defprop:cohomology}
   Let \((\mathcal{C}^{\le 0}, \mathcal{C}^{\geq 0})\) be a \(t\)-structure on a triangulated category \(\mathcal{C}\) with heart~\(\mathcal{A} = \mathcal{C}^{\leq 0} \cap \mathcal{C}^{\geq 0}\).
   For each integer \(i\), we have the \(i\)th truncation functors
@@ -1692,6 +1695,7 @@ As such, this section is somewhat dual to the previous section --- the criterion
 \end{remark}
 \begin{remark}
   As stated, this proposition is not expected to be true in greater generality.
+  For instance, it does not hold for the zigzag algebra of Dynkin type~$D_4$.
   However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
   \asilata{Decide what to say here, because the forthcoming work is far from complete, although I do have counterexamples in type \(D_4\). Discussing how to interpret these counterexamples may not involve too much more work?}
 \end{remark}
