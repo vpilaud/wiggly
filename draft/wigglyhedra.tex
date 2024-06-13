@@ -217,7 +217,8 @@ We represent $\alpha$ by an $x$-monotone curve wiggling around the horizontal ax
 The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~$\alpha_\mathrm{bot} \eqdef (0, n+1, \varnothing, [n])$ are called \defn{external}, all other wiggly arcs are called \defn{internal}.
 \end{definition}
 
-\begin{definition}\label{def:compatible}
+\begin{definition}
+\label{def:compatible}
 Two wiggly arcs~$(i,j,A,B)$ and~$(i',j',A',B')$ are 
 \begin{itemize}
 \item \defn{non pointed} if~$i = j'$ or~$i' = j$,
@@ -239,8 +240,8 @@ The following definitions are illustrated~in~\cref{fig:pseudodissections}.
 A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs which contains the exterior wiggly arcs~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$. We denote by~$D^\circ \eqdef D \ssm \{\alpha_\mathrm{top}, \alpha_\mathrm{bot}\}$.
 %
 \begin{figure}[b]
-\centerline{\includegraphics[scale=1.5]{pseudodissections}}
-\caption{Three wiggly pseudodissections. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ pseudotriangles, and are obtained from each other by flipping the wiggly arc separating their yellow and blue pseudotriangles.}
+\centerline{\includegraphics[scale=1.5]{wigglyPseudodissections}}
+\caption{Three wiggly pseudodissections for~$n = 7$. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ pseudotriangles, and are obtained from each other by flipping the wiggly arc separating their yellow and dark blue pseudotriangles.}
 \label{fig:pseudodissections}
 \end{figure}
 \end{definition}
@@ -368,6 +369,28 @@ Note that in the proof of \cref{prop:wigglyPseudotriangulations}, we actually ob
 \]
 \end{remark}
 
+\begin{example}
+For~$n = 1$, the $2$ wiggly pseudotriangulations of $3$ points are \smash{\raisebox{-.3cm}{\includegraphics[scale=.8]{wigglyPseudotriangulation1}}} and \smash{\raisebox{-.3cm}{\includegraphics[scale=.8]{wigglyPseudotriangulation2}}}.
+For~${n = 2}$, the $14$ wiggly pseudotriangulations of $4$ points are \\[.2cm]
+\centerline{\includegraphics[scale=.8]{wigglyPseudotriangulations}}
+\end{example}
+
+\begin{example}
+\label{exm:specialWigglyPseudotriangulations}
+\begin{figure}
+\centerline{\includegraphics[scale=1.3]{specialWigglyPseudotriangulations}}
+\caption{The wiggly pseudotriangulations~$T_\downarrow$ (left), $T_\uparrow$ (middle left), $T_\leftarrow$ (middle right), and $T_\rightarrow$ (right) of \cref{exm:specialWigglyPseudotriangulations} for~$n = 7$.}
+\label{fig:specialWigglyPseudotriangulations}
+\end{figure}
+The following wiggly pseudotriangulations are illustrated in \cref{fig:specialWigglyPseudotriangulations}:
+\begin{align*}
+T_\downarrow & \eqdef \set{(i-1, n+1, \varnothing, {[i,n]})}{i \in [n+1]} \cup \set{(0, n+1, [i], {]i,n]})}{i \in [n]}, \\
+T_\uparrow & \eqdef \set{(0, i, \varnothing, {[i-1]})}{i \in [n+1]} \cup \set{(0, n+1, {]i,n]}, [i])}{i \in [n]}, \\
+T_\leftarrow & \eqdef \{(0, 1, \varnothing, \varnothing)\} \cup \set{(0, i+1, \varnothing, [i])}{i \in [n]} \cup \set{(0, i+1, [i], \varnothing)}{i \in [n]}, \\
+T_\rightarrow & \eqdef \{(n, n+1, \varnothing, \varnothing)\} \cup \set{(i-1, n+1, \varnothing, [i,n])}{i \in [n]} \cup \set{(i-1, n+1, [i,n], \varnothing)}{i \in [n]}.
+\end{align*}
+\end{example}
+
 \begin{definition}
 A \defn{wiggly diagonal} of a wiggly cell~$c$ is a wiggly arc inside~$c$ and compatible with~$c$.
 \end{definition}
@@ -388,7 +411,7 @@ Depending on the four types of pseudoquadrangles described in \cref{rem:descript
 \end{enumerate}
 See \cref{fig:diagonalsPseudoquadrangles} where the two diagonals appear in red and orange.
 %
-\begin{figure}[h]
+\begin{figure}
 \centerline{\includegraphics[scale=1.3]{diagonalsPseudoquadrangles}}
 \caption{The two diagonals in each of the four types of wiggly pseudoquadrangles.} % described in \cref{rem:descriptionPseudotrianglesPseudoquadrangles}.}
 \label{fig:diagonalsPseudoquadrangles}
@@ -416,6 +439,7 @@ The following definitions are illustrated in \cref{fig:wigglyComplex} when~$n = 
 \end{figure}
 
 \begin{definition}
+\label{def:wigglyFlipGraph}
 The \defn{wiggly flip graph}~$\wigglyFlipGraph_n$ is the graph with a vertex for each wiggly pseudotriangulation, and with an edge between two wiggly pseudotriangulations~$T,T'$ if there are wiggly arcs~$\alpha \in T$ and~$\alpha' \in T'$ such that~$T \ssm \{\alpha\} = T' \ssm \{\alpha'\}$.
 \end{definition}
 
@@ -452,6 +476,7 @@ The \defn{wiggly increasing flip graph}~$\wigglyIncreasingFlipGraph_n$ is the di
 \end{definition}
 
 \begin{definition}
+\label{def:wigglyComplex}
 The \defn{wiggly complex}~$\wigglyComplex_n$ is the simplicial complex of pairwise pointed and non-crossing subsets of internal wiggly arcs.
 In other words, it is the clique complex of the compatibility graph on internal wiggly arcs.
 \end{definition}
@@ -568,7 +593,7 @@ A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns
 The wiggly permutations of~$[2]$ are~$12$ and~$21$.
 The wiggly permutations of~$[4]$ are
 \[
-1234, 2134, 1342, 1243, 3421, 2143, 3412, 1432, 1423, 4321, 4213, 4312, 4132, 4123.
+1234, 1243, 1342, 1423, 1432, 2134, 2143, 3412, 3421, 4123, 4132, 4213, 4312, 4321.
 \]
 %The wiggly permutations of~$[6]$ are
 %\begin{gather*}
@@ -588,6 +613,21 @@ The wiggly permutations of~$[4]$ are
 %643215, 634521, 436512, 436152, 436125, 364512, 654132, 641352, 641325, 651432, 615432, 614352, \\
 %614325, 634152, 613452, 654312, 643125, 643512, 643152, 634512.
 %\end{gather*}
+\end{example}
+
+\begin{example}
+\label{exm:specialWigglyPermutations}
+The permutations
+\[
+\sigma_\downarrow \eqdef 1 2 \cdots (2n),
+\quad
+\sigma_\uparrow \eqdef (2n) \cdots 2 1,
+\quad
+\sigma_\leftarrow \eqdef (2n) \cdots 2 1 \cdots (2n-1),
+\quad
+\sigma_\rightarrow \eqdef 1 \cdots (2n-1) (2n) \cdots 2
+\]
+are wiggly permutations of~$[2n]$.
 \end{example}
 
 \begin{remark}
@@ -746,6 +786,11 @@ Rotating counterclockwise inside each wiggly pseudotriangle of~$T$, we label by~
 We define~$\Phi(T)$ as the permutation obtained by reading these labels from bottom to top, meaning that for each internal wiggly arc~$\alpha$ of~$T$, the label incident to~$\alpha$ and below~$\alpha$ appears just before the label incident to~$\alpha$ and above~$\alpha$.
 \end{definition}
 
+\begin{example}
+The map~$\Phi$ sends the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations} to the wiggly permutations of \cref{exm:specialWigglyPermutations}.
+Namely, $\Phi(T_\downarrow) = \sigma_\downarrow$, $\Phi(T_\uparrow) = \sigma_\uparrow$, $\Phi(T_\leftarrow) = \sigma_\leftarrow$, and~$\Phi(T_\rightarrow) = \sigma_\rightarrow$.
+\end{example}
+
 \begin{definition}
 \label{def:bijection2}
 For a wiggly permutation~$\sigma$ of~$[2n]$, we define~$\Psi(\sigma) \eqdef \set{\alpha(\sigma, k)}{k \in [2n-1]}$, where for~$k \in [2n-1]$, we have~$\alpha(\sigma, k) \eqdef ( i, j, A, B)$ with
@@ -756,6 +801,11 @@ A & \eqdef \set{\ell \in {]i,j[}}{\{2\ell-1, 2\ell\} \subseteq \sigma([k])}, \\
 B & \eqdef \set{\ell \in {]i,j[}}{\{2\ell-1, 2\ell\} \cap \sigma([k]) = \varnothing}.
 \end{align*}
 \end{definition}
+
+\begin{example}
+The map~$\Psi$ sends the wiggly permutations of \cref{exm:specialWigglyPermutations} to the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations}.
+Namely, $\Psi(\sigma_\downarrow) = T_\downarrow$, $\Psi(\sigma_\uparrow) = T_\uparrow$, $\Psi(\sigma_\leftarrow) = T_\leftarrow$, and~$\Psi(\sigma_\rightarrow) = T_\rightarrow$.
+\end{example}
 
 \begin{proposition}
 The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} define inverse bijections between the wiggly pseudotriangulations and the wiggly permutations, which induce a directed graph isomorphism between the wiggly increasing flip graph~$\wigglyIncreasingFlipGraph_n$ and the Hasse diagram of the wiggly lattice~$\wigglyLattice_n$.
@@ -893,6 +943,10 @@ As the underlying undirected graphs are both regular of degree~$2n-1$, we conclu
 \end{proof}
 
 \begin{remark}
+Transporting the wiggly lattice~$\wigglyLattice_n$ via the map~$\Psi$ to the wiggly pseudotriangulation, note that the minimal wiggly pseudotriangulation is~$\Psi(\sigma_\downarrow) = T_\downarrow$ while the maximal wiggly pseudotriangulation is~$\Psi(\sigma_\uparrow) = T_\uparrow$. See \cref{exm:specialWigglyPseudotriangulations,fig:specialWigglyPseudotriangulations} for illustrations.
+\end{remark}
+
+\begin{remark}
 The map~$\Phi$ sends the wiggly complex automorphism of \cref{rem:wigglyComplexAutomorphism} given by the vertical reflection to the wiggly lattice anti-isomorphism of \cref{rem:wigglyLatticeAntiIsomorphism}.
 \end{remark}
 
@@ -900,6 +954,8 @@ The map~$\Phi$ sends the wiggly complex automorphism of \cref{rem:wigglyComplexA
 
 \section{Wiggly fan and wigglyhedron}
 \label{sec:geometry}
+
+In this section, we define the wiggly fan and the wigglyhedron, which provide geometric realizations of the wiggly complex and of the wiggly lattice.
 
 %%%%%%%%%%%%
 
@@ -977,11 +1033,10 @@ We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{
 \label{subsec:gcvectors}
 
 We now define two families of vectors, illustrated in \cref{fig:pseudotriangulationMatrices}.
-\vincent{Move that to the corresponding sections, and delete this section.}
 %
 \begin{figure}
 \centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
-\caption{The $\b{g}$-matrix and $\b{c}$-matrix of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\b{g}$-vector~$\b{g}(\alpha)$ and $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs.}
+\caption{The $\b{g}$-matrix~$\b{g}(T)$ and $\b{c}$-matrix~$\b{c}(T)$ of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\b{g}$-vector~$\b{g}(\alpha)$ and $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs.}
 \label{fig:pseudotriangulationMatrices}
 \end{figure}
 
@@ -997,6 +1052,136 @@ If we place the coordinate~$2p-1$ on the left and the coordinate~$2p$ on the rig
 Note that ${\hat{\b{g}} \big( (0, n+1, [n], \varnothing) \big) = \one_{2n} = - \hat{\b{g}} \big( (0, n+1, \varnothing, [n]) \big)}$, so that~${\b{g} \big( (0, n+1, [n], \varnothing) \big) = \b{0} = \b{g} \big( (0, n+1, \varnothing, [n]) \big)}$.
 We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D$ of wiggly arcs.
 \end{definition}
+
+\begin{example}
+\label{exm:specialGMatrices}
+\cref{table:specialGMatrices} gathers the $\b{g}$-matrices (\ie matrices whose columns are the $\b{g}$-vectors) of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations} illustrated in \cref{fig:specialWigglyPseudotriangulations}.
+
+\begin{table}
+	\begingroup
+	\setlength\arraycolsep{2pt}
+	\begin{alignat*}{3}
+%	\b{g}(T_\downarrow) & = \begin{pmatrix}
+%		1 & 0 & \dots & 0 & 0 & 1 & 1 & \dots & 1 & 1 \\
+%		-1 & 0 & \dots & 0 & 0 & 1 & 1 & \dots & 1 & 1 \\
+%		-1 & 1 & \dots & 0 & 0 & -1 & 1 & \dots & 1 & 1 \\
+%		-1 & -1 & \dots & 0 & 0 & -1 & 1 & \dots & 1 & 1 \\
+%		-1 & -1 & \dots & 0 & 0 & -1 & -1 & \dots & 1 & 1 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		-1 & -1 & \dots & 0 & 0 & -1 & -1 & \dots & 1 & 1 \\
+%		-1 & -1 & \dots & 1 & 0 & -1 & -1 & \dots & -1 & 1 \\
+%		-1 & -1 & \dots & -1 & 0 & -1 & -1 & \dots & -1 & 1 \\
+%		-1 & -1 & \dots & -1 & 1 & -1 & -1 & \dots & -1 & -1 \\
+%		-1 & -1 & \dots & -1 & -1 & -1 & -1 & \dots & -1 & -1 \\
+%	\end{pmatrix}
+%	\qquad &
+	\b{g}(T_\downarrow) & = \begin{pmatrix}
+		1 & 1 & 0 & 1 & \dots & 0 & 1 & 0 \\
+		-1 & 1 & 0 & 1 & \dots & 0 & 1 & 0 \\
+		-1 & -1 & 1 & 1 & \dots & 0 & 1 & 0 \\
+		-1 & -1 & -1 & 1 & \dots & 0 & 1 & 0 \\
+		-1 & -1 & -1 & -1 & \dots & 0 & 1 & 0 \\
+		\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+		-1 & -1 & -1 & -1 & \dots & 0 & 1 & 0 \\
+		-1 & -1 & -1 & -1 & \dots & 1 & 1 & 0 \\
+		-1 & -1 & -1 & -1 & \dots & -1 & 1 & 0 \\
+		-1 & -1 & -1 & -1 & \dots & -1 & -1 & 1 \\
+		-1 & -1 & -1 & -1 & \dots & -1 & -1 & -1 \\
+	\end{pmatrix}
+	\qquad &
+%	\b{g}(T_\leftarrow) & = \begin{pmatrix}
+%		-1 & -1 & \dots & -1 & -1 & 1 & 1 & \dots & 1 & 1 \\
+%		1 & -1 & \dots & -1 & -1 & 1 & 1 & \dots & 1 & 1 \\
+%		0 & -1 & \dots & -1 & -1 & -1 & 1 & \dots & 1 & 1 \\
+%		0 & 1 & \dots & -1 & -1 & 1 & 1 & \dots & 1 & 1 \\
+%		0 & 0 & \dots & -1 & -1 & 0 & -1 & \dots & 1 & 1 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		0 & 0 & \dots & -1 & -1 & 0 & 0 & \dots & 1 & 1 \\
+%		0 & 0 & \dots & -1 & -1 & 0 & 0 & \dots & -1 & 1 \\
+%		0 & 0 & \dots & 1 & -1 & 0 & 0 & \dots & 1 & 1 \\
+%		0 & 0 & \dots & 0 & -1 & 0 & 0 & \dots & 0 & -1 \\
+%		0 & 0 & \dots & 0 & 1 & 0 & 0 & \dots & 0 & 1 \\
+%	\end{pmatrix}
+%	\qquad &
+	\b{g}(T_\leftarrow) & = \begin{pmatrix}
+		-1 & -1 & \dots & -1 & -1 & 1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & -1 & 1 & 1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & -1 & 0 & -1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & 1 & 0 & 1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
+		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+		-1 & -1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & 0 & 0 & 0 & \dots & -1 & 1 \\
+		-1 & 1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
+		-1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & -1 \\
+		1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 1 \\
+	\end{pmatrix}
+	\\[.3cm]
+%	\b{g}(T_\uparrow) & = \begin{pmatrix}
+%		-1 & -1 & \dots & -1 & -1 & -1 & -1 & \dots & -1 & -1 \\
+%		1 & -1 & \dots & -1 & -1 & -1 & -1 & \dots & -1 & -1 \\
+%		0 & -1 & \dots & -1 & -1 & 1 & -1 & \dots & -1 & -1 \\
+%		0 & 1 & \dots & -1 & -1 & 1 & -1 & \dots & -1 & -1 \\
+%		0 & 0 & \dots & -1 & -1 & 1 & 1 & \dots & -1 & -1 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		0 & 0 & \dots & -1 & -1 & 1 & 1 & \dots & -1 & -1 \\
+%		0 & 0 & \dots & -1 & -1 & 1 & 1 & \dots & 1 & -1 \\
+%		0 & 0 & \dots & 1 & -1 & 1 & 1 & \dots & 1 & -1 \\
+%		0 & 0 & \dots & 0 & -1 & 1 & 1 & \dots & 1 & 1 \\
+%		0 & 0 & \dots & 0 & 1 & 1 & 1 & \dots & 1 & 1 \\
+%	\end{pmatrix}
+%	\qquad &
+	\b{g}(T_\uparrow) & = \begin{pmatrix}
+		-1 & -1 & -1 & -1 & \dots & -1 & -1 & -1 \\
+		-1 & -1 & -1 & -1 & \dots & -1 & -1 & 1 \\
+		-1 & -1 & -1 & -1 & \dots & -1 & 1 & 0 \\
+		-1 & -1 & -1 & -1 & \dots & 1 & 1 & 0 \\
+		-1 & -1 & -1 & -1 & \dots & 0 & 1 & 0 \\
+		\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+		-1 & -1 & -1 & -1 & \dots & 0 & 1 & 0 \\
+		-1 & -1 & -1 & 1 & \dots & 0 & 1 & 0 \\
+		-1 & -1 & 1 & 1 & \dots & 0 & 1 & 0 \\
+		-1 & 1 & 0 & 1 & \dots & 0 & 1 & 0 \\
+		1 & 1 & 0 & 1 & \dots & 0 & 1 & 0 \\
+	\end{pmatrix}
+	\qquad &
+%	\b{g}(T_\rightarrow) & = \begin{pmatrix}
+%		1 & 0 & \dots & 0 & 0 & 1 & 0 & \dots & 0 & 0 \\
+%		-1 & 0 & \dots & 0 & 0 & -1 & 0 & \dots & 0 & 0 \\
+%		-1 & 1 & \dots & 0 & 0 & 1 & 1 & \dots & 0 & 0 \\
+%		-1 & -1 & \dots & 0 & 0 & 1 & -1 & \dots & 0 & 0 \\
+%		-1 & -1 & \dots & 0 & 0 & 1 & 1 & \dots & 0 & 0 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		-1 & -1 & \dots & 0 & 0 & 1 & 1 & \dots & -1 & 0 \\
+%		-1 & -1 & \dots & 1 & 0 & 1 & 1 & \dots & 1 & 1 \\
+%		-1 & -1 & \dots & -1 & 0 & 1 & 1 & \dots & 1 & -1 \\
+%		-1 & -1 & \dots & -1 & 1 & 1 & 1 & \dots & 1 & 1 \\
+%		-1 & -1 & \dots & -1 & -1 & 1 & 1 & \dots & 1 & 1 \\
+%	\end{pmatrix}
+%	\qquad &
+	\b{g}(T_\rightarrow) & = \begin{pmatrix}
+		1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 1 \\
+		-1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & -1 \\
+		-1 & 1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & 0 & 0 & 0 & \dots & -1 & 1 \\
+		-1 & -1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
+		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots  & \ddots & \vdots & \vdots \\
+		-1 & -1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & 1 & 0 & 1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & -1 & 0 & -1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & -1 & 1 & 1 & \dots & 1 & 1 \\
+		-1 & -1 & \dots & -1 & -1 & 1 & \dots & 1 & 1 \\
+	\end{pmatrix}
+	\end{alignat*}
+	\endgroup
+	\caption{The $\b{g}$-matrices of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations}. The $i$th column of~$\b{g}(T)$ is the $\b{g}$-vector~$\b{g}(\alpha)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). 
+}
+	\label{table:specialGMatrices}
+\end{table}
+\end{example}
+
+Observe that the $\b{g}$-matrices of \cref{exm:specialGMatrices} have full rank.
+More generally, we will see in \cref{coro:basis} that~$\b{G}(T)$ forms a basis of~$\HH_{2n}$ for any wiggly pseudotriangulation~$T$, which enables us to define its dual basis.
 
 \begin{definition}
 \label{def:cvectors}
@@ -1014,7 +1199,134 @@ Then the $\b{c}$-vector~$\b{c}(\alpha, T)$ has coordinates
 \item $\b{c}(\alpha, T)_v = -1/2$ if~$\bar u = \bar v$, or if~$\bar u$ and the wiggly arcs incident to~$\bar v$ are on the same side of~$\bar v$, and $\b{c}(\alpha, T)_{2\bar v-1} = \b{c}(\alpha, T)_{2\bar v} = -1/4$ otherwise,
 \item $\b{c}(\alpha, T)_w = 0$ for all other coordinates.
 \end{itemize}
+The tedious proof of this description is not needed in this paper.
 \end{remark}
+
+\begin{example}
+\label{exm:specialCMatrices}
+\cref{table:specialCMatrices} gathers the $\b{c}$-matrices (\ie matrices whose columns are the $\b{c}$-vectors) of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations} illustrated in \cref{fig:specialWigglyPseudotriangulations}.
+
+\begin{table}
+	\begingroup
+	\setlength\arraycolsep{1.1pt}
+	\begin{alignat*}{3}
+%	4\b{c}(T_\downarrow) & = \begin{pmatrix}
+%		2 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & 0 & 0 \\
+%		-2 & 0 & \dots & 0 & 0 & 2 & 0 & \dots & 0 & 0 \\
+%		0 & 2 & \dots & 0 & 0 & -1 & 0 & \dots & 0 & 0 \\
+%		0 & -2 & \dots & 0 & 0 & -1 & 2 & \dots & 0 & 0 \\
+%		0 & 0 & \dots & 0 & 0 & 0 & -1 & \dots & 0 & 0 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		0 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & 2 & 0 \\
+%		0 & 0 & \dots & 2 & 0 & 0 & 0 & \dots & -1 & 0 \\
+%		0 & 0 & \dots & -2 & 0 & 0 & 0 & \dots & -1 & 2 \\
+%		0 & 0 & \dots & 0 & 2 & 0 & 0 & \dots & 0 & -1 \\
+%		0 & 0 & \dots & 0 & -2 & 0 & 0 & \dots & 0 & -1 \\
+%	\end{pmatrix}
+%	\qquad &
+	4\b{c}(T_\downarrow) & = \begin{pmatrix}
+		2 & 0 & 0 & 0 & \dots & 0 & 0 & 0 \\
+		-2 & 2 & 0 & 0 & \dots & 0 & 0 & 0 \\
+		0 & -1 & 2 & 0 & \dots & 0 & 0 & 0 \\
+		0 & -1 & -2 & 2 & \dots & 0 & 0 & 0 \\
+		0 & 0 & 0 & -1 & \dots & 0 & 0 & 0 \\
+		\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+		0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 \\
+		0 & 0 & 0& 0 & \dots & 2 & 0 & 0 \\
+		0 & 0 & 0 & 0 & \dots & -2 & 2 & 0 \\
+		0 & 0 & 0 & 0 & \dots & 0 & -1 & 2 \\
+		0 & 0 & 0 & 0 & \dots & 0 & -1 & -2 \\
+	\end{pmatrix}
+	\qquad &
+%	4\b{c}(T_\leftarrow) & = \begin{pmatrix}
+%		-2 & -1 & \dots & 0 & 0 & 1 & 0 & \dots & 0 & 0 \\
+%		2 & -1 & \dots & 0 & 0 & 1 & 0 & \dots & 0 & 0 \\
+%		0 & 0 & \dots & 0 & 0 & -2 & 1 & \dots & 0 & 0 \\
+%		0 & 2 & \dots & 0 & 0 & 0 & 1 & \dots & 0 & 0 \\
+%		0 & 0 & \dots & 0 & 0 & 0 & -2 & \dots & 0 & 0 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		0 & 0 & \dots & -1 & 0 & 0 & 0 & \dots & 1 & 0 \\
+%		0 & 0 & \dots & 0 & -1 & 0 & 0 & \dots & -2 & 1 \\
+%		0 & 0 & \dots & 2 & -1 & 0 & 0 & \dots & 0 & 1 \\
+%		0 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & 0 & -2 \\
+%		0 & 0 & \dots & 0 & 2 & 0 & 0 & \dots & 0 & 0 \\
+%	\end{pmatrix}
+%	\qquad &
+	4\b{c}(T_\leftarrow) & = \begin{pmatrix}
+		0 & 0 & \dots & -1 & -2 & 1 & \dots & 0 & 0 \\
+		0 & 0 & \dots & -1 & 2 & 1 & \dots & 0 & 0 \\
+		0 & 0 & \dots & 0 & 0 & -2 & \dots & 0 & 0 \\
+		0 & 0 & \dots & 2 & 0 & 0 & \dots & 0 & 0 \\
+		0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 \\
+		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+		0 & -1 & \dots & 0 & 0 & 0 & \dots & 1 & 0 \\
+		-1 & 0 & \dots & 0 & 0 & 0 & \dots & -2 & 1 \\
+		-1 & 2 & \dots & 0 & 0 & 0 & \dots & 0 & 1 \\
+		0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & -2 \\
+		2 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 \\
+	\end{pmatrix}
+	\\[.3cm]
+%	4\b{c}(T_\uparrow) & = \begin{pmatrix}
+%		-2 & 0 & \dots & 0 & 0 & -1 & 0 & \dots & 0 & -1 \\
+%		2 & 0 & \dots & 0 & 0 & -1 & 0 & \dots & 0 & -1 \\
+%		0 & -2 & \dots & 0 & 0 & 2 & -1 & \dots & -1 & 2 \\
+%		0 & 2 & \dots & 0 & 0 & 0 & -1 & \dots & -1 & 0 \\
+%		0 & 0 & \dots & 0 & 0 & 0 & 2 & \dots & 2 & 0 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		0 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & -1 & 0 \\
+%		0 & 0 & \dots & -2 & 0 & 0 & 0 & \dots & 2 & -1 \\
+%		0 & 0 & \dots & 2 & 0 & 0 & 0 & \dots & 0 & -1 \\
+%		0 & 0 & \dots & 0 & -2 & 0 & 0 & \dots & 0 & 2 \\
+%		0 & 0 & \dots & 0 & 2 & 0 & 0 & \dots & 0 & 0 \\
+%	\end{pmatrix}
+%	\qquad &
+	4\b{c}(T_\uparrow) & = \begin{pmatrix}
+		0 & 0 & 0 & 0 & \dots & 0 & -1 & -2 \\
+		0 & 0 & 0 & 0 & \dots & 0 & -1 & 2 \\
+		0 & 0 & 0 & 0 & \dots & -2 & 2 & 0 \\
+		0 & 0 & 0 & 0 & \dots & 2 & 0 & 0 \\
+		0 & 0 & 0 & 0 & \dots & 0 & 0 & 0 \\
+		\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+		0 & 0 & 0 & -1 & \dots & 0 & 0 & 0 \\
+		0 & -1 & -2 & 2 & \dots & 0 & 0 & 0 \\
+		0 & -1 & 2 & 0 & \dots & 0 & 0 & 0 \\
+		-2 & 2 & 0 & 0 & \dots & 0 & 0 & 0 \\
+		2 & 0 & 0 & 0 & \dots & 0 & 0 & 0 \\
+	\end{pmatrix}
+	\qquad &
+%	4\b{c}(T_\rightarrow) & = \begin{pmatrix}
+%		2 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & 0 & 0 \\
+%		0 & 0 & \dots & 0 & 0 & -2 & 0 & \dots & 0 & 0 \\
+%		-1 & 2 & \dots & 0 & 0 & 1 & 0 & \dots & 0 & 0 \\
+%		-1 & 0 & \dots & 0 & 0 & 1 & -2 & \dots & 0 & 0 \\
+%		0 & -1 & \dots & 0 & 0 & 0 & 1 & \dots & 0 & 0 \\
+%		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+%		0 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & -2 & 0 \\
+%		0 & 0 & \dots & 2 & 0 & 0 & 0 & \dots & 1 & 0 \\
+%		0 & 0 & \dots & 0 & 0 & 0 & 0 & \dots & 1 & -2 \\
+%		0 & 0 & \dots & -1 & 2 & 0 & 0 & \dots & 0 & 1 \\
+%		0 & 0 & \dots & -1 & -2 & 0 & 0 & \dots & 0 & 1 \\
+%	\end{pmatrix}
+%	\qquad &
+	4\b{c}(T_\rightarrow) & = \begin{pmatrix}
+		2 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 \\
+		0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & -2 \\
+		-1 & 2 & \dots & 0 & 0 & 0 & \dots & 0 & 1 \\
+		-1 & 0 & \dots & 0 & 0 & 0 & \dots & -2 & 1 \\
+		0 & -1 & \dots & 0 & 0 & 0 & \dots & 1 & 0 \\
+		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+		0 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 0 \\
+		0 & 0 & \dots & 2 & 0 & 0 & \dots & 0 & 0 \\
+		0 & 0 & \dots & 0 & 0 & -2 & \dots & 0 & 0 \\
+		0 & 0 & \dots & -1 & 2 & 1 & \dots & 0 & 0 \\
+		0 & 0 & \dots & -1 & -2 & 1 & \dots & 0 & 0 \\
+	\end{pmatrix}
+	\end{alignat*}
+	\endgroup
+	\caption{The $\b{c}$-matrices of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations}. The $i$th column of~$\b{c}(T)$ is the $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top).}
+	\label{table:specialCMatrices}
+\end{table}
+\end{example}
 
 %\begin{definition}
 %\label{def:cvectors}
@@ -1189,13 +1501,25 @@ We thus obtain that
 and similarly~$\one_{\alpha^-} + \one_{\alpha'^-} = \one_{\beta^-} + \one_{\beta'^-}$, so that~$\hat{\b{g}}(\alpha) + \hat{\b{g}}(\alpha') =\hat{\b{g}}(\beta) + \hat{\b{g}}(\beta')$.
 \end{proof}
 
+\begin{corollary}
+\label{coro:basis}
+For any wiggly pseudotriangulation~$T$, the set~$\b{g}(T) \eqdef \set{\b{g}(\alpha)}{\alpha \in T^\circ}$ is a basis of~$\HH_{2n}$.
+\end{corollary}
+
+\begin{proof}
+Observe that the $\b{g}$-matrix~$\b{g}(T_\leftarrow)$ presented in \cref{exm:specialGMatrices} has full rank (it is very easy to check for~$\b{g}(T_\leftarrow)$, but any other would do).
+The statement thus follows from \cref{lem:linearDependences} and the connectedness of the flip graph on wiggly pseudotriangulations.
+\end{proof}
+
+Finally, we wrap up \cref{thm:wigglyFan}.
+
 \begin{proof}[Proof of \cref{thm:wigglyFan}]
 Directly follows from \cref{prop:characterizationFan,lem:-+...-+,lem:linearDependences}.
 \end{proof}
 
 \begin{remark}
-The wiggly fan coarsens the $\b{c}$-vector fan.
-\vincent{todo}
+By definition, each wall of the wiggly fan is normal to a $\b{c}$-vector.
+Hence, the wiggly fan coarsens the \defn{$\b{c}$-vector fan}, defined by the arrangement of hyperplanes~$\set{\b{x} \in \HH_{2n}}{\dotprod{\b{x}}{\b{c}(\alpha, T}}$ for all arcs~$\alpha$ and wiggly pseudotriangulations~$T$ with~$\alpha \in T$.
 \end{remark}
 
 %%%%%%%%%%%%
@@ -1231,7 +1555,7 @@ Note that~$\delta$ is indeed an incompatibility degree in the sense that
 Observe also that~$\delta$ (and thus~$\kappa$) is preserved by the automorphisms of \cref{rem:wigglyComplexAutomorphism}.
 \end{remark}
 
-\vincent{The incompatibility degree is the number of ``close'' minors of the form~$\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$ or~$\begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix}$ in the matrix obtained from the two $\b{g}$-vectors of the wiggly arcs.}
+%\vincent{The incompatibility degree is the number of ``close'' minors of the form~$\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$ or~$\begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix}$ in the matrix obtained from the two $\b{g}$-vectors of the wiggly arcs.}
 
 \begin{example}
 Observe that
@@ -1309,7 +1633,17 @@ We conclude in both cases that~$\dotprod{\b{c}(\alpha, T)}{\b{\omega}} > 0$, so 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Cambrian considerations}
+\section{Further topics}
+\label{sec:furtherTopics}
+
+In this section, we explore two further topics on the wigglyhedron.
+In \cref{subsec:CambrianConsiderations}, we observe that any (type~$A$) Cambrian associahedron~\cite{Reading-CambrianLattices,HohlwegLange} is normally equivalent to a face of the wigglyhedron~$\wigglyhedron_n$.
+In \cref{subsec:planarPointSets}, we raise the question to extend our construction to wiggly complexes of arbitrary planar point sets.
+
+%%%%%%%%%%%%
+
+\subsection{Cambrian considerations}
+\label{subsec:CambrianConsiderations}
 
 In this section, we fix a signature~$\delta \in \{+,-\}^n$. By convention, we set~$\delta_0 = \delta_{n+1} = 0$.
 We connect the $\delta$-Cambrian lattice~\cite{Reading-CambrianLattices} to the wiggly lattice of \cref{sec:combinatorics} and the $\delta$-associahedron of~\cite{HohlwegLange} to the wigglyhedron of \cref{sec:geometry}.
@@ -1434,13 +1768,15 @@ There seem to be no connection between these two universal polytopes.
 However, this certainly raises the question to construct analogues of the wigglyhedron for all finite Coxeter groups.
 \end{remark}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%
 
-\section{Wiggly pseudotriangulations of planar point sets}
+\subsection{Wiggly pseudotriangulations of planar point sets}
+\label{subsec:planarPointSets}
 
 We now consider \cref{thm:wigglyhedron,conj:Hamiltonian} for wiggly pseudotriangulations of arbitrary point sets in the plane (neither necessarily aligned, nor necessarily in general position).
 
 \begin{definition}
+\label{def:wigglyComplexPointSet}
 Fix a point set~$P$ of the plane, and an arbitrary total order~$<$ on~$P$.
 A \defn{wiggly arc} is a quadruple~$(p,q,R,S)$ where~$p < q \in P$ and the sets~$R$ and~$S$ form a partition of the points of~$P$ located in the open segment joining~$p$ to~$q$.
 Two wiggly arcs~$(p,q,R,S)$ and~$(p',q',R',S')$ are \defn{crossing} if 
@@ -1453,7 +1789,7 @@ The \defn{wiggly complex}~$\wigglyComplex_P$ is the simplicial complex of pairwi
 Note that the boundary wiggly arcs are irrelevant, which allows us to consider a reduced wiggly complex~$\wigglyComplex_P$ induced by internal wiggly arcs.
 A \defn{wiggly pseudotriangulation} of~$P$ is a facet of~$\wigglyComplex_P$.
 The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ is the adjacency graph of the facets of~$\wigglyComplex_P$.
-Note that, by construction, $\wigglyFlipGraph_P$ is regular.
+%Note that, by construction, $\wigglyFlipGraph_P$ is regular.
 See \cref{fig:wigglyComplexSquarre} for an illustration.
 %
 \begin{figure}[!h]
@@ -1463,43 +1799,81 @@ See \cref{fig:wigglyComplexSquarre} for an illustration.
 \end{figure}
 \end{definition}
 
+Note that \cref{def:wigglyComplexPointSet} recovers two specific situations:
+\begin{itemize}
+\item \cref{def:wigglyComplex,def:wigglyFlipGraph} in the case of aligned points, and
+\item the pseudodissection complex of~$P$ and pseudotriangulation flip graph of~$P$ in the case of points~$P$ in general position. We refer to the original article of M.~Pocchiola and G.~Vegter~\cite{PocchiolaVegter} and to the nice survey of G.~Rote, F.~Santos and I.~Streinu~\cite{RoteSantosStreinu-pseudotriangulations}.
+\end{itemize}
+
+Note that it is not even clear from \cref{def:wigglyComplexPointSet} that the wiggly complex~$\wigglyComplex_P$ is a pure pseudomanifold (hence that the wiggly flip graph~$\wigglyFlipGraph_P$ is well-defined).
+However, we make the following ambitious conjecture.
+
 \begin{conjecture}
 \label{conj:polytopality}
 For any point set~$P$ in the plane, the wiggly complex~$\wigglyComplex_P$ is the boundary complex of a simplicial polytope.
 \end{conjecture}
 
-Note that in \cref{conj:polytopality}, the case of aligned points is given by the wigglyhedron of \cref{thm:wigglyhedron}, while the case of points in general position is given by the pseudotriangulation polytope of~\cite{RoteSantosStreinu-polytope} (see also \cite{RoteSantosStreinu-pseudotriangulations} for a nice survey on pseudotriangulations).
+Note that in \cref{conj:polytopality}, the case of aligned points is given by the wigglyhedron of \cref{thm:wigglyhedron}, while the case of points in general position is given by the pseudotriangulation polytope of~\cite{RoteSantosStreinu-polytope}.
+This raises in particular the following question.
 
-\begin{conjecture}
-\label{conj:Hamiltonian2}
-For any point set~$P$ in the plane, the wiggly flip graph~$\wigglyFlipGraph_P$ is Hamiltonian.
-\end{conjecture}
+\begin{question}
+Can the construction of \cref{thm:wigglyhedron} be adapted to provide a more combinatorial construction of the polytope of pseudotriangulations~\cite{RoteSantosStreinu-polytope}, that would only depend on the order type (\aka oriented matroid~\cite{BjornerLasVergnasSturmfelsWhiteZiegler}) of the point configuration?
+\end{question}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Using the duality between lines in the plane and points in the M\"obius strip, the pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations} were interpreted in~\cite{PilaudPocchiola} as pseudoline arrangements on sorting networks.
+It is natural to look for the analogue of this interpretation in the wiggly setting.
 
-\section{Further questions}
+\begin{question}
+Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements? 
+\end{question}
 
-A few additional questions to arouse your curiosity:
-\vincent{Integrate that to the previous section}
-\begin{enumerate}
-\item Can the construction of \cref{thm:wigglyhedron} be adapted to provide a more combinatorial construction of the polytope of pseudotriangulations~\cite{RoteSantosStreinu-polytope}, that would only depend on the order type (aka oriented matroid~\cite{BjornerLasVergnasSturmfelsWhiteZiegler}) of the point configuration?
-\item What is the dual interpretation of wiggly pseudotriangulations as pseudoline arrangements? (see~\cite{PilaudPocchiola} for context) Can this interpretation be extended to other finite Coxeter groups? (see~\cite{CeballosLabbeStump} for context).
-\item What is the multi wiggly complex?
-\end{enumerate}
+This dual interpretation enables \cite{PilaudPocchiola} to consider the pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations} and the multitriangulations of~\cite{PilaudSantos-multitriangulations} under the same roof, and to define multi-pseudo-triangulations.
+The extension to the wiggly case is a natural question.
+
+\begin{question}
+Is there a multi wiggly complex?
+\end{question}
+
+Moreover, pseudoline arrangements on sorting networks can also be interpreted as (type~$A$) subword complexes of~\cite{KnutsonMiller-subwordComplex}, which in turn extend to arbitrary finite Coxeter group.
+See \cite{Stump, CeballosLabbeStump} for the study of subword complexes corresponding to cluster complexes and multi-cluster complexes.
+
+\begin{question}
+Can the wiggly complex be extended to arbitrary finite Coxeter groups?
+\end{question}
+
+%\begin{question}
+%\begin{itemize}
+%\item Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements? 
+%\item Is there a multi wiggly complex?
+%\item Can this interpretation be extended to other finite Coxeter groups?
+%\end{itemize}
+%\end{question}
+
+Finally, it is natural to consider the extension of \cref{conj:Hamiltonian}.
+
+\begin{question}
+\label{qu:Hamiltonian}
+Is the wiggly flip graph~$\wigglyFlipGraph_P$ is Hamiltonian for any point set~$P$ in the plane?
+\end{question}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Categorical interpretation of wiggly pseudotriangulations}
+\label{sec:categoricalInterpretation}
+
 The aim of this section is to explain a categorical interpretation of wiggly arcs.
-We recall results of Khovanov--Seidel~\cite{kho.sei:02} that realise wiggly arcs as objects of a triangulated category, such that intersections between wiggly arcs correspond to morphism in this category.
+We recall results of Khovanov--Seidel~\cite{kho.sei:02} that realise wiggly arcs as objects of a triangulated category, such that intersections between wiggly arcs correspond to morphisms in this category.
 We also discuss categorical conditions for two wiggly arcs to be compatible as in~\cref{def:compatible}.
 
 % Curves up to isotopy in a disk with marked points constitute a geometric model of certain objects in a triangulated category.
 % This correspondence, due to Khovanov--Seidel~\cite{kho.sei:02}, and will enable us to build categorical interpretations of the combinatorial results obtained in this paper.
 % The aim of this section is to give a concise account of this correspondence and some of its useful features; we refer the reader to~\cite{kho.sei:02} for details.
 
+%%%%%%%%%%%%
+
 \subsection{A triangulated category associated to a quiver}
+
 We begin by describing the category of interest, which is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
 That is, a subcategory of the bounded derived category of (finitely generated) \(A_m\)-modules.
 The algebra~\(A_m\), called the \defn{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
@@ -1610,8 +1984,10 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
   \]  
 \end{defprop}
 
+%%%%%%%%%%%%
 
 \subsection{The Khovanov--Seidel curve model}
+
 \vincent{Add a picture summarizing this section... Asilata drafts it, I will make it.}
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general arcs as well --- namely, those that are not necessarily \(x\)-monotone.
@@ -1682,7 +2058,10 @@ In fact, it is true for any pair of curves that its minimal intersection number 
   This argument proves the second part of the proposition.
 \end{proof}
 
+%%%%%%%%%%%%
+
 \subsection{Cohomology filtrations of spherical objects}
+
 In this section we explain how wiggly pseudotriangulations govern the combinatorial structure of a natural categorical decomposition of spherical objects of \(\mathcal{C}_m\).
 
 For a general object \(X\) of \(\mathcal{C}_m\), the indecomposable factors of the cohomology filtration can be arbitrary.
@@ -1733,7 +2112,10 @@ However, it turns out that the cohomology filtration is highly constrained if \(
   \(T\) cannot contain both external edges because otherwise, the curve \(\alpha\) will not be able to have a second endpoint.\asilata{I am struggling to explain this, even though it should be obvious.}
 \end{proof}
 
+%%%%%%%%%%%%
+
 \subsection{Categorical constraints on compatibility of curves}
+
 In this section, we give a categorical criterion for two wiggly arcs to be compatible as in~\cref{def:compatible}.
 As such, this section is somewhat dual to the previous section --- the criterion in this section determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
 \begin{proposition}
