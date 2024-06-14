@@ -161,7 +161,7 @@
 \title{Wigglyhedra}
 
 \thanks{AB was partially supported by the Australin Research Council DECRA grant DE240100447. 
-  VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).}
+  VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF~I~5788).}
 
 \author{Asilata Bapat}
 \address{The Australian National University}
@@ -178,9 +178,12 @@
 \begin{document}
 
 \begin{abstract}
+Motivated by categorical representation theory and stability conditions, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we develop the connections with categorical representation theory and stability conditions.
 \end{abstract}
 
 \maketitle
+
+\centerline{\includegraphics[scale=1.6]{wigglyFlipGraph}}
 
 \tableofcontents
 
@@ -200,7 +203,7 @@ Analogies to cluster algebras and gentle algebras.
 \label{sec:combinatorics}
 
 Fix an integer~$n \ge 1$.
-In this section, we define two combinatorial families, the wiggly pseudotriangulations of~$n+2$ points and the wiggly permutations of~$[2n]$, and we prove that they are in bijection.
+In this section, we define two combinatorial families, the wiggly pseudotriangulations of~$n+2$ points (\cref{subsec:wigglyPseudotriangulations}) and the wiggly permutations of~$[2n]$ (\cref{subsec:wigglyPermutations}), and we prove that they are in bijection (\cref{subsec:bijection}).
 These two perspectives enable us to endow these combinatorial families with additional structures: the wiggly pseudotriangulations are actually the facets of the wiggly complex, while the wiggly permutations are actually the elements of the wiggly lattice.
 
 %%%%%%%%%%%%
@@ -676,7 +679,7 @@ where~$X^\mathrm{tc}$ denotes the transitive closure of~$X$.
 %The following statements are illustrated on \cref{fig:wigglyLattice}\,(right) when~${n = 2}$.
 %
 \begin{figure}
-\centerline{\includegraphics[scale=1.1]{wigglyFlipGraph}}
+\centerline{\includegraphics[scale=1.1]{wigglyLattice}}
 \caption{The wiggly lattice~$\wigglyLattice_2$ on wiggly pseudotriangulations (left) and on wiggly permutations (right).}
 \label{fig:wigglyLattice}
 \end{figure}
@@ -955,7 +958,7 @@ The map~$\Phi$ sends the wiggly complex automorphism of \cref{rem:wigglyComplexA
 \section{Wiggly fan and wigglyhedron}
 \label{sec:geometry}
 
-In this section, we define the wiggly fan and the wigglyhedron, which provide geometric realizations of the wiggly complex and of the wiggly lattice.
+In this section, we use $\b{g}$- and $\b{c}$-vectors (\cref{subsec:gcvectors}) to define the wiggly fan (\cref{subsec:wigglyFan}) and the wigglyhedron (\cref{subsec:wigglyhedron}), which provide geometric realizations of the wiggly complex and of the wiggly lattice.
 
 %%%%%%%%%%%%
 
@@ -1394,6 +1397,11 @@ The tedious proof of this description is not needed in this paper.
 %In all cases, we check that~${\sum_{k \in \{i, j, \bar u, \bar v\}} gc_k = 0}$.
 %\end{proof}
 
+\begin{remark}
+\label{rem:gcvectorsSymmetries}
+Following \cref{rem:wigglyComplexAutomorphism}, note that the vertical and horizontal symmetries on wiggly arcs translate on $\b{g}$- and $\b{c}$-vectors to the isometries sending~$(x_1, x_2, \dots, x_{2n-1}, x_{2n}) \in \HH_{2n}$ to~$(x_{2n}, x_{2n-1}, \dots, x_2, x_1)$ and to~$(-x_2, -x_1, \dots, -x_{2n}, -x_{2n-1})$ respectively.
+\end{remark}
+
 %%%%%%%%%%%%
 
 \subsection{Wiggly fan}
@@ -1518,6 +1526,11 @@ Directly follows from \cref{prop:characterizationFan,lem:-+...-+,lem:linearDepen
 \end{proof}
 
 \begin{remark}
+\label{rem:wigglyFanSymmetries}
+Following \cref{rem:wigglyComplexAutomorphism,rem:gcvectorsSymmetries}, note that the vertical and horizontal symmetries on wiggly arcs define linear automorphisms of the wiggly fan~$\wigglyFan_n$.
+\end{remark}
+
+\begin{remark}
 By definition, each wall of the wiggly fan is normal to a $\b{c}$-vector.
 Hence, the wiggly fan coarsens the \defn{$\b{c}$-vector fan}, defined by the arrangement of hyperplanes~$\set{\b{x} \in \HH_{2n}}{\dotprod{\b{x}}{\b{c}(\alpha, T}}$ for all arcs~$\alpha$ and wiggly pseudotriangulations~$T$ with~$\alpha \in T$.
 \end{remark}
@@ -1631,14 +1644,19 @@ If~$\bar u = \bar v$, then~$u = 2k-1$ and~$v = 2k$ for some~$k \in [n]$, and we 
 We conclude in both cases that~$\dotprod{\b{c}(\alpha, T)}{\b{\omega}} > 0$, so that we recover the increasing flip graph by orienting the graph of the wigglyhedron~$\wigglyhedron_n$ in direction~$\b{\omega}$.
 \end{proof}
 
+\begin{remark}
+\label{rem:wigglyhedronSymmetries}
+Following \cref{rem:wigglyComplexAutomorphism,rem:gcvectorsSymmetries,rem:wigglyFanSymmetries}, note that the vertical and horizontal symmetries on wiggly arcs define isometries of the wigglyhedron~$\wigglyhedron_n$.
+\end{remark}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Further topics}
 \label{sec:furtherTopics}
 
 In this section, we explore two further topics on the wigglyhedron.
-In \cref{subsec:CambrianConsiderations}, we observe that any (type~$A$) Cambrian associahedron~\cite{Reading-CambrianLattices,HohlwegLange} is normally equivalent to a face of the wigglyhedron~$\wigglyhedron_n$.
-In \cref{subsec:planarPointSets}, we raise the question to extend our construction to wiggly complexes of arbitrary planar point sets.
+We first observe that any (type~$A$) Cambrian associahedron~\cite{Reading-CambrianLattices,HohlwegLange} is normally equivalent to a face of the wigglyhedron~$\wigglyhedron_n$ (\cref{subsec:CambrianConsiderations}).
+We then raise the question to extend our construction to wiggly complexes of arbitrary planar point sets (\cref{subsec:planarPointSets}).
 
 %%%%%%%%%%%%
 
@@ -1703,6 +1721,11 @@ We had to make a choice in \cref{def:CambrianWigglyPseudotriangulations,def:Camb
 For~$\delta_j = {+}$, we could replace ``$(0, j, {[1,j[}, \varnothing)$'' by~``$(j, n+1, {]j,n]}, \varnothing)$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
 Independently, for~$\delta_j = {-}$, we could replace ``$(0, j, \varnothing, {[1,j[})$'' by~``$(j, n+1, \varnothing, {]j,n]})$'' in \cref{def:CambrianWigglyPseudotriangulations}, and ``$\sigma^{-1}(2j) \le \sigma^{-1}(i)$ for~$1 \le i \le 2j$'' by ``$\sigma^{-1}(2j-1) \le \sigma^{-1}(i)$ for~$2j-1 \le i \le 2n$'' in \cref{def:CambrianWigglyPermutations}.
 \cref{prop:CambrianLattice,prop:CambrianFan} would still hold.
+\end{remark}
+
+\begin{remark}
+\label{rem:CambrianSymmetries}
+Following \cref{rem:wigglyComplexAutomorphism,rem:gcvectorsSymmetries,rem:wigglyFanSymmetries,rem:wigglyhedronSymmetries}, note that the vertical and horizontal symmetries send $\delta$ to~$\delta_n \cdots \delta_1$ and $(-\delta_1) \cdots (-\delta_n)$ respectively.
 \end{remark}
 
 \begin{proposition}
@@ -1853,7 +1876,7 @@ Finally, it is natural to consider the extension of \cref{conj:Hamiltonian}.
 
 \begin{question}
 \label{qu:Hamiltonian}
-Is the wiggly flip graph~$\wigglyFlipGraph_P$ is Hamiltonian for any point set~$P$ in the plane?
+Is the wiggly flip graph~$\wigglyFlipGraph_P$ Hamiltonian for any point set~$P$ in the plane?
 \end{question}
 
 
