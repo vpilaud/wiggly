@@ -180,7 +180,7 @@
 \begin{document}
 
 \begin{abstract}
-Motivated by categorical representation theory and stability conditions, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we develop the connections with categorical representation theory and stability conditions.
+  Motivated by categorical representation theory, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we recall the correspondence of wiggly arcs with objects in a category. We develop categorical criteria for a subset of wiggly arcs to form a face of the wiggly complex.
 \end{abstract}
 
 \maketitle
@@ -196,7 +196,8 @@ Motivated by categorical representation theory and stability conditions, we defi
 %This problem arose from recent discussions with Asilata Bapat~\cite{BapatPilaud}.
 %It was originally motivated by her joint work with Anand Deopurkar and Anthony Licata on categorical representation theory and stability conditions, but it can be stated in purely combinatorial terms.
 
-\vincent{Start with one or two paragraphs on motivation from categories}
+In this paper we consider wiggly pseudotriangulations, which are built from arcs on a linear configuration of points.
+We study their combinatorics in detail, and interpret it in terms of categorical representation theory.
 
 \para{Combinatorics}
 Fix $n \ge 2$ and consider the~$n+2$ points on the horizontal axis at abscissa~${0, \dots, n+1}$.
@@ -273,7 +274,7 @@ For any~$\delta \in \{-,+\}^n$,
 We then define the wiggly complex~$\wigglyComplex_P$ of an arbitrary planar point set~$P$ (not necessarily along the horizontal axis, nor necessarily in general position).
 Our definition recovers:
 \begin{itemize}
-\item the wiggly complex~$\wigglyComplex_n$ considered in this paper when $P$ consists of $n+2$ colinear points,
+\item the wiggly complex~$\wigglyComplex_n$ considered in this paper when $P$ consists of $n+2$ collinear points,
 \item the pseudodissection complex of~$P$ considered in discrete and computational geometry~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations}, and realized by the pseudotriangulation polytope in~\cite{RoteSantosStreinu-polytope} using rigidity and expansive motions.
 \end{itemize}
 
@@ -283,9 +284,21 @@ For any point set~$P$ in the plane, the wiggly complex~$\wigglyComplex_P$ is the
 
 We also present a few open questions related to this conjecture, concerning in particular the possible interpretation of the wiggly complex~$\wigglyComplex_P$ in terms of dual pseudoline arrangements, and the extension to multi wiggly complexes and arbitrary finite Coxeter groups.
 
-\para{Categorical representation and stability conditions}
+\para{Categorical interpretation}
+Each wiggly arc on \(n+2\) points corresponds to an object of an abelian category, such that morphisms and extensions between objects in the category are captured by minimal intersection numbers between the arcs.
+In fact, this correspondence holds for more general arcs, which then correspond to objects of a larger triangulated category~\cite{kho.sei:02}.
 
-\vincent{Asilata, the floor is yours...}
+A general arc can be decomposed into wiggly arcs simply by cutting along U-turns.
+We interpret this operation categorically as the decomposition of an object of the triangulated category into its cohomology pieces, from which we deduce the following.
+\begin{proposition*}
+  Consider the set of wiggly arcs corresponding to the cohomology pieces of an object represented by a general arc.
+  This set is contained in a face of the wiggly complex.
+\end{proposition*}
+Furthermore, we characterise categorically when two objects in the abelian category are compatible, that is, their corresponding wiggly arcs are compatible.
+\begin{proposition*}
+  Consider two wiggly arcs, and their corresponding objects in the abelian category.
+  The wiggly arcs are compatible if and only if there are no extensions between the corresponding objects.
+\end{proposition*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
