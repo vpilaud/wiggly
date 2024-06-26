@@ -2064,12 +2064,11 @@ Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0
 In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
 For convenience, we refer to such an isotopy class as an \defn{arc}.
 
-The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of~\(\mathcal{C}_{n+1}\) (up to grading shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
-
+The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of~\(\mathcal{C}_{n+1}\) (up to an overall grading and homological shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
 In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
-It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
-In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
-In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects~\cite[Lem.~4.11]{kho.sei:02}.
+Moreover, the minimal intersection number between any pair of curves is the number of morphisms between the associated objects~\cite[Prop.~4.9]{kho.sei:02}.
+In fact, the proposition in~\cite{kho.sei:02} is a stronger result: by considering \emph{bigraded curves}, we obtain \emph{bigraded intersection numbers} between the two associated objects.
+
 \asilata{Add picture of curve cutting.}
 
 \begin{proposition}\label{prop:cohomology-pieces}
@@ -2196,6 +2195,18 @@ As such, this section is somewhat dual to the previous section --- the criterion
   Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X, X') = 0\).
 \end{proposition}
 \begin{proof}
+  The proof follows from a specialisation of the bigraded intersection number calculations that appear in Sections 3 and 4 of~\cite{kho.sei:02}.
+  Let \(X\) and \(X'\) be objects in the standard heart that correspond to wiggly arcs \(\alpha\) and \(\alpha'\).
+  The bigraded intersection number as defined in~\cite[Sect.~3d]{kho.sei:02} between the curves \(\alpha\) and \(\alpha'\) is a polynomial in the variables \(q_1^{\pm}\), \(q_2^{\pm}\).
+  It follows from~\cite[Prop.~4.9]{kho.sei:02} that this bigraded intersection number equals
+  \begin{equation}
+    \label{eq:bigraded-homs}
+  \sum_{s_1,s_2}\dim(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1]))q_1^{s_1}q_2^{s_2}.    
+  \end{equation}
+  Note that a morphism in \(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1])\) has level \(s_1 - s_2\); that is, it takes the object \(X\) in level \(0\) to the object \(X'\langle -s_2 \rangle[s_1]\) in level \(s_1 - s_2\).
+  We can obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\cref{eq:bigraded-homs}.
+  
+  The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
   \asilata{TODO.}
 \end{proof}
 \begin{remark}
