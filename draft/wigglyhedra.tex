@@ -180,7 +180,7 @@
 \begin{document}
 
 \begin{abstract}
-Motivated by categorical representation theory and stability conditions, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we develop the connections with categorical representation theory and stability conditions.
+  Motivated by categorical representation theory, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we recall the correspondence of wiggly arcs with objects in a category. We develop categorical criteria for a subset of wiggly arcs to form a face of the wiggly complex.
 \end{abstract}
 
 \maketitle
@@ -196,7 +196,8 @@ Motivated by categorical representation theory and stability conditions, we defi
 %This problem arose from recent discussions with Asilata Bapat~\cite{BapatPilaud}.
 %It was originally motivated by her joint work with Anand Deopurkar and Anthony Licata on categorical representation theory and stability conditions, but it can be stated in purely combinatorial terms.
 
-In this paper, we introduce the wiggly complex and study it from different perspectives.
+In this paper we consider wiggly pseudotriangulations, which are built from arcs on a linear configuration of points.
+We study their combinatorics in detail, and interpret it in terms of categorical representation theory.
 
 \para{Combinatorics}
 Fix $n \ge 2$ and consider the~$n+2$ points on the horizontal axis at abscissa~${0, \dots, n+1}$.
@@ -273,7 +274,7 @@ For any~$\delta \in \{-,+\}^n$,
 We then define the wiggly complex~$\wigglyComplex_P$ of an arbitrary planar point set~$P$ (not necessarily along the horizontal axis, nor necessarily in general position).
 Our definition recovers:
 \begin{itemize}
-\item the wiggly complex~$\wigglyComplex_n$ considered in this paper when $P$ consists of $n+2$ colinear points,
+\item the wiggly complex~$\wigglyComplex_n$ considered in this paper when $P$ consists of $n+2$ collinear points,
 \item the pseudodissection complex of~$P$ considered in discrete and computational geometry~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations}, and realized by the pseudotriangulation polytope in~\cite{RoteSantosStreinu-polytope} using rigidity and expansive motions.
 \end{itemize}
 
@@ -283,9 +284,21 @@ For any point set~$P$ in the plane, the wiggly complex~$\wigglyComplex_P$ is the
 
 We also present a few open questions related to this conjecture, concerning in particular the possible interpretation of the wiggly complex~$\wigglyComplex_P$ in terms of dual pseudoline arrangements, and the extension to multi wiggly complexes and arbitrary finite Coxeter groups.
 
-\para{Categorical representation and stability conditions}
+\para{Categorical interpretation}
+Each wiggly arc on \(n+2\) points corresponds to an object of an abelian category, such that morphisms and extensions between objects in the category are captured by minimal intersection numbers between the arcs.
+In fact, this correspondence holds for more general arcs, which then correspond to objects of a larger triangulated category~\cite{kho.sei:02}.
 
-\vincent{Asilata, the floor is yours...}
+A general arc can be decomposed into wiggly arcs simply by cutting along U-turns.
+We interpret this operation categorically as the decomposition of an object of the triangulated category into its cohomology pieces, from which we deduce the following.
+\begin{proposition*}
+  Consider the set of wiggly arcs corresponding to the cohomology pieces of an object represented by a general arc.
+  This set is contained in a face of the wiggly complex.
+\end{proposition*}
+Furthermore, we characterise categorically when two objects in the abelian category are compatible, that is, their corresponding wiggly arcs are compatible.
+\begin{proposition*}
+  Consider two wiggly arcs, and their corresponding objects in the abelian category.
+  The wiggly arcs are compatible if and only if there are no extensions between the corresponding objects.
+\end{proposition*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2063,12 +2076,11 @@ Consider \(n+2\) points arranged in a straight horizontal line, and labelled \(0
 In addition to the wiggly arcs, consider isotopy classes of curves whose endpoints lie on distinct marked points, and which do not cross themselves or any marked point in their interior.
 For convenience, we refer to such an isotopy class as an \defn{arc}.
 
-The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of~\(\mathcal{C}_{n+1}\) (up to grading shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
-
+The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of~\(\mathcal{C}_{n+1}\) (up to an overall grading and homological shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
 In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
-It is easy to check that the (minimal) intersection numbers between any two such segments counts the number of morphisms\asilata{Discuss (or choose to ignore) grading.} between the associated objects.
-In particular, the self-intersection number of a single segment is computed to be \(2\), as the second copy of the segment can be slightly deformed to be disjoint from the first copy except at the two endpoints.
-In fact, it is true for any pair of curves that its minimal intersection number is the number of morphisms between the associated objects~\cite[Lem.~4.11]{kho.sei:02}.
+Moreover, the minimal intersection number between any pair of curves is the number of morphisms between the associated objects~\cite[Prop.~4.9]{kho.sei:02}.
+In fact, the proposition in~\cite{kho.sei:02} is a stronger result: by considering \emph{bigraded curves}, we obtain \emph{bigraded intersection numbers} between the two associated objects.
+
 \asilata{Add picture of curve cutting.}
 
 \begin{proposition}\label{prop:cohomology-pieces}
@@ -2176,7 +2188,12 @@ However, it turns out that the cohomology filtration is highly constrained if \(
   It is clear that none of these possibilities can occur within the arc \(\alpha\), and hence \(\beta\) and \(\beta'\) must be pointed.
   Therefore \(T = \{\alpha_1, \ldots, \alpha_k\}\) is a subset of a wiggly pseudotriangulation.
 
-  \(T\) cannot contain both external edges because otherwise, the curve \(\alpha\) will not be able to have a second endpoint.\asilata{I am struggling to explain this, even though it should be obvious.}
+  Now suppose for contradiction that \(T\) contains both external edges.
+  Then some portion of \(\alpha\) curves around each of the extreme endpoints \(0\) and \(n+1\).
+  Consider the outermost strands of \(\alpha\) that curve around \(0\) and \(n+1\) respectively.
+  These must then connect to each other, resulting in \(\alpha\) having a separate component that winds around the outside of the \(n+2\) points.
+  This is not possible because \(\alpha\) is a connected curve with two endpoints.
+  Therefore \(T\) cannot contain both external edges.
 \end{proof}
 
 %%%%%%%%%%%%
@@ -2190,6 +2207,18 @@ As such, this section is somewhat dual to the previous section --- the criterion
   Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X, X') = 0\).
 \end{proposition}
 \begin{proof}
+  The proof follows from a specialisation of the bigraded intersection number calculations that appear in Sections 3 and 4 of~\cite{kho.sei:02}.
+  Let \(X\) and \(X'\) be objects in the standard heart that correspond to wiggly arcs \(\alpha\) and \(\alpha'\).
+  The bigraded intersection number as defined in~\cite[Sect.~3d]{kho.sei:02} between the curves \(\alpha\) and \(\alpha'\) is a polynomial in the variables \(q_1^{\pm}\), \(q_2^{\pm}\).
+  It follows from~\cite[Prop.~4.9]{kho.sei:02} that this bigraded intersection number equals
+  \begin{equation}
+    \label{eq:bigraded-homs}
+  \sum_{s_1,s_2}\dim(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1]))q_1^{s_1}q_2^{s_2}.    
+  \end{equation}
+  Note that a morphism in \(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1])\) has level \(s_1 - s_2\); that is, it takes the object \(X\) in level \(0\) to the object \(X'\langle -s_2 \rangle[s_1]\) in level \(s_1 - s_2\).
+  We can obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\cref{eq:bigraded-homs}.
+  
+  The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
   \asilata{TODO.}
 \end{proof}
 \begin{remark}
