@@ -12,7 +12,7 @@
 \usetikzlibrary{trees, decorations, decorations.markings, shapes, arrows, matrix, calc, fit, intersections, patterns, angles, cd}
 \usepackage[external]{forest}
 %\tikzexternalize
-\graphicspath{{figures/}{figures/nodes/}}
+\graphicspath{{figures/}}
 \makeatletter\def\input@path{{figures/}}\makeatother
 \usepackage{caption}
 \captionsetup{width=\textwidth}
@@ -196,7 +196,7 @@ Motivated by categorical representation theory and stability conditions, we defi
 %This problem arose from recent discussions with Asilata Bapat~\cite{BapatPilaud}.
 %It was originally motivated by her joint work with Anand Deopurkar and Anthony Licata on categorical representation theory and stability conditions, but it can be stated in purely combinatorial terms.
 
-\vincent{Start with one or two paragraphs on motivation from categories}
+In this paper, we introduce the wiggly complex and study it from different perspectives.
 
 \para{Combinatorics}
 Fix $n \ge 2$ and consider the~$n+2$ points on the horizontal axis at abscissa~${0, \dots, n+1}$.
@@ -2042,6 +2042,18 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 %%%%%%%%%%%%
 
 \subsection{The Khovanov--Seidel curve model}
+
+\begin{figure}
+\centerline{
+	\includegraphics[scale=1.3]{curve1}
+	\qquad
+	\includegraphics[scale=1.3]{curve2}
+	\qquad
+	\includegraphics[scale=1.3]{curve3}
+}
+\caption{An illustration of the Khovanov--Seidel curve model.}
+\label{fig:curveModel}
+\end{figure}
 
 \vincent{Add a picture summarizing this section... Asilata drafts it, I will make it.}
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
