@@ -2212,38 +2212,46 @@ However, it turns out that the cohomology filtration is highly constrained if \(
 
 In this section, we give a categorical criterion for two wiggly arcs to be compatible as in~\cref{def:compatible}.
 As such, this section is somewhat dual to the previous section --- the criterion in this section determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
-\begin{proposition}
+\begin{proposition}\label{prop:ext1}
   Consider two wiggly arcs \(\alpha\) and \(\alpha'\), and let \(X\) and \(X'\) be objects in the standard heart \(\mathcal{A}_m\) corresponding to \(\alpha\) and \(\alpha'\) respectively.
   Then \(\alpha\) and \(\alpha'\) are compatible in the sense of~\cref{def:compatible} if and only if \(\Ext^1(X, X') = 0\).
+  More generally, the incompatibility degree \(\delta(\alpha,\alpha')\) as in~\cref{def:incompatibilityDegree} is the dimension of \(\Ext^1(X,X')\).
 \end{proposition}
 \begin{proof}
   The proof follows from a specialisation of the bigraded intersection number calculations that appear in Sections 3 and 4 of~\cite{kho.sei:02}.
   Let \(X\) and \(X'\) be objects in the standard heart that correspond to wiggly arcs \(\alpha\) and \(\alpha'\).
   The bigraded intersection number as defined in~\cite[Sect.~3d]{kho.sei:02} between the curves \(\alpha\) and \(\alpha'\) is a polynomial in the variables \(q_1^{\pm}\), \(q_2^{\pm}\).
-  It follows from~\cite[Prop.~4.9]{kho.sei:02} that this bigraded intersection number equals
+  It follows from~\cite[Prop.~4.9]{kho.sei:02} that this bigraded intersection number equals the Poincar{\'e} polynomial of the morphisms between \(X\) and \(X'\), namely the expression
   \begin{equation}
     \label{eq:bigraded-homs}
   \sum_{s_1,s_2}\dim(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1]))q_1^{s_1}q_2^{s_2}.    
-  \end{equation}
+\end{equation}
   Note that a morphism in \(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1])\) has level \(s_1 - s_2\); that is, it takes the object \(X\) in level \(0\) to the object \(X'\langle -s_2 \rangle[s_1]\) in level \(s_1 - s_2\).
   We can obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\cref{eq:bigraded-homs}.
-  
-  The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
-  \asilata{TODO.}
+    The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
+
+However, the grading convention in~\cite{kho.sei:02} is not the same as ours --- our grading is by path length, while the grading in~\cite{kho.sei:02} is one for arrows in one direction and zero for arrows in the opposite direction.
+So we must modify their argument slightly.
+In particular, the table in~\cite[Lemma 3.20]{kho.sei:02} that computes the bigraded intersection numbers will change, and so will the table in~\cite[Lemma 4.12]{kho.sei:02} that computes the Poincar{\'e} polynomials of \(\Hom(P_k,-)\).
+  \asilata{TODO: this is very tedious; how much to write it?}
 \end{proof}
 \begin{remark}
-  This proposition is similar to the condition of being compatible in a cluster-tilting object.
-  \asilata{Expand and make precise.}
+  \cref{prop:ext1} is very similar to the condition of being compatible in a cluster-tilting object of a cluster category (see, e.g.~\cite[Cor.~4.3]{bua.mar.rei.ea:06}).
+  However, it depends on shifting the objects \(X\) and \(X'\) so that they both lie in the standard heart, which is an auxiliary step that is not required in the case of cluster algebras.
 \end{remark}
 \begin{remark}
-  As stated, this proposition in combination with~\cref{prop:hn-filtration} is not expected to be true in greater generality.
+  As stated,~\cref{prop:ext1} in combination with~\cref{prop:hn-filtration} is not expected to be true in greater generality.
   For instance, for the zigzag algebra of Dynkin type~\(D_4\), one can find two indecomposable spherical objects with a non-trivial \(\Ext^1\) that nevertheless appear together in the cohomology filtration of another spherical object.
   However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
 \end{remark}
 \begin{question}
-  How to best relate this section to the previous one purely categorically?
-  That is, given the categorical constraint on compatibility of arcs, is it also clear that it gives a constraint on objects appearing in the cohomology filtration?
-  \asilata{Make more precise.}
+  Suppose we have a collection of spherical objects in the standard heart \(\mathcal{A}_m\) that satisfy the compatibility condition of~\cref{prop:ext1}.
+  That is, the \(\Ext^1\) between any pair of objects in this collection is zero.
+  \begin{enumerate}
+  \item Can we prove properties about a maximal such collection without reference to arcs?
+  \item In particular, can we understand the combinatorics of maximal such collections without reference to arcs?
+  \item Given a maximal compatible collection of objects, can we always find a larger spherical object such that the factors of the cohomology filtration of that object are precisely shifts of the objects in the given collection?
+  \end{enumerate}
 \end{question}
 
 \asilata{Write something about \(g\)-vectors.}
