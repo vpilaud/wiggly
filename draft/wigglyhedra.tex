@@ -688,7 +688,6 @@ Then any wiggly arc compatible with both~$\alpha$ and~$\alpha'$ is also compatib
 Any wiggly arc non pointed with~$\beta$ would be non pointed with~$\alpha$ or~$\alpha'$ (as the endpoints of~$\beta$ are endpoints of~$\alpha$ or~$\alpha'$).
 Any wiggly arc crossing~$\beta$ would be either non pointed or crossing~$\alpha$ or~$\alpha'$ (as~$\beta$ follows~$\alpha$ or~$\alpha'$, except at the point~$j = i'$ in the first situation).
 \end{proof}
-
 %%%%%%%%%%%%
 
 \subsection{Wiggly permutations and the wiggly lattice}
@@ -1612,7 +1611,7 @@ The \defn{incompatibility degree}~$\delta(\alpha, \alpha')$ of two wiggly arcs~$
 The \defn{incompatibility number} of a wiggly arc~$\alpha$ is~$\kappa(\alpha) \eqdef \sum_{\alpha'} \delta(\alpha, \alpha')$.
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{rem:incompatibility-deg}
 Note that~$\delta$ is indeed an incompatibility degree in the sense that
 \begin{itemize}
 \item $\alpha$ and~$\alpha'$ are compatible if and only if~$\delta(\alpha, \alpha') = 0$,
@@ -2123,7 +2122,6 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 \label{fig:curveModel}
 \end{figure}
 
-\vincent{Add a picture summarizing this section... Asilata drafts it, I will make it.}
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general curves as well --- namely, those that are not necessarily \(x\)-monotone.
 
@@ -2132,11 +2130,10 @@ In addition to the wiggly arcs, consider isotopy classes of curves whose endpoin
 For convenience, we refer to such an isotopy class as a \defn{curve}.
 
 The Khovanov--Seidel correspondence (explained in Section 4 of~\cite{kho.sei:02}) associates objects of~\(\mathcal{C}_{n+1}\) (up to an overall grading and homological shift) to curves on a configuration of \(n+2\) marked points arranged in a straight line.
+We illustrate this correspondence and~\cref{prop:cohomology-pieces} in~\cref{fig:curveModel}.
 In particular, the line segment joining point \(i\) to point \(i+1\) is sent to the object \(P_{i+1}\) in the category \(\mathcal{C}_{n+1}\).
 Moreover, the minimal intersection number between any pair of curves is the number of morphisms between the associated objects~\cite[Prop.~4.9]{kho.sei:02}.
 In fact, the proposition in~\cite{kho.sei:02} is a stronger result: by considering \emph{bigraded curves}, we obtain \emph{bigraded intersection numbers} between the two associated objects.
-
-\asilata{Add picture of curve cutting.}
 
 \begin{proposition}\label{prop:cohomology-pieces}
   Let \(\alpha\) be any curve, and let \(X = X^{\bullet}\) be a chain complex that corresponds to \(\alpha\) under the Khovanov--Seidel reconstruction.
@@ -2282,9 +2279,12 @@ As such, this section is somewhat dual to the previous section --- the criterion
     The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
 
 However, the grading convention in~\cite{kho.sei:02} is not the same as ours --- our grading is by path length, while the grading in~\cite{kho.sei:02} is one for arrows in one direction and zero for arrows in the opposite direction.
-So we must modify their argument slightly.
+So we have to modify the gradings when we construct the complexes, and thus the morphisms that now have level one change as well.
 In particular, the table in~\cite[Lemma 3.20]{kho.sei:02} that computes the bigraded intersection numbers will change, and so will the table in~\cite[Lemma 4.12]{kho.sei:02} that computes the Poincar{\'e} polynomials of \(\Hom(P_k,-)\).
-  \asilata{TODO: this is very tedious; how much to write it?}
+
+It can be checked that under the modified grading, the space of morphisms arising from an intersection of curves of ``crossing'' type as well as ``non-pointed'' type contains exactly one morphism (up to equivalence) of level one; that is, a unique element of \(\Ext^1\).
+Morphisms arising from other intersections do not contribute to \(\Ext^1\).
+This calculation proves the proposition.
 \end{proof}
 \begin{remark}
   \cref{prop:ext1} is very similar to the condition of being compatible in a cluster-tilting object of a cluster category (see, \eg~\cite[Cor.~4.3]{bua.mar.rei.ea:06}) or in a $\tau$-tilting object (see, \eg~\cite{AdachiIyamaReiten}).
@@ -2296,6 +2296,42 @@ In particular, the table in~\cite[Lemma 3.20]{kho.sei:02} that computes the bigr
   For instance, for the zigzag algebra of Dynkin type~\(D_4\), one can find two indecomposable spherical objects with a non-trivial \(\Ext^1\) that nevertheless appear together in the cohomology filtration of another spherical object.
   However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
 \end{remark}
+
+Recall from~\cref{rem:incompatibility-deg} that two arcs \(\alpha\) and \(\alpha'\) are exchangeable if and only if their incompatibility degree is one.
+Recall from~\cref{prop:uerp} the arcs \(\beta\) and \(\beta'\) associated to \(\alpha\) and \(\alpha'\).
+Finally, recall from~\cref{lem:linearDependences} that the \(g\)-vectors of the arcs \(\alpha\), \(\alpha'\), \(\beta\), and \(\beta'\) satisfy a linear dependence, depending on their type.
+Let us interpret this dependince categorically.
+
+Let \(X\) and \(X'\) be spherical objects in the standard heart that correspond to \(\alpha\) and \(\alpha'\) respectively.
+First, note by~\cref{prop:ext1} that \(X\) and \(X'\) are exchangeable if and only if there is a unique non-trivial extension between the corresponding objects of the standard heart.
+Next, let us understand \(\beta\) and \(\beta'\) categorically.
+\begin{proposition}\label{prop:extensions}
+  Let \(\alpha\), \(\alpha'\), \(\beta\), \(\beta'\), and \(X\), \(X'\) be as just discussed.
+  Let \(Y\) and \(Y'\) be the objects in the standard heart corresponding to \(\beta\) and \(\beta'\) respectively.
+\begin{itemize}
+\item if \(\alpha\) and \(\alpha'\) are not pointed, then we have extensions
+  \[0 \to X' \to Y \to X \to 0 \quad \text{and}\quad 0 \to X \to Y' \to X' \to 0.\]
+\item if \(\alpha\) and \(\alpha'\) are crossing, then we have an extension
+  \[0 \to X' \to (Y \oplus Y') \to X \to 0.\]
+\end{itemize}
+\end{proposition}
+\begin{proof}
+  The proof is once again a consequence of analysing the extensions explicitly via the complexes from the Khovanov--Seidel reconstruction.
+  We do not reproduce the proof here, as the argument is contained in the proof of Theorem 5.5 in~\cite{tho:06}.
+  (See also~\cite[Figure 4]{tho:06}.)
+\end{proof}
+Note that if we write down the relations in the Grothendieck group of our category that correspond to the extensions from each case of~\cref{prop:extensions}, then we obtain precisely the linear dependences that appear between the \(g\)-vectors in~\cref{lem:linearDependences}.
+More precisely, we have that
+\begin{itemize}
+\item if \(\alpha\) and \(\alpha'\) are not pointed, then
+  \([Y] = [X] + [X'] = [Y']\),
+  from which we see \([X] + [X'] = ([Y] + [Y'])/2\);
+\item if \(\alpha\) and \(\alpha'\) are crossing, then
+  \([X] + [X'] = [Y] + [Y'].\)
+\end{itemize}
+This suggests that there should be a way to construct the \(g\)-vectors categorically in such a way that the \(g\)-vectors also map to the Grothendieck group of the category.
+At the moment, we do not have a concise construction of the \(g\)-vectors purely categorically, and it would be interesting to find this.
+
 \begin{question}
   Suppose we have a collection of spherical objects in the standard heart \(\mathcal{A}_m\) that satisfy the compatibility condition of~\cref{prop:ext1}.
   That is, the \(\Ext^1\) between any pair of objects in this collection is zero.
@@ -2306,13 +2342,12 @@ In particular, the table in~\cite[Lemma 3.20]{kho.sei:02} that computes the bigr
   \end{enumerate}
 \end{question}
 
-\asilata{Write something about \(g\)-vectors.}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Acknowledgements}
 
 This work started during the \emph{Winterbraids XIII: School on low dimensional topology, braid groups and interactions}. We are grateful to the organizers Bérénice Delcroix-Oger, Peter Feller, Vincent Florens, Hoel Queffelec for this fruitful event.
+We thank Anand Deopurkar and Anthony M. Licata for many useful conversations and ideas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
