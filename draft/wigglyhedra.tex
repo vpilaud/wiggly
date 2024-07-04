@@ -874,11 +874,10 @@ We close this section by the following conjecture (checked computationally up to
 
 \begin{conjecture}
 \label{conj:Hamiltonian}
-The cover graph of the wiggly lattice~$\wigglyLattice_n$ is Hamiltonian.
+The cover graph of the wiggly lattice~$\wigglyLattice_n$ admits an Hamiltonian path (or even cycle).
 \end{conjecture}
 
 Note that unfortunately, wiggly permutations do not form a zigzag language in the sense of~\cite{HartungHoangMutzeWilliams} (which would have guarantied the existence of a Gray code).
-\vincent{Ask Aaron what he prefers here...}
 
 %%%%%%%%%%%%
 
@@ -2065,6 +2064,7 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 
 \subsection{The Khovanov--Seidel curve model}
 
+\afterpage{
 \begin{figure}
 \centerline{
 	\begin{tabular}{c@{\qquad}c@{\qquad}c}
@@ -2082,14 +2082,14 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 		&
 		&
                 \\
-          \begin{tikzcd}[ampersand replacement=\&, row sep=-0.1cm, column sep=0.5cm]
-                                  \&           \& P_3 \langle -1 \rangle\arrow{dr} \& \\
-                                  \&           \&                      \& P_2\\
-            P_1\langle -5 \rangle\arrow{r}    \& P_1\langle -3 \rangle\arrow{r}   \& P_1 \langle -1 \rangle\arrow{ur} \& 
-          \end{tikzcd}
+		\begin{tikzcd}[ampersand replacement=\&, row sep=-0.1cm, column sep=0.5cm]
+			\&           \& P_3 \langle -1 \rangle\arrow{dr} \& \\
+			\&           \&                      \& P_2\\
+			P_1\langle -5 \rangle\arrow{r}    \& P_1\langle -3 \rangle\arrow{r}   \& P_1 \langle -1 \rangle\arrow{ur} \& 
+		\end{tikzcd}
 		&
 		&
-		\includegraphics[scale=1.3]{curve1}
+		\raisebox{-.5cm}{\includegraphics[scale=1.3]{curve1}}
 		\\[.5cm]
 		{\scriptsize cohomology} $\Bigg\downarrow$ {\scriptsize filtration}
 		&
@@ -2102,25 +2102,25 @@ The next statement, easy to check from the definitions, is mentioned in~\cite[Se
 		&
 		Wiggly arcs
 		\\
-          \begin{tikzcd}[ampersand replacement=\&, row sep=-0.1cm, column sep=0.5cm]
-            P_1\langle -1 \rangle \arrow{dr}\& \\
-            \& P_2 \\
-            P_3 \langle -1 \rangle \arrow{ur}
-          \end{tikzcd}
+		\begin{tikzcd}[ampersand replacement=\&, row sep=-0.1cm, column sep=0.5cm]
+			P_1\langle -1 \rangle \arrow{dr}\& \\
+			\& P_2 \\
+			P_3 \langle -1 \rangle \arrow{ur}
+		\end{tikzcd}
 		&
-          &
-		\includegraphics[scale=1.3]{curve2}
-          \\
-          \(P_1\)
-
+          	&
+		\raisebox{-.5cm}{\includegraphics[scale=1.3]{curve2}}
+		\\
+		\(P_1\)
 		&
 		&
-		\includegraphics[scale=1.3]{curve3}		
+		\raisebox{-.5cm}{\includegraphics[scale=1.3]{curve3}	}
 	\end{tabular}
 }
 \caption{An illustration of the Khovanov--Seidel curve model and \cref{prop:cohomology-pieces}.}
 \label{fig:curveModel}
 \end{figure}
+}
 
 In this section we briefly recall how to recover an object of \(\mathcal{C}_{n+1}\) from a wiggly arc on \(n+2\) points on a line.
 In fact, the procedure works on more general curves as well --- namely, those that are not necessarily \(x\)-monotone.
@@ -2275,7 +2275,7 @@ As such, this section is somewhat dual to the previous section --- the criterion
   \sum_{s_1,s_2}\dim(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1]))q_1^{s_1}q_2^{s_2}.    
 \end{equation}
   Note that a morphism in \(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1])\) has level \(s_1 - s_2\); that is, it takes the object \(X\) in level \(0\) to the object \(X'\langle -s_2 \rangle[s_1]\) in level \(s_1 - s_2\).
-  We can obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\cref{eq:bigraded-homs}.
+  We can obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\ref{eq:bigraded-homs}.
     The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
 
 However, the grading convention in~\cite{kho.sei:02} is not the same as ours --- our grading is by path length, while the grading in~\cite{kho.sei:02} is one for arrows in one direction and zero for arrows in the opposite direction.
@@ -2304,7 +2304,7 @@ Let us interpret this dependince categorically.
 
 Let \(X\) and \(X'\) be spherical objects in the standard heart that correspond to \(\alpha\) and \(\alpha'\) respectively.
 First, note by~\cref{prop:ext1} that \(X\) and \(X'\) are exchangeable if and only if there is a unique non-trivial extension between the corresponding objects of the standard heart.
-Next, let us understand \(\beta\) and \(\beta'\) categorically.
+Next, let us understand~\(\beta\) and \(\beta'\) categorically.
 \begin{proposition}\label{prop:extensions}
   Let \(\alpha\), \(\alpha'\), \(\beta\), \(\beta'\), and \(X\), \(X'\) be as just discussed.
   Let \(Y\) and \(Y'\) be the objects in the standard heart corresponding to \(\beta\) and \(\beta'\) respectively.
