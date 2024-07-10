@@ -162,7 +162,7 @@
 
 \title{Wigglyhedra}
 
-\thanks{AB was partially supported by the Australin Research Council DECRA grant DE240100447. 
+\thanks{AB was partially supported by the Australian Research Council DECRA grant DE240100447. 
   VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF~I~5788).}
 
 \author{Asilata Bapat}
@@ -180,7 +180,7 @@
 \begin{document}
 
 \begin{abstract}
-  Motivated by categorical representation theory, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we recall the correspondence of wiggly arcs with objects in a category. We develop categorical criteria for a subset of wiggly arcs to form a face of the wiggly complex.
+  Motivated by categorical representation theory, we define the wiggly complex, whose vertices are arcs wiggling around $n+2$ points on the horizontal axis, and whose faces are sets of wiggly arcs which are pairwise pointed and non-crossing. The wiggly complex is a pure pseudomanifold, whose facets are wiggly pseudotriangulations. We show that wiggly pseudotriangulations are in bijection with wiggly permutations, which are permutations of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$. These permutations define the wiggly lattice, an induced sublattice of the weak order. We then prove that the wiggly complex is isomorphic to the boundary complex of the polar of the wigglyhedron, for which we give explicit and simple vertex and facet descriptions. Interestingly, we observe that any Cambrian associahedron is normally equivalent to a well-chosen face of the wigglyhedron. Finally, we recall the correspondence of wiggly arcs with objects in a category, and we develop categorical criteria for a subset of wiggly arcs to form a face of the wiggly complex.
 \end{abstract}
 
 \maketitle
@@ -198,21 +198,21 @@ We study their combinatorics in detail, construct polyhedral realizations of the
 
 \bigskip
 \para{Combinatorics}
-Fix $n \ge 2$ and consider the~$n+2$ points on the horizontal axis at abscissa~${0, \dots, n+1}$.
+Fix $n \ge 1$ and consider the~$n+2$ points on the horizontal axis labelled~${0, \dots, n+1}$.
 A \defn{wiggly arc} is an abscissa monotone curve starting at some point~$i$, ending at some point~$j$ (with~${0 \le i < j \le n+1}$), and passing above or below each point~$i+1, \dots, j-1$.
-Two wiggly arcs are \defn{compatible} if they are pointed (the left endpoint of one is not the right endpoint of the other) and non-crossing (the interior of the curve are disjoint).
+Two wiggly arcs are \defn{compatible} if they are pointed (the left endpoint of one is not the right endpoint of the other) and non-crossing (the interiors of the curves are disjoint).
 A \defn{wiggly dissection} is a collection of pairwise compatible wiggly arcs, and a \defn{wiggly pseudotriangulation} is an inclusion maximal wiggly dissection.
 The \defn{wiggly complex}~$\wigglyComplex_n$ is the simplicial complex of wiggly dissections (minus their external wiggly arcs).
 We first establish the following result.
 
 \begin{proposition*}
-The wiggly complex~$\wigglyComplex_n$ is a pure closed pseudomanifold of dimension~$2n-1$.
+The wiggly complex~$\wigglyComplex_n$ is a $(2n-1)$-dimensional pseudomanifold without boundary.
 \end{proposition*}
 
 In particular, all wiggly pseudotriangulations have $2n-1$ internal wiggly arcs, each of which can be \defn{flipped}.
 We actually describe the flip in terms of wiggly diagonals in wiggly pseudoquadrangles.
 We also orient this flip graph in a canonical way, which we call the \defn{wiggly increasing flip graph}~$\wigglyIncreasingFlipGraph_n$.
-The wiggly increasing flip graph on wiggly pseudotriangulations of $4$ points is the front page illustration of this paper.
+The wiggly increasing flip graph on wiggly pseudotriangulations of $4$ points is the front page illustration of this paper (throughout the paper, we implicitly orient the graphs from bottom to top).
 
 We then make a small detour to permutations.
 A \defn{wiggly permutation} is a permutation of~$[2n]$ avoiding the patterns~$(2j-1) \cdots i \cdots (2j)$ for~$i < 2j-1$ and~$(2j) \cdots k \cdots (2j-1)$ for~$k > 2j$.
@@ -231,7 +231,7 @@ The increasing flip graph on wiggly pseudotriangulations~$\wigglyIncreasingFlipG
 
 \para{Polyhedral geometry}
 We then switch to geometric realizations of the wiggly complex~$\wigglyComplex_n$.
-Our constructions are inspired by similar constructions for generalized associahedra~\cite{HohlwegLangeThomas,HohlwegPilaudStella} for finite type cluster algebras~\cite{FominZelevinsky-ClusterAlgebrasI,FominZelevinsky-ClusterAlgebrasII}, and for gentle associahedra for support $\tau$-tilting complexes on gentle algebras~\cite{PaluPilaudPlamondon-nonkissing}.
+Our constructions are inspired by similar constructions for generalized associahedra~\cite{HohlwegLangeThomas,HohlwegPilaudStella} of finite type cluster algebras~\cite{FominZelevinsky-ClusterAlgebrasI,FominZelevinsky-ClusterAlgebrasII}, and for gentle associahedra~\cite{PaluPilaudPlamondon-nonkissing} of support $\tau$-tilting complexes~\cite{AdachiIyamaReiten} on gentle algebras~\cite{ButlerRingel}.
 Namely, we first construct a fan supported by certain $\b{g}$-vectors of the wiggly arcs.
 
 \begin{theorem*}
@@ -239,8 +239,8 @@ The cones generated by the $\b{g}$-vectors of wiggly pseudodissections form a co
 \end{theorem*}
 
 The proof of this result is based on a fine understanding of the linear dependences between $\b{g}$-vectors.
-We use this understanding to find a height function~$\kappa$ on wiggly arcs which satisfies all wall-crossing inequalities of the wiggly fan~$\wigglyFan_n$.
-Analogously to cluster algebras and gentle algebras, this height function is obtained by summing some compatibility degrees of wiggly arcs.
+We further use this understanding to find a height function~$\kappa$ on wiggly arcs which satisfies all wall-crossing inequalities of the wiggly fan~$\wigglyFan_n$.
+Without entering the details of its definition of~$\kappa$, let us just mention that it is obtained by summing some compatibility degrees of wiggly arcs, analogously to the constructions for cluster algebras~\cite{HohlwegPilaudStella} and gentle algebras~\cite{PaluPilaudPlamondon-nonkissing}.
 Using the $\b{c}$-vectors of each pseudotriangulation, defined to form the dual basis of the $\b{g}$-vectors, we obtain our main result.
 
 \begin{theorem*}
@@ -290,14 +290,15 @@ In fact, this correspondence holds for more general curves, which then correspon
 
 A general curve can be decomposed into wiggly arcs simply by cutting along U-turns.
 We interpret this operation categorically as the decomposition of an object of the triangulated category into its cohomology pieces, from which we deduce the following.
+
 \begin{proposition*}
-  Consider the set of wiggly arcs corresponding to the cohomology pieces of an object represented by a general arc.
-  This set is contained in a face of the wiggly complex.
+The set of wiggly arcs corresponding to the cohomology pieces of an object represented by a general arc is a face of the wiggly complex.
 \end{proposition*}
-Furthermore, we characterise categorically when two objects in the abelian category are compatible, that is, their corresponding wiggly arcs are compatible.
+
+Furthermore, we characterize categorically when two objects in the abelian category are compatible, that is, their corresponding wiggly arcs are compatible.
+
 \begin{proposition*}
-  Consider two wiggly arcs, and their corresponding objects in the abelian category.
-  The wiggly arcs are compatible if and only if there are no extensions between the corresponding objects.
+Two wiggly arcs are compatible if and only if there are no extensions between the corresponding objects in the abelian category.
 \end{proposition*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
