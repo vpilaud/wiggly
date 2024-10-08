@@ -1,0 +1,697 @@
+\documentclass[12pt,titlepage,landscape,a4paper]{article}
+
+%QUELQUES PACKAGES PLUS OU MOINS UTILES
+\special{landscape}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsfonts, amsmath, amssymb, amsthm, mathtools}
+\usepackage{aeguill}
+\usepackage{graphics, graphicx}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{paralist}
+\usepackage{multido,ifthen}
+\usepackage{tikz}
+\usetikzlibrary{trees, decorations, decorations.markings, shapes, arrows, matrix, calc, fit, intersections, patterns, angles, snakes}
+\usepackage[external]{forest}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue, urlcolor=blue}
+\usepackage{movie15}
+\usepackage[abs]{overpic}
+\usepackage{xargs}
+\usepackage{extarrows}
+\usepackage{shuffle}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{dsfont}
+\usepackage{pifont}
+\usepackage{array, blkarray}
+\usepackage{multicol, multirow}
+\usepackage{ulem}
+\usepackage{xifthen}
+
+% ZONE DE TEXTE ET POLICE
+\setlength{\topmargin}{-2.8cm}
+\setlength{\textheight}{19cm}
+\setlength{\oddsidemargin}{-1cm}
+\setlength{\textwidth}{26.8cm}
+\newcommand{\textenormal}{\fontsize{22}{28}\selectfont}
+\newcommand{\textemoyen}{\fontsize{23}{27}\selectfont}
+\newcommand{\textegrand}{\fontsize{55}{48}\selectfont}
+
+% COMMANDE DE NOUVELLE PAGE
+\newenvironment{slide}[1]
+{
+\newpage
+\begin{center}
+{\blue \textemoyen \uppercase{#1}}\\
+\end{center}
+\vspace{-1cm}
+\rule{\textwidth}{0.5 pt}\\
+\vspace{-.8cm}
+}
+{\vspace*{-3cm}}
+
+% COMMANDE DE PARTIE
+%\newcounter{partie}
+%\setcounter{partie}{1}
+%\newcommand{\thePartie}{Part \arabic{partie}}
+\newcommand{\partie}[1]
+{
+\newpage
+\vspace*{0pt plus 1 fill}
+\begin{center}
+%\thePartie \\[-.75cm]
+\rule{.9\textwidth}{0.5 pt} \\[.5cm]
+\fontsize{30}{30}\selectfont {\blue\uppercase{#1}} \\[-.35cm]
+\rule{.9\textwidth}{0.5 pt} \\
+\end{center}
+\vspace*{0pt plus 1.2 fill}
+%\addtocounter{partie}{1}
+}
+
+% COMMANDE D'EXPOSE
+\newcommand{\expose}[2]
+{
+\newpage
+\vspace*{0pt plus 1 fill}
+\begin{center}
+%\thePartie \\[-.75cm]
+\rule{.8\textwidth}{0.5 pt} \\[.5cm]
+\fontsize{35}{35}\selectfont {\red\uppercase{#1}} \\[-.35cm]
+\rule{.8\textwidth}{0.5 pt} \\
+\vspace{1cm}
+\textemoyen #2
+\end{center}
+\vspace*{0pt plus 1.2 fill}
+%\addtocounter{partie}{1}
+}
+
+% COMMANDE POUR LES BOITES
+% centre
+\newcommand{\cboite}[1]
+{
+\vspace*{.5cm}
+\fcolorbox{blue}{grisclair}{
+\begin{minipage}{.97\linewidth}
+\vspace*{.3cm}
+\begin{center} #1 \end{center}
+\vspace*{-.1cm}
+\end{minipage}
+}
+}
+% alignement gauche
+\newcommand{\gboite}[1]
+{
+\vspace*{.5cm}
+\fcolorbox{blue}{grisclair}{
+\begin{minipage}{.97\linewidth}
+\vspace*{.3cm}
+#1
+\vspace{.3cm}
+\end{minipage}
+}
+}
+
+\newcommand{\chapitre}[1]{{\blue \fontsize{23}{25}\selectfont {Chap\,#1}}}
+
+% AUTRES COMMANDES
+% quelques couleurs manquantes
+\newcommand{\orange}{\color{orange}} % couleur orange
+\newcommand{\green}{\color{green}} % couleur verte
+\newcommand{\violet}{\color{violet}} % couleur violet
+\newcommand{\blue}{\color{blue}} % couleur bleu
+\newcommand{\red}{\color{red}} % couleur rouge
+\definecolor{violet}{rgb}{.5,.1,.9}
+\definecolor{orange}{rgb}{.94,.57,0}
+\definecolor{green}{rgb}{0.2,0.6,0.2}
+\definecolor{grisclair}{gray}{1}
+\definecolor{grisfonce}{gray}{.1}
+\definecolor{bblue}{rgb}{.8,.8,1}
+% maths
+\newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % ensemble
+\newcommand{\bigset}[2]{\big\{ #1 \;\big|\; #2 \big\}} % ensemble
+\newcommand{\biggset}[2]{\bigg\{ #1 \;\bigg|\; #2 \bigg\}} % ensemble
+\newcommand{\setangle}[2]{\left\langle #1 \;\middle|\; #2 \right\rangle} % ensemble
+\newcommand{\dotprod}[2]{\left\langle\; #1 \;\middle|\; #2 \;\right\rangle} % produit scalaire
+\newcommand{\ssm}{\smallsetminus} % small set minus
+\newcommand{\symdif}{\triangle} % symmetric difference
+\newcommand{\eqdef}{\mbox{\,\raisebox{0.3ex}{\normalsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
+\newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.3ex}{\normalsize\ensuremath{\mathrm:}} }} % =:
+\newcommand{\Fracfloor}[2]{\left\lfloor \frac{#1}{#2} \right\rfloor} % floor of a fraction
+\newcommand{\one}{1\!\!1} % one bold
+\DeclareMathOperator{\conv}{conv} % enveloppe convexe
+\DeclareMathOperator{\cone}{cone} % cone engendre
+\DeclareMathOperator{\vol}{vol} % volume
+\newcommand{\C}{\mathbb{C}} % complexes
+\newcommand{\R}{\mathbb{R}} % reels
+\newcommand{\Z}{\mathbb{Z}} % entiers
+\newcommand{\N}{\mathbb{N}} % naturels
+\newcommand{\I}{\mathbb{I}} % set of integers
+\newcommand{\K}{\mathbb{K}} % field
+\newcommand{\fS}{\mathfrak{S}} % symmetric group
+\newcommand{\cA}{\mathcal{A}} % algebra
+\newcommand{\cF}{\mathcal{F}} % flip graph
+\newcommand{\cN}{\mathcal{N}} % sorting network
+\renewcommand{\b}[1]{\boldsymbol{#1}} % bold letters
+\renewcommand{\c}[1]{\mathcal{#1}} % caligraphic letters
+\newcommand{\f}[1]{\mathfrak{#1}} % frak letters
+\newcommand{\bb}[1]{\mathbb{#1}} % bbold letters
+% autres
+\setlength{\parindent}{0pt} % aucune indentation dans tout le document
+\graphicspath{{figures/}{figures/nodes/}} % les repertoires ou se trouvent les figures
+\newcommand{\papier}[1]{{\violet\fontsize{15}{20}\selectfont #1}} % citation papier
+\newcommand{\theo}[2]{\gboite{{\blue \fontsize{18}{25}\selectfont #1.} #2}}
+\newcommand{\HUGE}[1]{{\fontsize{35}{33}\selectfont #1}}
+\newcommand{\esperluette}{ \\ --- \& --- \\ } % esperluette stylisée nouvelle ligne
+\DeclareRobustCommand{\verylongrightarrow}{\joinrel\relbar\joinrel\relbar\joinrel\relbar\joinrel\relbar\joinrel\relbar\joinrel\rightarrow}
+\renewcommand{\emph}[1]{\uline{#1}}
+
+% specific wiggly
+\newcommand{\polytope}[1]{\mathds{#1}} % font polytope
+\newcommand{\wigglyComplex}{\mathrm{WC}} % wiggly complex
+\newcommand{\wigglyFlipGraph}{\mathrm{WFG}} % wiggly flip graph
+\newcommand{\wigglyIncreasingFlipGraph}{\mathrm{WIFG}} % wiggly increasing flip graph
+\newcommand{\wigglyLattice}{\mathrm{WL}} % wiggly lattice
+\newcommand{\wigglyFan}{\mathrm{WF}} % wiggly fan
+\newcommand{\wigglyhedron}{\polytope{W}} % wigglyhedron
+\newcommand{\Asso}{\polytope{A}\mathsf{sso}} % associahedron
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\titre}{From permutahedra to associahedra, a walk through geometric and algebraic combinatorics}
+\newcommand{\auteur}{Vincent Pilaud}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\fontshape{sf}\fontsize{22}{28}\selectfont % police par defaut
+\sf
+\pagestyle{empty} % bas de page par defaut
+
+\vspace*{-1cm}
+\begin{center}
+{\blue \fontsize{60}{60}\selectfont
+\uppercase{Wigglyhedra}
+
+}
+
+\vspace{.8cm}
+
+A. BAPAT
+(The Australian National University)
+
+V. PILAUD
+(Universitat de Barcelona)
+
+
+\href{https://arxiv.org/abs/2407.11632}{\texttt{arxiv:2407.11632}}
+
+\vspace{.2cm}
+\centerline{\includegraphics[scale=1.7]{wigglyFlipGraph}\quad\includegraphics[scale=1.7]{wigglyLattice}}
+
+\vspace{.3cm}
+
+DMG Seminar Berlin --- October 9, 2024
+
+\vspace*{-.6cm}
+
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Triangulations \& associahedra}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Pseudotriangulations \& PPT polytope}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Wiggly pseudotriangulations \& wiggly complex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Wiggly complex}
+
+\emph{wiggly dissection} $=$ set of pairwise \emph{non-crossing} and \emph{pointed} wiggly arcs on $n+2$ points
+
+\hspace{9.3cm}\includegraphics[scale=1.7]{incompatible}
+
+\vspace{.2cm}
+\emph{wiggly complex}~$\wigglyComplex_n$ $=$ simplicial complex of wiggly dissections
+
+\vspace{.2cm}
+\centerline{\includegraphics[scale=1.7]{wigglyComplex}}
+
+%\theo{PROP}{The wiggly complex is a pure $(2n-1)$-dimensional pseudomanifold.}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Wiggly complex}
+
+\emph{wiggly dissection} $=$ set of pairwise \emph{non-crossing} and \emph{pointed} wiggly arcs on $n+2$ points
+
+\hspace{9.3cm}\includegraphics[scale=1.7]{incompatible}
+
+\vspace{.2cm}
+\emph{wiggly complex}~$\wigglyComplex_n$ $=$ simplicial complex of wiggly dissections
+
+\begin{align*}
+f(\wigglyComplex_1) & = (1, 2) \\
+f(\wigglyComplex_2) & = (1, 9, 21, 14) \\
+f(\wigglyComplex_3) & = (1, 24, 154, 396, 440, 176) \\
+f(\wigglyComplex_4) & = (1, 55, 729, 4002, 10930, 15684, 11312, 3232) \\
+f(\wigglyComplex_5) & = (1, 118, 2868, 28110, 140782, 400374, 673274, 662668, 352728, 78384) \\[.8cm]
+h(\wigglyComplex_1) & = (1, 1) \\
+h(\wigglyComplex_2) & = (1, 6, 6, 1) \\
+h(\wigglyComplex_3) & = (1, 19, 68, 68, 19, 1) \\
+h(\wigglyComplex_4) & = (1, 48, 420, 1147, 1147, 420, 48, 1) \\
+h(\wigglyComplex_5) & = (1, 109, 1960, 11254, 25868, 25868, 11254, 1960, 109, 1)
+\end{align*}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Wiggly pseudotriangulations}
+
+$c$ cell in a wiggly dissection with boundary $\partial_c$ \\
+\emph{degree} $\delta_c =  1/2 \, \# \text{arcs on } \partial_c + 2 \, \# \text{connected components of } \partial_c - 1$ \\
+\emph{pseudotriangle} $=$ cell of degree $3$ \qquad \emph{pseudoquadragle} $=$ cell of degree $4$
+
+\vspace{.4cm}
+\centerline{\includegraphics[scale=3]{wigglyPseudodissections}}
+
+\vspace{.1cm}
+\theo{PROP}{The inclusion maximal wiggly pseudodissections are the pseudotriangulations, and contain $2n-1$ internal arcs and $n$ cells.}
+
+\vspace{.3cm}
+%$wp_n = \#$wiggly pseudotriangulations
+\[
+\begin{array}{c|ccccccccc}
+n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
+\hline
+wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
+\end{array}
+\]
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Wiggly flip graph}
+
+\theo{PROP}{Any wiggly pseudoquadrangle has exactly two wiggly diagonals, and they either cross or are non pointed.}
+
+\vspace{.1cm}
+\centerline{\includegraphics[scale=2]{diagonalsPseudoquadrangles}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Wiggly flip graph}
+
+\theo{PROP}{Any wiggly pseudoquadrangle has exactly two wiggly diagonals, and they either cross or are non pointed.}
+
+\vspace{.1cm}
+\centerline{\includegraphics[scale=2]{diagonalsPseudoquadrangles}}
+
+\vspace{-.4cm}
+\emph{wiggly flip graph} $\wigglyFlipGraph_n =$ \begin{tabular}[t]{|ll} a vertex for each wiggly pseudotriangulation \\ an edge between~$T$ and~$T'$ if~$T \ssm \{\alpha\} = T' \ssm \{\alpha'\}$ \end{tabular}
+
+\vspace{.3cm}
+\centerline{\includegraphics[scale=3]{wigglyFlip}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Wiggly flip graph}
+
+\vspace{.5cm}
+\theo{PROP}{The wiggly flip graph $\wigglyFlipGraph_n$ is $(2n-1)$-regular and connected.}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=1.7]{wigglyComplex} \hspace{-2cm} \includegraphics[scale=1.7]{wigglyComplexDual}}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Wiggly permutations \& wiggly lattice}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Wiggly permutations}
+
+\vspace{1cm}
+\hspace{13.5cm}
+\includegraphics[scale=2]{wigglyLattice}
+
+\vspace{-13.5cm}
+\emph{wiggly permutation} = permutation of $2n$ avoiding
+\begin{compactitem}
+\item $(2j-1) \cdots i \cdots (2j)$ for~$j \in [n]$ and~$i < 2j-1$,
+\item $(2j) \cdots k \cdots (2j-1)$ for~$j \in [n]$ and~$k > 2j$.
+\end{compactitem}
+
+\vspace{1cm}
+\begin{minipage}{13.2cm}
+\theo{PROP}{
+The wiggly permutations induce a sublattice~$\wigglyLattice_n$ of the weak order on~$\f{S}_{2n}$.
+
+}
+
+\theo{PROP}{
+The cover graph of the lattice~$\wigglyLattice_n$ is $(2n-1)$-regular and connected.
+}
+\end{minipage}
+
+\vspace{5cm}
+\[
+\begin{array}{c|ccccccccc}
+n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
+\hline
+wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
+\end{array}
+\]
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Bijection}
+
+\vspace{1cm}
+\centerline{\includegraphics[scale=1.42]{wigglyPseudotriangulations}}
+\vspace{-.3cm}
+\centerline{$
+1234 \;\;\; 1243 \;\;\; 1342 \;\;\; 1423 \;\;\; 1432 \;\;\; 2134 \;\;\; 2143 \;\;\; 3412 \;\;\; 3421 \;\;\; 4123 \;\;\; 4132 \;\;\; 4213 \;\;\; 4312 \;\;\; 4321
+$}
+
+\vspace{1cm}
+\theo{PROP}{The wiggly pseudotriangulations and wiggly permutations are in bijection.}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=3]{bijection}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Bijection}
+
+\theo{PROP}{This bijection induces a directed graph isomorphism between
+\begin{compactitem}
+\item the wiggly increasing flip graph on wiggly pseudotriangulations,
+\item the Hasse diagram of the wiggly lattice on wiggly permutations.
+\end{compactitem}
+}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=1.8]{wigglyFlipGraph}\quad\raisebox{.5cm}{\includegraphics[scale=1.8]{wigglyLattice}}}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Wiggly fan}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{g- and c-vectors}
+
+\emph{$\b{g}$-vector} of $\alpha =$ proj. on $\sum_{i = 1}^{2n} x_i = 0$ of \raisebox{-1.7cm}{\includegraphics[scale=4]{gvector}}
+
+\vspace{-.5cm}
+\emph{$\b{c}$-vector} of~$\alpha \in T = $ you don't want to know...
+
+\vspace{.5cm}
+\theo{PROP}{For any wiggly pseudotriangulation~$T$, the $\b{g}$-vectors~$\set{\b{g}(\alpha)}{\alpha \in T^\circ}$ and the $\b{c}$-vectors~$\set{\b{c}(\alpha, T)}{\alpha \in T^\circ}$ form dual bases.}
+
+\vspace{1cm}
+\centerline{\raisebox{-4cm}{\includegraphics[scale=4]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{wiggly fan}
+
+\emph{$\b{g}$-vector} of $\alpha =$ proj. on $\sum_{i = 1}^{2n} x_i = 0$ of \raisebox{-1.7cm}{\includegraphics[scale=4]{gvector}}
+
+\vspace{.1cm}
+\theo{THM}{The cones~$\setangle{\b{g}(\alpha)}{\alpha \in D}$ for all wiggly dissections~$D$ form a complete simplicial fan~$\wigglyFan_n$ (in $\sum_{i = 1}^{2n} x_i = 0$).
+}
+
+\vspace{2cm}
+Main observation:
+
+\centerline{\includegraphics[scale=3.2]{incompatible2}}
+\centerline{
+${\red \b{g}(\alpha)} + {\orange \b{g}(\alpha')} = \big( {\green \b{g}(\beta)} + {\blue \b{g}(\beta')} \big) / 2$
+\qquad
+${\red \b{g}(\alpha)} + {\orange \b{g}(\alpha')} = {\green \b{g}(\beta)} + {\blue \b{g}(\beta')}$
+}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Wigglyhedron}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Wigglyhedron}
+
+\emph{incompatibility degree}~$\delta(\alpha, \alpha') =$ 
+\begin{compactitem}
+\item $0$ if~$\alpha$ and~$\alpha'$ are pointed and non-crossing,
+\item $1$ is~$\alpha$ and~$\alpha'$ are not pointed,
+\item the number of crossings of~$\alpha$ and~$\alpha'$ if they are crossing.
+\end{compactitem}
+
+\vspace{.5cm}
+$\kappa(\alpha) =$ \emph{incompatibility number} of~$\alpha = \sum_{\alpha'} \delta(\alpha, \alpha')$.
+
+\vspace{2cm}
+Main observation:
+
+\centerline{\includegraphics[scale=3.2]{incompatible2}}
+\centerline{
+${\red \kappa(\alpha)} + {\orange \kappa(\alpha')} > \big( {\green \kappa(\beta)} + {\blue \kappa(\beta')} \big) / 2$
+\qquad
+${\red \kappa(\alpha)} + {\orange \kappa(\alpha')} > {\green \kappa(\beta)} + {\blue \kappa(\beta')}$
+}
+
+\vspace{1.5cm}
+Hence, $\kappa$ satisfies all wall-crossing inequalities of the wiggly fan...
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Wigglyhedron}
+
+\theo{THM}{
+The wiggly fan~$\wigglyFan_n$ is the normal fan of a simplicial $(2n-1)$-dimensional polytope, called the \emph{wigglyhedron}~$\wigglyhedron_n$, and defined equivalently~as
+\begin{itemize}
+\item intersection of the halfspaces~$\set{\b{x} \in \R^{2n}}{\dotprod{\b{g}(\alpha)}{\b{x}} \!\le\! \kappa(\alpha)}$ for all wiggly arcs~$\alpha$,
+\item convex hull of~$\b{p}(T) \eqdef \sum\limits_{\alpha \in T} \kappa(\alpha) \, \b{c}(\alpha, T)$ for all wiggly pseudotriangulations~$T$.
+\end{itemize}
+\vspace{-.5cm}
+}
+
+\vspace{1cm}
+\centerline{\input{figures/wigglyhedron}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Wigglyhedron}
+
+\theo{THM}{The wigglyhedron~$\wigglyhedron_n$ is a simple $(2n-1)$-dimensional polytope such that
+\begin{compactitem}
+\item the wiggly complex~$\wigglyComplex_n$ is the boundary complex of the polar of~$\wigglyhedron_n$,
+\item the Hasse diagram of the wiggly lattice is a linear orientation of the graph of~$\wigglyhedron_n$.
+\end{compactitem}
+}
+
+\vspace{1cm}
+\centerline{\includegraphics[scale=1.7]{wigglyFlipGraph} \quad \input{figures/wigglyhedron}}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Cambrian considerations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Cambrian considerations}
+
+\theo{THM}{
+For $\delta = \delta_1 \dots \delta_n \in \{+,-\}^n$, there are lattice isomorphisms between 
+\begin{itemize}
+\item \emph{$\delta$-triangulations} $=$ triangulation of the $\delta$-gon, whose vertex at abscissa $i$ has ordinate \\[-1cm]
+\[
+\text{positive if $\delta_j = {+}$
+\qquad and \qquad
+negative if $\delta_j = {-}$}
+\]
+\vspace{-1.5cm}
+\item \emph{$\delta$-permutations} $=$ permutation of~$[n]$ avoiding for~$i < j < k$ \\[-1cm]
+\[
+\cdots j \cdots ki \cdots \text{ if~$\delta_j = +$}
+\quad\text{and}\quad
+\cdots ik \cdots j \cdots \text{ if~$\delta_j = -$}
+\]
+\vspace{-1.5cm}
+\item \emph{$\delta$-wiggly pseudotriangulations} $=$ wiggly pseudotriangulation containing the arcs \\[-1cm]
+\[
+(0, j, {[1,j[}, \varnothing) \text{ for~$\delta_j = {+}$}
+\qquad\text{and}\qquad
+(0, j, \varnothing, {[1,j[}) \text{ for~$\delta_j = {-}$}
+\]
+\vspace{-1.5cm}
+\item \emph{$\delta$-wiggly permutations} $=$ wiggly permutation~$\sigma$ of~$[2n]$ such that \\[-1cm]
+\[
+\delta_j = {+} \quad \Longrightarrow \quad \sigma^{-1}(i) \le \sigma^{-1}(2j-1)
+\quad\text{and}\quad
+\delta_j = {-} \quad \Longrightarrow \quad \sigma^{-1}(2j) \le \sigma^{-1}(i)\quad\;\;
+\]
+\end{itemize}
+\vspace{-.5cm}
+}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=1.6]{wigglyCambrian1}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Cambrian considerations}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=1.6]{wigglyCambrian2}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Cambrian considerations}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=1.6]{wigglyCambrian3}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Cambrian considerations}
+
+\theo{THM}{
+For $\delta = \delta_1 \dots \delta_n \in \{+,-\}^n$, there are lattice isomorphisms between 
+\begin{itemize}
+\item \emph{$\delta$-triangulations} $=$ triangulation of the $\delta$-gon, whose vertex at abscissa $i$ has ordinate \\[-1cm]
+\[
+\text{positive if $\delta_j = {+}$
+\qquad and \qquad
+negative if $\delta_j = {-}$}
+\]
+\vspace{-1.5cm}
+\item \emph{$\delta$-permutations} $=$ permutation of~$[n]$ avoiding for~$i < j < k$ \\[-1cm]
+\[
+\cdots j \cdots ki \cdots \text{ if~$\delta_j = +$}
+\quad\text{and}\quad
+\cdots ik \cdots j \cdots \text{ if~$\delta_j = -$}
+\]
+\vspace{-1.5cm}
+\item \emph{$\delta$-wiggly pseudotriangulations} $=$ wiggly pseudotriangulation containing the arcs \\[-1cm]
+\[
+(0, j, {[1,j[}, \varnothing) \text{ for~$\delta_j = {+}$}
+\qquad\text{and}\qquad
+(0, j, \varnothing, {[1,j[}) \text{ for~$\delta_j = {-}$}
+\]
+\vspace{-1.5cm}
+\item \emph{$\delta$-wiggly permutations} $=$ wiggly permutation~$\sigma$ of~$[2n]$ such that \\[-1cm]
+\[
+\delta_j = {+} \quad \Longrightarrow \quad \sigma^{-1}(i) \le \sigma^{-1}(2j-1)
+\quad\text{and}\quad
+\delta_j = {-} \quad \Longrightarrow \quad \sigma^{-1}(2j) \le \sigma^{-1}(i)\quad\;\;
+\]
+\end{itemize}
+\vspace{-.5cm}
+}
+
+\vspace{.5cm}
+\theo{PROP}{
+The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of the wigglyhedron~$\wigglyhedron_n$ corresponding to the wiggly pseudodissection formed by the $\delta$-wiggly arcs.
+
+}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Some open problems}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Open problem 1: graph properties of wigglyhedron}
+
+\centerline{\includegraphics[scale=1.7]{wigglyFlipGraph}\quad\includegraphics[scale=1.7]{wigglyLattice}}
+
+\theo{QU 1a}{Is the wiggly flip graph Hamiltonian?
+
+\hfill \color{gray}{[NB: wiggly permutations do not form a zigzag language, right?]}
+}
+
+\theo{QU 1b}{What is the diameter of the wiggly flip graph?
+
+%\hfill \color{gray}{[NB: $2n-1 \le \delta_n$]}
+}
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Open problem 2: wiggly pseudotriangulations of point sets}
+
+$\b{P}$ arbitrary point set in the plane
+
+\emph{wiggly complex}~$\wigglyComplex_{\b{P}}$ = simplicial complex of non-crossing and pointed wiggly edges
+
+\vspace{-.5cm}\hspace{14.5cm}
+\rotatebox{270}{\includegraphics[scale=1.1]{wigglyComplexSquare}}
+
+\vspace*{-15cm}
+\begin{minipage}{13cm}
+\theo{Q2a}{Is~$\wigglyComplex_{\b{P}}$ the boundary complex of a simplicial polytope?
+
+\color{gray}{
+[NB: aligned points $\Rightarrow$ wigglyhedron \\
+general position $\Rightarrow$ Rote--Santos--Streinu]
+}
+
+\vspace{.1cm}
+}
+
+\vspace{1cm}
+\theo{Q2b}{Is the graph of~$\wigglyComplex_{\b{P}}$ Hamiltonian?}
+
+\end{minipage}
+
+
+\end{slide}
+
+
+\end{document}
