@@ -209,11 +209,10 @@ V. PILAUD
 
 \href{https://arxiv.org/abs/2407.11632}{\texttt{arxiv:2407.11632}}
 
-\vspace{.2cm}
-\centerline{\includegraphics[scale=1.7]{wigglyFlipGraph}\quad\includegraphics[scale=1.7]{wigglyLattice}}
+\vspace{-.2cm}
+\centerline{\includegraphics[scale=1.8]{wigglyFlipGraph}\quad\raisebox{.5cm}{\includegraphics[scale=1.8]{wigglyLattice}}}
 
-\vspace{.3cm}
-
+\vspace{.1cm}
 DMG Seminar Berlin --- October 9, 2024
 
 \vspace*{-.6cm}
@@ -224,9 +223,199 @@ DMG Seminar Berlin --- October 9, 2024
 
 \partie{Triangulations \& associahedra}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \partie{Pseudotriangulations \& PPT polytope}
+
+\begin{slide}{Three geometric structures}
+
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\begin{center}\includegraphics[scale=1.9]{geometricStructures0}\end{center}
+\vspace{-1.08cm} \hspace*{25.7cm} ${k=2}$
+
+\bigskip
+\begin{center}
+\begin{tabular}{rl}
+\emph{triangulation} & = maximal crossing-free set of edges \\
+\vspace{.3cm}
+\\
+
+\emph{pseudotriangulation} & = maximal crossing-free pointed set of edges \\
+\vspace{.3cm}
+\\
+
+\emph{$k$-triangulation} & = maximal $(k+1)$-crossing-free set of edges \\
+\\
+\end{tabular}
+\end{center}
+\end{slide}
+
+\begin{slide}{Three geometric structures}
+
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\begin{center}\includegraphics[scale=1.9]{geometricStructures1}\end{center}
+\vspace{-1.08cm} \hspace*{25.7cm} ${k=2}$
+
+\bigskip
+\begin{center}
+\begin{tabular}{rl}
+\emph{triangulation} & = maximal crossing-free set of edges \\
+\vspace{.3cm}
+\\
+
+\emph{pseudotriangulation} & = maximal crossing-free pointed set of edges \\
+\vspace{.3cm}
+\\
+
+\emph{$k$-triangulation} & = maximal $(k+1)$-crossing-free set of edges \\
+\\
+\end{tabular}
+\end{center}
+\end{slide}
+
+\begin{slide}{Three geometric structures}
+
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\begin{center}\includegraphics[scale=1.9]{geometricStructures2}\end{center}
+\vspace{-1.08cm} \hspace*{25.7cm} ${k=2}$
+
+\bigskip
+\begin{center}
+\begin{tabular}{rl}
+\emph{triangulation} & = maximal crossing-free set of edges \\
+\vspace{.3cm}
+& = decomposition into triangles \\
+
+\emph{pseudotriangulation} & = maximal crossing-free pointed set of edges \\
+\vspace{.3cm}
+& = decomposition into pseudotriangles \\
+
+\emph{$k$-triangulation} & = maximal $(k+1)$-crossing-free set of edges \\
+& = decomposition into $k$-stars
+\end{tabular}
+\end{center}
+
+\vspace{.2cm}
+\papier{VP \& F. Santos, Multitriangulations as complexes of star polygons, 2009.}
+
+\vspace{-1cm}
+\end{slide}
+
+\begin{slide}{Three geometric structures}
+
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\begin{center}\includegraphics[scale=1.9]{geometricStructures3}\end{center}
+\vspace{-8cm} \hspace*{25.7cm} ${k=2}$
+
+\vspace{7cm}
+\begin{center}
+\emph{flip} = exchange an internal edge with the common bisector of the two adjacent cells
+\end{center}
+
+\vspace{-1cm}
+\end{slide}
+
+\begin{slide}{Three geometric structures}
+
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations
+\begin{center}\includegraphics[width=.95\textwidth]{geometricStructures4}\hspace*{1.5cm}~\end{center}
+\begin{center}
+\begin{tabular}{r@{\quad $\longleftrightarrow$ \quad}l}
+\emph{associahedron} & crossing-free sets of internal edges \\
+\emph{pseudotriangulations polytope} & pointed crossing-free sets of internal edges \\
+{\red multiassociahedron} & $(k+1)$-crossing-free sets of $k$-internal edges
+\end{tabular}
+\end{center}
+
+\vspace{-1cm}
+\end{slide}
+
+%\begin{slide}{Three geometric structures}
+%\vspace{-.8cm}
+%\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations
+%\begin{center}\includegraphics[width=.95\textwidth]{geometricStructures4}\hspace*{1.5cm}~\end{center}
+%
+%\vspace{-.7cm}
+%\begin{flushright}
+%``Our main limits in understanding the combinatorial structure of polytopes still\\
+%lie in our ability to raise the good questions and in the \emph{lack of examples},\\
+%\emph{methods of constructing them}, and \emph{means of classifying them}.'' \\
+%\papier{G. Kalai, \emph{Handbook of Discrete \& Computational Geometry}.}
+%\end{flushright}
+%
+%\vspace{-2cm}
+%\end{slide}
+
+%%%%%%%
+
+\begin{slide}{LINE SPACE OF THE PLANE = M\"OBIUS STRIP}
+
+\centerline{\includegraphics[angle=-90,scale=2]{MoebiusBand}}
+
+\end{slide}
+
+%%%%%%%
+
+\multido{\n=0+1}{10}{%
+\begin{slide}{Duality}
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\vspace{-.5cm}\\
+\vspace*{-2cm}
+\hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures5\n}\\
+\vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
+\end{slide}
+}
+
+\begin{slide}{Duality}
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\vspace{-.5cm}\\
+\vspace*{-2cm}
+\hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures5}
+\vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
+\end{slide}
+
+\begin{slide}{Duality}
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\vspace{-.5cm}\\
+\vspace*{-2cm}
+\hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures6}
+\vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
+\end{slide}
+
+\multido{\n=0+1}{10}{%
+\begin{slide}{Duality}
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\vspace{-.5cm}\\
+\vspace*{-2cm}
+\hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures7\n}
+\vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
+\end{slide}
+}
+
+\begin{slide}{Duality}
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\vspace{-.5cm}\\
+\vspace*{-2cm}
+\hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures7}
+\vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
+
+\vspace{7.6cm}
+\papier{VP \& M. Pocchiola, Multitriangulations, pseudotriangulations and primitive sorting networks, 2012.}
+
+\vspace*{-3cm}
+\end{slide}
+
+%%%%%%%%%
+
+\begin{slide}{Duality}
+\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations
+
+\vspace{1.3cm}
+\begin{center}\includegraphics[scale=1.9]{geometricStructures8}\end{center}
+\vspace{-8.33cm} \hspace*{25.7cm} ${k=2}$
+\end{slide}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -399,7 +588,7 @@ $}
 \theo{PROP}{The wiggly pseudotriangulations and wiggly permutations are in bijection.}
 
 \vspace{.5cm}
-\centerline{\includegraphics[scale=3]{bijection}}
+\centerline{\includegraphics[scale=3.3]{bijection}}
 
 \end{slide}
 
@@ -650,12 +839,12 @@ The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of 
 
 \centerline{\includegraphics[scale=1.7]{wigglyFlipGraph}\quad\includegraphics[scale=1.7]{wigglyLattice}}
 
-\theo{QU 1a}{Is the wiggly flip graph Hamiltonian?
+\theo{Q1a}{Is the wiggly flip graph Hamiltonian?
 
 \hfill \color{gray}{[NB: wiggly permutations do not form a zigzag language, right?]}
 }
 
-\theo{QU 1b}{What is the diameter of the wiggly flip graph?
+\theo{Q1b}{What is the diameter of the wiggly flip graph?
 
 %\hfill \color{gray}{[NB: $2n-1 \le \delta_n$]}
 }
@@ -664,7 +853,23 @@ The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{slide}{Open problem 2: wiggly pseudotriangulations of point sets}
+\begin{slide}{Open problem 2: wiggly pseudotriangulations and duality}
+%\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+%\vspace{-.5cm}\\
+
+\vspace*{-.8cm}
+\hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures7}
+\vspace{-10.5cm} \\ \hspace*{25.7cm} ${k=2}$
+
+\vspace{7.8cm}
+\theo{Q2}{Is there a dual interpretation of wiggly pseudotriangulations?}
+
+\vspace*{-3cm}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Open problem 3: wiggly pseudotriangulations of point sets}
 
 $\b{P}$ arbitrary point set in the plane
 
@@ -675,7 +880,7 @@ $\b{P}$ arbitrary point set in the plane
 
 \vspace*{-15cm}
 \begin{minipage}{13cm}
-\theo{Q2a}{Is~$\wigglyComplex_{\b{P}}$ the boundary complex of a simplicial polytope?
+\theo{Q3a}{Is~$\wigglyComplex_{\b{P}}$ the boundary complex of a simplicial polytope?
 
 \color{gray}{
 [NB: aligned points $\Rightarrow$ wigglyhedron \\
@@ -686,12 +891,22 @@ general position $\Rightarrow$ Rote--Santos--Streinu]
 }
 
 \vspace{1cm}
-\theo{Q2b}{Is the graph of~$\wigglyComplex_{\b{P}}$ Hamiltonian?}
+\theo{Q3b}{Is the graph of~$\wigglyComplex_{\b{P}}$ Hamiltonian?}
 
 \end{minipage}
-
 
 \end{slide}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\vspace*{2cm}
+\centerline{\includegraphics[scale=1.8]{wigglyFlipGraph}\quad\raisebox{.5cm}{\includegraphics[scale=1.8]{wigglyLattice}}}
+
+\vspace*{.2cm}
+\centerline{\includegraphics[scale=4]{wigglyThankYou}}
+
 \end{document}
+
