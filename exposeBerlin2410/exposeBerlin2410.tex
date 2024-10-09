@@ -64,7 +64,7 @@
 \begin{center}
 %\thePartie \\[-.75cm]
 \rule{.9\textwidth}{0.5 pt} \\[.5cm]
-\fontsize{30}{30}\selectfont {\blue\uppercase{#1}} \\[-.35cm]
+\fontsize{30}{30}\selectfont {\blue \uppercase{#1}} \\[-.35cm]
 \rule{.9\textwidth}{0.5 pt} \\
 \end{center}
 \vspace*{0pt plus 1.2 fill}
@@ -177,6 +177,8 @@
 \newcommand{\wigglyFan}{\mathrm{WF}} % wiggly fan
 \newcommand{\wigglyhedron}{\polytope{W}} % wigglyhedron
 \newcommand{\Asso}{\polytope{A}\mathsf{sso}} % associahedron
+\newcommand{\HH}{\mathbb{H}} % hyperplane
+\newcommand{\HS}{\b{H}^\ge} % half-space
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -223,7 +225,291 @@ DMG Seminar Berlin --- October 9, 2024
 
 \partie{Triangulations \& associahedra}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{slide}{ASSOCIAHEDRON}
+
+\gboite{
+\emph{Associahedron} = polytope whose face lattice is isomorphic to the lattice of crossing-free sets of internal diagonals of a convex $(n+3)$-gon, ordered by reverse inclusion
+}
+
+\vspace{.2cm}
+\centerline{\includegraphics[scale=3.1]{associahedron}}
+\vspace*{-3.5cm}
+\begin{tabular}{r@{ $\leftrightarrow$ }l}
+vertices & triangulations \\
+edges & flips \\
+faces & dissections
+\end{tabular}
+\hfill
+\begin{tabular}{r@{ $\leftrightarrow$ }l}
+vertices & binary trees \\
+edges & rotations \\
+faces & Schr\"oder trees
+\end{tabular}
+
+\end{slide}
+
+%%%%%%%%%%
+%
+%\begin{slide}{VARIOUS ASSOCIAHEDRA}
+%
+%\gboite{
+%\emph{Associahedron} = polytope whose face lattice is isomorphic to the lattice of crossing-free sets of internal diagonals of a convex $(n+3)$-gon, ordered by reverse inclusion
+%}
+%
+%\vspace{.5cm}
+%\centerline{\includegraphics[width=\textwidth]{manyAssociahedra1}}
+%\vspace{.5cm}
+%\centerline{\includegraphics[width=\textwidth]{manyAssociahedra2}}
+%
+%\vspace{-.2cm}
+%\hfill {\normalsize (Pictures by Ceballos-Santos-Ziegler)}
+%
+%\vspace{-.9cm}
+%\papier{
+%
+%Tamari ('51) --- Stasheff ('63) --- Haimann ('84) --- Lee ('89) --- \hspace*{12.5cm} \\[.2cm]
+%\dots --- Gel'fand-Kapranov-Zelevinski ('94) --- \dots --- Chapoton-Fomin-Zelevinsky ('02) --- \dots --- Loday ('04) --- \dots \hspace*{1.5cm} \\[.2cm]
+%--- Ceballos-Santos-Ziegler ('11)
+%
+%}
+%
+%\end{slide}
+
+%%%%%%%%%
+
+\begin{slide}{THREE FAMILIES OF REALIZATIONS}
+
+\vspace{-.25cm}
+\hspace{-1.2cm}
+\begin{tabular}{cc|ccc|cc}
+\begin{minipage}[t]{8.5cm}
+\begin{center}
+{\blue SECONDARY} \\ {\blue POLYTOPE} \\[.5cm]
+\end{center}
+\vspace{-.2cm}
+\centerline{\includegraphics[scale=1.5]{associahedron}}
+\vspace{.1cm}
+\papier{Gelfand--Kapranov--Zelevinsky ('94) \\ Billera--Filliman--Sturmfels ('90)
+
+}
+\vspace{8cm}
+\end{minipage}
+&&&
+\begin{minipage}[t]{8.5cm}
+\begin{center}
+{\blue LODAY'S ASSOCIAHEDRON} \\[.5cm]
+\end{center}
+\vspace{-.2cm}
+\centerline{\includegraphics[scale=.78]{associahedronLoday}}
+\vspace{-.4cm}
+\papier{Loday ('04) \\ Hohlweg--Lange ('07) \\ Hohlweg--Lange--Thomas ('12) \\ Hohlweg--Pilaud--Stella ('18) \\ Pilaud--Santos--Ziegler ('24)
+
+}
+\end{minipage}
+&&&
+\begin{minipage}[t]{8.5cm}
+\begin{center}
+{\blue CHAP.--FOM.--ZEL.'S ASSOCIAHEDRON} \\[.5cm]
+\end{center}
+\centerline{\input{figures/associahedronCFZ}}
+\vspace{-7.5cm}\hspace{5.3cm}
+{\normalsize (Pictures by CFZ)}
+\vspace{5.8cm}
+
+\papier{Chapoton--Fomin--Zelevinsky ('02) \\ Ceballos--Santos--Ziegler ('11)
+
+}
+\end{minipage}
+\end{tabular}
+
+\end{slide}
+
+%%%%%%%%%
+
+\begin{slide}{THREE FAMILIES OF REALIZATIONS}
+
+\vspace{-.25cm}
+\hspace{-1.2cm}
+\begin{tabular}{cc|ccc|cc}
+\begin{minipage}[t]{8.5cm}
+\begin{center}
+{\blue SECONDARY} \\ {\blue POLYTOPE} \\[.5cm]
+\end{center}
+\vspace{-.2cm}
+\centerline{\includegraphics[scale=1.5]{associahedron}}
+\vspace{.1cm}
+\papier{Gelfand--Kapranov--Zelevinsky ('94) \\ Billera--Filliman--Sturmfels ('90)
+
+}
+\vspace{.1cm}
+\centerline{\includegraphics[scale=1.5]{secondaryPolytope}}
+\vspace{1cm}
+\end{minipage}
+&&&
+\begin{minipage}[t]{8.5cm}
+\begin{center}
+{\blue LODAY'S ASSOCIAHEDRON} \\[.5cm]
+\end{center}
+\vspace{-.2cm}
+\centerline{\includegraphics[scale=.78]{associahedronLoday}}
+\vspace{-.4cm}
+\papier{Loday ('04) \\ Hohlweg--Lange ('07) \\ Hohlweg--Lange--Thomas ('12) \\ Hohlweg--Pilaud--Stella ('18) \\ Pilaud--Santos--Ziegler ('24)
+
+}
+\vspace{.3cm}
+\hspace{-.4cm}\boxed{\begin{minipage}{2.5cm} \smallskip \begin{center} \blue Hopf \\ algebra \\[-1.2cm] ~\end{center} \end{minipage}} \\[.2cm]
+\hspace*{-.4cm}\boxed{\begin{minipage}{2.5cm} \smallskip \begin{center} \blue Cluster \\ algebras \\[-1.2cm] ~\end{center} \end{minipage}} \\
+\vspace{-4.7cm}
+\hspace*{3.5cm}\includegraphics[scale=.35]{associahedronTypeB}
+\vspace{-.2cm}
+\hspace*{2.5cm}\includegraphics[scale=.35]{associahedronTypeH}
+\end{minipage}
+&&&
+\begin{minipage}[t]{8.5cm}
+\begin{center}
+{\blue CHAP.--FOM.--ZEL.'S ASSOCIAHEDRON} \\[.5cm]
+\end{center}
+\centerline{\input{figures/associahedronCFZ}}
+\vspace{-7.5cm}\hspace{5.3cm}
+{\normalsize (Pictures by CFZ)}
+\vspace{5.8cm}
+
+\papier{Chapoton--Fomin--Zelevinsky ('02) \\ Ceballos--Santos--Ziegler ('11)
+
+}
+\vspace{1.2cm}
+\hspace{-.4cm}\boxed{\begin{minipage}{2.5cm} \smallskip \begin{center} \blue Cluster \\ algebras \\[-1.2cm] ~\end{center} \end{minipage}} \\
+\vspace{-3cm}
+\centerline{\hspace{2.5cm}\input{figures/cyclohedronCFZ}}
+
+\end{minipage}
+\end{tabular}
+
+\end{slide}
+
+%%%%%%%%%
+%
+%\begin{slide}{LODAY'S ASSOCIAHEDRON}
+%
+%\vspace{-.3cm}
+%\cboite{
+%\vspace{-.7cm}
+%\[
+%\Asso(n) \, \eqdef \, \conv \set{\b{L}(T)}{T \text{ binary tree}} \, = \, \HH \; \cap \!\!\!\!\!\! \bigcap_{1 \le i \le j \le n+1} \!\!\!  \HS(i,j)
+%\]
+%\vspace{-.3cm}
+%\[
+%\b{L}(T) \eqdef \big[ \ell(T, i) \cdot r(T, i) \big]_{i \in [n+1]}
+%\qquad
+%\HS(i,j) \eqdef \biggset{\b{x} \in \R^{n+1}}{\sum_{i \le k \le j} x_i \ge \binom{j-i+2}{2} \!\! }
+%\]
+%
+%\flushright{
+%\papier{
+%	Shnider-Sternberg, \textit{Quantum groups: From coalgebras to Drinfeld algebras} ('93) \\
+%	Loday, \textit{Realization of the Stasheff polytope} ('04)
+%	
+%}}
+%}
+%
+%\vspace{.3cm}
+%\centerline{\raisebox{1cm}{\includegraphics[scale=2.2]{LodayVector}} \qquad  \includegraphics[scale=1.15]{associahedronLoday}}
+%
+%\end{slide}
+%
+%%%%%%%%%
+
+\begin{slide}{LODAY'S ASSOCIAHEDRON}
+
+\vspace*{-1cm}
+\begin{align*}
+\text{\blue Loday's associahedron} \; & = \; \conv \set{L(T)}{T \text{ triangulation of the } (n+3)\text{-gon}} \\
+& = \; \HH \; \cap \!\!\!\!\! \bigcap_{\substack{\delta \text{ diagonal} \\ \text{of the } (n+3)\text{-gon}}} \!\!\!\!\!\!\!\!\!\! \HS(\delta)
+\end{align*}
+
+\vspace{-.5cm}
+\centerline{
+	\begin{overpic}[scale=2.5]{lodayTriangulation}
+		\put(30,90){$i$}
+		\put(175,0){$j$}
+		\put(345,175){$k$}
+		\put(53,23){$\ell(T,j)$}
+		\put(295,55){$r(T,j)$}
+		\put(560,140){$\delta$}
+		\put(595,5){$B(\delta)$}
+   \end{overpic}
+}
+\[
+\hspace{1.8cm}
+L(T) = \big(\ell(T,j) \, \cdot \, r(T,j)\big)_{j \in [n+1]}
+\hspace{1.7cm}
+\HS(\delta) = \biggset{\b{x} \in \R^{n+1}}{\sum_{j \in B(\delta)} x_j \ge \binom{|B(\delta)|+1}{2}}
+\]
+
+\vspace{.5cm}
+\papier{Loday ('04)}
+
+\end{slide}
+
+%%%%%%%%%
+
+\begin{slide}{HOHLWEG \& LANGE'S ASSOCIAHEDRA}
+
+Can also replace Loday's $(n+3)$-gon by others\dots
+
+\vspace{.2cm}
+\centerline{\includegraphics[width=\textwidth]{polygonsHohlwegLange}}
+
+\vspace{-.3cm}
+\dots to obtain different realizations of the associahedron
+
+\vspace{.1cm}
+\centerline{\includegraphics[scale=2]{associahedronLodayHL}}
+
+\vspace{-.6cm}
+\papier{Hohlweg--Lange ('07)}
+
+\end{slide}
+
+%%%%%%%%%
+
+\begin{slide}{HOHLWEG \& LANGE'S ASSOCIAHEDRA}
+
+\vspace*{-1cm}
+\[
+\Asso(P) \; = \; \conv \set{H\!L(T)}{T \text{ triangulation of } P} \; = \; \HH \; \cap \!\!\!\!\! \bigcap_{\delta \text{ diagonal of } P} \!\!\!\!\!\!\!\!\!\! \HS(\delta)
+\]
+
+\vspace{-.6cm}
+\centerline{
+	\begin{overpic}[scale=2.5]{hohlwegLange}
+		\put(30,85){$i$}
+		\put(85,325){$j$}
+		\put(255,30){$k$}
+		\put(-20,225){$\ell(T,j)$}
+		\put(275,290){$r(T,j)$}
+		\put(540,165){$\delta$}
+		\put(370,110){$B(\delta)$}
+   \end{overpic}
+}
+
+\vspace{-1.3cm}
+\[
+\hspace*{-1cm}
+H\!L(T)_j =
+\begin{cases}
+	\ell(T,j) \cdot r(T,j) & \text{if } j \text{ down} \\
+	n+2-\ell(T,j) \cdot r(T,j) & \text{if } j \text{ up}
+\end{cases}
+\hspace{1.4cm}
+\HS(\delta) = \biggset{\b{x}}{\sum_{j \in B(\delta)} x_j \ge \binom{|B(\delta)|+1}{2}}
+\]
+
+\papier{Hohlweg--Lange ('07)}
+
+\end{slide}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -231,81 +517,58 @@ DMG Seminar Berlin --- October 9, 2024
 
 \begin{slide}{Three geometric structures}
 
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \begin{center}\includegraphics[scale=1.9]{geometricStructures0}\end{center}
 \vspace{-1.08cm} \hspace*{25.7cm} ${k=2}$
 
-\bigskip
-\begin{center}
-\begin{tabular}{rl}
-\emph{triangulation} & = maximal crossing-free set of edges \\
-\vspace{.3cm}
-\\
+\hspace{1.7cm} 
+\begin{tabular}[t]{c} crossing-free \\ \\[-.3cm] \\ \\  \end{tabular} 
+\hspace{3.4cm} 
+\begin{tabular}[t]{c} crossing-free pointed \\ \papier{Pocchiola--Vegter} \\[-.3cm] \papier{Rote--Santos--Streinu ('08)} \\ \\  \end{tabular}
+\hspace{2cm} 
+\begin{tabular}[t]{c} $(k+1)$-crossing-free \\ \papier{Capoyleas--Pach ('92)} \\[-.3cm] \papier{Jonsson ('05)} \\ \\ \\  \end{tabular}
 
-\emph{pseudotriangulation} & = maximal crossing-free pointed set of edges \\
-\vspace{.3cm}
-\\
-
-\emph{$k$-triangulation} & = maximal $(k+1)$-crossing-free set of edges \\
-\\
-\end{tabular}
-\end{center}
 \end{slide}
+
+%%%
 
 \begin{slide}{Three geometric structures}
 
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \begin{center}\includegraphics[scale=1.9]{geometricStructures1}\end{center}
 \vspace{-1.08cm} \hspace*{25.7cm} ${k=2}$
 
-\bigskip
-\begin{center}
-\begin{tabular}{rl}
-\emph{triangulation} & = maximal crossing-free set of edges \\
-\vspace{.3cm}
-\\
+\hspace{1.7cm} 
+\begin{tabular}[t]{c} crossing-free \\ \\[-.3cm] \\ \\  \end{tabular} 
+\hspace{3.4cm} 
+\begin{tabular}[t]{c} crossing-free pointed \\ \papier{Pocchiola--Vegter} \\[-.3cm] \papier{Rote--Santos--Streinu ('08)} \\ \\  \end{tabular}
+\hspace{2cm} 
+\begin{tabular}[t]{c} $(k+1)$-crossing-free \\ \papier{Capoyleas--Pach ('92)} \\[-.3cm] \papier{Jonsson ('05)} \\ \\ \\  \end{tabular}
 
-\emph{pseudotriangulation} & = maximal crossing-free pointed set of edges \\
-\vspace{.3cm}
-\\
-
-\emph{$k$-triangulation} & = maximal $(k+1)$-crossing-free set of edges \\
-\\
-\end{tabular}
-\end{center}
 \end{slide}
+
+%%%
 
 \begin{slide}{Three geometric structures}
 
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \begin{center}\includegraphics[scale=1.9]{geometricStructures2}\end{center}
 \vspace{-1.08cm} \hspace*{25.7cm} ${k=2}$
 
-\bigskip
-\begin{center}
-\begin{tabular}{rl}
-\emph{triangulation} & = maximal crossing-free set of edges \\
-\vspace{.3cm}
-& = decomposition into triangles \\
+\hspace{1.7cm} 
+\begin{tabular}[t]{c} crossing-free \\ \\[-.3cm] \\ \\ triangles \end{tabular} 
+\hspace{3.4cm} 
+\begin{tabular}[t]{c} crossing-free pointed \\ \papier{Pocchiola--Vegter} \\[-.3cm] \papier{Rote--Santos--Streinu ('08)} \\ \\ pseudotriangles \end{tabular}
+\hspace{2cm} 
+\begin{tabular}[t]{c} $(k+1)$-crossing-free \\ \papier{Capoyleas--Pach ('92)} \\[-.3cm] \papier{Jonsson ('05)} \\ \\ $k$-stars \\ \papier{P.--Santos ('09)} \end{tabular}
 
-\emph{pseudotriangulation} & = maximal crossing-free pointed set of edges \\
-\vspace{.3cm}
-& = decomposition into pseudotriangles \\
-
-\emph{$k$-triangulation} & = maximal $(k+1)$-crossing-free set of edges \\
-& = decomposition into $k$-stars
-\end{tabular}
-\end{center}
-
-\vspace{.2cm}
-\papier{VP \& F. Santos, Multitriangulations as complexes of star polygons, 2009.}
-
-\vspace{-1cm}
 \end{slide}
+
+%%%
 
 \begin{slide}{Three geometric structures}
 
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \begin{center}\includegraphics[scale=1.9]{geometricStructures3}\end{center}
 \vspace{-8cm} \hspace*{25.7cm} ${k=2}$
 
@@ -314,27 +577,22 @@ DMG Seminar Berlin --- October 9, 2024
 \emph{flip} = exchange an internal edge with the common bisector of the two adjacent cells
 \end{center}
 
-\vspace{-1cm}
 \end{slide}
+
+%%%
 
 \begin{slide}{Three geometric structures}
 
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations
 \begin{center}\includegraphics[width=.95\textwidth]{geometricStructures4}\hspace*{1.5cm}~\end{center}
-\begin{center}
-\begin{tabular}{r@{\quad $\longleftrightarrow$ \quad}l}
-\emph{associahedron} & crossing-free sets of internal edges \\
-\emph{pseudotriangulations polytope} & pointed crossing-free sets of internal edges \\
-{\red multiassociahedron} & $(k+1)$-crossing-free sets of $k$-internal edges
-\end{tabular}
-\end{center}
+\hspace{1.5cm} associahedron \hspace{2.6cm} pseudotriangulation polytope \hspace{1.2cm} multiassociahedron
 
 \vspace{-1cm}
 \end{slide}
 
 %\begin{slide}{Three geometric structures}
 %\vspace{-.8cm}
-%\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations
+%\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations
 %\begin{center}\includegraphics[width=.95\textwidth]{geometricStructures4}\hspace*{1.5cm}~\end{center}
 %
 %\vspace{-.7cm}
@@ -360,7 +618,7 @@ DMG Seminar Berlin --- October 9, 2024
 
 \multido{\n=0+1}{10}{%
 \begin{slide}{Duality}
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \vspace{-.5cm}\\
 \vspace*{-2cm}
 \hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures5\n}\\
@@ -368,25 +626,31 @@ DMG Seminar Berlin --- October 9, 2024
 \end{slide}
 }
 
+%%%
+
 \begin{slide}{Duality}
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \vspace{-.5cm}\\
 \vspace*{-2cm}
 \hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures5}
 \vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
 \end{slide}
 
+%%%
+
 \begin{slide}{Duality}
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \vspace{-.5cm}\\
 \vspace*{-2cm}
 \hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures6}
 \vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
 \end{slide}
 
+%%%
+
 \multido{\n=0+1}{10}{%
 \begin{slide}{Duality}
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \vspace{-.5cm}\\
 \vspace*{-2cm}
 \hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures7\n}
@@ -394,28 +658,30 @@ DMG Seminar Berlin --- October 9, 2024
 \end{slide}
 }
 
+%%%
+
 \begin{slide}{Duality}
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 \vspace{-.5cm}\\
 \vspace*{-2cm}
 \hspace*{-.6cm}\includegraphics[scale=1.9]{geometricStructures7}
 \vspace{-8.5cm} \\ \hspace*{25.7cm} ${k=2}$
 
 \vspace{7.6cm}
-\papier{VP \& M. Pocchiola, Multitriangulations, pseudotriangulations and primitive sorting networks, 2012.}
+\papier{P.--Pocchiola ('12)}
 
 \vspace*{-3cm}
 \end{slide}
 
-%%%%%%%%%
-
-\begin{slide}{Duality}
-\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations
-
-\vspace{1.3cm}
-\begin{center}\includegraphics[scale=1.9]{geometricStructures8}\end{center}
-\vspace{-8.33cm} \hspace*{25.7cm} ${k=2}$
-\end{slide}
+%%%%%%%%%%
+%
+%\begin{slide}{Duality}
+%\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations
+%
+%\vspace{1.3cm}
+%\begin{center}\includegraphics[scale=1.9]{geometricStructures8}\end{center}
+%\vspace{-8.33cm} \hspace*{25.7cm} ${k=2}$
+%\end{slide}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -477,7 +743,7 @@ $c$ cell in a wiggly dissection with boundary $\partial_c$ \\
 \centerline{\includegraphics[scale=3]{wigglyPseudodissections}}
 
 \vspace{.1cm}
-\theo{PROP}{The inclusion maximal wiggly pseudodissections are the pseudotriangulations, and contain $2n-1$ internal arcs and $n$ cells.}
+\theo{PROP}{The inclusion maximal wiggly pseudodissections are the pseudotriangulations, and contain $2n-1$ internal arcs and $n$ cells. \hfill \papier{Bapat--P. (24$^+$)}}
 
 \vspace{.3cm}
 %$wp_n = \#$wiggly pseudotriangulations
@@ -495,7 +761,7 @@ wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
 
 \begin{slide}{Wiggly flip graph}
 
-\theo{PROP}{Any wiggly pseudoquadrangle has exactly two wiggly diagonals, and they either cross or are non pointed.}
+\theo{PROP}{Any wiggly pseudoquadrangle has exactly two wiggly diagonals, and they either cross or are non pointed. \hfill \papier{Bapat--P. (24$^+$)}}
 
 \vspace{.1cm}
 \centerline{\includegraphics[scale=2]{diagonalsPseudoquadrangles}}
@@ -506,7 +772,7 @@ wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
 
 \begin{slide}{Wiggly flip graph}
 
-\theo{PROP}{Any wiggly pseudoquadrangle has exactly two wiggly diagonals, and they either cross or are non pointed.}
+\theo{PROP}{Any wiggly pseudoquadrangle has exactly two wiggly diagonals, and they either cross or are non pointed. \hfill \papier{Bapat--P. (24$^+$)}}
 
 \vspace{.1cm}
 \centerline{\includegraphics[scale=2]{diagonalsPseudoquadrangles}}
@@ -524,7 +790,7 @@ wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
 \begin{slide}{Wiggly flip graph}
 
 \vspace{.5cm}
-\theo{PROP}{The wiggly flip graph $\wigglyFlipGraph_n$ is $(2n-1)$-regular and connected.}
+\theo{PROP}{The wiggly flip graph $\wigglyFlipGraph_n$ is $(2n-1)$-regular and connected. \hfill \papier{Bapat--P. (24$^+$)}}
 
 \vspace{.5cm}
 \centerline{\includegraphics[scale=1.7]{wigglyComplex} \hspace{-2cm} \includegraphics[scale=1.7]{wigglyComplexDual}}
@@ -555,14 +821,17 @@ wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
 \theo{PROP}{
 The wiggly permutations induce a sublattice~$\wigglyLattice_n$ of the weak order on~$\f{S}_{2n}$.
 
+\hfill \papier{Bapat--P. (24$^+$)}
 }
 
 \theo{PROP}{
 The cover graph of the lattice~$\wigglyLattice_n$ is $(2n-1)$-regular and connected.
+
+\hfill \papier{Bapat--P. (24$^+$)}
 }
 \end{minipage}
 
-\vspace{5cm}
+\vspace{3cm}
 \[
 \begin{array}{c|ccccccccc}
 n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
@@ -575,7 +844,7 @@ wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{slide}{Bijection}
+\begin{slide}{Wiggly pseudotriangulations $\longleftrightarrow$ wiggly permutations}
 
 \vspace{1cm}
 \centerline{\includegraphics[scale=1.42]{wigglyPseudotriangulations}}
@@ -585,21 +854,27 @@ wp_n & 2 & 14 & 176 & 3232 & 78384 & 2366248 & 85534176 & 3602770400 & \dots
 $}
 
 \vspace{1cm}
-\theo{PROP}{The wiggly pseudotriangulations and wiggly permutations are in bijection.}
+\theo{PROP}{The wiggly pseudotriangulations and wiggly permutations are in bijection.
+
+\hfill \papier{Bapat--P. (24$^+$)}
+}
 
 \vspace{.5cm}
 \centerline{\includegraphics[scale=3.3]{bijection}}
+
+{\color{gray}
+permutation of $2n$ avoiding \begin{tabular}[t]{@{}l} $(2j-1) \cdots i \cdots (2j)$ for~$j \in [n]$ and~$i < 2j-1$ \\ $(2j) \cdots k \cdots (2j-1)$ for~$j \in [n]$ and~$k > 2j$ \end{tabular}}
 
 \end{slide}
 
 %%%
 
-\begin{slide}{Bijection}
+\begin{slide}{Wiggly pseudotriangulations $\longleftrightarrow$ wiggly permutations}
 
 \theo{PROP}{This bijection induces a directed graph isomorphism between
 \begin{compactitem}
 \item the wiggly increasing flip graph on wiggly pseudotriangulations,
-\item the Hasse diagram of the wiggly lattice on wiggly permutations.
+\item the Hasse diagram of the wiggly lattice on wiggly permutations. \hfill \papier{Bapat--P. (24$^+$)}
 \end{compactitem}
 }
 
@@ -622,7 +897,7 @@ $}
 \emph{$\b{c}$-vector} of~$\alpha \in T = $ you don't want to know...
 
 \vspace{.5cm}
-\theo{PROP}{For any wiggly pseudotriangulation~$T$, the $\b{g}$-vectors~$\set{\b{g}(\alpha)}{\alpha \in T^\circ}$ and the $\b{c}$-vectors~$\set{\b{c}(\alpha, T)}{\alpha \in T^\circ}$ form dual bases.}
+\theo{PROP}{For any wiggly pseudotriangulation~$T$, the $\b{g}$-vectors~$\set{\b{g}(\alpha)}{\alpha \in T^\circ}$ and the $\b{c}$-vectors~$\set{\b{c}(\alpha, T)}{\alpha \in T^\circ}$ form dual bases. \hfill \papier{Bapat--P. (24$^+$)}}
 
 \vspace{1cm}
 \centerline{\raisebox{-4cm}{\includegraphics[scale=4]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
@@ -636,7 +911,7 @@ $}
 \emph{$\b{g}$-vector} of $\alpha =$ proj. on $\sum_{i = 1}^{2n} x_i = 0$ of \raisebox{-1.7cm}{\includegraphics[scale=4]{gvector}}
 
 \vspace{.1cm}
-\theo{THM}{The cones~$\setangle{\b{g}(\alpha)}{\alpha \in D}$ for all wiggly dissections~$D$ form a complete simplicial fan~$\wigglyFan_n$ (in $\sum_{i = 1}^{2n} x_i = 0$).
+\theo{THM}{The cones~$\setangle{\b{g}(\alpha)}{\alpha \in D}$ for all wiggly dissections~$D$ form a complete simplicial fan~$\wigglyFan_n$ (in $\sum_{i = 1}^{2n} x_i = 0$). \hfill \papier{Bapat--P. (24$^+$)}
 }
 
 \vspace{2cm}
@@ -694,10 +969,12 @@ The wiggly fan~$\wigglyFan_n$ is the normal fan of a simplicial $(2n-1)$-dimensi
 \item intersection of the halfspaces~$\set{\b{x} \in \R^{2n}}{\dotprod{\b{g}(\alpha)}{\b{x}} \!\le\! \kappa(\alpha)}$ for all wiggly arcs~$\alpha$,
 \item convex hull of~$\b{p}(T) \eqdef \sum\limits_{\alpha \in T} \kappa(\alpha) \, \b{c}(\alpha, T)$ for all wiggly pseudotriangulations~$T$.
 \end{itemize}
-\vspace{-.5cm}
+
+\vspace{-.6cm}
+\hfill \papier{Bapat--P. (24$^+$)}
 }
 
-\vspace{1cm}
+\vspace{.5cm}
 \centerline{\input{figures/wigglyhedron}}
 
 \end{slide}
@@ -711,6 +988,8 @@ The wiggly fan~$\wigglyFan_n$ is the normal fan of a simplicial $(2n-1)$-dimensi
 \item the wiggly complex~$\wigglyComplex_n$ is the boundary complex of the polar of~$\wigglyhedron_n$,
 \item the Hasse diagram of the wiggly lattice is a linear orientation of the graph of~$\wigglyhedron_n$.
 \end{compactitem}
+
+\hfill \papier{Bapat--P. (24$^+$)}
 }
 
 \vspace{1cm}
@@ -728,6 +1007,8 @@ The wiggly fan~$\wigglyFan_n$ is the normal fan of a simplicial $(2n-1)$-dimensi
 
 \theo{THM}{
 For $\delta = \delta_1 \dots \delta_n \in \{+,-\}^n$, there are lattice isomorphisms between 
+
+\vspace{-.4cm}
 \begin{itemize}
 \item \emph{$\delta$-triangulations} $=$ triangulation of the $\delta$-gon, whose vertex at abscissa $i$ has ordinate \\[-1cm]
 \[
@@ -757,29 +1038,13 @@ negative if $\delta_j = {-}$}
 \delta_j = {-} \quad \Longrightarrow \quad \sigma^{-1}(2j) \le \sigma^{-1}(i)\quad\;\;
 \]
 \end{itemize}
+
 \vspace{-.5cm}
+\hfill \papier{Bapat--P. (24$^+$)}
 }
 
-\vspace{.5cm}
+\vspace{.3cm}
 \centerline{\includegraphics[scale=1.6]{wigglyCambrian1}}
-
-\end{slide}
-
-%%%
-
-\begin{slide}{Cambrian considerations}
-
-\vspace{.5cm}
-\centerline{\includegraphics[scale=1.6]{wigglyCambrian2}}
-
-\end{slide}
-
-%%%
-
-\begin{slide}{Cambrian considerations}
-
-\vspace{.5cm}
-\centerline{\includegraphics[scale=1.6]{wigglyCambrian3}}
 
 \end{slide}
 
@@ -789,42 +1054,57 @@ negative if $\delta_j = {-}$}
 
 \theo{THM}{
 For $\delta = \delta_1 \dots \delta_n \in \{+,-\}^n$, there are lattice isomorphisms between 
-\begin{itemize}
-\item \emph{$\delta$-triangulations} $=$ triangulation of the $\delta$-gon, whose vertex at abscissa $i$ has ordinate \\[-1cm]
-\[
-\text{positive if $\delta_j = {+}$
-\qquad and \qquad
-negative if $\delta_j = {-}$}
-\]
-\vspace{-1.5cm}
-\item \emph{$\delta$-permutations} $=$ permutation of~$[n]$ avoiding for~$i < j < k$ \\[-1cm]
-\[
-\cdots j \cdots ki \cdots \text{ if~$\delta_j = +$}
-\quad\text{and}\quad
-\cdots ik \cdots j \cdots \text{ if~$\delta_j = -$}
-\]
-\vspace{-1.5cm}
-\item \emph{$\delta$-wiggly pseudotriangulations} $=$ wiggly pseudotriangulation containing the arcs \\[-1cm]
-\[
-(0, j, {[1,j[}, \varnothing) \text{ for~$\delta_j = {+}$}
-\qquad\text{and}\qquad
-(0, j, \varnothing, {[1,j[}) \text{ for~$\delta_j = {-}$}
-\]
-\vspace{-1.5cm}
-\item \emph{$\delta$-wiggly permutations} $=$ wiggly permutation~$\sigma$ of~$[2n]$ such that \\[-1cm]
-\[
-\delta_j = {+} \quad \Longrightarrow \quad \sigma^{-1}(i) \le \sigma^{-1}(2j-1)
-\quad\text{and}\quad
-\delta_j = {-} \quad \Longrightarrow \quad \sigma^{-1}(2j) \le \sigma^{-1}(i)\quad\;\;
-\]
-\end{itemize}
-\vspace{-.5cm}
+\begin{compactitem}
+\item $\delta$-triangulations
+\item $\delta$-permutations
+\item $\delta$-wiggly pseudotriangulations
+\item $\delta$-wiggly permutations \hfill \papier{Bapat--P. (24$^+$)}
+\end{compactitem}
+}
+
+\vspace{.5cm}
+\centerline{\includegraphics[scale=1.5]{wigglyCambrian2}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Cambrian considerations}
+
+\theo{THM}{
+For $\delta = \delta_1 \dots \delta_n \in \{+,-\}^n$, there are lattice isomorphisms between 
+\begin{compactitem}
+\item $\delta$-triangulations
+\item $\delta$-permutations
+\item $\delta$-wiggly pseudotriangulations
+\item $\delta$-wiggly permutations \hfill \papier{Bapat--P. (24$^+$)}
+\end{compactitem}
+}
+
+\vspace{-.2cm}
+\centerline{\includegraphics[scale=1.5]{wigglyCambrian3}}
+
+\end{slide}
+
+%%%
+
+\begin{slide}{Cambrian considerations}
+
+\theo{THM}{
+For $\delta = \delta_1 \dots \delta_n \in \{+,-\}^n$, there are lattice isomorphisms between 
+\begin{compactitem}
+\item $\delta$-triangulations
+\item $\delta$-permutations
+\item $\delta$-wiggly pseudotriangulations
+\item $\delta$-wiggly permutations \hfill \papier{Bapat--P. (24$^+$)}
+\end{compactitem}
 }
 
 \vspace{.5cm}
 \theo{PROP}{
 The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of the wigglyhedron~$\wigglyhedron_n$ corresponding to the wiggly pseudodissection formed by the $\delta$-wiggly arcs.
 
+\hfill \papier{Bapat--P. (24$^+$)}
 }
 
 \end{slide}
@@ -854,7 +1134,7 @@ The $\delta$-associahedron~$\Asso_\delta$ is normally equivalent to the face of 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{slide}{Open problem 2: wiggly pseudotriangulations and duality}
-%\hspace{1.6cm} Triangulations \hspace{3.4cm} Pseudotriangulations \hspace{2.5cm} Multitriangulations\\
+%\hspace{1.6cm} triangulations \hspace{3.4cm} pseudotriangulations \hspace{2.5cm} multitriangulations\\
 %\vspace{-.5cm}\\
 
 \vspace*{-.8cm}
