@@ -327,7 +327,7 @@ The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~$\al
 
 \begin{remark}
 \label{rem:numberWigglyArcs}
-The number of wiggly arcs is~$\sum_{\ell = 0}^n 2^\ell (n+1-\ell)$.
+The number of wiggly arcs is~$\sum_{\ell = 0}^n 2^\ell (n+1-\ell) = 2^{n+2}-n-3$.
 \end{remark}
 
 \begin{definition}
@@ -1904,7 +1904,7 @@ A \defn{$\delta$-wiggly permutation} is a wiggly permutation~$\sigma$ of~$[2n]$ 
 \]
 %$\delta_j > 0 \implies \sigma^{-1}(i) \le \sigma^{-1}(2j-1)$ and~$\delta_j < 0 \implies \sigma^{-1}(i) \ge \sigma^{-1}(2j)$
 for all~$1 \le i \le 2j \le 2n$.
-The \defn{$\delta$-wiggly permutation lattice} is the interval of the wiggly permutation lattice~$\wigglyLattice_n$ given by $\delta$-wiggly permutations.
+The \defn{$\delta$-wiggly permutation lattice} is the interval of the wiggly lattice~$\wigglyLattice_n$ given by $\delta$-wiggly permutations.
 \end{definition}
 
 \begin{remark}
@@ -1996,7 +1996,7 @@ A \defn{wiggly arc} is a quadruple~$(p,q,R,S)$ where~$p < q \in P$ and the sets~
 Two wiggly arcs~$(p,q,R,S)$ and~$(p',q',R',S')$ are \defn{crossing} if 
 \begin{itemize}
 \item either the segments~$[p,q]$ and~$[p',q']$ cross, 
-\item or~$(R \cap S') \cup (\{p,q\} \cap S') \cup (R \cap \{p',q'\}) \ne \varnothing \ne (R' \cap S) \cup (\{p',q'\} \cap S) \cup (R' \cap \{p,q\})$,
+\item or~$(R \cap S') \cup (\{p,q\} \cap S') \cup (R \cap \{p',q'\}) \ne \varnothing \ne (R' \cap S) \cup (\{p',q'\} \cap S) \cup (R' \cap \{p,q\})$.
 \end{itemize}
 A set~$X$ of wiggly arcs is \defn{pointed} if for any~$p \in P$, the wiggly arcs of~$X$ with an endpoint at~$p$ generate a pointed cone.
 The \defn{wiggly complex}~$\wigglyComplex_P$ is the simplicial complex of pairwise pointed and non-crossing subsets of wiggly arcs.

@@ -7,12 +7,13 @@ from functools import cmp_to_key
 def number_arcs(n):
     r"""
     Return the number of arcs on n+2 points.
+    This is add(2**j * (n+1-j) for j in range(n+1)) = 2**(n+2)-n-3
 
     EXAMPLES::
         sage: [number_arcs(n) for n in range(10)]
         [1, 4, 11, 26, 57, 120, 247, 502, 1013, 2036]
     """
-    return add(2**j * (n+1-j) for j in range(n+1))
+    return 2**(n+2)-n-3
 
 def number_relevant_arcs(n):
     r"""
@@ -653,6 +654,53 @@ def cambrian_wiggly_permutations_sublattice(signature):
     f = cambrian_face(signature)
     return wiggly_permutations_lattice(n).sublattice([wpt2wp(list(f) + list(g)) for g in cambrian_complex(signature).facets()])
 
+### OTHER ASSOCIAHEDRA
+
+def multigraph(d,n):
+    r"""
+    Return the multigraph corresponding to a wiggly dissection d.
+    """
+    G = Graph(n+2, multiedges=True)
+    G.add_edges([[a[0], a[1]] for a in d] + [[0,n+1],[0,n+1]])
+    return G
+
+@cached_function
+def wiggly_trees(n):
+    r"""
+    Return the wiggly dissections whose multigraph is a tree.
+
+    EXAMPLES::
+        sage: wiggly_trees(2)
+        [((1, 2, (), ()), (1, 3, (2,), ())),
+         ((0, 2, (1,), ()), (0, 1, (), ())),
+         ((1, 2, (), ()), (0, 2, (1,), ())),
+         ((2, 3, (), ()), (1, 3, (), (2,))),
+         ((0, 2, (1,), ()), (1, 3, (), (2,))),
+         ((1, 2, (), ()), (1, 3, (), (2,))),
+         ((2, 3, (), ()), (1, 3, (2,), ())),
+         ((2, 3, (), ()), (0, 1, (), ())),
+         ((0, 2, (), (1,)), (1, 3, (2,), ())),
+         ((0, 2, (), (1,)), (0, 1, (), ())),
+         ((0, 2, (), (1,)), (1, 2, (), ()))]
+    """
+    return [d for d in wiggly_complex(n).faces()[n-1] if multigraph(d,n).is_connected()]
+
+@cached_function
+def wiggly_associahedron(wt, n):
+    r"""
+    Return the subcomplex of the wiggly complex corresponding to the given wiggly tree.
+
+    EXAMPLES::
+    """
+    return wiggly_complex(n).link(wt)
+
+@cached_function
+def has_long_arc(wt, n):
+    r"""
+    Check whether the wiggly associahedron of wt contains a long arc.
+    """
+    return any([a[0] == 0 and a[1] == n+1 for a in wiggly_associahedron(wt, n).vertices()])
+    
 ### MULTI WIGGLY COMPLEXES
 ### This is very much in progress. Does not work at the moment.
 
