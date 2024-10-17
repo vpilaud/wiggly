@@ -197,6 +197,7 @@ To conclude, we conjecture that the wiggly complex of any planar point set is po
 \label{sec:wigglyPseudotriangulations}
 
 We start by defining the wiggly complex, the clique complex of a compatibility relation on the following wiggly arcs.
+See \cref{fig:pseudodissections}.
 
 \begin{definition}
 A \defn{wiggly arc} is a quadruple $\alpha \eqdef (i,j,A,B)$ where $0 \!\le\! i \!<\! j \!\le\! n+1$ and the sets~$A$ and~$B$ form a partition of~${]i,j[} \eqdef \{i+1, \dots, j-1\}$.
@@ -221,11 +222,11 @@ Two wiggly arcs~$(i,j,A,B)$ and~$(i',j',A',B')$ are
 \end{definition}
 
 \begin{definition}
-A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs which contains the exterior wiggly arcs~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$. We denote by~$D^\circ \eqdef D \ssm \{\alpha_\mathrm{top}, \alpha_\mathrm{bot}\}$.
+A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs which contains the exterior wiggly arcs~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$. We denote by~$D^\circ \!\eqdef\! D \ssm \{\alpha_\mathrm{top}, \alpha_\mathrm{bot}\}$.
 
 \begin{figure}[b]
 \centerline{\includegraphics[scale=1.4]{wigglyPseudodissections}}
-\caption{Three wiggly pseudodissections for~$n = 7$. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ pseudotriangles, and are obtained from each other by a flip.}
+\caption{Three wiggly pseudodissections for~$n = 7$. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ wiggly pseudotriangles, and are obtained from each other by a flip.}
 \label{fig:pseudodissections}
 \end{figure}
 \end{definition}
@@ -234,6 +235,7 @@ A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs
 \label{def:wigglyComplex}
 The \defn{wiggly complex}~$\wigglyComplex_n$ is the simplicial complex of subsets of pairwise compatible internal wiggly arcs.
 %In other words, it is the clique complex of the compatibility graph on internal wiggly arcs.
+See \cref{fig:wigglyComplex}\,(left).
 
 \begin{figure}
 \centerline{\includegraphics[scale=1.1]{wigglyComplex}}
@@ -256,7 +258,7 @@ A \defn{wiggly pseudotriangle} (resp.~\defn{pseudoquadrangle}) is a cell of degr
 \begin{proposition}
 \label{prop:wigglyPseudotriangulations}
 Any wiggly pseudodissection~$D$ contains at most~$2n-1$ internal wiggly arcs and at most~$n$ wiggly cells.
-Moreover, the following are equivalent:
+Moreover, the following assertions are equivalent:
 \begin{compactenum}[(i)]
 \item all wiggly cells of~$D$ are wiggly pseudotriangles,
 \item $D$ contains~$n$ wiggly cells and is connected,
@@ -355,20 +357,19 @@ Then any wiggly arc compatible with both~$\alpha$ and~$\alpha'$ is also compatib
 \begin{compactitem}
 \item $\beta \eqdef (i, j', A \cup A', B \cup B' \cup \{j\})$ and~$\beta' \eqdef (i, j', A \cup A' \cup \{j\}, B \cup B')$ if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$,
 (In other words, ~$\beta$ and~$\beta'$ are the two wiggly arcs starting at~$\min(i,i')$ and ending at~$\max(j,j')$ which follow $\alpha$ on~$]i,j[$ and~$\alpha'$ on~$]i',j'[$.)
-\item $\beta \!\eqdef\! \big( i, j', {]i,j'[} \!\ssm\! (B \!\cup\! B'), {]i,j'[} \!\cap\! (B \!\cup\! B') \big)$ and~$\beta' \!\eqdef\! \big( i', j, {]i',j[} \!\cap\! (A \!\cup\! A'), {]i',j[} \!\ssm\! (A \!\cup\! A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing and there is~$k \in [n-1]$ with~$k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$.
-(In other words, $\beta$ is the wiggly arc starting at~$i$ and ending at~$j'$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i'$ and ending~at~$j$ which follows the upper hull of~$\alpha$ and~$\alpha'$.)
+\item $\beta \!\eqdef\! \big( i', j, {]i,j'[} \!\ssm\! (B \!\cup\! B'), {]i,j'[} \!\cap\! (B \!\cup\! B') \big)$ and~$\beta' \!\eqdef\! \big( i, j', {]i',j[} \!\cap\! (A \!\cup\! A'), {]i',j[} \!\ssm\! (A \!\cup\! A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing and $\alpha$ crosses~$\alpha'$ from north-west to south-east.
+(In other words, $\beta$ is the wiggly arc starting at~$i'$ and ending at~$j$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i$ and ending~at~$j'$ which follows the upper hull of~$\alpha$~and~$\alpha'$.)
 \end{compactitem}
 %See \cref{fig:incompatible3} for illustrations.
 %(By exchanging~$\alpha$ and~$\alpha'$, similar statements hold if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$, or if~$\alpha$ and~$\alpha'$ are crossing with~$i \in B'$ or~$i' \in A$.)
 %
 %\begin{figure}
 
-%\vspace{-.1cm}
-\centerline{\includegraphics[scale=1.3]{incompatible3}}
+\vspace{.1cm}
+\centerline{\includegraphics[scale=1.55]{incompatible3}}
 %\caption{The wiggly arcs~$\beta$ and~$\beta'$ of \cref{prop:uerp}.}
 %\label{fig:incompatible3}
 %\end{figure}
-\vspace{-.4cm}
 \end{proposition}
 
 \section{Wiggly permutations and the wiggly lattice}
@@ -378,7 +379,7 @@ We now define the wiggly lattice on wiggly permutations of~$[2n]$, illustrated i
 
 \begin{definition}
 \label{def:wigglyPermutation}
-A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns:
+A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns
 \begin{compactitem}
 \item $(2j-1) \cdots i \cdots (2j)$ for~$j \in [n]$ and~$i < 2j-1$,
 \item $(2j) \cdots k \cdots (2j-1)$ for~$j \in [n]$ and~$k > 2j$.
@@ -389,9 +390,8 @@ A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns
 \label{exm:allSmallWigglyPermutations}
 For~$n = 1$, the $2$ wiggly permutations of~$[2]$ are~$12$ and~$21$.
 For~$n = 2$, the $14$ wiggly permutations of~$[4]$ are
-\vspace{-.1cm}
 \[
-1234, 1243, 1342, 1423, 1432, 2134, 2143, 3412, 3421, 4123, 4132, 4213, 4312, 4321.
+1234, \; 1243, \; 1342, \; 1423, \; 1432, \; 2134, \; 2143, \; 3412, \; 3421, \; 4123, \; 4132, \; 4213, \; 4312, \; 4321.
 \]
 %The wiggly permutations of~$[6]$ are
 %\begin{gather*}
@@ -477,7 +477,7 @@ The following two definitions are illustrated in \cref{fig:wigglyLattice}.
 %\label{fig:bijection}
 %\end{figure}
 
-\parpic(3.6cm,5cm)(-10pt, 133pt)[r][b]{\includegraphics[scale=2]{bijection}}{
+\parpic(3.6cm,3.5cm)(-10pt, 133pt)[r][b]{\includegraphics[scale=2]{bijection}}{
 \begin{definition}
 \label{def:bijection1}
 Consider a wiggly pseudotriangulation~$T$.
@@ -488,12 +488,12 @@ See example on the right.
 
 \begin{definition}
 \label{def:bijection2}
-For a wiggly permutation~$\sigma$ of~$[2n]$, define~$\Psi(\sigma) \eqdef \set{\alpha(\sigma, k)}{k \in [2n-1]}$, where for~$k \in [2n-1]$, we have~$\alpha(\sigma, k) \eqdef ( i, j, A, B)$ with
+For a wiggly permutation~$\sigma$ of~$[2n]$, define~$\Psi(\sigma) \eqdef\! \set{\alpha(\sigma, k)}{k \in [2n-1]}$, where for~$k \in [2n-1]$, we have~$\alpha(\sigma, k) \eqdef ( i, j, A, B)$ with
 \begin{alignat*}{3}
 i & \eqdef \max \{0\} \cup \set{i \!\in\! [n]}{2i-1 \!\in\! \sigma([k]) \!\!\not\ni\! 2i}\!, \quad &
-A & \eqdef \set{\ell \!\in\! {]i,j[}}{\{2\ell-1, 2\ell\} \!\subseteq\! \sigma([k])}\!, \\
+A & \eqdef \set{\ell \!\in\! {]i,j[}}{\!\{2\ell-1, 2\ell\} \!\subseteq\! \sigma([k])}\!, \\
 j & \eqdef \min \{n+1\} \cup \set{j \!\in\! [n]}{2j \!\in\! \sigma([k]) \!\!\not\ni\! 2j-1}\!, \;\, &
-B & \eqdef \set{\ell \!\in\! {]i,j[}}{\{2\ell-1, 2\ell\} \cap \sigma([k]) \!=\! \varnothing} \!.
+B & \eqdef \set{\ell \!\in\! {]i,j[}}{\!\{2\ell-1, 2\ell\} \cap \sigma([k]) \!=\! \varnothing} \!.
 \end{alignat*}
 \end{definition}
 }
@@ -522,12 +522,10 @@ We now define a first family of vectors, see \cref{fig:pseudotriangulationMatric
 \begin{definition}
 \label{def:gvectors}
 The \defn{$\b{g}$-vector}~$\b{g}(\alpha)$ of a wiggly arc~$\alpha \eqdef (i, j, A, B)$ is defined as the projection~$\pi \big( \hat{\b{g}}(\alpha) \big)$ of the vector~$\hat{\b{g}}(\alpha) \eqdef \one_{\alpha^+} - \one_{\alpha^-}$ where
-\vspace{-.25cm}
 \begin{align*}
 \alpha^+ & \eqdef \big(\{2i-1, 2j\} \ssm \{-1, 2n+2\} \big) \cup \set{2a-1}{a \in A} \cup \set{2a}{a \in A},
 \\
 \alpha^- & \eqdef \big(\{2i, 2j-1\} \ssm \{0, 2n+1\} \big) \cup \set{2b-1}{b \in B} \cup \set{2b}{b \in B}.
-\\[-.9cm]
 \end{align*}
 %If we place the coordinate~$2p-1$ on the left and the coordinate~$2p$ on the right of point~$p$, then~$\b{g}(\alpha)$ has a $1$ outside its two endpoints and on both sides of points in~$A$, and a~$-1$ inside its two endpoints and on both sides of points in~$B$.
 %Note that ${\hat{\b{g}} \big( (0, n+1, [n], \varnothing) \big) = \one_{2n} = - \hat{\b{g}} \big( (0, n+1, \varnothing, [n]) \big)}$, so that~${\b{g} \big( (0, n+1, [n], \varnothing) \big) = \b{0} = \b{g} \big( (0, n+1, \varnothing, [n]) \big)}$.
@@ -557,7 +555,7 @@ For any wiggly pseudotriangulation~$T$, the set~$\b{g}(T)$ is a basis of~$\HH_{2
 \begin{definition}
 \label{def:cvectors}
 The \defn{$\b{c}$-vector} of an interior wiggly arc~$\alpha$ in a \mbox{wiggly pseudotriangulation~$T$} is the vector~$\b{c}(\alpha, T)$ of~$\HH_{2n}$ such that~$\dotprod{\b{c}(\alpha, T)\!}{\!\b{g}(\alpha)} \!=\! 1$ and~$\dotprod{\b{c}(\alpha, T)\!}{\!\b{g}(\alpha')} \!=\! 0$~for~all wiggly arcs~$\alpha' \ne \alpha$ of~$T$.
-That is, $\b{c}(T) \eqdef \! \set{\b{c}(\alpha, T)}{\alpha \in T^\circ}$ and~$\b{g}(T)$ are dual bases~in~$\HH_{2n}$.
+That is, $\b{c}(T) \eqdef \! \set{\b{c}(\alpha, T)}{\alpha \!\in\! T^\circ}$ and~$\b{g}(T)$ are dual bases~in~$\HH_{2n}$.
 \end{definition}
 
 We finally exploit $\b{g}$-vectors to support the wiggly fan realizing the wiggly complex.
@@ -604,7 +602,7 @@ Then
 \end{compactitem}
 \end{proposition}
 
-Combining \cref{prop:linearDependences,prop:wallCrossingInequalities}, the incompatibility number satisfies all wall-crossing inequalities of the wiggly fan~$\wigglyFan_n$, from which we derive our main statement.
+Combining \cref{prop:linearDependences,prop:wallCrossingInequalities}, the incompatibility numbers satisfy all wall-crossing inequalities of the wiggly fan~$\wigglyFan_n$, from which we derive our main statement.
 %that it behaves properly with respect to the linear dependences of 
 
 \begin{theorem}
@@ -628,7 +626,7 @@ The Hasse diagram of the wiggly lattice~$\wigglyLattice_n$ is isomorphic to the 
 \section{Cambrian considerations}
 \label{sec:CambrianConsiderations}
 
-In this section, we fix a signature~$\delta \eqdef \delta_1 \dots \delta_n \in \{+,-\}^n$. By convention, $\delta_0 = \delta_{n+1} = 0$.
+In this section, we fix a signature~$\delta \eqdef \delta_1 \dots \delta_n \in \{+,-\}^n$. By convention, $\delta_0 \eqdef \delta_{n+1} \eqdef 0$.
 We connect the $\delta$-Cambrian lattice~\cite{Reading-CambrianLattices} to the wiggly lattice % of \cref{sec:wigglyPermutations} 
 and the $\delta$-associahedron of~\cite{HohlwegLange} to the wigglyhedron. % of \cref{sec:wigglyhedron}.
 \cref{def:CambrianTriangulations,def:CambrianPermutations,def:CambrianWigglyPseudotriangulations,def:CambrianWigglyPermutations,prop:CambrianLattice} are illustrated in \cref{fig:wigglyCambrian}.
@@ -680,7 +678,7 @@ The \defn{$\delta$-wiggly permutation lattice} is the interval of the wiggly lat
 
 \begin{proposition}
 \label{prop:CambrianLattice}
-The $\delta$-triangulation, $\delta$-permutation, \mbox{$\delta$-wiggly} pseudotriangulation, and $\delta$-wiggly permutation lattices are all isomorphic, and are known as the \defn{$\delta$-Cambrian~lattice}~\cite{Reading-CambrianLattices}.
+The $\delta$-triangulation, $\delta$-permutation, \mbox{$\delta$-wiggly} pseudotriangulation, and $\delta$-wig\-gly permutation lattices are all isomorphic, and are known as the \defn{$\delta$-Cambrian~lattice}~\cite{Reading-CambrianLattices}.
 \end{proposition}
 
 \begin{proposition}
@@ -728,7 +726,7 @@ For any point set~$P$ in the plane, the wiggly complex~$\wigglyComplex_P$ is the
 
 \cref{conj:polytopality} holds in two extreme situations: the wiggly complex~$\wigglyComplex_P$ is realized
 \begin{compactitem}
-\item by the wigglyhedron of~\cref{thm:wigglyhedron} when the point set~$P$ is alogned, and
+\item by the wigglyhedron of~\cref{thm:wigglyhedron} when the point set~$P$ is aligned, and
 \item by the pseudotriangulation polytope of~\cite{RoteSantosStreinu-polytope}, realizing the flip graph on the original pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations}, when the point set~$P$ is in general position.
 \end{compactitem}
 

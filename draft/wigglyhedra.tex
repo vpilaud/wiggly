@@ -363,7 +363,7 @@ A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs
 %
 \begin{figure}
 \centerline{\includegraphics[scale=1.5]{wigglyPseudodissections}}
-\caption{Three wiggly pseudodissections for~$n = 7$. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ pseudotriangles, and are obtained from each other by flipping the wiggly arc separating their yellow and dark blue pseudotriangles.}
+\caption{Three wiggly pseudodissections for~$n = 7$. The left one has three wiggly cells, of respective degrees $3$ (red), $8$ (green), and $4$ (blue). The other two have $7$ wiggly pseudotriangles, and are obtained from each other by flipping the wiggly arc separating their yellow and dark blue wiggly pseudotriangles.}
 \label{fig:pseudodissections}
 \end{figure}
 \end{definition}
@@ -422,7 +422,7 @@ As illustrated in \cref{fig:pseudoquadrangles}, a wiggly pseudoquadrangle~$q$ ca
 \begin{proposition}
 \label{prop:wigglyPseudotriangulations}
 Any wiggly pseudodissection~$D$ contains at most~$2n-1$ internal wiggly arcs and at most~$n$ wiggly cells.
-Moreover, the following are equivalent:
+Moreover, the following assertions are equivalent:
 \begin{enumerate}[(i)]
 \item all wiggly cells of~$D$ are wiggly pseudotriangles,
 \item $D$ contains~$n$ wiggly cells and is connected,
@@ -657,7 +657,7 @@ Let~$\alpha \eqdef (i, j, A, B)$ and~$\alpha' \eqdef (i', j', A', B')$ be two wi
 We say that the flip from~$T$ to~$T'$ is \defn{increasing} if 
 \begin{itemize}
 \item $\alpha$ starts where~$\alpha'$ ends (that is, $i = j'$), or 
-\item $\alpha$ crosses~$\alpha'$ from north-west to south-east (that is, there exists~$k \in [n-1]$ such that $k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$).
+\item $\alpha$ crosses~$\alpha'$ from north-west to south-east (that is, there exists~$1 \le k < \ell \le n$ such that $k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$\ell \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$).
 \end{itemize}
 The \defn{wiggly increasing flip graph}~$\wigglyIncreasingFlipGraph_n$ is the directed graph with a vertex for each wiggly pseudotriangulation and an edge for each increasing~flip.
 %
@@ -678,11 +678,11 @@ Then any wiggly arc compatible with both~$\alpha$ and~$\alpha'$ is also compatib
 \begin{itemize}
 \item $\beta \eqdef (i, j', A \cup A', B \cup B' \cup \{j\})$ and~$\beta' \eqdef (i, j', A \cup A' \cup \{j\}, B \cup B')$ if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$,
 (In other words, ~$\beta$ and~$\beta'$ are the two wiggly arcs starting at~$\min(i,i')$ and ending at~$\max(j,j')$ which follow $\alpha$ on~$]i,j[$ and~$\alpha'$ on~$]i',j'[$.)
-\item $\beta \eqdef \big( i, j', {]i,j'[} \ssm (B \cup B'), {]i,j'[} \cap (B \cup B') \big)$ and~$\beta' \eqdef \big( i', j, {]i',j[} \cap (A \cup A'), {]i',j[} \ssm (A \cup A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing and there is~$k \in [n-1]$ such that~$k \in (A \cap B') \cup (\{i\} \cap B') \cup (A \cap \{i'\})$ and~$k+1 \in (A' \cap B) \cup (\{j'\} \cap B) \cup (A' \cap \{j\})$.
-(In other words, $\beta$ is the wiggly arc starting at~$i$ and ending at~$j'$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i'$ and ending~at~$j$ which follows the upper hull of~$\alpha$ and~$\alpha'$.)
+\item $\beta \eqdef \big( i', j, {]i,j'[} \ssm (B \cup B'), {]i,j'[} \cap (B \cup B') \big)$ and~$\beta' \eqdef \big( i, j', {]i',j[} \cap (A \cup A'), {]i',j[} \ssm (A \cup A') \big)$ if~$\alpha$ and~$\alpha'$ are crossing and $\alpha$ crosses~$\alpha'$ from north-west to south-east.
+(In other words, $\beta$ is the wiggly arc starting at~$i'$ and ending at~$j$ which follows the lower hull of~$\alpha$ and~$\alpha'$, and~$\beta'$ is the wiggly arc starting at~$i$ and ending~at~$j'$ which follows the upper hull of~$\alpha$ and~$\alpha'$.)
 \end{itemize}
 %See \cref{fig:incompatible3} for illustrations.
-(By exchanging~$\alpha$ and~$\alpha'$, similar statements hold if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$, or if~$\alpha$ and~$\alpha'$ are crossing with~$i \in B'$ or~$i' \in A$.)
+(By exchanging~$\alpha$ and~$\alpha'$, similar statements hold if~$\alpha$ and~$\alpha'$ are non pointed with~$j = i'$, or if~$\alpha$ crosses~$\alpha'$ from south-east to north-west.)
 %
 \begin{figure}
 \centerline{\includegraphics[scale=1.3]{incompatible3}}
@@ -779,7 +779,7 @@ We now consider wiggly permutations of~$[2n]$, defined as follows.
 
 \begin{definition}
 \label{def:wigglyPermutation}
-A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns:
+A \defn{wiggly permutation} is a permutation of~$[2n]$ which avoids the patterns
 \begin{itemize}
 \item $(2j-1) \cdots i \cdots (2j)$ for~$j \in [n]$ and~$i < 2j-1$,
 \item $(2j) \cdots k \cdots (2j-1)$ for~$j \in [n]$ and~$k > 2j$.
@@ -1854,7 +1854,7 @@ We then raise the question to extend our construction to wiggly complexes of arb
 \subsection{Cambrian considerations}
 \label{subsec:CambrianConsiderations}
 
-In this section, we fix a signature~$\delta \eqdef \delta_1 \dots \delta_n \in \{+,-\}^n$. By convention, we set~$\delta_0 = \delta_{n+1} = 0$.
+In this section, we fix a signature~$\delta \eqdef \delta_1 \dots \delta_n \in \{+,-\}^n$. By convention, we set~$\delta_0 \eqdef \delta_{n+1} \eqdef 0$.
 We connect the $\delta$-Cambrian lattice~\cite{Reading-CambrianLattices} to the wiggly lattice of \cref{sec:combinatorics} and the $\delta$-associahedron of~\cite{HohlwegLange} to the wigglyhedron of \cref{sec:geometry}.
 \cref{def:CambrianTriangulations,def:CambrianPermutations,def:CambrianWigglyPseudotriangulations,def:CambrianWigglyPermutations,prop:CambrianLattice} are illustrated in \cref{fig:wigglyCambrian}.
 
