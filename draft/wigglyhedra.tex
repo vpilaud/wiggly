@@ -321,8 +321,8 @@ The following two definitions are illustrated in \cref{fig:incompatible}.
 
 \begin{definition}
 A \defn{wiggly arc} is a quadruple $\alpha \eqdef (i,j,A,B)$ where $0 \le i < j \le n+1$ and the sets~$A$ and~$B$ form a partition of~${]i,j[} \eqdef \{i+1, \dots, j-1\}$.
-We represent $\alpha$ by an $x$-monotone curve wiggling around the horizontal axis, starting at point~$i$, ending at point~$j$, and passing above the points of~$A$ and below the points of~$B$.
-The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~$\alpha_\mathrm{bot} \eqdef (0, n+1, \varnothing, [n])$ are called \defn{external}, all other wiggly arcs are called \defn{internal}.
+We represent $\alpha$ by an abscissa monotone curve wiggling around the horizontal axis, starting at point~$i$, ending at point~$j$, and passing above the points of~$A$ and below the points of~$B$.
+The wiggly arcs~$\alpha_\mathrm{top} \eqdef (0, n+1, [n], \varnothing)$ and~${\alpha_\mathrm{bot} \eqdef (0, n+1, \varnothing, [n])}$ are called \defn{external}, all other wiggly arcs are called \defn{internal}.
 \end{definition}
 
 \begin{remark}
@@ -335,7 +335,7 @@ The number of wiggly arcs is~$\sum_{\ell = 0}^n 2^\ell (n+1-\ell) = 2^{n+2}-n-3$
 Two wiggly arcs~$(i,j,A,B)$ and~$(i',j',A',B')$ are 
 \begin{itemize}
 \item \defn{non pointed} if~$i = j'$ or~$i' = j$,
-\item \defn{crossing} if~$(A \cap B') \cup (\{i,j\} \cap B') \cup (A \cap \{i',j'\}) \ne \varnothing \ne (A' \cap B) \cup (\{i',j'\} \cap B) \cup (A' \cap \{i,j\})$, that is, if the corresponding curves cross,
+\item \defn{crossing} if~$(A \cap B') \cup (\{i,j\} \cap B') \cup (A \cap \{i',j'\}) \ne \varnothing \ne (A' \cap B) \cup (\{i',j'\} \cap B) \cup (A' \cap \{i,j\})$, that is, if the corresponding curves cross (\ie any isotopy representatives must cross),
 \item \defn{incompatible} if they are non pointed or crossing, and \defn{compatible} otherwise.
 \end{itemize}
 %
@@ -374,13 +374,14 @@ A \defn{wiggly pseudodissection}~$D$ is a set of pairwise compatible wiggly arcs
 A wiggly pseudodissection~$D$ decomposes the digon bounded by~$\alpha_\mathrm{top}$ and~$\alpha_\mathrm{bot}$ into cells, that we call \defn{wiggly cells}.
 The \defn{degree}~$\delta_c$ of a wiggly cell~$c$ is~$\delta_c \eqdef \beta_c/2+2\kappa_c-1$ where~$\beta_c$ is the number of wiggly arcs on the boundary of~$c$ (counted twice if they appear twice along the boundary of~$c$), and~$\kappa_c$ is the number of connected components of the boundary of~$c$.
 Two consecutive wiggly arcs along the boundary of~$c$ define a \defn{corner} (resp.~a \defn{hinge}) of~$c$ if they bound a convex (resp.~concave) angle of~$c$.
+Note that two corners of~$c$ can coincide at the same point~$i \in [n]$.
 %The \defn{concave chains} of~$c$ are the maximal sequences of wiggly arcs on the external boundary of~$c$ connected by hinges of~$c$.
 \end{definition}
 
 \begin{remark}
 \label{rem:degree}
 Consider a wiggly cell~$c$ in a wiggly pseudodissection~$D$.
-Note that~$\beta_c$ is always even as~$D$ is pointed, so that~$\beta_c/2$ is an integer.
+Note that~$\beta_c$ is always even as the arcs of~$D$ are pairwise pointed, so that~$\beta_c/2$ is an integer.
 Moreover, we have~$\beta_c \ge 2$ and~$\kappa_c \ge 1$, where at least one of the two inequalities is strict (as otherwise, the two wiggly arcs bounding~$c$ would coincide).
 %We conclude that~$\delta_c = \beta_c/2+2\kappa_c-1 \ge 3$ with equality if and only if~$\beta_c = 4$ and~$\kappa_c = 1$.
 We thus obtain on the one hand that~$\delta_c = \beta_c/2+2\kappa_c-1 \ge 3$ with equality if and only if~$\beta_c = 4$ and~$\kappa_c = 1$, and on the other hand that~$\beta_c/2+\kappa_c-1 \ge 2$.
@@ -392,12 +393,12 @@ A \defn{wiggly pseudotriangle} (resp.~\defn{pseudoquadrangle}) is a wiggly cell 
 
 \begin{remark}
 \label{rem:descriptionPseudotrianglesPseudoquadrangles}
-As illustrated in \cref{fig:pseudotriangles}, a wiggly pseudotriangle~$t$ has no point in its interior and $4$ points on its boundary, $3$ corners and $1$ hinge.
+As illustrated in \cref{fig:pseudotriangles}, a wiggly pseudotriangle~$t$ has no point in its interior and $4$ points on its boundary, $3$ corners and $1$ hinge (two corners can coincide at the same point~$i \in [n]$).
 %Hence, it has two corners oriented in the same direction, which we call the \defn{twin corners}.
 As illustrated in \cref{fig:pseudoquadrangles}, a wiggly pseudoquadrangle~$q$ can have
 \begin{enumerate}
 \item either one point in its interior and~$2$ points on its boundary, both corners,
-\item or no point in its interior and $6$ points on its boundary, $4$ corners and $2$ hinges. We then distinguish three situations, depending on the position of the two pairs~$p, p'$ of wiggly arcs incident to the two hinges of~$c$, as illustrated in \cref{fig:pseudoquadrangles} (where~$p$ and~$p'$ are colored in red and orange):
+\item or no point in its interior and $6$ points on its boundary, $4$ corners and $2$ hinges (two corners can coincide at the same point~$i \in [n]$). We then distinguish three situations, depending on the position of the two pairs~$p, p'$ of wiggly arcs incident to the two hinges of~$c$, as illustrated in \cref{fig:pseudoquadrangles} (where~$p$ and~$p'$ are colored in red and orange):
 \begin{enumerate}[(a)]
 \item those where $p$ and $p'$ are not consecutive along~$c$, and do not overlap vertically,
 \item those where $p$ and $p'$ are not consecutive along~$c$, but overlap vertically,
@@ -433,9 +434,9 @@ We then say that~$D$ is a \defn{wiggly pseudotriangulation}.
 \end{proposition}
 
 \begin{proof}
-Consider a wiggly pseudodissection~$D$ with~$\iota$ internal wiggly arcs, $\gamma$ wiggly cells, and~$\kappa$~connected components.
+Consider a wiggly pseudodissection~$D$ with~$\iota$ internal wiggly arcs, $\gamma$ wiggly cells, and~$\kappa$~connected components (where $D$ is viewed as the edge set of the graph with vertex set given by the marked points $0$ to $n+1$).
 Euler's formula gives~$(n+2)-(\iota+2)+(\gamma+1)=(\kappa+1)$, hence~$n - \iota + \gamma = \kappa$.
-Moreover, $\sum_{c \in D} \beta_c/2 = 1+\iota$ since each external (resp.~internal) wiggly arc bounds precisely one (resp.~two) wiggly cell of~$D$, and~${\sum_{c \in D} \big( \kappa_c-1 \big) = \kappa-1}$ since the boundary of each internal connected component of~$D$ is one of the internal connected components of the boundary of precisely one wiggly cell of~$D$.
+Moreover, $\sum_{c \in D} \beta_c/2 = 1+\iota$ since each external (resp.~internal) wiggly arc bounds precisely one (resp.~two) wiggly cell of~$D$, and~${\sum_{c \in D} \big( \kappa_c-1 \big) = \kappa-1}$ since the boundary of each internal connected component of~$D$ is one of the internal connected components of the boundary of precisely one wiggly cell of~$D$ (both sums range over the wiggly cells~$c$ of~$D$).
 As~$2 \le \beta_c/2+\kappa_c-1$ for any wiggly cell~$c$ by \cref{rem:degree}, we thus obtain that~$2\gamma \le \sum_{c \in D} (\beta_c/2+\kappa_c-1) = \iota+\kappa = n+\gamma$.
 We conclude that~$\gamma \le n$ and~$\iota = n+\gamma-\kappa \le 2n-1$.
 
@@ -488,7 +489,7 @@ Then the two wiggly arcs~$\beta \eqdef \big( i, \ell, A \cup X', B \cup \{j\} \c
 \begin{remark}
 Note that in the proof of \cref{prop:wigglyPseudotriangulations}, we actually obtained that
 \[
-\sum_{c \in C} (\delta_c-3) = \sum_{c \in D} \beta_c/2 + 2 \sum_{c \in D} (\kappa_c-1) - 2\gamma = (1+\iota) + 2(\kappa-1) - 2(\iota+\kappa-n) = 2n-1-\iota.
+\sum_{c \in D} (\delta_c-3) = \sum_{c \in D} \beta_c/2 + 2 \sum_{c \in D} (\kappa_c-1) - 2\gamma = (1+\iota) + 2(\kappa-1) - 2(\iota+\kappa-n) = 2n-1-\iota.
 \]
 \end{remark}
 
@@ -567,7 +568,7 @@ This enables us to quickly compute~$wp_n(x)$ and we obtain the numbers of wiggly
 Our next statement prepares for the definition of flips in wiggly pseudotriangulations, and is illustrated in \cref{fig:diagonalsPseudoquadrangles}.
 
 \begin{definition}
-A \defn{wiggly diagonal} of a wiggly cell~$c$ is a wiggly arc inside~$c$ and compatible with~$c$.
+A \defn{wiggly diagonal} of a wiggly cell~$c$ is a wiggly arc inside~$c$ and compatible with all wiggly arcs of~$c$.
 \end{definition}
 
 \begin{proposition}
@@ -696,7 +697,7 @@ Any wiggly arc non pointed with~$\beta$ would be non pointed with~$\alpha$ or~$\
 Any wiggly arc crossing~$\beta$ would be either non pointed or crossing~$\alpha$ or~$\alpha'$ (as~$\beta$ follows~$\alpha$ or~$\alpha'$, except at the point~$j = i'$ in the first situation).
 \end{proof}
 
-Finally, we are define the wiggly complex~$\wigglyComplex_n$, illustrated in \cref{fig:wigglyComplex}\,(left) when~$n = 2$.
+Finally, we define the wiggly complex~$\wigglyComplex_n$, illustrated in \cref{fig:wigglyComplex}\,(left) when~$n = 2$.
 
 \begin{definition}
 \label{def:wigglyComplex}
@@ -852,7 +853,7 @@ Any wiggly permutation of~$[2n]$ can be obtained from a wiggly permutation of~$[
 Each wiggly permutation of~$[2n-2]$ with $i$ admissible gaps contributes to:
 \begin{itemize}
 \item $i+2$ wiggly permutations of~$[2n]$ with $i+2$ admissible gaps and where~$2n-1$ appears before~$2n$ (they must appear consecutively),
-\item $j+1$ wiggly permutations of~$[2n]$ with $j$ admissible arcs and where $2n$ appears before~$2n-1$, for all~$0 \le j \le i+1$.
+\item $j+1$ wiggly permutations of~$[2n]$ with $j$ admissible gaps and where $2n$ appears before~$2n-1$, for all~$0 \le j \le i+1$.
 \end{itemize}
 We thus obtain the same recursive equation on~$wp_n(x)$ as in \cref{rem:numberWigglyPseudotriangulations}.
 \end{remark}
@@ -990,7 +991,7 @@ The following two definitions are illustrated in \cref{fig:wigglyLattice,fig:bij
 \begin{definition}
 \label{def:bijection1}
 Consider a wiggly pseudotriangulation~$T$.
-Rotating counterclockwise inside each wiggly pseudotriangle of~$T$, we label by~$2h-1$ (resp.~$2h+1$) the corner immediately preceding (resp.~following) the hinge~$h$ (the remaining corner remains unlabelled).
+Following each wiggly pseudotriangle of~$T$ in counterclockwise direction, we label by~$2h-1$ (resp.~$2h$) the corner immediately preceding (resp.~following) the hinge~$h$ (the remaining corner remains unlabelled).
 We define~$\Phi(T)$ as the permutation obtained by reading these labels from bottom to top, meaning that for each internal wiggly arc~$\alpha$ of~$T$, the label incident to~$\alpha$ and below~$\alpha$ appears just before the label incident to~$\alpha$ and above~$\alpha$.
 \end{definition}
 
@@ -1022,7 +1023,7 @@ The maps~$\Phi$ of \cref{def:bijection1} and $\Psi$ of \cref{def:bijection2} def
 
 \begin{proof}
 First, we show that \(\Phi(T)\) is a well-defined wiggly permutation for each wiggly pseudotriangulation \(T\).
-Observe first that~\(\Phi(T)\) is by construction a permutation~$\sigma$ of~$[2n]$.
+As every~$j \in [n]$ is the hinge of precisely one pseudotriangle of~$T$, we obtain that~\(\Phi(T)\) is by construction a permutation~$\sigma$ of~$[2n]$.
 For any \(j \in [n]\), let \(t_j\) be the pseudotriangle of \(T\) that has hinge \(j\).
 Suppose that \(2j-1\) appears before \(2j\) in \(\sigma\) for some fixed \(j \in [n]\).
 This means that the pseudotriangle~\(t_j\) has its unlabelled corner to the left of its labelled corners.
@@ -1213,7 +1214,7 @@ denotes the unique linear dependence on~$\b{R}_{\triangle \cup \triangle'}$ such
 
 We denote by~$(\b{e}_i)_{i \in [d]}$ the standard basis of~$\R^d$.
 For~$I \subseteq [d]$, we define~$\one_I \eqdef \sum_{i \in I} \b{e}_i$, and we often shorten~$\one_{[d]}$ by~$\one_d$.
-We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{\b{x}}{\one_d} = 0$, and we denote by~$\pi : \R^d \to \HH$ the orthogonal projection on~$\HH_d$, that is~$\pi(\b{x}) \eqdef \b{x} - (\dotprod{\b{x}}{\one_d} / d) \one_d$.
+We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{\b{x}}{\one_d} = 0$, and we denote by~$\pi : \R^d \to \HH_d$ the orthogonal projection on~$\HH_d$, that is~$\pi(\b{x}) \eqdef \b{x} - (\dotprod{\b{x}}{\one_d} / d) \one_d$.
 
 %%%%%%%%%%%%
 
@@ -1224,26 +1225,26 @@ We now define two families of vectors, illustrated in \cref{fig:pseudotriangulat
 %
 \begin{figure}
 \centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
-\caption{The $\b{g}$-matrix~$\b{g}(T)$ and $4$ times the $\b{c}$-matrix~$\b{c}(T)$ of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\b{g}$-vector~$\b{g}(\alpha)$ and $4$ times the $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs.}
+\caption{The $\hat{\b{g}}$-matrix~$\hat{\b{g}}(T)$ and $4$ times the $\b{c}$-matrix~$\b{c}(T)$ of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\hat{\b{g}}$-vector~$\hat{\b{g}}(\alpha)$ and $4$ times the $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs.}
 \label{fig:pseudotriangulationMatrices}
 \end{figure}
 
 \begin{definition}
 \label{def:gvectors}
-The \defn{$\b{g}$-vector}~$\b{g}(\alpha)$ of a wiggly arc~$\alpha \eqdef (i, j, A, B)$ is defined as the projection~$\pi \big( \hat{\b{g}}(\alpha) \big)$ of the vector~$\hat{\b{g}}(\alpha) \eqdef \one_{\alpha^+} - \one_{\alpha^-}$ where
+The \defn{$\b{g}$-vector} of a wiggly arc~$\alpha \eqdef (i, j, A, B)$ is the vector~$\b{g}(\alpha)$ of~$\HH_{2n}$ defined as the projection~$\pi \big( \hat{\b{g}}(\alpha) \big)$ of the vector~$\hat{\b{g}}(\alpha) \eqdef \one_{\alpha^+} - \one_{\alpha^-}$ where
 \begin{align*}
 \alpha^+ & \eqdef \big(\{2i-1, 2j\} \ssm \{-1, 2n+2\} \big) \cup \set{2a-1}{a \in A} \cup \set{2a}{a \in A},
 \\
 \alpha^- & \eqdef \big(\{2i, 2j-1\} \ssm \{0, 2n+1\} \big) \cup \set{2b-1}{b \in B} \cup \set{2b}{b \in B}.
 \end{align*}
-If we place the coordinate~$2p-1$ on the left and the coordinate~$2p$ on the right of point~$p$, then~$\b{g}(\alpha)$ has a $1$ outside its two endpoints and on both sides of points in~$A$, and a~$-1$ inside its two endpoints and on both sides of points in~$B$.
+If we place the coordinate~$2p-1$ on the left and the coordinate~$2p$ on the right of point~$p$, then~$\hat{\b{g}}(\alpha)$ has a $1$ outside its two endpoints and on both sides of points in~$A$, and a~$-1$ inside its two endpoints and on both sides of points in~$B$.
 Note that ${\hat{\b{g}} \big( (0, n+1, [n], \varnothing) \big) = \one_{2n} = - \hat{\b{g}} \big( (0, n+1, \varnothing, [n]) \big)}$, so that~${\b{g} \big( (0, n+1, [n], \varnothing) \big) = \b{0} = \b{g} \big( (0, n+1, \varnothing, [n]) \big)}$.
 We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D$ of wiggly arcs.
 \end{definition}
 
 \begin{example}
 \label{exm:specialGMatrices}
-\cref{table:specialGMatrices} gathers the $\b{g}$-matrices (\ie matrices whose columns are the $\b{g}$-vectors) of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations} illustrated in \cref{fig:specialWigglyPseudotriangulations}.
+\cref{table:specialGMatrices} gathers the $\hat{\b{g}}$-matrices (\ie matrices whose columns are the $\hat{\b{g}}$-vectors) of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations} illustrated in \cref{fig:specialWigglyPseudotriangulations}.
 
 \begin{table}[p]
 	\begingroup
@@ -1264,7 +1265,7 @@ We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D
 %		-1 & -1 & \dots & -1 & -1 & -1 & -1 & \dots & -1 & -1 \\
 %	\end{pmatrix}
 %	\qquad &
-	\b{g}(T_\downarrow) & = \begin{pmatrix}
+	\hat{\b{g}}(T_\downarrow) & = \begin{pmatrix}
 		1 & 1 & 0 & 1 & \dots & 0 & 1 & 0 \\
 		-1 & 1 & 0 & 1 & \dots & 0 & 1 & 0 \\
 		-1 & -1 & 1 & 1 & \dots & 0 & 1 & 0 \\
@@ -1292,7 +1293,7 @@ We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D
 %		0 & 0 & \dots & 0 & 1 & 0 & 0 & \dots & 0 & 1 \\
 %	\end{pmatrix}
 %	\qquad &
-	\b{g}(T_\leftarrow) & = \begin{pmatrix}
+	\hat{\b{g}}(T_\leftarrow) & = \begin{pmatrix}
 		-1 & -1 & \dots & -1 & -1 & 1 & \dots & 1 & 1 \\
 		-1 & -1 & \dots & -1 & 1 & 1 & \dots & 1 & 1 \\
 		-1 & -1 & \dots & -1 & 0 & -1 & \dots & 1 & 1 \\
@@ -1320,7 +1321,7 @@ We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D
 %		0 & 0 & \dots & 0 & 1 & 1 & 1 & \dots & 1 & 1 \\
 %	\end{pmatrix}
 %	\qquad &
-	\b{g}(T_\uparrow) & = \begin{pmatrix}
+	\hat{\b{g}}(T_\uparrow) & = \begin{pmatrix}
 		-1 & -1 & -1 & -1 & \dots & -1 & -1 & -1 \\
 		-1 & -1 & -1 & -1 & \dots & -1 & -1 & 1 \\
 		-1 & -1 & -1 & -1 & \dots & -1 & 1 & 0 \\
@@ -1348,7 +1349,7 @@ We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D
 %		-1 & -1 & \dots & -1 & -1 & 1 & 1 & \dots & 1 & 1 \\
 %	\end{pmatrix}
 %	\qquad &
-	\b{g}(T_\rightarrow) & = \begin{pmatrix}
+	\hat{\b{g}}(T_\rightarrow) & = \begin{pmatrix}
 		1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & 1 \\
 		-1 & 0 & \dots & 0 & 0 & 0 & \dots & 0 & -1 \\
 		-1 & 1 & \dots & 0 & 0 & 0 & \dots & 1 & 1 \\
@@ -1363,14 +1364,14 @@ We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D
 	\end{pmatrix}
 	\end{alignat*}
 	\endgroup
-	\caption{The $\b{g}$-matrices of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations}. The $i$th column of~$\b{g}(T)$ is the $\b{g}$-vector~$\b{g}(\alpha)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). 
+	\caption{The $\hat{\b{g}}$-matrices of the wiggly pseudotriangulations of \cref{exm:specialWigglyPseudotriangulations}. The $i$th column of~$\hat{\b{g}}(T)$ is the $\hat{\b{g}}$-vector~$\hat{\b{g}}(\alpha)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). 
 }
 	\label{table:specialGMatrices}
 \end{table}
 \end{example}
 
-Observe that the $\b{g}$-matrices of \cref{exm:specialGMatrices} have full rank.
-More generally, we will see in \cref{coro:basis} that~$\b{G}(T)$ forms a basis of~$\HH_{2n}$ for any wiggly pseudotriangulation~$T$, which enables us to define its dual basis.
+Observe that the $\hat{\b{g}}$-matrices of \cref{exm:specialGMatrices} have rank~$2n-1$.
+More generally, we will see in \cref{coro:basis} that~$\b{g}(T)$ forms a basis of~$\HH_{2n}$ for any wiggly pseudotriangulation~$T$, which enables us to define its dual basis.
 
 \begin{definition}
 \label{def:cvectors}
@@ -1618,7 +1619,7 @@ Observe first that, for any wiggly arc~$\alpha \eqdef (i, j, A, B)$ and any~$k \
 %\item $\hat{\b{g}}(\alpha)_{2k-1} + \hat{\b{g}}(\alpha)_{2k} = 2$ if~$k \in A$, $-2$ if~$k \in B$, and~$0$ otherwise.
 %\end{itemize}
 \[
-\hat{\b{g}}(\alpha)_{2k-1} - \hat{\b{g}}(\alpha)_{2k} = \begin{cases} 1 & \text{if~$k = i$,} \\ -1 & \text{if~$k = j$,} \\ 0 & \text{otherwise}, \end{cases}
+\hat{\b{g}}(\alpha)_{2k-1} - \hat{\b{g}}(\alpha)_{2k} = \begin{cases} 2 & \text{if~$k = i$,} \\ -2 & \text{if~$k = j$,} \\ 0 & \text{otherwise}, \end{cases}
 \qquad\text{and}\qquad
 \hat{\b{g}}(\alpha)_{2k-1} + \hat{\b{g}}(\alpha)_{2k} = \begin{cases} 2 & \text{if~$k \in A$,} \\ -2 & \text{if~$k \in B$,} \\ 0 & \text{otherwise}. \end{cases}
 \]

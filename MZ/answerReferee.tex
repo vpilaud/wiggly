@@ -1,0 +1,148 @@
+\documentclass{letter}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{shuffle}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage[a4paper, top=1in, bottom=.8in, left=1in, right=1in]{geometry}
+\signature{%
+Asilata Bapat and Vincent Pilaud \Letter
+}
+
+\address{\bf Asilata Bapat \\
+\small The Australian National University \\
+\small \url{asilata.bapat@anu.edu.au} \\[.3cm]
+\bf Vincent Pilaud \Letter \\
+\small Universitat de Barcelona \\
+\small \url{vincent.pilaud@ub.edu}
+}
+
+\begin{document}
+
+\begin{letter}{{\bf Editors and Referees} \\ Mathematische Zeitschrift}
+\opening{Dear Editors, dear Referee,}
+
+We are grateful to the referee for their thorough reading and their constructive suggestions on our manuscript \emph{Wigglyhedra}. We would like to submit a revised version of this manuscript to the \emph{Mathematische Zeitschrift}. 
+
+We agreed with all comments and suggestions of the referee and we have revised our submission accordingly. To simplify the second reading, we now answer the comments of the referee and summarize the changes from the last version:
+
+{\bf Required Corrections}
+
+\begin{itemize}
+\item \textsl{\color{gray} Remark 9: I believe there are (edge) cases of pseudotriangles with only 3 points on its boundary; e.g.~take pseudotriangles in the $n = 1$ case (unless I’m supposed to count one of the boundary point twice, which isn’t clear to me).} \\
+We indeed count points with multiplicity. We defined corners and hinges by the sentence ``Two consecutive wiggly arcs along the boundary of~$c$ define a \emph{corner} (resp.~a \emph{hinge}) of~$c$ if they bound a convex (resp.~concave) angle of~$c$'' in Definition 6. So two corners can coincide at the same point. To insist on this fact, we have added ``Note that two corners of~$c$ can coincide at the same point~$i \in [n]$'' in Definition 6 and ``(two corners can coincide at the same point~$i \in [n]$)'' twice in Remark 9.
+
+\item \textsl{\color{gray} Definition 34: I believe the other label should be $2h$ instead of $2h+1$.} \\
+You are absolutely right, this is a typo. Thank you so much for noticing it.
+
+\item \textsl{\color{gray} $g$-vectors, §3.2: This is probably the most important one. I was very confused after reading your definition of a $g$-vector; in particular, whether a $g$-vector is actually a vector in $\mathbb{H}_{2n}$. In Definition 47, you define the $g$-vector as the orthogonal projection of $\hat{g}$ onto $\mathbb{H}_{2n}$. However, the sentence right after the defining equations for $\alpha^\pm$ seems to agree with the definition that one gets before taking the projection (i.e. supposedly $\hat{g}$). I accepted this as a typo (that the $g$ should’ve been a $\hat{g}$ here), but then looking through the $g$-matrices examples that you’ve provided in the figures, I found that most of their $g$-vectors (columns) do not live in $\mathbb{H}_{2n}$ and behave more like $\hat{g}$ instead – in fact, the entries of the $g$-vectors generally did not sum to $0$, which I believe is the definition of being a vector in $\mathbb{H}_{2n}$. In reading the rest of the paper I deduced that you do want $g$-vectors to be in $\mathbb{H}_{2n}$, but please make sure that it is consistent with the examples you’ve provided.} \\
+TODO
+
+\item \textsl{\color{gray} Complexes associated to curves and extensions in the linear heart: This is perhaps more pedantic, but I think it is nonetheless important. I believe that under your definition, every curve, and in particular every wiggly arc, is only associated with a complex up to overall shifts in internal (path length) and homological gradings. While I understood that many of the claims involving these objects should be implicitly considered “up to both gradings shifts”, I think the claims would benefit from a more precise wording. For example, Proposition 94 as it currently is can be confusing and is falsifiable. For concreteness take $n = 1$ and the arcs $\alpha := (0, 1, \emptyset, \emptyset)$ and $\alpha' := (1, 2, \emptyset, \emptyset)$, which are not compatible (non-pointed). If I were to pick $X := P_1$ and $X' := P_2$, then $\mathrm{Ext}^1(X, X') = 0$ in $A_2$, which contradicts Proposition 94. Of course there are ``better'' choices of $X$ and $X'$, which would make the statement true. One way to correctly state it would be, e.g. ``$\mathrm{Ext}^1(X,X') = 0$ for all representatives $X$ and $X'$ of $\alpha$ and $\alpha'$ respectively''. Similar issue appears in Proposition 97, where as is currently stated, there may or may not be an extension depending on the choice of $X, X', Y, Y'$.} \\
+TODO
+
+\end{itemize}
+
+{\bf Minor remarks}
+
+\begin{itemize}
+\item \textsl{\color{gray} pg.\,4 (C1): I would add ``($x$-coordinate monotone)'' or ``(abcissa monotone)''.} \\
+We have replaced ``$x$-monotone'' by ``abscissa monotone''.
+
+\item \textsl{\color{gray} pg.\,4 (C2): Maybe it should be mentioned that they cross even up to isotopy, or define what it means to be intersecting minimally.} \\
+We have added ``(i.e.~any isotopy representatives must cross)''.
+
+\item \textsl{\color{gray} pg.\,5 (C1): Perhaps more precisely, ``as arcs in D are pairwise pointed''.} \\
+Indeed, this was unprecise. We modified it as suggested.
+
+\item \textsl{\color{gray} pg.\,5 (C2)*: Possibly 3 points in the boundary, as mentioned in previous section.} \\
+We have added ``(two corners can coincide at the same point~$i \in [n]$)'', see above.
+
+\item \textsl{\color{gray} pg.\,6 (C1): As $D$ is a priori a pseudodissection, I wasn't sure what should be included in the counting of connected components. Maybe something along the lines of ``where $D$ is viewed as the set of edges of the graph with vertices given by the marked points $0$ to $n+1$'' might help.} \\
+Indeed, this was too implicit. We have added ``(where $D$ is viewed as the edge set of the graph with vertex set given by the marked points $0$ to $n+1$)''.
+
+\item \textsl{\color{gray} pg.\,6 (C2): Since $D$ is by definition a set of wiggly arcs, $c \in D$ can be confused with arcs in $D$ rather than connected components.} \\
+Again, this was too implicit. The $c$ in all sums of this paragraph actually ranges over the wiggly cells of~$D$. We have added ``(both sums range over the wiggly cells~$c$ of~$D$)'' at the end of the sentence.
+
+\item \textsl{\color{gray} pg.\,6 (C3): Aren’t there examples of internal arcs which only bounds one wiggly cell? Take again $n = 1$ and the unique internal wiggly arc of any pseudotriangulation.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,7 (C1): This is a personal tangential comment: is this a new sequence that is not currently in OEIS? If so it might be worth submitting it.} \\
+Indeed, we should include it. It is not in OEIS.
+
+\item \textsl{\color{gray} pg.\,7 (C2): I was a bit slow in understanding this; I actually had to go to the corresponding description for wiggly permutations and work my way backwards to understand this. I believe an example would help a lot.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,8 (C1): Perhaps more precisely, “compatible with wiggly arcs in c”.} \\
+Indeed, we have added ``compatible with all wiggly arcs of~$c$''.
+
+\item \textsl{\color{gray} pg.\,9 (C1): Maybe this is standard abuse of notation, but technically you’ve provided the clique graph and not the complex itself.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,10 (C1): Typo ``we are define''.} \\
+Thanks! Fixed.
+
+\item \textsl{\color{gray} pg.\,12 (C1): This should be ``admissible gaps''?} \\
+Thanks! Fixed.
+
+\item \textsl{\color{gray} pg.\,13 (C1): I find this description confusing. Maybe ``Following in a counterclockwise direction...'' would be better.} \\
+We have replaced by ``Following each wiggly pseudotriangle of~$T$ in counterclockwise direction''.
+\item \textsl{\color{gray} pg.\,13 (C2) Definition 34*: $2h + 1$ should be $2h$.} \\
+You are absolutely right, we have corrected this typo.
+
+\item \textsl{\color{gray} pg.\,14 (C1): I think it is important to first point out that every $j \in [n]$ is the hinge of exactly one pseudotriangle, which implies the highlighted sentence.} \\
+Indeed, we have added ``As every~$j \in [n]$ is the hinge of precisely one pseudotriangle of~$T$''.
+
+\item \textsl{\color{gray} Figures in §3.2 and §3.3*: As mentioned in the previous section, all $g(T)$ in figures should be replaced by the correct $g$-matrices (whose column vectors are in~$\mathbb{H}_{2n}$).} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,17 (C1): Subscript missing: $\mathbb{H}_d$} \\
+Thanks! Fixed.
+
+\item \textsl{\color{gray} pg.\,17 (C2): I assume this is a typo: $g(\alpha)$ should be $\hat{g}(\alpha)$.} \\
+Thanks! Fixed.
+
+\item \textsl{\color{gray} pg.\,17 (C3): Unintended capitalisation: should be $g(T)$.} \\
+Thanks! Fixed.
+
+\item \textsl{\color{gray} pg.\,18 (C1): I think $1$ and $-1$ should be $2$ and $-2$ respectively.} \\
+Thanks! Fixed.
+
+\item \textsl{\color{gray} pg.\,26 (C1): The definition of zigzag algebra as it is would not be correct for $m = 2$; adding in the relation (superfluous for $m > 2$) ``all paths of length $3$ and above are killed'' should suffice.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,27 (C1): I'd add the adjective ``full''.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,29 (C1): Given your setting, I assume you meant ``derived category'' instead?} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,30 (C1): Is ``irrelevant'' meant to be ``external''? I’m not sure where ``irrelevant wiggly arc'' was defined.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,31 (C1)*: As mentioned in the previous section.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,31 (C2): ``up to equivalence'' should probably also include ``up to scalar multiplication''; same for ``unique element''.} \\
+TODO
+
+\item \textsl{\color{gray} pg.\,32 (C1)*: As mentioned in the previous section, some sort of ``up to appropriate shift in gradings'' should be included.} \\
+TODO
+
+\end{itemize}
+
+We are really grateful for all these improvements and would like to thank the referee again for the efforts they offered to our work. We hope that we have addressed their comments carefully, but we will be happy to have any further comments on this submission.
+
+%Sincerely,
+%
+%\vspace{.5cm}
+%\hspace{8cm} Asilata Bapat and Vincent Pilaud
+
+\closing{Sincerely yours,}
+
+\end{letter}
+
+\end{document}
