@@ -436,13 +436,13 @@ We then say that~$D$ is a \defn{wiggly pseudotriangulation}.
 \begin{proof}
 Consider a wiggly pseudodissection~$D$ with~$\iota$ internal wiggly arcs, $\gamma$ wiggly cells, and~$\kappa$~connected components (where $D$ is viewed as the edge set of the graph with vertex set given by the marked points $0$ to $n+1$).
 Euler's formula gives~$(n+2)-(\iota+2)+(\gamma+1)=(\kappa+1)$, hence~$n - \iota + \gamma = \kappa$.
-Moreover, $\sum_{c \in D} \beta_c/2 = 1+\iota$ since each external (resp.~internal) wiggly arc bounds precisely one (resp.~two) wiggly cell of~$D$, and~${\sum_{c \in D} \big( \kappa_c-1 \big) = \kappa-1}$ since the boundary of each internal connected component of~$D$ is one of the internal connected components of the boundary of precisely one wiggly cell of~$D$ (both sums range over the wiggly cells~$c$ of~$D$).
-As~$2 \le \beta_c/2+\kappa_c-1$ for any wiggly cell~$c$ by \cref{rem:degree}, we thus obtain that~$2\gamma \le \sum_{c \in D} (\beta_c/2+\kappa_c-1) = \iota+\kappa = n+\gamma$.
+Moreover, denoting by~$C$ the set of wiggly cells of~$D$, we have~$\sum_{c \in C} \beta_c/2 = 1+\iota$ since each external (resp.~internal) wiggly arc bounds precisely one (resp.~two) wiggly cell of~$D$ (we count a wiggly arc~$\alpha$ with multiplicity~$2$ if it appears twice along the boundary of~$c$), and~${\sum_{c \in C} \big( \kappa_c-1 \big) = \kappa-1}$ since the boundary of each internal connected component of~$D$ is one of the internal connected components of the boundary of precisely one wiggly cell of~$D$.
+As~$2 \le \beta_c/2+\kappa_c-1$ for any wiggly cell~$c$ by \cref{rem:degree}, we thus obtain that~$2\gamma \le \sum_{c \in C} (\beta_c/2+\kappa_c-1) = \iota+\kappa = n+\gamma$.
 We conclude that~$\gamma \le n$ and~$\iota = n+\gamma-\kappa \le 2n-1$.
 
 %Consider a wiggly pseudodissection~$D$ with~$\iota$ internal wiggly arcs, $\gamma$ wiggly cells, and~$\kappa$~connected components.
-%Observe that~$\sum_{c \in D} \beta_c/2 = 1+\iota$ since each external (resp.~internal) wiggly arc bounds precisely one (resp.~two) wiggly cell of~$D$, and that~${\sum_{c \in D} \big( \kappa_c-1 \big) = \kappa-1}$ since the boundary of each internal connected component of~$D$ is one of the internal connected components of the boundary of precisely one wiggly cell of~$D$.
-%As~$2 \le \beta_c/2+\kappa_c-1$ for any wiggly cell~$c$ by \cref{rem:degree}, we thus get~$2 \gamma \le \sum_{c \in D} (\beta_c/2+\kappa_c-1) = \iota+\kappa$.
+%Observe that~$\sum_{c \in C} \beta_c/2 = 1+\iota$ since each external (resp.~internal) wiggly arc bounds precisely one (resp.~two) wiggly cell of~$D$, and that~${\sum_{c \in C} \big( \kappa_c-1 \big) = \kappa-1}$ since the boundary of each internal connected component of~$D$ is one of the internal connected components of the boundary of precisely one wiggly cell of~$D$.
+%As~$2 \le \beta_c/2+\kappa_c-1$ for any wiggly cell~$c$ by \cref{rem:degree}, we thus get~$2 \gamma \le \sum_{c \in C} (\beta_c/2+\kappa_c-1) = \iota+\kappa$.
 %As~$D$ is a planar graph with~$v = n+2$ vertices, $e = \iota+2$ edges, $f = 1+\gamma$ faces, and $\kappa$ connected components, Euler's formula~$1+\kappa = v-e+f$ yields~$2(1+\kappa) = 2(n+2)-2(\iota+2)+2(1+\gamma) \le 2n-2\iota+2+\iota+\kappa$, so that~$\iota \le 2n-\kappa \le 2n-1$ and~$\gamma \le (\iota+\kappa)/2 \le n$.
 
 To prove the second part of the statement, we show that~(i) $\Rightarrow$ (ii) $\Rightarrow$ (iii) $\Rightarrow$ (iv) $\Rightarrow$ (i).
@@ -489,7 +489,7 @@ Then the two wiggly arcs~$\beta \eqdef \big( i, \ell, A \cup X', B \cup \{j\} \c
 \begin{remark}
 Note that in the proof of \cref{prop:wigglyPseudotriangulations}, we actually obtained that
 \[
-\sum_{c \in D} (\delta_c-3) = \sum_{c \in D} \beta_c/2 + 2 \sum_{c \in D} (\kappa_c-1) - 2\gamma = (1+\iota) + 2(\kappa-1) - 2(\iota+\kappa-n) = 2n-1-\iota.
+\sum_{c \in C} (\delta_c-3) = \sum_{c \in C} \beta_c/2 + 2 \sum_{c \in C} (\kappa_c-1) - 2\gamma = (1+\iota) + 2(\kappa-1) - 2(\iota+\kappa-n) = 2n-1-\iota.
 \]
 \end{remark}
 
@@ -669,7 +669,6 @@ The \defn{wiggly increasing flip graph}~$\wigglyIncreasingFlipGraph_n$ is the di
 \end{figure}
 \end{definition}
 
-\pagebreak
 We will need the following observation about exchangeable arcs, illustrated in \cref{fig:incompatible3}.
 
 \begin{proposition}
@@ -977,7 +976,6 @@ The proof is symmetrical for the bijection from descents of~$\sigma$ to wiggly p
 \subsection{Bijection}
 \label{subsec:bijection}
 
-\enlargethispage{.3cm}
 We now prove that wiggly pseudotriangulations and wiggly permutations are in bijection, and that this bijection induces an isomorphism from the wiggly flip graph to the cover graph of the wiggly lattice.
 The following two definitions are illustrated in \cref{fig:wigglyLattice,fig:bijection}.
 
@@ -1185,7 +1183,6 @@ The \defn{normal cone} of a face~$\polytope{F}$ of a polytope~$\polytope{P}$ is 
 Said differently, it is the cone of vectors~$\b{c}$ of~$\R^d$ such that the linear form~$\b{x} \mapsto \dotprod{\b{c}}{\b{x}}$ on~$\polytope{P}$ is maximized by all points of the face~$\polytope{F}$.
 The \defn{normal fan} of~$\polytope{P}$ is the set of normal cones of all its faces.
 
-\enlargethispage{.5cm}
 Consider now a complete simplicial fan~$\Fan$ of~$\R^d$ with rays~$(\b{r}_v)_{v \in V}$ and cones~$\R_{\ge 0} \b{R}_\triangle$ for~${\triangle \in \Delta}$, where~$\b{R}_\triangle \eqdef \set{\b{r}_v}{v \in \triangle}$ as in \cref{prop:characterizationFan}.
 To realize the fan~$\Fan$, one can try to pick a height vector~$\b{h} \eqdef (h_v)_{v \in V} \in \R^V$ and consider the polytope
 \(
@@ -1221,12 +1218,12 @@ We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{
 \subsection{$\b{g}$-vectors and $\b{c}$-vectors}
 \label{subsec:gcvectors}
 
-We now define two families of vectors, illustrated in \cref{fig:pseudotriangulationMatrices}.
+We first define the $\b{g}$-vectors, illustrated in \cref{fig:ggMatrices}.
 %
 \begin{figure}
-\centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
-\caption{The $\hat{\b{g}}$-matrix~$\hat{\b{g}}(T)$ and $4$ times the $\b{c}$-matrix~$\b{c}(T)$ of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\hat{\b{g}}$-vector~$\hat{\b{g}}(\alpha)$ and $4$ times the $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs.}
-\label{fig:pseudotriangulationMatrices}
+\centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/ggmatrices}}
+\caption{The $\hat{\b{g}}$-matrix~$\hat{\b{g}}(T)$ and $\b{g}$-matrix~$\b{g}(T)$ of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\hat{\b{g}}$-vector~$\hat{\b{g}}(\alpha)$ and the $\b{g}$-vector~$\b{g}(\alpha)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs. The $\b{g}$-vectors are the orthogonal projections of the $\hat{\b{g}}$-vectors on the hyperplane~$\HH_{2n}$.}
+\label{fig:ggMatrices}
 \end{figure}
 
 \begin{definition}
@@ -1370,8 +1367,13 @@ We define~$\b{g}(D) \eqdef \set{\b{g}(\alpha)}{\alpha \in D^\circ}$ for a set~$D
 \end{table}
 \end{example}
 
-Observe that the $\hat{\b{g}}$-matrices of \cref{exm:specialGMatrices} have rank~$2n-1$.
-More generally, we will see in \cref{coro:basis} that~$\b{g}(T)$ forms a basis of~$\HH_{2n}$ for any wiggly pseudotriangulation~$T$, which enables us to define its dual basis.
+We will see in \cref{coro:basis} that~$\b{g}(T)$ forms a basis of~$\HH_{2n}$ for any wiggly pseudotriangulation~$T$, which enables us to define its dual basis, illustrated in \cref{fig:gcMatrices}.
+%
+\begin{figure}
+\centerline{\raisebox{-1.8cm}{\includegraphics[scale=2]{pseudotriangulationMatrices}} \quad \input{figures/gcmatrices}}
+\caption{The $\b{g}$-matrix~$\b{g}(T)$ and $\b{c}$-matrix~$\b{c}(T)$ of a wiggly pseudotriangulation~$T$. The $i$th column of these matrices are the $\b{g}$-vector~$\b{g}(\alpha)$ and $\b{c}$-vector~$\b{c}(\alpha, T)$ of the $i$th wiggly arc~$\alpha$ of~$T$ (ordered from bottom to top). The colors of the columns match the colors of the wiggly arcs. The $\b{g}$-vectors and $\b{c}$-vectors form dual bases of~$\HH_{2n}$.}
+\label{fig:gcMatrices}
+\end{figure}
 
 \begin{definition}
 \label{def:cvectors}
@@ -2463,7 +2465,6 @@ This calculation proves the proposition.
   However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
 \end{remark}
 
-\pagebreak
 Recall from~\cref{rem:incompatibility-deg} that two wiggly arcs \(\alpha\) and \(\alpha'\) are exchangeable if and only if their incompatibility degree is one.
 Recall from~\cref{prop:uerp} the wiggly arcs \(\beta\) and \(\beta'\) associated to \(\alpha\) and \(\alpha'\).
 Finally, recall from~\cref{lem:linearDependences} that the \(\b{g}\)-vectors of the wiggly arcs \(\alpha\), \(\alpha'\), \(\beta\), and \(\beta'\) satisfy a linear dependence, depending on their type.
