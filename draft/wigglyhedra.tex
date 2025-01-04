@@ -551,6 +551,14 @@ Each wiggly pseudotriangulation of~$n+1$ points with $i$ final internal wiggly a
 \item $j+1$ wiggly pseudotriangulations of~$n+2$ points with $j$ final internal wiggly arcs, not containing the wiggly arc~$(n, n+1, \varnothing, \varnothing)$,  for all~$0 \le j \le i+1$.
 \end{itemize}
 \pagebreak
+\cref{fig:pseudotriangulationsCounting} illustrates this decomposition.
+%
+\begin{figure}
+\centerline{\includegraphics[scale=1.3]{pseudotriangulationCounting}}
+\caption{Some wiggly pseudotriangulations of~$7$ points obtained from the top left wiggly pseudotriangulation of~$6$ points by inserting a wiggly pseudotriangle with hinge at~$5$ as described in \cref{rem:numberWigglyPseudotriangulations}. Those on the first line contain the wiggly arc~$(5, 6, \varnothing, \varnothing)$ and are thus obtained by inserting the head of the wiggly pseudotriangle with hinge at~$5$ in one of the final wiggly arcs. Those on the second line do not contain the wiggly arc~$(5, 6, \varnothing, \varnothing)$ and are thus obtained by inserting the two legs of the wiggly pseudotriangle with hinge at~$5$ in two of the final wiggly arcs. The coloring of the wiggly arcs is supposed to help visualizing in which wiggly arcs the head or legs of the new wiggly pseudotriangle were inserted.}
+\label{fig:pseudotriangulationsCounting}
+\end{figure}
+%
 This translates to the recursive formula %for all~$n \ge 1$,
 \begin{align*}
 wp_{n}(x) & = \overbracket[.5pt]{x \cdot \frac{\partial}{\partial x} \big( x^2 wp_{n-1}(x) \big)}^{\substack{\text{wiggly pseudotriangulations} \\ \text{containing } (n, n+1, \varnothing, \varnothing)}} + \overbracket[.5pt]{\frac{\partial}{\partial x}\Big( \smash{\frac{wp_{n-1}(1)-x^3wp_{n-1}(x)}{1-x}} \Big)}^{\substack{\qquad\; \text{wiggly pseudotriangulations} \qquad\;  \\ \text{not containing } (n, n+1, \varnothing, \varnothing)}} \\
@@ -610,7 +618,7 @@ The following definition is illustrated in \cref{fig:wigglyComplex}\,(right) whe
 %
 \begin{figure}
 \centerline{\includegraphics[scale=1.1]{wigglyComplex}}
-\caption{The wiggly complex~$\wigglyComplex_2$ (left) and the wiggly flip graph~$\wigglyFlipGraph_2$ (right).}
+\caption{The wiggly complex~$\wigglyComplex_2$ (left) and the wiggly flip graph~$\wigglyFlipGraph_2$ (right). We have embedded the wiggly complex~$\wigglyComplex_2$ in the plane, so that all triangles (including the external one) form a face of~$\wigglyComplex_2$.}
 \label{fig:wigglyComplex}
 \end{figure}
 
@@ -854,6 +862,17 @@ Each wiggly permutation of~$[2n-2]$ with $i$ admissible gaps contributes to:
 \item $i+2$ wiggly permutations of~$[2n]$ with $i+2$ admissible gaps and where~$2n-1$ appears before~$2n$ (they must appear consecutively),
 \item $j+1$ wiggly permutations of~$[2n]$ with $j$ admissible gaps and where $2n$ appears before~$2n-1$, for all~$0 \le j \le i+1$.
 \end{itemize}
+For instance, the wiggly permutation~$78621354$ of~$[8]$ has admissible gaps~$\bullet 7 \bullet 8 \bullet 62135 \bullet 4 \bullet$ and thus gives rise to the wiggly permutations
+\[
+9\mathrm{X}78621354, \quad 79\mathrm{X}8621354, \quad 789\mathrm{X}621354, \quad 78621359\mathrm{X}4, \quad 786213549\mathrm{X}
+\]
+of~$[10]$ where the $9$ appears before~$10$, and the wiggly permutations
+\begin{align*}
+& \mathrm{X}978621354, \quad \mathrm{X}798621354, \quad \mathrm{X}789621354, \quad \mathrm{X}786213594, \quad \mathrm{X}786213549, \\
+& 7\mathrm{X}98621354, \quad 7\mathrm{X}89621354, \quad 7\mathrm{X}86213594, \quad 7\mathrm{X}86213549, \quad 78\mathrm{X}9621354, \\
+& 78\mathrm{X}6213594, \quad 78\mathrm{X}6213549, \quad 7862135\mathrm{X}94, \quad 7862135\mathrm{X}49, \quad 78621354\mathrm{X}9
+\end{align*}
+of~$[10]$ where the $10$ appears before~$9$ (for brievety, we have replaced $10$ by $\mathrm{X}$ in the permutations).
 We thus obtain the same recursive equation on~$wp_n(x)$ as in \cref{rem:numberWigglyPseudotriangulations}.
 \end{remark}
 
@@ -1072,6 +1091,7 @@ Conversely, let \(T\) be a wiggly pseudotriangulation, so that \(\sigma = \Phi(T
 Then for any \(k \in [2n-1]\), the wiggly arc immediately above the angle of~$T$ labelled by~$\sigma(k)$ is precisely the one constructed as~\(\alpha(\sigma, k)\).
 This shows that \(\Psi(\Phi(T)) = T\).
 
+\pagebreak
 Finally, consider a cover relation~$\sigma \lessdot \sigma^j$ in the wiggly lattice~$\wigglyLattice_n$ as described in~\cref{lem:wigglyCoverRelation}.
 Using the notations of~\cref{lem:wigglyCoverRelation}, observe that
 \begin{itemize}
@@ -1094,6 +1114,14 @@ The map~$\Phi$ sends the wiggly complex automorphism of \cref{rem:wigglyComplexA
 
 \begin{remark}
 The map~$\Phi$ sends wiggly pseudotriangulations with $i$ final internal wiggly arcs to wiggly permutations with $i$ admissible gaps, explaining the similarities of \cref{rem:numberWigglyPseudotriangulations,rem:numberWigglyPermutations}.
+For instance, the wiggly pseudotriangulations of \cref{fig:pseudotriangulationsCounting} illustrating the description of \cref{rem:numberWigglyPseudotriangulations} correspond to the wiggly permutations
+\[
+\begin{array}{cccc}
+78621354 & 9\mathrm{X}78621354 & 789\mathrm{X}621354 & 78621359\mathrm{X}4 \\
+\mathrm{X}786213594 & 7\mathrm{X}89621354 & 78\mathrm{X}6213549 & 7862135\mathrm{X}49
+\end{array}
+\]
+illustrating the description of \cref{rem:numberWigglyPermutations}.
 \end{remark}
 
 %%%%%%%%%%%%
@@ -1138,6 +1166,7 @@ Note that unfortunately, wiggly permutations do not form a zigzag language in th
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \section{Wiggly fan and wigglyhedron}
 \label{sec:geometry}
 
@@ -1183,6 +1212,7 @@ The \defn{normal cone} of a face~$\polytope{F}$ of a polytope~$\polytope{P}$ is 
 Said differently, it is the cone of vectors~$\b{c}$ of~$\R^d$ such that the linear form~$\b{x} \mapsto \dotprod{\b{c}}{\b{x}}$ on~$\polytope{P}$ is maximized by all points of the face~$\polytope{F}$.
 The \defn{normal fan} of~$\polytope{P}$ is the set of normal cones of all its faces.
 
+\enlargethispage{.6cm}
 Consider now a complete simplicial fan~$\Fan$ of~$\R^d$ with rays~$(\b{r}_v)_{v \in V}$ and cones~$\R_{\ge 0} \b{R}_\triangle$ for~${\triangle \in \Delta}$, where~$\b{R}_\triangle \eqdef \set{\b{r}_v}{v \in \triangle}$ as in \cref{prop:characterizationFan}.
 To realize the fan~$\Fan$, one can try to pick a height vector~$\b{h} \eqdef (h_v)_{v \in V} \in \R^V$ and consider the polytope
 \(
@@ -1209,6 +1239,7 @@ denotes the unique linear dependence on~$\b{R}_{\triangle \cup \triangle'}$ such
 \end{itemize}
 \end{proposition}
 
+\pagebreak
 We denote by~$(\b{e}_i)_{i \in [d]}$ the standard basis of~$\R^d$.
 For~$I \subseteq [d]$, we define~$\one_I \eqdef \sum_{i \in I} \b{e}_i$, and we often shorten~$\one_{[d]}$ by~$\one_d$.
 We denote by~$\HH_d$ the hyperplane of~$\R^d$ defined by the equation~$\dotprod{\b{x}}{\one_d} = 0$, and we denote by~$\pi : \R^d \to \HH_d$ the orthogonal projection on~$\HH_d$, that is~$\pi(\b{x}) \eqdef \b{x} - (\dotprod{\b{x}}{\one_d} / d) \one_d$.
@@ -2096,7 +2127,7 @@ Let \(kQ_m\) be the path algebra of \(Q_m\), graded by path length.
 Let~\(e_i\) denote the idempotent path at the vertex \(i\), and let \((i, j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
 A longer path, which is a composition of arrows, will be denoted by~\((i_1, i_2, \dots, i_n)\).
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{tikzcd}
 		1 \arrow[bend left]{r} & 2 \arrow[bend left]{r}\arrow[bend left]{l}& \cdots \arrow[bend left]{r}\arrow[bend left]{l}& m \arrow[bend left]{l}
@@ -2518,6 +2549,7 @@ However, at the moment we do not have a purely categorical construction of the \
 
 This work started during the \emph{Winterbraids XIII: School on low dimensional topology, braid groups and interactions}. We are grateful to the organizers Bérénice Delcroix-Oger, Peter Feller, Vincent Florens, Hoel Queffelec for this fruitful event.
 We thank Anand Deopurkar and Anthony M. Licata for many useful conversations and ideas.
+Finally, we are grateful to an anonymous referee for many relevant suggestions on the presentation of the paper.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

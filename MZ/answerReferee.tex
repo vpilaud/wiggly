@@ -41,7 +41,7 @@ You are absolutely right, this is a typo. Thank you for noticing it.
 \item \textsl{\color{gray} $g$-vectors, §3.2: This is probably the most important one. I was very confused after reading your definition of a $g$-vector; in particular, whether a $g$-vector is actually a vector in $\mathbb{H}_{2n}$. In Definition 47, you define the $g$-vector as the orthogonal projection of $\hat{g}$ onto $\mathbb{H}_{2n}$. However, the sentence right after the defining equations for $\alpha^\pm$ seems to agree with the definition that one gets before taking the projection (i.e. supposedly $\hat{g}$). I accepted this as a typo (that the $g$ should’ve been a $\hat{g}$ here), but then looking through the $g$-matrices examples that you’ve provided in the figures, I found that most of their $g$-vectors (columns) do not live in $\mathbb{H}_{2n}$ and behave more like $\hat{g}$ instead – in fact, the entries of the $g$-vectors generally did not sum to $0$, which I believe is the definition of being a vector in $\mathbb{H}_{2n}$. In reading the rest of the paper I deduced that you do want $g$-vectors to be in $\mathbb{H}_{2n}$, but please make sure that it is consistent with the examples you’ve provided.} \\
 We agree with the referee that the implicit identification of the $\hat{g}$-vectors and $g$-vectors in our illustrations was really confusing. We have proceed to the following changes:
 \begin{itemize}
-\item We have split Figure 12 into two figures. Figure 12 now presents the $\hat{g}$-vectors and the \mbox{$g$-vectors} of a wiggly pseudotriangulation side to side, so that the projection is clearer. Figure~13 presents the $g$-vectors and the $c$-vectors of a wiggly pseudotriangulation side to side, so that the duality is visible.
+\item We have split Figure 12 into two figures. Figure 13 now presents the $\hat{g}$-vectors and the \mbox{$g$-vectors} of a wiggly pseudotriangulation side to side, so that the projection is clearer. Figure~14 presents the $g$-vectors and the $c$-vectors of a wiggly pseudotriangulation side to side, so that the duality is visible.
 \item We made clear in Example 48 and the caption of Table 1 that we represent here the $\hat{g}$-matrices. We decided to keep the $\hat{g}$-matrices rather than the $g$-matrices as the former are easier to read from Figure 5, while the latter have unnecessarily involved coefficients due to the projection. We believe that representing the $g$-matrices here would not help the reader.
 \end{itemize}
 
@@ -79,13 +79,18 @@ Indeed, we should include it. It is not in OEIS at the moment.
 
 \item \textsl{\color{gray} pg.\,7 (C2): I was a bit slow in understanding this; I actually had to go to the corresponding description for wiggly permutations and work my way backwards to understand this. I believe an example would help a lot.} \\
 This is actually the way this decomposition was found: we first worked it out on wiggly permutations and transported it back to wiggly pseudotriangulations through the bijection.
-TODO
+We agree that examples will help here. We have decided to include the following:
+\begin{itemize}
+\item In Remark 14, we have added Figure 6 with some examples of wiggly pseudotriangulations obtained by added one more wiggly pseudotriangle.
+\item In Remark 28, we have added an example listing all wiggly permutations of $[10]$ obtained from the wiggly permutation~$78621354$ of~$[8]$.
+\item We also extended Remark 41 to explicitly point to these particular examples.
+\end{itemize}
 
 \item \textsl{\color{gray} pg.\,8 (C1): Perhaps more precisely, “compatible with wiggly arcs in c”.} \\
 Indeed, we have added ``compatible with all wiggly arcs of~$c$''.
 
 \item \textsl{\color{gray} pg.\,9 (C1): Maybe this is standard abuse of notation, but technically you’ve provided the clique graph and not the complex itself.} \\
-TODO
+You are right, except that we provide here a little more than the graph as we embed the full complex in the plane. To make it explicit, we have added the sentence ``We have embedded the wiggly complex~$\mathrm{WC}_2$ in the plane, so that all triangles (including the external one) form a face of~$\mathrm{WC}_2$.''.
 
 \item \textsl{\color{gray} pg.\,10 (C1): Typo ``we are define''.} \\
 Thanks! Fixed.
@@ -102,7 +107,7 @@ You are absolutely right, we have corrected this typo.
 Indeed, we have added ``As every~$j \in [n]$ is the hinge of precisely one pseudotriangle of~$T$''.
 
 \item \textsl{\color{gray} Figures in §3.2 and §3.3*: As mentioned in the previous section, all $g(T)$ in figures should be replaced by the correct $g$-matrices (whose column vectors are in~$\mathbb{H}_{2n}$).} \\
-We now have the $\hat{g}$-matrix and $g$-matrix side by side in Figure 12. For Table~1, we have chosen to keep the $\hat{g}$-matrices (but we made it clear in the caption). See answer above for more explanations.
+We now have the $\hat{g}$-matrix and $g$-matrix side by side in Figure 13. For Table~1, we have chosen to keep the $\hat{g}$-matrices (but we made it clear in the caption). See answer above for more explanations.
 
 \item \textsl{\color{gray} pg.\,17 (C1): Subscript missing: $\mathbb{H}_d$} \\
 Thanks! Fixed.
