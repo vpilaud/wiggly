@@ -2144,7 +2144,7 @@ A longer path, which is a composition of arrows, will be denoted by~\((i_1, i_2,
 \end{figure}
 
 \begin{definition}
-The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by the relations \((i-1, i, i+1) = 0 = (i+1, i, i-1)\) and \((i, i-1, i) = (i, i+1, i)\) for all~\(1 < i < m\).
+The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by all paths of length at least \(3\), together with the relations \((i-1, i, i+1) = 0 = (i+1, i, i-1)\) and \((i, i-1, i) = (i, i+1, i)\) for all~\(1 < i < m\).
 \end{definition}
 
 \begin{remark}
@@ -2160,7 +2160,7 @@ There is an embedding of \(A_m\text{-mod}\) into \(D^b(A_m\text{-mod})\), which 
 In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects of \(D^b(A_m\text{-mod})\).
 
 \begin{definition}
-The category \(\mathcal{C}_m\) is defined to be the smallest triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\).
+The category \(\mathcal{C}_m\) is defined to be the smallest full, isomorphism-closed triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\).
 \end{definition}
 
 For further discussion on the construction, see \eg~\cite[Sect.~2.3.3]{bap.deo.lic:22}.
@@ -2410,7 +2410,7 @@ However, it turns out that the cohomology filtration is highly constrained if \(
   \begin{enumerate}
   \item 
     \(T\) is a subset of a wiggly pseudotriangulation,
-  \item \(T\) contains at most one of the two irrelevant wiggly arcs.
+  \item \(T\) contains at most one of the two external wiggly arcs.
   \end{enumerate}
 \end{proposition}
 
@@ -2461,13 +2461,17 @@ Combinatorially, this is just the Cartesian product of the wiggly complex with a
 In this section, we give a categorical criterion for two wiggly arcs to be compatible as in~\cref{def:compatible}.
 As such, this section is somewhat dual to the previous section: the criterion in this section determines whether a pair of wiggly arcs can belong together in a single wiggly pseudotriangulation, whereas the previous section generated a wiggly pseudotriangulation given any object of the category.
 
+For two objects \(X\) and \(X'\) of \(\mathcal{C}_m\), let \(\mathbb{E}^\ell(X,X')\) denote the direct sum over all level-\(\ell\) morphisms from \(X\) to \(X'\).
+That is,
+\[\mathbb{E}^\ell(X,X') = \bigoplus_{g + h = \ell}\Hom^{g,h}(X,X').\]
+
 Recall that two wiggly arcs \(\alpha\) and \(\alpha'\) are said to be compatible (as in~\cref{def:compatible}) if they are non-crossing and pointed.
 The incompatibility degree of \(\alpha\) and \(\alpha'\) (as in~\cref{def:incompatibilityDegree}) is \(1\) if \(\alpha\) and \(\alpha'\) are non pointed, and the number of crossings of \(\alpha\) and \(\alpha'\) otherwise.
 \begin{proposition}
 \label{prop:ext1}
 Let \(X\) and \(X'\) be objects in the standard heart \(\mathcal{A}_m\) corresponding to two wiggly arcs \(\alpha\) and \(\alpha'\) respectively.
-  Then \(\alpha\) and \(\alpha'\) are compatible if and only if \(\Ext^1(X, X') = 0\).
-  More generally, the incompatibility degree of \(\alpha\) and \(\alpha'\) is the dimension of \(\Ext^1(X,X')\).
+  Then \(\alpha\) and \(\alpha'\) are compatible if and only if \(\mathbb{E}^1(X, X') = 0\).
+  More generally, the incompatibility degree of \(\alpha\) and \(\alpha'\) is the dimension of \(\mathbb{E}^1(X,X')\).
 \end{proposition}
 
 \begin{proof}
@@ -2484,10 +2488,10 @@ In particular, the table in~\cite[Lem.~3.20]{kho.sei:02} that computes the bigra
 
 With our path-length grading, note that a morphism in \(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1])\) has level \(s_1 - s_2\); that is, it takes an object \(X\) of level \(0\) to the object \(X'\langle -s_2 \rangle[s_1]\) of level \(s_1 - s_2\).
   We can thus obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\eqref{eq:bigraded-homs}.
-    The dimension of \(\Ext^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
+    The dimension of \(\mathbb{E}^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
 
-It can be checked that under the path-length grading, the space of morphisms arising from an intersection of curves of ``crossing'' type as well as ``non pointed'' type contains exactly one morphism (up to equivalence) of level one; that is, a unique element of \(\Ext^1\).
-Morphisms arising from other intersections do not contribute to \(\Ext^1\).
+It can be checked that under the path-length grading, the space of morphisms arising from an intersection of curves of ``crossing'' type as well as ``non pointed'' type contains exactly one morphism (up to equivalence and scalar multiplication) of level one; that is, a unique element (up to scalar multiplication) of \(\mathbb{E}^1\).
+Morphisms arising from other intersections do not contribute to \(\mathbb{E}^1\).
 This calculation proves the proposition.
 \end{proof}
 
@@ -2499,7 +2503,7 @@ This calculation proves the proposition.
 
 \begin{remark}
   As stated,~\cref{prop:ext1} in combination with~\cref{prop:hn-filtration} is not expected to be true in greater generality.
-  For instance, for the zigzag algebra of Dynkin type~\(D_4\), one can find two spherical objects with a non-trivial \(\Ext^1\) that nevertheless appear together in the cohomology filtration of another spherical object.
+  For instance, for the zigzag algebra of Dynkin type~\(D_4\), one can find two spherical objects with a non-trivial \(\mathbb{E}^1\) that nevertheless appear together in the cohomology filtration of another spherical object.
   However, we expect to see similar constraints on compatibility, which we hope to turn to in forthcoming work.
 \end{remark}
 
@@ -2509,16 +2513,16 @@ Finally, recall from~\cref{lem:linearDependences} that the \(\b{g}\)-vectors of 
 Let us interpret this dependence categorically.
 
 Let \(X\), \(X'\), \(Y\) and~\(Y'\) be spherical objects in the standard heart that correspond to \(\alpha\), \(\alpha'\), \(\beta\) and~\(\beta'\) respectively.
-First, note by~\cref{prop:ext1} that \(X\) and \(X'\) are exchangeable if and only if there is a unique non-trivial extension between the corresponding objects of the standard heart.
+First, note by~\cref{prop:ext1} that \(X\) and \(X'\) are exchangeable if and only if there is a unique non-trivial \(\mathbb{E}^1\) between the corresponding objects of the standard heart.
 Next, let us understand~\(Y\) and \(Y'\) categorically.
 
 \begin{proposition}\label{prop:extensions}
 For \(\alpha\), \(\alpha'\), \(\beta\), \(\beta'\), and \(X\), \(X'\), \(Y\), \(Y'\) as just discussed,
 \begin{itemize}
-\item if \(\alpha\) and \(\alpha'\) are not pointed, then we have extensions
-  \[0 \to X' \to Y \to X \to 0 \quad \text{and}\quad 0 \to X \to Y' \to X' \to 0,\]
-\item if \(\alpha\) and \(\alpha'\) are crossing, then we have an extension
-  \[0 \to X' \to (Y \oplus Y') \to X \to 0.\]
+\item if \(\alpha\) and \(\alpha'\) are not pointed, then for some \(g\) and \(g'\), we have extensions
+  \[0 \to X' \to Y \to X\langle g \rangle[-g] \to 0 \quad \text{and}\quad 0 \to X \to Y' \to X'\langle g' \rangle[-g'] \to 0;\]
+\item if \(\alpha\) and \(\alpha'\) are crossing, then for some \(g\), we have an extension
+  \[0 \to X' \to (Y \oplus Y') \to X\langle g \rangle[-g]\to 0.\]
 \end{itemize}
 \end{proposition}
 
@@ -2542,7 +2546,7 @@ However, at the moment we do not have a purely categorical construction of the \
 
 \begin{question}
   Suppose we have a collection of spherical objects in the standard heart \(\mathcal{A}_m\) that satisfy the compatibility condition of~\cref{prop:ext1}.
-  That is, the \(\Ext^1\) between any pair of objects in this collection is zero.
+  That is, the \(\mathbb{E}^1\) between any pair of objects in this collection is zero.
   \begin{enumerate}
   \item Can we prove properties about a maximal such collection without reference to curves?
   \item In particular, can we understand the combinatorics of maximal such collections without reference to curves?

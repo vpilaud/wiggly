@@ -46,7 +46,8 @@ We agree with the referee that the implicit identification of the $\hat{g}$-vect
 \end{itemize}
 
 \item \textsl{\color{gray} Complexes associated to curves and extensions in the linear heart: This is perhaps more pedantic, but I think it is nonetheless important. I believe that under your definition, every curve, and in particular every wiggly arc, is only associated with a complex up to overall shifts in internal (path length) and homological gradings. While I understood that many of the claims involving these objects should be implicitly considered “up to both gradings shifts”, I think the claims would benefit from a more precise wording. For example, Proposition 94 as it currently is can be confusing and is falsifiable. For concreteness take $n = 1$ and the arcs $\alpha := (0, 1, \emptyset, \emptyset)$ and $\alpha' := (1, 2, \emptyset, \emptyset)$, which are not compatible (non-pointed). If I were to pick $X := P_1$ and $X' := P_2$, then $\mathrm{Ext}^1(X, X') = 0$ in $A_2$, which contradicts Proposition 94. Of course there are ``better'' choices of $X$ and $X'$, which would make the statement true. One way to correctly state it would be, e.g. ``$\mathrm{Ext}^1(X,X') = 0$ for all representatives $X$ and $X'$ of $\alpha$ and $\alpha'$ respectively''. Similar issue appears in Proposition 97, where as is currently stated, there may or may not be an extension depending on the choice of $X, X', Y, Y'$.} \\
-TODO
+  Indeed, the correct functor to use here is not \(\mathrm{Ext}^1\), but rather a direct sum over \(\mathrm{Ext}^1\)s from \(X\) to all level-zero shifts of \(X'\).
+  This has been corrected along the lines you suggested, and the new functor is denoted \(\mathbb{E}^1\).
 
 \end{itemize}
 
@@ -122,25 +123,25 @@ Thanks! Fixed.
 Thanks! Fixed.
 
 \item \textsl{\color{gray} pg.\,26 (C1): The definition of zigzag algebra as it is would not be correct for $m = 2$; adding in the relation (superfluous for $m > 2$) ``all paths of length $3$ and above are killed'' should suffice.} \\
-TODO
+Thanks! Fixed.
 
 \item \textsl{\color{gray} pg.\,27 (C1): I'd add the adjective ``full''.} \\
-TODO
+Thanks! Fixed and updated to full and isomorphism-closed.
 
 \item \textsl{\color{gray} pg.\,29 (C1): Given your setting, I assume you meant ``derived category'' instead?} \\
 TODO
 
 \item \textsl{\color{gray} pg.\,30 (C1): Is ``irrelevant'' meant to be ``external''? I’m not sure where ``irrelevant wiggly arc'' was defined.} \\
-TODO
+Thanks! Fixed.
 
 \item \textsl{\color{gray} pg.\,31 (C1)*: As mentioned in the previous section.} \\
-TODO
+Thanks! Fixed as above.
 
 \item \textsl{\color{gray} pg.\,31 (C2): ``up to equivalence'' should probably also include ``up to scalar multiplication''; same for ``unique element''.} \\
-TODO
+Thanks! Fixed.
 
 \item \textsl{\color{gray} pg.\,32 (C1)*: As mentioned in the previous section, some sort of ``up to appropriate shift in gradings'' should be included.} \\
-TODO
+Thanks! Fixed.
 
 \end{itemize}
 
