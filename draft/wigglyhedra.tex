@@ -2127,8 +2127,9 @@ We also discuss categorical conditions for two wiggly arcs to be compatible as i
 \subsection{A triangulated category associated to a quiver}
 \label{subsec:category}
 
-We begin by describing the category of interest, which is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
-That is, a subcategory of the bounded derived category of finitely generated \(A_m\)-modules.
+% We begin by describing the category of interest, which is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
+We begin by describing the category of interest, which is the bounded homotopy category of finitely-generated graded projective modules over a certain finite-dimensional algebra \(A_m\). 
+It is a full subcategory of \(D^b(A_m\text{-grmod})\), the bounded derived category of finitely generated graded \(A_m\)-modules.
 The algebra~\(A_m\), called the \defn{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
 Let \(kQ_m\) be the path algebra of \(Q_m\), graded by path length.
 Let~\(e_i\) denote the idempotent path at the vertex \(i\), and let \((i, j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
@@ -2156,12 +2157,13 @@ As the two versions are isomorphic in our example, we ignore this technicality a
 
 Let \(P_i\) denote the indecomposable projective \(A_m\)-module defined as \(P_i = A_m\cdot e_i\).
 For any integer~\(j\), let \(P_i \langle j \rangle\) denote its graded shift by \(j\).
-There is an embedding of \(A_m\text{-mod}\) into \(D^b(A_m\text{-mod})\), which sends any \(A_m\)-module as a complex of \(A_m\)-modules that is concentrated in degree \(0\).
-In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects of \(D^b(A_m\text{-mod})\).
 
 \begin{definition}
-The category \(\mathcal{C}_m\) is defined to be the smallest full, isomorphism-closed triangulated subcategory of \(D^b(A_m\text{-mod})\) containing all the objects \(P_i\langle j \rangle\).
+The category \(\mathcal{C}_m\) is defined to be the homotopy category of bounded complexes of finitely-generated graded projective \(A_m\)-modules.
 \end{definition}
+Note that there is an embedding of \(A_m\text{-grmod}\) into \(D^b(A_m\text{-grmod})\), which sends any \(A_m\)-module as a complex of \(A_m\)-modules that is concentrated in degree \(0\).
+In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects of \(D^b(A_m\text{-grmod})\).
+\(\mathcal{C}_m\) is thus the smallest full triangulated subcategory of \(D^b(A_m\text{-grmod})\) containing all the objects \(P_i\langle j \rangle\).
 
 For further discussion on the construction, see \eg~\cite[Sect.~2.3.3]{bap.deo.lic:22}.
 The category \(\mathcal{C}_m\) is \(k\)-linear and triangulated, where \([1]\) denotes the triangulated shift.
