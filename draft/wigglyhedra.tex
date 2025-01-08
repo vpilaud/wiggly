@@ -2128,9 +2128,8 @@ We also discuss categorical conditions for two wiggly arcs to be compatible as i
 \label{subsec:category}
 
 % We begin by describing the category of interest, which is a subcategory of \(D^b(A_m\text{-mod})\) for a certain finite-dimensional algebra \(A_m\).
-We begin by describing the category of interest, which is the bounded homotopy category of finitely-generated graded projective modules over a certain finite-dimensional algebra \(A_m\). 
-It is a full subcategory of \(D^b(A_m\text{-grmod})\), the bounded derived category of finitely generated graded \(A_m\)-modules.
-The algebra~\(A_m\), called the \defn{zigzag algebra}, is defined as a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
+We begin by describing the category of interest, which is the bounded homotopy category of finitely-generated graded projective modules over a finite-dimensional algebra \(A_m\). 
+The algebra~\(A_m\), called the \defn{zigzag algebra}, is a quotient of the path algebra of the quiver \(Q_m\) with \(m\) vertices depicted in~\cref{fig:am-quiver}.
 Let \(kQ_m\) be the path algebra of \(Q_m\), graded by path length.
 Let~\(e_i\) denote the idempotent path at the vertex \(i\), and let \((i, j)\) denote the arrow from vertex \(i\) to a (neighbouring) vertex \(j\).
 A longer path, which is a composition of arrows, will be denoted by~\((i_1, i_2, \dots, i_n)\).
@@ -2161,6 +2160,7 @@ For any integer~\(j\), let \(P_i \langle j \rangle\) denote its graded shift by 
 \begin{definition}
 The category \(\mathcal{C}_m\) is defined to be the homotopy category of bounded complexes of finitely-generated graded projective \(A_m\)-modules.
 \end{definition}
+Let \(D^b(A_m\text{-grmod})\) denote the bounded derived category of graded \(A_m\)-modules.
 Note that there is an embedding of \(A_m\text{-grmod}\) into \(D^b(A_m\text{-grmod})\), which sends any \(A_m\)-module as a complex of \(A_m\)-modules that is concentrated in degree \(0\).
 In particular, the objects \(P_i\langle j \rangle\) can be regarded as objects of \(D^b(A_m\text{-grmod})\).
 \(\mathcal{C}_m\) is thus the smallest full triangulated subcategory of \(D^b(A_m\text{-grmod})\) containing all the objects \(P_i\langle j \rangle\).
@@ -2521,9 +2521,9 @@ Next, let us understand~\(Y\) and \(Y'\) categorically.
 \begin{proposition}\label{prop:extensions}
 For \(\alpha\), \(\alpha'\), \(\beta\), \(\beta'\), and \(X\), \(X'\), \(Y\), \(Y'\) as just discussed,
 \begin{itemize}
-\item if \(\alpha\) and \(\alpha'\) are not pointed, then for some \(g\) and \(g'\), we have extensions
+\item if \(\alpha\) and \(\alpha'\) are not pointed, then for some integers \(g\) and \(g'\), we have extensions
   \[0 \to X' \to Y \to X\langle g \rangle[-g] \to 0 \quad \text{and}\quad 0 \to X \to Y' \to X'\langle g' \rangle[-g'] \to 0;\]
-\item if \(\alpha\) and \(\alpha'\) are crossing, then for some \(g\), we have an extension
+\item if \(\alpha\) and \(\alpha'\) are crossing, then for some integer \(g\), we have an extension
   \[0 \to X' \to (Y \oplus Y') \to X\langle g \rangle[-g]\to 0.\]
 \end{itemize}
 \end{proposition}
