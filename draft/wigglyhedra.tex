@@ -2144,7 +2144,7 @@ A longer path, which is a composition of arrows, will be denoted by~\((i_1, i_2,
 \end{figure}
 
 \begin{definition}
-The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by all paths of length at least \(3\), together with the relations \((i-1, i, i+1) = 0 = (i+1, i, i-1)\) and \((i, i-1, i) = (i, i+1, i)\) for all~\(1 < i < m\).
+The \defn{zigzag algebra} \(A_m\) corresponding to the quiver \(Q_m\) depicted in~\cref{fig:am-quiver} is the quotient of \(kQ_m\) by all paths of length at least \(3\), together with the relations \((i-1, i, i+1) = 0\), \((i+1, i, i-1)=0\) and \((i, i-1, i) = (i, i+1, i)\) for all~\(1 < i < m\).
 \end{definition}
 
 \begin{remark}
@@ -2341,7 +2341,7 @@ A spherical object \(X\) is necessarily indecomposable as \(\Hom^{0,0}(X,X) = k\
 \begin{proposition}
 \label{prop:cohomology-pieces}
 Let \(\alpha\) be any curve, and let \(X = X^{\bullet}\) be a chain complex that corresponds to \(\alpha\) under the Khovanov--Seidel reconstruction.
-Recall that for any integer \(j\), the cohomology object \(H^j(X)\) is an object of \(\mathcal{A}_m\), and hence a direct sum of indecomposable objects of \(\mathcal{A}_m\).
+Recall that for any integer \(j\), the cohomology object~\(H^j(X)\) is an object of \(\mathcal{A}_m\), and hence a direct sum of indecomposable objects of \(\mathcal{A}_m\).
 \begin{enumerate}
 \item The object \(X\) is a (spherical) object of \(\mathcal{A}_m\) up to shift if and only if \(\alpha\) is a wiggly arc. In this case, \(H^j(X) \neq 0\) for exactly one \(j\), such that \(X \cong H^j(X)[-j]\).
 \item If \(\alpha\) is a general curve, each indecomposable summand of \(H^j(X)\) for any \(j\) is a spherical object of \(\mathcal{A}_m\) that arises from a wiggly arc, up to shift.
@@ -2357,10 +2357,10 @@ Recall that for any integer \(j\), the cohomology object \(H^j(X)\) is an object
   We analyse the possible non-zero components of the differential, checking how each interacts with the level.
   The only two possibilities are as follows:
   \begin{enumerate}
-  \item a map \(P_i\langle g \rangle[h] \to P_{i\pm1}\langle g+1 \rangle[h-1]\), namely multiplication on the right by the path \((i,i\pm1)\), which does not change the level; or
-  \item a map \(P_i\langle g \rangle[h] \to P_{i}\langle g+2 \rangle[h-1]\), namely multiplication on the right by the ``loop'' path \((i,i\pm1, i)\), which raises the level by one.
+  \item a map \(P_i\langle g \rangle[h] \to P_{i\pm1}\langle g+1 \rangle[h-1]\), namely multiplication on the right by the path~\((i,i\pm1)\), which does not change the level; or
+  \item a map \(P_i\langle g \rangle[h] \to P_{i}\langle g+2 \rangle[h-1]\), namely multiplication on the right by the ``loop'' path~\((i,i\pm1, i)\), which raises the level by one.
   \end{enumerate}
-  The first possibility appears each time the curve wiggles either above the \(i\)th point or below the \((i-1)\)th point.
+  The first possibility appears each time the curve wiggles either above the \(i\)th point or below the~\((i-1)\)th point.
   The second possibility appears each time the curve makes a U-turn around the right of \(i\)th or the left of the \((i-1)\)th point.
 
   Computing the \(j\)th cohomology \(H^j(X)\) simply amounts to truncating the complex to level \(j\).
@@ -2380,7 +2380,7 @@ Recall that for any integer \(j\), the cohomology object \(H^j(X)\) is an object
   As explained above, in terms of the curve \(\alpha\), this corresponds to breaking up the curve~\(\alpha\) into \(x\)-monotone portions.
   More precisely, we begin at an endpoint \(p_0\) of \(\alpha\) and follow the curve until it either ends at a point \(p_1\), or stops being \(x\)-monotone by making a U-turn around a point \(p_1\).
   In this case, we take the portion of \(\alpha\) between \(p_0\) and \(p_1\), calling it \(\alpha_1\), and setting its endpoints to be \(p_0\) and \(p_1\) respectively.
-  Note that \(p_0 \neq p_1\) because \(\alpha\) is \(x\)-monotone between \(p_0\) and \(p_1\).
+  Note that \(p_0 \neq p_1\) because \(\alpha\) is \(x\)-monotone between~\(p_0\) and~\(p_1\).
   We continue with the remainder of \(\alpha\) starting at \(p_1\), greedily taking the maximal \(x\)-monotone portion each time, to obtain pieces \(\alpha_1,\alpha_2, \ldots, \alpha_k\), which are all wiggly arcs.
   These wiggly arcs correspond to complexes \(X_1, \ldots, X_k\), which are spherical objects of \(\mathcal{A}_m\), up to shift.
   It is clear from the construction of the associated complex that these objects, up to shift, are exactly the indecomposable pieces of the cohomology truncations \(H^j(X)\) for various \(j\).
@@ -2418,8 +2418,8 @@ However, it turns out that the cohomology filtration is highly constrained if \(
 
 \begin{proof}
   The proof of this proposition is an easy consequence of analysing the cohomology filtration from the point of view of curves on the disk with marked points.
-  Let \(X_1, \ldots, X_k\) be the objects in \(T\) without repetition, which arise from wiggly arcs \(\alpha_1, \ldots, \alpha_k\) as explained in the proof of~\cref{prop:cohomology-pieces}.
-  Let \(\beta = (i,j,A,B)\) and \(\beta' = (i',j', A',B')\) be two distinct wiggly arcs among \(\{\alpha_1, \ldots,\alpha_k\}\).
+  Let \(X_1, \ldots, X_k\) be the objects in~\(T\) without repetition, which arise from wiggly arcs \(\alpha_1, \ldots, \alpha_k\) as explained in the proof of~\cref{prop:cohomology-pieces}.
+  Let \(\beta = (i,j,A,B)\) and \(\beta' = (i',j', A',B')\) be two distinct wiggly arcs among~\(\{\alpha_1, \ldots,\alpha_k\}\).
   We check that \(\beta\) and \(\beta'\) are compatible in the sense of~\cref{def:compatible}.
   
   Recall that \(\beta\) and \(\beta'\) are two pieces of the curve \(\alpha\).
@@ -2444,7 +2444,7 @@ However, it turns out that the cohomology filtration is highly constrained if \(
   Now suppose for contradiction that \(T\) contains both external edges.
   Then some portion of \(\alpha\) curves around each of the extreme endpoints \(0\) and \(n+1\).
   Consider the outermost strands of \(\alpha\) that curve around \(0\) and \(n+1\) respectively.
-  These must then connect to each other, resulting in \(\alpha\) having a separate closed component that winds around the outside of the \(n+2\) points.
+  These must then connect to each other, resulting in~\(\alpha\) having a separate closed component that winds around the outside of the \(n+2\) points.
   This is not possible because \(\alpha\) is a connected curve with two endpoints.
   Therefore \(T\) cannot contain both external edges.
 \end{proof}
@@ -2490,10 +2490,10 @@ In particular, the table in~\cite[Lem.~3.20]{kho.sei:02} that computes the bigra
 
 With our path-length grading, note that a morphism in \(\Hom_{\mathcal{C}_m}(X,X'\langle -s_2 \rangle[s_1])\) has level \(s_1 - s_2\); that is, it takes an object \(X\) of level \(0\) to the object \(X'\langle -s_2 \rangle[s_1]\) of level \(s_1 - s_2\).
   We can thus obtain the dimension of all morphisms of level \(\ell\) by setting \(q_1 = q\) and \(q_2 = q^{-1}\) and taking the coefficient of \(q^{\ell}\) in the expression~\eqref{eq:bigraded-homs}.
-    The dimension of \(\mathbb{E}^1(X,X')\), is therefore the coefficient of \(q\) under this specialisation.
+    The dimension of \(\mathbb{E}^1(X,X')\), is therefore the coefficient of~\(q\) under this specialisation.
 
-It can be checked that under the path-length grading, the space of morphisms arising from an intersection of curves of ``crossing'' type as well as ``non pointed'' type contains exactly one morphism (up to equivalence and scalar multiplication) of level one; that is, a unique element (up to scalar multiplication) of \(\mathbb{E}^1\).
-Morphisms arising from other intersections do not contribute to \(\mathbb{E}^1\).
+It can be checked that under the path-length grading, the space of morphisms arising from an intersection of curves of ``crossing'' type as well as ``non pointed'' type contains exactly one morphism (up to equivalence and scalar multiplication) of level one; that is, a unique element (up to scalar multiplication) of~\(\mathbb{E}^1\).
+Morphisms arising from other intersections do not contribute to~\(\mathbb{E}^1\).
 This calculation proves the proposition.
 \end{proof}
 
@@ -2543,7 +2543,7 @@ More precisely, we have that
   \([X] + [X'] = [Y] + [Y'].\)
 \end{itemize}
 This suggests that there should be a way to construct the \(\b{g}\)-vectors categorically in such a way that the \(\b{g}\)-vectors also map to the Grothendieck group of the category.
-The \(\b{g}\)-vector of an object \(X\) corresponding to a wiggly arc \(\alpha\) can, of course, be reconstructed from \(\alpha\).
+The \(\b{g}\)-vector of an object~\(X\) corresponding to a wiggly arc \(\alpha\) can, of course, be reconstructed from \(\alpha\).
 However, at the moment we do not have a purely categorical construction of the \(\b{g}\)-vector of \(X\) that does not refer to \(\alpha\), and it would be interesting to find this.
 
 \begin{question}
