@@ -93,6 +93,23 @@ def is_coherently_labeled(P):
     """
     return all(position(P, i, j, k) for (i,j,k) in [sorted(s) for s in Subsets(range(len(P)), 3)])
 
+def coherently_relabel(P):
+    r"""
+    Return a permutation of the point set P which is coherently labeled.
+    It suffices to sort in lexicographic order of coordinates.
+
+    EXAMPLES::
+        sage: P = ((0,0), (2,0), (0,2), (2,2), (1,1))
+        sage: is_coherently_labeled(P)
+        False
+        sage: Q = coherently_relabel(P)
+        sage: Q
+        ((0, 0), (0, 2), (1, 1), (2, 0), (2, 2))
+        sage: is_coherently_labeled(Q)
+        True
+    """
+    return tuple(sorted(P))
+
 def arc(i, j, A, B):
     r"""
     Creates an arc.
