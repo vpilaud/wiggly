@@ -171,7 +171,7 @@ VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/A
 \urladdr{\url{https://asilata.github.io}}
 
 \author{Vincent Pilaud}
-\address{Universitat de Barcelona}
+\address[Vincent Pilaud]{Universitat de Barcelona \& Centre de Recerca Matemàtica, Barcelona, Spain}
 \email{vincent.pilaud@ub.edu}
 \urladdr{\url{https://www.ub.edu/comb/vincentpilaud/}}
 
@@ -931,11 +931,6 @@ By \cref{lem:inversionSetsWigglyPermutations}, we conclude that~$\tau = \rho \jo
 The proof is similar for~$\rho \meet \sigma$, using $\ninv$ instead of~$\inv$.
 \end{proof}
 
-\begin{remark}
-\label{rem:wigglyLatticeAntiIsomorphism}
-The map~$\sigma_1 \dots \sigma_{2n} \mapsto (2n+1-\sigma_1) \dots (2n+1-\sigma_n)$ obviously provides an anti-isomorphism of the wiggly lattice~$\wigglyLattice_n$.
-\end{remark}
-
 We now aim at describing the cover relations of the wiggly lattice.
 Recall that an \defn{ascent} (resp.~\defn{descent}) in a permutation~$\sigma$ is a position~$j$ such that~$\sigma(j) < \sigma(j+1)$ (resp.~$\sigma(j) > \sigma(j+1)$).
 
@@ -989,6 +984,12 @@ Observe that~$\sigma^j \ne \sigma^{j'}$ for distinct ascents~$j \ne j'$.
 As any permutation~$\sigma'$ larger than~$\sigma$ satisfies~${\inv(\sigma') \supseteq \inv(\sigma) \cup \{\sigma(j+1), \sigma(j)\}}$ for some ascent~$j$ of~$\sigma$, we thus obtain that~$j \to \sigma^j$ is a bijection from the ascents of~$\sigma$ to the wiggly permutations covering~$\sigma$.
 The proof is symmetrical for the bijection from descents of~$\sigma$ to wiggly permutations covered by~$\sigma$.
 \end{proof}
+
+\begin{remark}
+\label{rem:wigglyLatticeAntiIsomorphism}
+Let~$\varepsilon$ be the permutation of~$[2n]$ exchanging~$2j-1$ with~$2j$ for all~$j \in [n]$.
+Then the maps~$\sigma_1 \dots \sigma_{2n} \mapsto (2n+1-\sigma_1) \dots (2n+1-\sigma_{2n})$ and~$\sigma_1 \dots \sigma_{2n} \mapsto \varepsilon(\sigma_{2n}) \dots \varepsilon(\sigma_1)$ are two obvious bijections on wiggly permutations of~$[2n]$. Moreover, the first map is an anti-isomorphism of the wiggly lattice~$\wigglyLattice_n$ (while the second map is not).
+\end{remark}
 
 %%%%%%%%%%%%
 
@@ -1109,7 +1110,7 @@ Transporting the wiggly lattice~$\wigglyLattice_n$ via the map~$\Psi$ to the wig
 \end{remark}
 
 \begin{remark}
-The map~$\Phi$ sends the wiggly complex automorphism of \cref{rem:wigglyComplexAutomorphism} given by the vertical reflection to the wiggly lattice anti-isomorphism of \cref{rem:wigglyLatticeAntiIsomorphism}.
+The map~$\Phi$ sends the wiggly complex automorphisms of \cref{rem:wigglyComplexAutomorphism} to the bijections on wiggly permutations of \cref{rem:wigglyLatticeAntiIsomorphism}. In particular, it sends the vertical reflection on wiggly pseudotriangulations to the wiggly lattice anti-isomorphism on wiggly permutations given by~$\sigma_1 \dots \sigma_{2n} \mapsto (2n+1-\sigma_1) \dots (2n+1-\sigma_{2n})$.
 \end{remark}
 
 \begin{remark}
