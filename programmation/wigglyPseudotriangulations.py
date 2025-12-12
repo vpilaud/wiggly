@@ -46,6 +46,24 @@ def arcs(n):
     """
     return [(i, j, A, Set(range(i+1, j)).difference(A)) for j in range(n+2) for i in range(j) for A in Subsets(range(i+1, j))]
 
+def is_relevant(arc, n):
+    r"""
+    Check if the arc is relevant.
+    """
+    (i, j, A, B) = arc
+    return i != 0 or j != n+1 or (A and B)
+
+@cached_function
+def boundary_arcs(n):
+    r"""
+    Return the two boundary arcs on n+2 points.
+
+    EXAMPLES::
+        sage: boundary_arcs(2)
+        [(0, 3, {1, 2}, set()), (0, 3, set(), {1, 2})]
+    """
+    return [(0, n+1, set(range(1,n+1)), set([])), (0, n+1, set([]), set(range(1,n+1)))]
+
 @cached_function
 def relevant_arcs(n):
     r"""
@@ -64,7 +82,6 @@ def relevant_arcs(n):
          (2, 3, {}, {})]
     """
     return [(i, j, A, Set(range(i+1, j)).difference(A)) for j in range(n+2) for i in range(j) for A in Subsets(range(i+1, j)) if j-i < n+1 or len(A) not in [0, n]]
-
 
 def tuplize(arc):
     r"""
@@ -481,7 +498,7 @@ def g_vector(arc, n, essential=True):
     If essential, then we essentialize.
 
     EXAMPLES::
-        sage: [(arc, g_vector(arc, 2, essential=False)) for arc in arcs(n)]
+        sage: [(arc, g_vector(arc, 2, essential=False)) for arc in arcs(2)]
         [((0, 1, {}, {}), (-1, 1, 0, 0)),
          ((0, 2, {}, {1}), (-1, -1, -1, 1)),
          ((0, 2, {1}, {}), (1, 1, -1, 1)),
@@ -493,7 +510,7 @@ def g_vector(arc, n, essential=True):
          ((1, 3, {}, {2}), (1, -1, -1, -1)),
          ((1, 3, {2}, {}), (1, -1, 1, 1)),
          ((2, 3, {}, {}), (0, 0, 1, -1))]
-        sage: [(arc, g_vector(arc, 2)) for arc in arcs(n)]
+        sage: [(arc, g_vector(arc, 2)) for arc in arcs(2)]
         [((0, 1, {}, {}), (-1, 1/2, 0)),
          ((0, 2, {}, {1}), (0, 0, -1)),
          ((0, 2, {1}, {}), (0, 1, -1)),
@@ -736,3 +753,59 @@ def multi_wiggly_elements(n, k):
 @cached_function
 def multi_wiggly_complex(n, k):
     return SimplicialComplex([x[0] for x in multi_wiggly_elements(n, k)])
+
+### RIGIDITY FAN
+
+def rigidity_vector(arc, n):
+    r"""
+    Return the rigidity vector of an arc.
+
+    EXAMPLES::
+        sage: [(arc, rigidity_vector(arc, 2)) for arc in arcs(2)]
+        [((0, 1, {}, {}), [1, -1, 0, 0, 0, 0, 0, 0]),
+         ((0, 2, {}, {1}), [1, 0, -1, 0, -1, 2, -1, 0]),
+         ((0, 2, {1}, {}), [1, 0, -1, 0, 1, -2, 1, 0]),
+         ((1, 2, {}, {}), [0, 1, -1, 0, 0, 0, 0, 0]),
+         ((0, 3, {}, {1, 2}), [1, 0, 0, -1, -1, 1, 1, -1]),
+         ((0, 3, {1}, {2}), [1, 0, 0, -1, 1, -3, 3, -1]),
+         ((0, 3, {2}, {1}), [1, 0, 0, -1, -1, 3, -3, 1]),
+         ((0, 3, {1, 2}, {}), [1, 0, 0, -1, 1, -1, -1, 1]),
+         ((1, 3, {}, {2}), [0, 1, 0, -1, 0, -1, 2, -1]),
+         ((1, 3, {2}, {}), [0, 1, 0, -1, 0, 1, -2, 1]),
+         ((2, 3, {}, {}), [0, 0, 1, -1, 0, 0, 0, 0])]
+    """
+    (i, j, A, B) = arc
+    return [int(k == i) - int(k == j) for k in range(n+2)] + [int(k+1 in A) - 2*int(k in A) + int(k-1 in A) - int(k+1 in B) + 2*int(k in B) - int(k-1 in B) for k in range(n+2)]
+
+def projected_rigidity_vector(arc, n, reference=None):
+    r"""
+    Return the projected rigidity fan.
+    This is obtained by expressing the rigidity vector in the basis given by the rigidity vectors a reference wiggly pseudotriangulation. 
+    """
+    if reference is None:
+        reference = boundary_arcs(n) + [arc for arc in list(wiggly_complex(n).faces()[2*n-2])[0]]
+    M = Matrix([list(rigidity_vector(arc, n))] + [list(rigidity_vector(refArc, n)) for refArc in reference])
+    lindep = M.left_kernel().basis()[0]
+    return lindep[0] * vector(lindep[3:])
+
+@cached_function
+def rigidity_fan(n):
+    r"""
+    Return the rigidity fdan.
+    It is constructed using the rigidity vectors as support, and the wiggly complex as cones.
+
+    EXAMPLES::
+        sage: rigidity_fan(2)
+        Rational polyhedral fan in 8-d lattice N
+    """
+    arc_dict = dict([(tuplize(arc), k) for (k, arc) in enumerate(arcs(n))])
+    return Fan(cones = [[arc_dict[arc] for arc in f] for f in wiggly_complex(n).faces()[2*n-2]], rays = [rigidity_vector(arc, n) for arc in arcs(n)])
+
+@cached_function
+def projected_rigidity_fan(n, reference=None):
+    r"""
+    Return the projected rigidity fan.
+    This is obtained by expressing the rigidity vectors in the basis given by a reference wiggly pseudotriangulation. 
+    """
+    arc_dict = dict([(tuplize(arc), k) for (k, arc) in enumerate(arcs(n))])
+    return Fan(cones = [[arc_dict[arc] for arc in f] for f in wiggly_complex(n).faces()[2*n-2]], rays = [projected_rigidity_vector(arc, n, reference=reference) for arc in arcs(n)])

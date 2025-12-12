@@ -388,7 +388,7 @@ def wiggly_complex(P):
     return SimplicialComplex([x[0] for x in wiggly_complex_enum(P)])
 
 @cached_function
-def rigidity_vector(P, a):
+def rigidity_vector(P, a, alpha=1):
     r"""
     Return the rigidity vector of the arc a.
 
@@ -434,22 +434,59 @@ def rigidity_vector(P, a):
         (2, 4, {}, {}) (0, 0, 0, 0, 0, 2, 0, 0, 0, -2)
         (3, 4, {}, {}) (0, 0, 0, 0, 0, 0, 2, 0, -2, 0)
     """
+    """
     (i, j, A, B) = a
     v = vector(P[i]) - vector(P[j])
     d = 0 if v[0] != 0 else 1
-    w = vector([-v[1], v[0]])
+    w = epsilon * vector([-v[1], v[0]])
     res = []
     for k in range(len(P)):
-        if k == i: c = (-v + add((P[j][d]-P[l][d])/(P[j][d]-P[i][d])*w for l in A) - add((P[j][d]-P[l][d])/(P[j][d]-P[i][d])*w for l in B))[:2]
-        elif k == j: c = (v + add((P[l][d]-P[i][d])/(P[j][d]-P[i][d])*w for l in A) - add((P[l][d]-P[i][d])/(P[j][d]-P[i][d])*w for l in B))[:2]
-        elif k in A: c = -w[:2]
-        elif k in B: c = w[:2]
+        if k == i: c = -v + add((P[j][d]-P[l][d])/(P[j][d]-P[i][d])*w for l in A) - add((P[j][d]-P[l][d])/(P[j][d]-P[i][d])*w for l in B)
+        elif k == j: c = v + add((P[l][d]-P[i][d])/(P[j][d]-P[i][d])*w for l in A) - add((P[l][d]-P[i][d])/(P[j][d]-P[i][d])*w for l in B)
+        elif k in A: c = -w
+        elif k in B: c = w
         else: c = (0,0)
         res = res + list(c)
     return vector(res)
+    """
+    """
+    res = [vector([0,0])]*len(P)
+    res[i] = -v
+    res[j] = v
+    A = list(A)
+    B = list(B)
+    X = sorted([i,j]+A+B, key=lambda x: vector(P[x]).dot_product(-v))
+    for k in range(len(X)-1):
+        vs = vector(P[X[k]]) - vector(P[X[k+1]])
+        ws = vector([-vs[1], vs[0]]) / vs.dot_product(vs)
+        if X[k] in [i]+A and X[k+1] in [j]+B:
+            res[X[k]] = res[X[k]] - ws
+            res[X[k+1]] = res[X[k+1]] + ws
+        if X[k] in [i]+B and X[k+1] in [j]+A:
+            res[X[k]] = res[X[k]] + ws
+            res[X[k+1]] = res[X[k+1]] - ws
+    return [x for v in res for x in v]
+    """
+    (i, j, A, B) = a
+    P = [vector(p, immutable=True) for p in P]
+    v = P[i] - P[j]
+    d = 0 if v[0] != 0 else 1
+    w = vector([-v[1], v[0]], immutable=True)  # Ccw 90° from v
+    R = [vector((0, 0)) for _ in range(len(P))]
+    
+    intermediate_points = tuple(sorted(A.union(B), key=lambda idx: vector(P[idx]) * (-v)))
+    
+    R[i] += vector((-1, 0))
+    R[j] += vector(( 1, 0))
+    for pre, k, pos in zip((i,) + intermediate_points[:-1], intermediate_points, intermediate_points[1:] + (j,)):
+        R[pre] += alpha*vector((0,  1 if k in A else -1))
+        R[pos] += alpha*vector((0,  1 if k in A else -1))
+        R[k]   += alpha*vector((0, -2 if k in A else  2))
+    
+    return vector([e for t in (tuple(r[0]*v + r[1]*w) for r in R) for e in t])
 
 @cached_function
-def rigidity_fan(P):
+def rigidity_fan(P, epsilon=1):
     r"""
     Return the rigidity fan of P.
 
@@ -503,7 +540,7 @@ def rigidity_fan(P):
     """
     b = len(boundary_arcs(P))
     dict_arcs = dict((a,i) for (i,a) in enumerate(relevant_arcs(P)))
-    rays = [rigidity_vector(P, a) for a in boundary_arcs(P)] + [rigidity_vector(P, a) for a in relevant_arcs(P)]
+    rays = [rigidity_vector(P, a, epsilon=epsilon) for a in boundary_arcs(P)] + [rigidity_vector(P, a, epsilon=epsilon) for a in relevant_arcs(P)]
     WC = wiggly_complex(P)
     return Fan(cones=[list(range(b)) + [dict_arcs[a]+b for a in f] for f in WC.faces()[len(WC.faces())-2]], rays=rays)
 
@@ -513,9 +550,8 @@ def linear_dependence_rigidity_vectors(P, flip):
     Return the unique linear dependence between the rigidity vectors of the arcs corresponding to two wiggly pseudotriangulations related by a flip.
     """
     aa = [list(set(flip[0]).difference(flip[1]))[0]] + [list(set(flip[1]).difference(flip[0]))[0]] + list(set(flip[0]).intersection(flip[1])) + boundary_arcs(P)
-    #print(Matrix([rigidity_vector(P,a) for a in aa]))
-    #print(kernel(Matrix([rigidity_vector(P,a) for a in aa])))
-    return kernel(Matrix([rigidity_vector(P,a) for a in aa])).basis()[0]
+    res = kernel(Matrix([rigidity_vector(P,a) for a in aa])).basis()[0]
+    return (aa, res)
 
 @cached_function
 def all_linear_dependences_rigidity_vectors(P):
@@ -523,7 +559,7 @@ def all_linear_dependences_rigidity_vectors(P):
     Return all linear dependencies between rigidity vectors of the arcs corresponding to two wiggly pseudotriangulations related by a flip.
 
     EXAMPLES::
-        sage: P = ((0,0), (1,0), (2,0),(3,0))
+        sage: P = ((0,0), (1,0), (2,0), (3,0))
         sage: for x in all_linear_dependences_rigidity_vectors(P):
         ....:     print(x)
         ....:
@@ -592,7 +628,7 @@ def all_linear_dependences_rigidity_vectors(P):
         ((((2, 3, {}, {1}), (1, 2, {}, {}), (2, 3, {1}, {})), ((1, 3, {}, {}), (2, 3, {}, {1}), (2, 3, {1}, {}))), (1, 1, -1/4, -1/4, 0, 0, 0, 0))
         ((((1, 3, {}, {}), (2, 3, {}, {1}), (1, 4, {}, {})), ((1, 3, {}, {}), (2, 3, {}, {1}), (2, 3, {1}, {}))), (1, 3/8, -1/8, 0, 0, 0, -1/2, -1/2))
     """
-    return [(e, linear_dependence_rigidity_vectors(P, e)) for e in wiggly_complex(P).flip_graph().edges(labels=None)]
+    return [linear_dependence_rigidity_vectors(P, e) for e in wiggly_complex(P).flip_graph().edges(labels=None)]
 
 @cached_function
 def reduced_rigidity_fan(P):
