@@ -388,51 +388,67 @@ def wiggly_complex(P):
     return SimplicialComplex([x[0] for x in wiggly_complex_enum(P)])
 
 @cached_function
-def rigidity_vector(P, a, alpha=1):
+def rigidity_vector(P, a, epsilon=1, *, rational_projection=False):
     r"""
     Return the rigidity vector of the arc a.
+
+    PARAMETERS::
+        P: Point set
+        a: Arc
+        epsilon:
+           Multiplier factor for transversal forces
+        rational_projection:
+           Whether to use a rational projection to determine how transversal forces
+           are affected by the length of the arc, instead of the norm, which requires
+           computations in `AA`.
+
+           Setting this to `True` effectively deforms the rigidity vectors as if
+           each of them had a different `epsilon` value, which might affect the fan.
+           Unfortunately, Sage only has support for rational fans.
+
+           `False` by default.
 
     EXAMPLES::
         sage: P = ((0,0), (1,0), (2,0))
         sage: for a in arcs(P):
-        ....:     print(a, rigidity_vector(P, a))
-        (0, 1, {}, {}) (1, 0, -1, 0, 0, 0)
-        (0, 2, {}, {1}) (2, 1, 0, -2, -2, 1)
-        (0, 2, {1}, {}) (2, -1, 0, 2, -2, -1)
-        (1, 2, {}, {}) (0, 0, 1, 0, -1, 0)
+        ....:     print(f"{str(a):16} {rigidity_vector(P, a)}")
+        (0, 1, {}, {})   (1, 0, -1, 0, 0, 0)
+        (0, 2, {}, {1})  (2, 2, 0, -4, -2, 2)
+        (0, 2, {1}, {})  (2, -2, 0, 4, -2, -2)
+        (1, 2, {}, {})   (0, 0, 1, 0, -1, 0)
 
         sage: P = ((0,0), (1,1), (3,0), (0,3), (3,3))
         sage: for a in arcs(P):
-        ....:     print(a, rigidity_vector(P, a))
+        ....:     print(f"{str(a):16} {rigidity_vector(P, a)}")
         ....:
-        (0, 1, {}, {}) (1, 1, -1, -1, 0, 0, 0, 0, 0, 0)
-        (0, 2, {}, {}) (3, 0, 0, 0, -3, 0, 0, 0, 0, 0)
-        (1, 2, {}, {}) (0, 0, 2, -1, -2, 1, 0, 0, 0, 0)
-        (0, 3, {}, {}) (0, 3, 0, 0, 0, 0, 0, -3, 0, 0)
-        (1, 3, {}, {}) (0, 0, -1, 2, 0, 0, 1, -2, 0, 0)
-        (2, 3, {}, {}) (0, 0, 0, 0, -3, 3, 3, -3, 0, 0)
-        (0, 4, {}, {1}) (1, 5, 3, -3, 0, 0, 0, 0, -4, -2)
-        (0, 4, {1}, {}) (5, 1, -3, 3, 0, 0, 0, 0, -2, -4)
-        (1, 4, {}, {}) (0, 0, 2, 2, 0, 0, 0, 0, -2, -2)
-        (2, 4, {}, {}) (0, 0, 0, 0, 0, 3, 0, 0, 0, -3)
-        (3, 4, {}, {}) (0, 0, 0, 0, 0, 0, 3, 0, -3, 0)
+        (0, 1, {}, {})   (1, 1, -1, -1, 0, 0, 0, 0, 0, 0)
+        (0, 2, {}, {})   (3, 0, 0, 0, -3, 0, 0, 0, 0, 0)
+        (1, 2, {}, {})   (0, 0, 2, -1, -2, 1, 0, 0, 0, 0)
+        (0, 3, {}, {})   (0, 3, 0, 0, 0, 0, 0, -3, 0, 0)
+        (1, 3, {}, {})   (0, 0, -1, 2, 0, 0, 1, -2, 0, 0)
+        (2, 3, {}, {})   (0, 0, 0, 0, -3, 3, 3, -3, 0, 0)
+        (0, 4, {}, {1})  (-6*sqrt(2) + 3, 6*sqrt(2) + 3, 9*sqrt(2), -9*sqrt(2), 0, 0, 0, 0, -3*sqrt(2) - 3, 3*sqrt(2) - 3)
+        (0, 4, {1}, {})  (6*sqrt(2) + 3, -6*sqrt(2) + 3, -9*sqrt(2), 9*sqrt(2), 0, 0, 0, 0, 3*sqrt(2) - 3, -3*sqrt(2) - 3)
+        (1, 4, {}, {})   (0, 0, 2, 2, 0, 0, 0, 0, -2, -2)
+        (2, 4, {}, {})   (0, 0, 0, 0, 0, 3, 0, 0, 0, -3)
+        (3, 4, {}, {})   (0, 0, 0, 0, 0, 0, 3, 0, -3, 0)
 
         sage: P = ((0,0), (1,1), (2,0), (0,2), (2,2))
         sage: for a in arcs(P):
-        ....:     print(a, rigidity_vector(P, a))
+        ....:     print(f"{str(a):16} {rigidity_vector(P, a)}")
         ....:
-        (0, 1, {}, {}) (1, 1, -1, -1, 0, 0, 0, 0, 0, 0)
-        (0, 2, {}, {}) (2, 0, 0, 0, -2, 0, 0, 0, 0, 0)
-        (1, 2, {}, {}) (0, 0, 1, -1, -1, 1, 0, 0, 0, 0)
-        (0, 3, {}, {}) (0, 2, 0, 0, 0, 0, 0, -2, 0, 0)
-        (1, 3, {}, {}) (0, 0, -1, 1, 0, 0, 1, -1, 0, 0)
-        (2, 3, {}, {1}) (0, 0, 2, 2, -3, 1, 1, -3, 0, 0)
-        (2, 3, {1}, {}) (0, 0, -2, -2, -1, 3, 3, -1, 0, 0)
-        (0, 4, {}, {1}) (1, 3, 2, -2, 0, 0, 0, 0, -3, -1)
-        (0, 4, {1}, {}) (3, 1, -2, 2, 0, 0, 0, 0, -1, -3)
-        (1, 4, {}, {}) (0, 0, 1, 1, 0, 0, 0, 0, -1, -1)
-        (2, 4, {}, {}) (0, 0, 0, 0, 0, 2, 0, 0, 0, -2)
-        (3, 4, {}, {}) (0, 0, 0, 0, 0, 0, 2, 0, -2, 0)
+        (0, 1, {}, {})   (1, 1, -1, -1, 0, 0, 0, 0, 0, 0)
+        (0, 2, {}, {})   (2, 0, 0, 0, -2, 0, 0, 0, 0, 0)
+        (1, 2, {}, {})   (0, 0, 1, -1, -1, 1, 0, 0, 0, 0)
+        (0, 3, {}, {})   (0, 2, 0, 0, 0, 0, 0, -2, 0, 0)
+        (1, 3, {}, {})   (0, 0, -1, 1, 0, 0, 1, -1, 0, 0)
+        (2, 3, {}, {1})  (0, 0, 4*sqrt(2), 4*sqrt(2), -2*sqrt(2) - 2, -2*sqrt(2) + 2, -2*sqrt(2) + 2, -2*sqrt(2) - 2, 0, 0)
+        (2, 3, {1}, {})  (0, 0, -4*sqrt(2), -4*sqrt(2), 2*sqrt(2) - 2, 2*sqrt(2) + 2, 2*sqrt(2) + 2, 2*sqrt(2) - 2, 0, 0)
+        (0, 4, {}, {1})  (-2*sqrt(2) + 2, 2*sqrt(2) + 2, 4*sqrt(2), -4*sqrt(2), 0, 0, 0, 0, -2*sqrt(2) - 2, 2*sqrt(2) - 2)
+        (0, 4, {1}, {})  (2*sqrt(2) + 2, -2*sqrt(2) + 2, -4*sqrt(2), 4*sqrt(2), 0, 0, 0, 0, 2*sqrt(2) - 2, -2*sqrt(2) - 2)
+        (1, 4, {}, {})   (0, 0, 1, 1, 0, 0, 0, 0, -1, -1)
+        (2, 4, {}, {})   (0, 0, 0, 0, 0, 2, 0, 0, 0, -2)
+        (3, 4, {}, {})   (0, 0, 0, 0, 0, 0, 2, 0, -2, 0)
     """
     """
     (i, j, A, B) = a
@@ -467,6 +483,7 @@ def rigidity_vector(P, a, alpha=1):
             res[X[k+1]] = res[X[k+1]] - ws
     return [x for v in res for x in v]
     """
+    """
     (i, j, A, B) = a
     P = [vector(p, immutable=True) for p in P]
     v = P[i] - P[j]
@@ -484,14 +501,40 @@ def rigidity_vector(P, a, alpha=1):
         R[k]   += alpha*vector((0, -2 if k in A else  2))
     
     return vector([e for t in (tuple(r[0]*v + r[1]*w) for r in R) for e in t])
+    """
+    (i, j, A, B) = a
+    P = [vector(p, immutable=True) for p in P]
+    v = P[i] - P[j]
+    w = vector([-v[1], v[0]], immutable=True)  # Ccw 90° from v
+    R = [vector((0, 0)) for _ in range(len(P))]
+
+    R[i] += vector((-1, 0))
+    R[j] += vector((+1, 0))
+    e_transversal = vector((0, 1))
+    d = 0 if v[0] != 0 else 1
+    for k in A.union(B):
+        if rational_projection:
+            pre_c = (P[j] - P[k])[d]
+            pos_c = (P[k] - P[i])[d]
+        else:
+            pre_c = (P[j] - P[k]).norm()
+            pos_c = (P[k] - P[i]).norm()
+        s = 1 if k in A else -1
+        R[i] += s * epsilon * pre_c * e_transversal
+        R[j] += s * epsilon * pos_c * e_transversal
+        R[k] -= s * epsilon * (pre_c + pos_c) * e_transversal
+
+    return vector([e for t in (tuple(r[0]*v + r[1]*w) for r in R) for e in t])
+
 
 @cached_function
-def rigidity_fan(P, epsilon=1):
+def rigidity_fan(P, epsilon=1, rational_projection=True):
     r"""
     Return the rigidity fan of P.
 
     EXAMPLES::
         sage: P = ((0,0), (1,0), (2,0))
+        sage: F = rigidity_fan(P)
         sage: F
         Rational polyhedral fan in 6-d lattice N
         sage: F.dim()
@@ -540,7 +583,7 @@ def rigidity_fan(P, epsilon=1):
     """
     b = len(boundary_arcs(P))
     dict_arcs = dict((a,i) for (i,a) in enumerate(relevant_arcs(P)))
-    rays = [rigidity_vector(P, a, epsilon=epsilon) for a in boundary_arcs(P)] + [rigidity_vector(P, a, epsilon=epsilon) for a in relevant_arcs(P)]
+    rays = [rigidity_vector(P, a, epsilon=epsilon, rational_projection=rational_projection) for a in boundary_arcs(P)] + [rigidity_vector(P, a, epsilon=epsilon, rational_projection=rational_projection) for a in relevant_arcs(P)]
     WC = wiggly_complex(P)
     return Fan(cones=[list(range(b)) + [dict_arcs[a]+b for a in f] for f in WC.faces()[len(WC.faces())-2]], rays=rays)
 
