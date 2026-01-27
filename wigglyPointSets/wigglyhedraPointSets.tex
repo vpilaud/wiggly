@@ -1,7 +1,7 @@
 \documentclass{amsart}
 
 \usepackage[T1]{fontenc}
-\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, shuffle, xargs, multicol, overpic, pdflscape, multirow, hvfloat, minibox, accents, array, multido, xifthen, a4wide, ae, aecompl, blkarray, pifont, mathtools, etoolbox, dsfont}
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, thmtools, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, shuffle, xargs, multicol, overpic, pdflscape, multirow, hvfloat, minibox, accents, array, multido, xifthen, a4wide, ae, aecompl, blkarray, pifont, mathtools, etoolbox, dsfont}
 \usepackage{marginnote}
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue}
 \usepackage[all]{xy}
@@ -137,7 +137,9 @@
 \newcommand{\polytope}[1]{\mathds{#1}} % font polytope
 
 % specific wiggly
-\newcommand{\wigglyComplex}{\mathrm{WC}} % wiggly complex
+\newcommandx{\arc}[1][1=\alpha]{\b{#1}} % arc
+\newcommand{\extendedWigglyComplex}{\overline{\mathrm{WC}}} % wiggly complex
+\newcommand{\reducedWigglyComplex}{\mathrm{WC}} % wiggly complex
 \newcommand{\wigglyFlipGraph}{\mathrm{WFG}} % wiggly flip graph
 \newcommand{\wigglyIncreasingFlipGraph}{\mathrm{WIFG}} % wiggly increasing flip graph
 \newcommand{\wigglyLattice}{\mathrm{WL}} % wiggly lattice
@@ -165,23 +167,38 @@
 \thanks{AB was partially supported by the Australian Research Council DECRA grant DE240100447. 
 VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Spanish--German project COMPOTE (AEI PCI2024-155081-2 \& DFG 541393733), by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), and by the French--Austrian project PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).}
 
-\author{David Alcantara}
-\address{Universidad de Cantabria}
+\author[D. Alcantara]{David Alcantara}
+\address[David Alcantara]{Universidad de Cantabria, Santander, Spain}
 \email{david.alcantara@unican.es}
 %\urladdr{\url{}}
 
-\author{Asilata Bapat}
-\address{The Australian National University}
+\author[A. Bapat]{Asilata Bapat}
+\address[Asilata Bapat]{The Australian National University, Canberra, Australia}
 \email{asilata.bapat@anu.edu.au}
 \urladdr{\url{https://asilata.github.io}}
 
-\author{Vincent Pilaud}
-\address{Universitat de Barcelona}
+\author[M. Bin]{Marguerite Bin}
+\address[Marguerite Bin]{Université de Lorraine, CNRS, INRIA, LORIA, Nancy, France}
+\email{marguerite.bin@inria.fr}
+%\urladdr{\url{}}
+
+\author[N. Crepeau]{Natasha Crepeau}
+\address[Natasha Crepeau]{University of Washington, Seattle, USA}
+\email{ncrepeau@uw.edu}
+\urladdr{\url{https://sites.google.com/view/natasha-crepeau-math/home}}
+
+\author[H. Ping Luk]{Hoi Ping Luk}
+\address[Hoi Ping Luk]{Z\'apado\v{c}esk\'a univerzita v Plzni, Pilsen, Czech Republic}
+\email{hoi@connect.ust.hk}
+%\urladdr{\url{}}
+
+\author[V. Pilaud]{Vincent Pilaud}
+\address[Vincent Pilaud]{Universitat de Barcelona \& Centre de Recerca Matemàtica, Barcelona, Spain}
 \email{vincent.pilaud@ub.edu}
 \urladdr{\url{https://www.ub.edu/comb/vincentpilaud/}}
 
-\author{Francisco Santos}
-\address{Universidad de Cantabria}
+\author[F. Santos]{Francisco Santos}
+\address[Francisco Santos]{Universidad de Cantabria, Santander, Spain}
 \email{francisco.santos@unican.es}
 \urladdr{\url{https://personales.unican.es/santosf/}}
 
@@ -190,101 +207,258 @@ VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/A
 \begin{document}
 
 \begin{abstract}
-We study the wiggly complex of a planar point set.
+We provide a polytopal realization of the wiggly complex of a planar point set.
 \end{abstract}
 
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Wiggly complex and wiggly pseudotriangulations of a planar point set}
+%\section{Wiggly complex and wiggly pseudotriangulations of a planar point set}
+%\label{sec:wigglyComplex}
+%
+%\vincent{This is copy-pasted from the wigglyhedron paper. The definition is actually inexact. To be improved.}
+%
+%We consider an arbitrary point set~$P$ in the plane (neither necessarily aligned, nor necessarily in general position).
+%
+%\begin{definition}
+%\label{def:wigglyComplexPointSet}
+%Fix a point set~$P$ of the plane, and an arbitrary total order~$<$ on~$P$.
+%A \defn{wiggly arc} is a quadruple~$(p,q,R,S)$ where~$p < q \in P$ and the sets~$R$ and~$S$ form a partition of the points of~$P$ located in the open segment joining~$p$ to~$q$.
+%Two wiggly arcs~$(p,q,R,S)$ and~$(p',q',R',S')$ are \defn{crossing} if 
+%\begin{itemize}
+%\item either the segments~$[p,q]$ and~$[p',q']$ cross, 
+%\item or~$(R \cap S') \cup (\{p,q\} \cap S') \cup (R \cap \{p',q'\}) \ne \varnothing \ne (R' \cap S) \cup (\{p',q'\} \cap S) \cup (R' \cap \{p,q\})$.
+%\end{itemize}
+%A set~$X$ of wiggly arcs is \defn{pointed} if for any~$p \in P$, the wiggly arcs of~$X$ with an endpoint at~$p$ generate a pointed cone.
+%The \defn{wiggly complex}~$\extendedWigglyComplex_P$ is the simplicial complex of pairwise pointed and non-crossing subsets of wiggly arcs.
+%Note that the boundary wiggly arcs are irrelevant, which allows us to consider a reduced wiggly complex~$\extendedWigglyComplex_P$ induced by internal wiggly arcs.
+%A \defn{wiggly pseudotriangulation} of~$P$ is a facet of~$\extendedWigglyComplex_P$.
+%The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ is the adjacency graph of the facets of~$\extendedWigglyComplex_P$.
+%%Note that, by construction, $\wigglyFlipGraph_P$ is regular.
+%See \cref{fig:wigglyComplexSquarre} for an illustration.
+%%
+%\end{definition}
+%
+%
+%Observe that it is not even clear from \cref{def:wigglyComplexPointSet} that the wiggly complex~$\extendedWigglyComplex_P$ is a pure pseudomanifold (hence that the wiggly flip graph~$\wigglyFlipGraph_P$ is well-defined).
+%However, we make the following ambitious conjecture.
+%\vincent{The goal of this new paper is to solve this conjecture.}
+%
+%\begin{conjecture}
+%\label{conj:polytopality}
+%For any point set~$P$ in the plane, the wiggly complex~$\extendedWigglyComplex_P$ is the boundary complex of a simplicial polytope.
+%\end{conjecture}
+%
+%In \cref{conj:polytopality}, the case of aligned points is given by the wigglyhedron of~\cite{BapatPilaud}, while the case of points in general position is given by the pseudotriangulation polytope of~\cite{RoteSantosStreinu-polytope}.
+%This raises in particular the following question.
+%
+%\begin{question}
+%Can the constructions of~\cite{BapatPilaud} be adapted to provide a more combinatorial construction of the polytope of pseudotriangulations~\cite{RoteSantosStreinu-polytope}, that would only depend on the order type (\aka oriented matroid~\cite{BjornerLasVergnasSturmfelsWhiteZiegler}) of the point configuration?
+%\end{question}
+%
+%Using the duality between lines in the plane and points in the M\"obius strip, the pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations} were interpreted in~\cite{PilaudPocchiola} as pseudoline arrangements on sorting networks.
+%It is natural to look for the analogue of this interpretation in the wiggly setting.
+%
+%\begin{question}
+%Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements? 
+%\end{question}
+%
+%This dual interpretation enables \cite{PilaudPocchiola} to consider the pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations} and the multitriangulations of~\cite{PilaudSantos-multitriangulations} under the same roof, and to define multi-pseudo-triangulations.
+%The extension to the wiggly case is a natural question.
+%
+%\begin{question}
+%Is there a multi wiggly complex?
+%\end{question}
+%
+%Moreover, pseudoline arrangements on sorting networks can also be interpreted as (type~$A$) subword complexes of~\cite{KnutsonMiller-subwordComplex}, which in turn extend to arbitrary finite Coxeter group.
+%See \cite{Stump, CeballosLabbeStump} for the study of subword complexes corresponding to cluster complexes and multi-cluster complexes.
+%
+%\begin{question}
+%Can the wiggly complex be extended to arbitrary finite Coxeter groups?
+%\end{question}
+%
+%%\begin{question}
+%%\begin{itemize}
+%%\item Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements? 
+%%\item Is there a multi wiggly complex?
+%%\item Can this interpretation be extended to other finite Coxeter groups?
+%%\end{itemize}
+%%\end{question}
+%
+%Finally, it is natural to consider the extension of~\cite[Conj.~44]{BapatPilaud}.
+%
+%\begin{question}
+%\label{qu:Hamiltonian}
+%Is the wiggly flip graph~$\wigglyFlipGraph_P$ Hamiltonian for any point set~$P$ in the plane?
+%\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The wiggly complex of a planar point set}
 \label{sec:wigglyComplex}
 
-\vincent{This is copy-pasted from the wigglyhedron paper. The definition is actually inexact. To be improved.}
-
-We consider an arbitrary point set~$P$ in the plane (neither necessarily aligned, nor necessarily in general position).
+Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
+A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
+We denote by~$n = v + w$ the number of points of~$P$, where~$v$ are extremal and~$w$ are not.
+We first define the wiggly segments of~$P$.
+Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open interval~$]p,q[$.
 
 \begin{definition}
-\label{def:wigglyComplexPointSet}
-Fix a point set~$P$ of the plane, and an arbitrary total order~$<$ on~$P$.
-A \defn{wiggly arc} is a quadruple~$(p,q,R,S)$ where~$p < q \in P$ and the sets~$R$ and~$S$ form a partition of the points of~$P$ located in the open segment joining~$p$ to~$q$.
-Two wiggly arcs~$(p,q,R,S)$ and~$(p',q',R',S')$ are \defn{crossing} if 
+\label{def:wigglySegments}
+An \defn{oriented arc} from~$p$ to~$q$ is an isotopy class of continuous maps~$\alpha : [0,1] \mapsto \R^2$ such that~$\alpha(0) = p$, $\alpha(1) = q$ and~$\alpha(]0,1[) \subseteq \R^2 \ssm P$.
+%We say that~$p$ and~$q$ are the \defn{endpoints} of~$\arc$, and that $\arc$ is \defn{incident} to $p$ and~$q$.
+An \defn{arc} is an oriented arc modulo reorientation.
+An arc is \defn{internal} if its interior intersects the convex hull of~$P$, and \defn{external} otherwise.
+The \defn{length} of an arc is the infimum of the lengths of the representatives in its isotopy class.
+A \defn{wiggly segment} is an arc whose length is the Euclidean distance between its endpoints.
+\end{definition}
+
+\begin{definition}
+\label{def:compatible}
+A set~$D$ of wiggly segments is
 \begin{itemize}
-\item either the segments~$[p,q]$ and~$[p',q']$ cross, 
-\item or~$(R \cap S') \cup (\{p,q\} \cap S') \cup (R \cap \{p',q'\}) \ne \varnothing \ne (R' \cap S) \cup (\{p',q'\} \cap S) \cup (R' \cap \{p,q\})$.
+\item \defn{non-crossing} if there exists a set of representatives of the arcs of~$D$ with pairwise disjoint relative interiors,
+\item \defn{pointed} if for any point~$p \in P$, the set of points~$q \in Q$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$,
+\item \defn{compatible} if it is both non-crossing and pointed.
 \end{itemize}
-A set~$X$ of wiggly arcs is \defn{pointed} if for any~$p \in P$, the wiggly arcs of~$X$ with an endpoint at~$p$ generate a pointed cone.
-The \defn{wiggly complex}~$\wigglyComplex_P$ is the simplicial complex of pairwise pointed and non-crossing subsets of wiggly arcs.
-Note that the boundary wiggly arcs are irrelevant, which allows us to consider a reduced wiggly complex~$\wigglyComplex_P$ induced by internal wiggly arcs.
-A \defn{wiggly pseudotriangulation} of~$P$ is a facet of~$\wigglyComplex_P$.
-The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ is the adjacency graph of the facets of~$\wigglyComplex_P$.
-%Note that, by construction, $\wigglyFlipGraph_P$ is regular.
-See \cref{fig:wigglyComplexSquarre} for an illustration.
+\end{definition}
+
+\begin{definition}
+\label{def:wigglyDissection}
+A \defn{wiggly dissection} of~$P$ is a compatible set~$D$ of wiggly segments of~$P$ containing all external wiggly segments.
+\end{definition}
+
+\begin{definition}
+\label{def:wigglyComplex}
+The \defn{wiggly complex}~$\reducedWigglyComplex_P$ is the simplicial complex of compatible subsets of internal wiggly segments on~$P$.
+%The \defn{reduced wiggly complex}~$\reducedWigglyComplex _P$ (resp.~\defn{extended wiggly complex}~$\extendedWigglyComplex_P$) is the simplicial complex of compatible subsets of internal (resp.~of all) wiggly segments on~$P$.
+See \cref{fig:wigglyComplexSquarre}\,(left).
 %
 \begin{figure}[!h]
 \centerline{\includegraphics[scale=.85]{wigglyComplexSquare.pdf}}
-\caption{The wiggly complex~$\wigglyComplex_P$ (left) and the wiggly flip graph~$\wigglyFlipGraph_P$ (right) of a point set~$P$.}
+\caption{The wiggly complex~$\extendedWigglyComplex_P$ (left) and wiggly flip graph~$\wigglyFlipGraph_P$ (right) of a point set~$P$.}
 \label{fig:wigglyComplexSquarre}
 \end{figure}
+%
 \end{definition}
 
-Note that \cref{def:wigglyComplexPointSet} recovers two specific situations, namely
-\begin{itemize}
-\item the wiggly complex of~\cite{BapatPilaud} in the case of aligned points, and
-\item the pseudodissection complex of~$P$ and pseudotriangulation flip graph of~$P$ in the case of points~$P$ in general position. We refer to the original article of M.~Pocchiola and G.~Vegter~\cite{PocchiolaVegter} and to the nice survey of G.~Rote, F.~Santos and I.~Streinu~\cite{RoteSantosStreinu-pseudotriangulations}.
-\end{itemize}
+\begin{remark}
+A few observations about \cref{def:wigglySegments,def:compatible,def:wigglyDissection,def:wigglyComplex}:
+\begin{enumerate}
+\item The wiggly segments could also be encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, and the non-crossing and pointedness conditions are then purely combinatorial (see \cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
+\item As the $v$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
+In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $v$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
+\item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud} in the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} in the case of points in general position.
+\end{enumerate}
+\end{remark}
 
-Observe that it is not even clear from \cref{def:wigglyComplexPointSet} that the wiggly complex~$\wigglyComplex_P$ is a pure pseudomanifold (hence that the wiggly flip graph~$\wigglyFlipGraph_P$ is well-defined).
-However, we make the following ambitious conjecture.
-\vincent{The goal of this new paper is to solve this conjecture.}
+%The following statement, known for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations}, was extended in~\cite[Coro.~3.21]{BapatDeopurkarLicata} to the general case.
+%
+%\begin{theorem}[{\cite[Coro.~3.21]{BapatDeopurkarLicata}}]
+%%The extended (resp.~reduced) wiggly complex~$\extendedWigglyComplex_P$ (resp.~$\reducedWigglyComplex_P$) is a simplicial ball (resp.~sphere) of dimension~$2n-3$ (resp.~$v+2w-3$).
+%The wiggly complex~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$v+2w-3$.
+%\end{theorem}
 
-\begin{conjecture}
-\label{conj:polytopality}
-For any point set~$P$ in the plane, the wiggly complex~$\wigglyComplex_P$ is the boundary complex of a simplicial polytope.
-\end{conjecture}
+The goal of this paper is to prove the following statement, already proved for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{RoteSantosStreinu-polytope}.
 
-In \cref{conj:polytopality}, the case of aligned points is given by the wigglyhedron of~\cite{BapatPilaud}, while the case of points in general position is given by the pseudotriangulation polytope of~\cite{RoteSantosStreinu-polytope}.
-This raises in particular the following question.
+\begin{theorem}
+\label{thm:polytope}
+The wiggly complex~$\reducedWigglyComplex_P$ is isomorphic to the boundary complex of a simple polytope of dimension~$v+2w-3$.
+\end{theorem}
 
-\begin{question}
-Can the constructions of~\cite{BapatPilaud} be adapted to provide a more combinatorial construction of the polytope of pseudotriangulations~\cite{RoteSantosStreinu-polytope}, that would only depend on the order type (\aka oriented matroid~\cite{BjornerLasVergnasSturmfelsWhiteZiegler}) of the point configuration?
-\end{question}
+\cref{thm:polytope} implies in particular that~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$v+2w-3$, a result independently established in~\cite[Coro.~3.21]{BapatDeopurkarLicata}.
+Note that their proof proceeds via a deformation argument, describing how the wiggly complex varies under a small perturbation of the point set.
+By contrast, our approach gives a direct polytopal realization, but it depends on the fact that the wiggly complex~$\reducedWigglyComplex_P$ is a $(v+2w-3)$-dimensional simplicial pseudomanifold without boundary.
+We thus  sketch a direct proof of this fact, both to avoid reliance on~\cite[Coro.~3.21]{BapatDeopurkarLicata} and because we believe it offers useful geometric and combinatorial insight into the structure of the wiggly complex.
 
-Using the duality between lines in the plane and points in the M\"obius strip, the pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations} were interpreted in~\cite{PilaudPocchiola} as pseudoline arrangements on sorting networks.
-It is natural to look for the analogue of this interpretation in the wiggly setting.
+\begin{definition}
+Consider a wiggly dissection~$D$ of~$P$ (we actually implicitly consider a set of pairwise non-crossing representatives of the arcs of~$D$).
+The arcs of~$D$ separate the plane~$\R^2$ into connected components, whose closure we call \defn{wiggly cells}.
+We call \defn{external} cell the one outside the external wiggly arcs, and \defn{internal} all other cells.
+Note that each internal wiggly cell~$C$ has an external boundary component (separating it from the external cell), and may have some internal boundary component.
+The \defn{corners} of~$C$ are the convex vertices along its boundary and the \defn{chains} of~$C$ are the pieces of its boundary between two consecutive corners.
+A \defn{wiggly triangle} is a wiggly cell with $3$ corners and no internal boundary.
+A \defn{wiggly quadrangle} is a wiggly cell with $4$ corners and no internal boundary, or a wiggly digon with a single interior point.
+\end{definition}
 
-\begin{question}
-Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements? 
-\end{question}
+\begin{proposition}
+Any wiggly dissection~$D$ of a set of $n$ points contains at most $2n-3$ wiggly segments and at most~$n-2$ internal wiggly cells.
+Moreover, the following assertions are equivalent:
+\begin{enumerate}[(i)]
+\item $D$ is an inclusion maximal wiggly dissection,
+\item all wiggly cells of~$D$ are wiggly triangles,
+\item $D$ has $n-2$ internal wiggly cells and is connected,
+\item $D$ has $2n-3$ wiggly segments.
+\end{enumerate}
+We then say that~$D$ is a \defn{wiggly triangulation}.
+\end{proposition}
 
-This dual interpretation enables \cite{PilaudPocchiola} to consider the pseudotriangulations of~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations} and the multitriangulations of~\cite{PilaudSantos-multitriangulations} under the same roof, and to define multi-pseudo-triangulations.
-The extension to the wiggly case is a natural question.
+\begin{proof}[Proof sketch]
+\para{(i) $\Rightarrow$ (ii)}
+Consider a wiggly cell~$C$ of a maximal wiggly dissection~$D$.
+Note that~$C$ has at least $2$ corners, and at least $3$ if it has no internal boundary.
+Consider now an arc~$\arc$ between two corners of~$C$.
+Stretch~$\arc$ until you get a geodesic~$\arc'$ inside~$C$, and cut~$\arc'$ into subarcs at the points of~$P$ it contains.
+The resulting arcs are wiggly segments compatible with~$D$ (they are non-crossing with~$D$ because~$\arc$ was inside~$C$, and they are pointed with~$D$ because the endpoints of~$\arc$ are corners of~$C$).
+By maximality of~$D$, it implies that all these wiggly segments already belong to~$D$.
+In other words, the geodesic~$\arc$ is a chain of~$R$.
+This observation implies that~$C$ has precisely $3$ corners (otherwise, we have an arc joining two non consecutive corners of~$R$, thus not isotopic to a chain of~$R$) and no internal boundary component (otherwise there is a loop at a corner of~$R$ not isotopic to a chain of~$R$).
+In other words, $C$ is a wiggly triangle.
 
-\begin{question}
-Is there a multi wiggly complex?
-\end{question}
+\para{(ii) $\Rightarrow$ (iii)}
+Assume that all cells of a wiggly dissection~$D$ are wiggly triangles.
+Note that this implies in particular that~$D$ is connected (as otherwise some wiggly cell would have an internal connected component).
+Moreover, assume that $D$ has $n$ vertices, $m$ edges, $c$ internal cells, and~$a$ angles.
+Then $n-e+r=1$ (Euler's relation), $a = 2e$ (because the number of corners around each vertex is its degree) and $a = 3r + n$ (because each cell has at $3$ convex angles, and $D$ has precisely $n$ concave angles, since each vertex is pointed).
+We conclude that~$e = 2n-3$ and~$r = n-2$.
 
-Moreover, pseudoline arrangements on sorting networks can also be interpreted as (type~$A$) subword complexes of~\cite{KnutsonMiller-subwordComplex}, which in turn extend to arbitrary finite Coxeter group.
-See \cite{Stump, CeballosLabbeStump} for the study of subword complexes corresponding to cluster complexes and multi-cluster complexes.
+\para{(iii) $\Rightarrow$ (iv)}
+If~$D$ is connected and has~$n-2$ internal wiggly cells, then~$e = n + r - 1 = 2n - 3$ by Euler's relation.
 
-\begin{question}
-Can the wiggly complex be extended to arbitrary finite Coxeter groups?
-\end{question}
+\para{(iv) $\Rightarrow$ (i)}
+Any wiggly dissection~$D$ is contained in an inclusion maximal wiggly dissection~$D'$.
+We have shown that (i) $\Rightarrow$ (ii) $\Rightarrow$ (iii) $\Rightarrow$ (iv), so that~$D'$ has~$2n-3$ wiggly segments.
+We obtain that $D$ has at most $2n-3$ wiggly segments and at most~$n-2$ wiggly cells.
+Moreover, if~$D$ has $2n-3$ edges, the~$D = D'$ is inclusion maximal.
+\end{proof}
 
-%\begin{question}
-%\begin{itemize}
-%\item Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements? 
-%\item Is there a multi wiggly complex?
-%\item Can this interpretation be extended to other finite Coxeter groups?
-%\end{itemize}
-%\end{question}
+\begin{proposition}
+\label{prop:diagonals}
+Any wiggly quadrangle~$Q$ admits precisely two wiggly diagonals, \ie wiggly segments of~$P$ inside~$Q$ and compatible with~$Q$.
+\end{proposition}
 
-Finally, it is natural to consider the extension of~\cite[Conj.~44]{BapatPilaud}.
+\begin{proof}[Proof sketch]
+If~$Q$ is a wiggly digon with a single interior point, then it contains precisely two arcs which are non crossing and not isotopic to the boundary (namely joining one of the corners to the interior point), and they are both compatible with~$Q$.
+Otherwise, the diagonals of~$Q$ are the two wiggly segments in the interior of~$Q$ along the geodesics obtained by stretching the two arcs joining the two pairs of opposite corners of~$Q$.
+\end{proof}
 
-\begin{question}
-\label{qu:Hamiltonian}
-Is the wiggly flip graph~$\wigglyFlipGraph_P$ Hamiltonian for any point set~$P$ in the plane?
-\end{question}
+\begin{definition}
+The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ of~$P$ is the graph with a vertex for each wiggly triangulation of~$P$, and with an edge between two wiggly triangulations~$T$ and~$T'$ of~$P$ if and only if there are wiggly segments~$\arc \in T$ and~$\arc' \in T'$ such that~$T \ssm \{\arc\} = T' \ssm \{\arc'\}$.
+\end{definition}
+
+\begin{proposition}
+The wiggly flip graph~$\wigglyFlipGraph_P$ is regular of degree~$v+2w-3$ and connected.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Consider an internal wiggly segment~$\arc$ in a wiggly triangulation~$T$ of~$P$.
+Let~$Q$ denote the wiggly quadrangle obtained by merging the two wiggly triangles incident to~$\arc$.
+By~\cref{prop:diagonals}, there are precisely two wiggly segments of~$P$ inside~$Q$ and compatible with~$Q$.
+This proves that~$\wigglyFlipGraph_P$ is $(v+2w-3)$-regular.
+
+Consider now an arbitrary order~$p_1, \dots, p_n$ of~$P$ such that~$p_i$ lies on the complement of the convex hull of~$\{p_1, \dots, p_{i-1}$ for all~$i \in [n]$.
+For all~$i \in [n]$, define inductively the wiggly triangulation~$T_i^\circ$ of~$P_i \eqdef \{p_1, \dots, p_i\}$ obtained from~$T_{i-1}^\circ$ by adding all external wiggly segments of~$P_i$.
+We prove by induction on~$i$ that any wiggly triangulation of~$P_i$ is connected by flips to~$T_i^\circ$.
+For any wiggly triangulation~$T_i$ of~$P_i$, consider the wiggly triangulation~$T_{i-1}$ obtained from~$T_i$ by flipping all internal wiggly segments incident to~$p_i$, and then deleting~$p_i$ and its two incident external wiggly arcs.
+Then~$T_{i-1}$ is a wiggly triangulation of~$P_{i-1}$, which is connected by flips to~$T_{i-1}^\circ$ by induction.
+We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{}
+\label{sec:wigglyComplex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
