@@ -11,6 +11,9 @@
 *.cb
 *.cb2
 
+# Separate LaTeX output directory
+out/
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

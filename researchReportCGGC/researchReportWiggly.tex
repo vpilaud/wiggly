@@ -1,0 +1,308 @@
+\documentclass{amsart}
+
+\usepackage{amsmath, amsfonts, amssymb, amsthm, thmtools, graphics, graphicx, xcolor, url, hyperref, hypcap, a4wide, xargs}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue}
+\usepackage{tikz}
+\usepackage[noabbrev,capitalise]{cleveref}
+
+\graphicspath{{figures/}}
+\makeatletter
+\def\input@path{{figures/}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Wigglyhedra for planar point sets}
+
+\author[D. Alcantara]{David Alcantara}
+\address[David Alcantara]{Universidad de Cantabria, Santander, Spain}
+\email{david.alcantara@unican.es}
+%\urladdr{\url{}}
+
+\author[A. Bapat]{Asilata Bapat}
+\address[Asilata Bapat]{The Australian National University, Canberra, Australia}
+\email{asilata.bapat@anu.edu.au}
+\urladdr{\url{https://asilata.github.io}}
+
+\author[M. Bin]{Marguerite Bin}
+\address[Marguerite Bin]{Université de Lorraine, CNRS, INRIA, LORIA, Nancy, France}
+\email{marguerite.bin@inria.fr}
+%\urladdr{\url{}}
+
+\author[N. Crepeau]{Natasha Crepeau}
+\address[Natasha Crepeau]{University of Washington, Seattle, USA}
+\email{ncrepeau@uw.edu}
+\urladdr{\url{https://sites.google.com/view/natasha-crepeau-math/home}}
+
+\author[H. Ping Luk]{Hoi Ping Luk}
+\address[Hoi Ping Luk]{Z\'apado\v{c}esk\'a univerzita v Plzni, Pilsen, Czech Republic}
+\email{hoi@connect.ust.hk}
+%\urladdr{\url{}}
+
+\author[V. Pilaud]{Vincent Pilaud}
+\address[Vincent Pilaud]{Universitat de Barcelona \& Centre de Recerca Matemàtica, Barcelona, Spain}
+\email{vincent.pilaud@ub.edu}
+\urladdr{\url{https://www.ub.edu/comb/vincentpilaud/}}
+
+\author[F. Santos]{Francisco Santos}
+\address[Francisco Santos]{Universidad de Cantabria, Santander, Spain}
+\email{francisco.santos@unican.es}
+\urladdr{\url{https://personales.unican.es/santosf/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\crefname{conjecture}{Conjecture}{Conjectures}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{openproblem}[theorem]{Open problem}
+
+
+% newcommands
+% math special letters
+\newcommand{\C}{\mathbb{C}} % complexes
+\newcommand{\R}{\mathbb{R}} % reals
+\newcommand{\N}{\mathbb{N}} % naturals
+\newcommand{\Z}{\mathbb{Z}} % integers
+\renewcommand{\b}[1]{\boldsymbol{#1}} % bold
+\renewcommand{\c}[1]{\mathcal{#1}} % bold
+
+% math commands
+\newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % set notation
+\newcommand{\ssm}{\smallsetminus} % small set minus
+\newcommand{\dotprod}[2]{\langle #1 | #2 \rangle} % dot product
+\newcommand{\symdif}{\triangle} % symmetric difference
+\newcommand{\one}{{1\!\!1}} % the all one vector
+\newcommand{\zero}{{\bf 0}} % the all zero vector
+\newcommand{\norm}[1]{{\left\lVert{#1}\right\rVert}} % vector norm
+\newcommand{\abs}[1]{\left\lvert{#1}\right\rvert} % absolute value
+\newcommand{\cardinal}[1]{\left\lvert{#1}\right\rvert} % set cardinal
+\newcommand{\sign}{{\textnormal{sign}\,}} % sign operator
+\newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
+\newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
+
+% specific wiggly
+\newcommandx{\arc}[1][1=\alpha]{\b{#1}} % arc
+\newcommand{\wigglyArcs}{\mathrm{WA}} % wiggly complex
+\newcommand{\extendedWigglyComplex}{\overline{\mathrm{WC}}} % wiggly complex
+\newcommand{\reducedWigglyComplex}{\mathrm{WC}} % wiggly complex
+\newcommand{\wigglyFlipGraph}{\mathrm{WFG}} % wiggly flip graph
+\newcommand{\wigglyIncreasingFlipGraph}{\mathrm{WIFG}} % wiggly increasing flip graph
+\newcommand{\wigglyLattice}{\mathrm{WL}} % wiggly lattice
+\newcommand{\wigglyFan}{\mathrm{WF}} % wiggly fan
+\newcommand{\wigglyhedron}{\polytope{W}} % wigglyhedron
+\newcommand{\Asso}{\polytope{A}\mathsf{sso}} % associahedron
+
+
+% others
+\newcommand{\fix}[1]{{\bf FIXME: }#1} % emphasis of a problem to FIX
+\newcommand{\ie}{\textit{i.e.}~} % id est
+\newcommand{\eg}{\textit{e.g.}~} % exempli gratia
+\newcommand{\Eg}{\textit{E.g.}~} % exempli gratia
+\newcommand{\aka}{\textit{aka.}~} % also known as
+\newcommand{\viceversa}{\textit{vice versa}} % vice versa
+\definecolor{darkblue}{rgb}{0,0,0.7} % darkblue color
+\newcommand{\defn}[1]{\textsl{\color{darkblue} #1}} % emphasis of a definition
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\vspace*{-2cm}
+\begin{center}
+\small
+Research Report for the Intensive Research Program \\ Combinatorial Geometries and Geometric Combinatorics 2025
+\end{center}
+
+\maketitle
+
+We consider an arbitrary point set $P$ in the plane
+(neither necessarily aligned, nor necessarily in general position).
+
+\begin{definition}
+    \label{def:wiggly-segment}
+    A \defn{wiggly curve} on $P$ is a curve with endpoints in $P$, whose interior contains no point
+    of $P$, considered up to homotopy.
+    The \defn{length} of a wiggly curve is the infimum of the length of its homotopy representatives.
+    A \defn{wiggly segment} on $P$ is a wiggly curve joining $p, j\in P$ of length $\mid p - q\mid$.
+    In other words, it just decides a side for each point in the interior of the straight segment
+    joining $p$ to $q$.
+    
+    Given a generic linear functional $c: \R^2 \to \R$, \ie, such that it evaluates differently
+    for every two points of $P$, we denote by $(p, q, A, B)_c$ the wiggly segment between
+    $p$ and $q$ where $c\cdot q > c\cdot p$, and the set $A$ (resp. $B$) contain the points of $P$
+    within the straight segment $\overline{pq}$ that the wiggly segment leaves \emph{above}
+    (resp. \emph{below}) with respect to $c$.
+    When the functional $c$ is irrelevant, we will omit it.
+\end{definition}
+
+We denote by $\wigglyArcs_P$ the set of all wiggly segments on $P$.
+
+\begin{definition}
+    \label{def:wiggly-pseudodissection}
+    A \defn{wiggly pseudodissection} of $P$ is a collection $X$ of wiggly segments which is
+    \begin{itemize}
+        \item \defn{non-crossing}: no pair of wiggly segments of $X$ cross in their interior,
+        \item \defn{pointed}: for any $p\in P$, the wiggly segments of $X$ with an endpoint at
+        $p$ generate a pointed cone (meaning that they are included in an open halfplane).
+    \end{itemize}
+\end{definition}
+
+The \defn{wiggly complex} $\reducedWigglyComplex_P$ is the simplicial complex of wiggly pseudodissections.
+Note that the boundary wiggly segments are irrelevant, which allows us to consider a reduced wiggly
+complex $\reducedWigglyComplex_P$ induced by internal wiggly segments.
+
+A \defn{wiggly pseudotriangulation} of $P$ is a facet of $\reducedWigglyComplex_P$.
+The \defn{wiggly flip graph} $\wigglyFlipGraph_P$ is the adjacency graph of the facets of $\reducedWigglyComplex_P$.
+
+Note that Definition~\ref{def:wiggly-pseudodissection} recovers two specific situations, namely
+\begin{itemize}
+    \item the wiggly complex of~\cite{BapatPilaud25} in the case of aligned points, and
+    \item the pseudodissection complex of $P$ and pseudotriangulation flip graph of $P$ in the case
+    of points $P$ in general position~\cite{PocchiolaVegter96, RoteSantosStreinu08}.
+\end{itemize}
+
+The general case of Definition~\ref{def:wiggly-pseudodissection} was very recently studied by
+A. Bapat, A. Deopurkar, A. Licata in~\cite{BapatDeopurkarLicata25}, in connection to Bridgeland
+stability conditions on triangulated categories.
+They prove in particular that the wiggly complex $\reducedWigglyComplex_P$ is a sphere
+(hence that the wiggly flip graph is well-defined).
+
+\vspace*{1em}%
+
+In this project, we propose a realization of the normal fan of the
+wiggly complex for general planar point sets that we have checked to be
+well defined and polytopal for several point sets.
+
+We also make progress towards proving its polytopality (and well-definition as a fan),
+by proving that the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}
+hold for this realization in some cases.
+
+\begin{theorem}[Santos]
+    \label{thm:simplicial-complex-is-regular-triangulation}
+    Let $\Delta$ be a simplicial complex that is pure of dimension $d - 1$ with
+    a $d$-regular dual graph, with vertex set $V$.
+    Let $R: V \to \R^d$ be a vector configuration labelled by $V$,
+    and $f: V \to \R$, a \emph{height function} or \emph{rhs function}.
+    
+    Then $\Delta$ is the regular triangulation of $R(V)$ w.r.t. $f$
+    if and only if for every minimum non-face $F$ of $\Delta$ there is a linear
+    dependence $\lambda_F\in \R^V$ of $R$ such that:
+    \begin{itemize}
+        \item $\lambda_F^{-} = F$,
+        \item $\lambda_F^{+}\in \Delta$, that is, it is a face of $\Delta$,
+        \item $\lambda_F \cdot f > 0$,
+    \end{itemize}
+    where $\lambda_F^{\pm} := \{v: \sign{\ell_v} = \pm\}$.
+\end{theorem}
+
+\section{Realization of the wiggly complex}
+We propose a realization of the wiggly complex defined as an $\epsilon$-deformation of the
+rigidity-based realization for pointed pseudotriangulations in~\cite{RoteSantosStreinu03},
+that incorporates the combinatorial encoding of wiggly compatibilities for points in a straight
+line from~\cite{BapatPilaud25} as an $\epsilon$ factor.
+
+\begin{definition}
+    Let $\epsilon > 0$.
+    The \defn{rigidity vector} of a wiggly segment $a = (p, q, A, B)$ is defined as
+    $R_\epsilon: \wigglyArcs_P \to (\R^2)^P$, with $R_\epsilon(a) = r(a) + \epsilon w(a)$, where
+    \[
+        r(a)_v =
+        \begin{cases}
+            \hphantom{+}\vec{a}_1&\text{if } v = p\\
+            -\vec{a}_1&\text{if } v = q\\
+            \zero&\text{otherwise},
+        \end{cases}
+        %
+        \quad\quad
+        %
+        w(a)_v =
+        \begin{cases}
+            -(\norm{v - p} + \norm{q - v})\, \vec{a}_2&\text{if } v\in A\\
+            \hphantom{+}(\norm{v - p} + \norm{q - v})\, \vec{a}_2&\text{if } v\in B\\
+            \left(\sum_{v\in A} \norm{q - v}\; - \;\sum_{v\in B} \norm{q - v}\right)\, \vec{a}_2&\text{if } v = p\\
+            \left(\sum_{v\in A} \norm{v - p}\; - \;\sum_{v\in B} \norm{v - p}\right)\, \vec{a}_2&\text{if } v = q\\
+            \zero&\text{otherwise},
+        \end{cases}
+    \]
+    where $\vec{a}_1 := q - p$ and $\vec{a}_2 := (p_y - q_y,\, q_x - p_x)$,
+    the orthogonal rotation of $\vec{a}_1$.
+\end{definition}
+
+While the rigidity vector is defined as a set of vectors in $\R^2$ indexed by $P$,
+it can be naturally embedded as a vector of $\R^{2\cardinal{P}}$.
+
+The term $r(a)$ is precisely the rigidity vector in the sense of classical rigidity for
+generic point sets in $\R^2$.
+It describes the longitudinal stress induced by $a$ on its endpoints.
+The term $w(a)$ describes the orthogonal stress induced by the wiggly segment $a$ on its endpoints
+and the points it wefts around.
+
+\begin{definition}
+    The \defn{rigidity wiggly fan} of a point set $P$ is defined as the fan in $\R^{2\cardinal{P}}$
+    with rays given by the rigidity vectors of all wiggly segments in $\wigglyArcs_P$,
+    and cones given by the faces of $\reducedWigglyComplex_P$.
+\end{definition}
+
+When $a$ is a non-wiggly segment, we have that $R_\epsilon(a) = r(a)$.
+Hence, when $P$ is a generic point set, the rigidity wiggly fan coincides with the
+rigidity fan from~\cite{RoteSantosStreinu03}, and is thus polytopal.
+
+In our aim to prove that the rigidity wiggly fan is indeed a fan, and a polytopal realization
+of $\reducedWigglyComplex_P$, we have proven the following result:
+
+\begin{lemma}
+    \label{lemma:wiggly-rigidity-fan-for-aligned-points}
+    Let $\alpha$ and $\beta$ be two incompatible wiggly segments in an aligned point set $P$.
+    
+    Then, there is a unique linear dependence $\lambda$ on $R_\epsilon(P)$, such that
+    \begin{enumerate}
+        \item $\lambda^- = \{\alpha, \beta\}$,
+        \item $\lambda^+ \in \Delta$
+    \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+    Let $c$ be a generic linear functional on $P$.
+    The $c-$\defn{upper convex hull} and $c-$\defn{lower convex hull} of a collection $X$
+    of wiggly segments are defined as {\bf \color{red} [definition in terms of truncations]}.
+\end{definition}
+
+\begin{proof}[Proof of Lemma~\ref{lemma:wiggly-rigidity-fan-for-aligned-points}]
+    {\bf \color{red} [linear dependence with the convex hull using truncations on both cases: crossing, non-pointed]}
+\end{proof}
+
+\section{Future questions}
+\begin{question}
+    Is there a dual interpretation of wiggly pseudotriangulations as some sort of pseudoline arrangements?
+\end{question}
+
+\begin{question}
+    Is there a multi wiggly complex?
+\end{question}
+
+\begin{question}
+    Can the wiggly complex be extended to arbitrary finite Coxeter groups?
+\end{question}
+
+\begin{question}
+    Is the wiggly flip graph $\wigglyFlipGraph_P$ Hamiltonian for any point set $P$ in the plane?
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{alpha}
+\bibliography{biblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
