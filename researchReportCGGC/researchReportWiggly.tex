@@ -321,22 +321,22 @@ This decomposition $D$ has the following property. For every non-face $F=\{a, a'
 \item If $a$ and $a'$ are crossing, then $\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=0$,
 \item Otherwise, $a$ and $a'$ are pointed, and
 \[
-2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)},
+2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}.
 \]
 \end{itemize} 
 \end{lemma}
+\medskip
 
-Define $\widetilde R$ on $\widetilde {\wigglyArcs_P}$, so that the only linear dependence among its values is:
+Define $\widetilde R$ on $\widetilde {\wigglyArcs_P}$, so that the only linear dependences among its values are:
 \[
-2\pth{\widetilde R((l,i))+\widetilde R((r,i))} - \pth{\widetilde R((u,i))+\widetilde R((d,i))}=0.
+2\pth{\widetilde R((l,i))+\widetilde R((r,i))} - \pth{\widetilde R((u,i))+\widetilde R((d,i))}=0, \qquad \forall i\in\{2,\ldots,n-1\}.
 \]
 %
-
 Extend $\widetilde R$ linearly on $\Z[\widetilde V]$, and define
 \[
-R:\wigglyArcs_P\to \R^d, a\mapsto \widetilde R(D(a))
+R:\wigglyArcs_P\to \R^d, a\mapsto \widetilde R(D(a)).
 \]
-By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. Indeed, for every non-face $F=\{a, a'\}$ (with $b,b'$ the lower and upper hull of $a,a'$),
+By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. Indeed, for every non-face $F=\{a, a'\}$ (with $b,b'$ the lower and upper hull of $a,a'$):
 \begin{itemize}
 \item If $a$ and $a'$ are crossing, then 
 \begin{align*}
