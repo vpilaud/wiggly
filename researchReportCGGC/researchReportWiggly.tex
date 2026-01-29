@@ -319,7 +319,7 @@ The following lemma ensures that the hypotheses need only to be satisfied for th
 This decomposition $D$ has the following property. For every non-face $F=\{a, a'\}$, let $b$ (resp. $b'$) denote the upper hull (resp. lower hull) of $a$ and $a'$. Then:
 \begin{itemize}
 \item If $a$ and $a'$ are crossing, then $\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=0$,
-\item Otherwise, $a$ and $a'$ are pointed, and
+\item Otherwise, $a$ and $a'$ are pointed at node $i$, and
 \[
 2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}.
 \]
@@ -344,7 +344,7 @@ By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies
 &= \widetilde R \pth{\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}} \\
 &=0,
 \end{align*}
-\item Otherwise, $a$ and $a'$ are pointed, and
+\item Otherwise, $a$ and $a'$ are pointed at node $i$, and
 \begin{align*}
 2\pth{R(a)+R(a')}-\pth{ R(b)+R(b')}
 &= 2\pth{\widetilde R(D(a))+\widetilde R(D(a'))}-\pth{ \widetilde R(D(b))+\widetilde R(D(b'))}\\
