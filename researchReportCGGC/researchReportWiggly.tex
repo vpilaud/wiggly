@@ -78,6 +78,7 @@
 
 % math commands
 \newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % set notation
+\newcommand{\pth}[1]{\left( #1 \right)} % set notation
 \newcommand{\ssm}{\smallsetminus} % small set minus
 \newcommand{\dotprod}[2]{\langle #1 | #2 \rangle} % dot product
 \newcommand{\symdif}{\triangle} % symmetric difference
@@ -298,6 +299,63 @@ of $\reducedWigglyComplex_P$, we have proven the following result:
     Is the wiggly flip graph $\wigglyFlipGraph_P$ Hamiltonian for any point set $P$ in the plane?
 \end{question}
 
+
+\section{The aligned case}
+
+The aligned case has previously been studied in \cite{BapatPilaud25}). Here we give another construction of a fan, by choosing rigidity vectors (i.e a function $R:\wigglyArcs_P\to \R^d$) that satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. We believe the fans to be different.
+%
+We begin by defining the function $R$ on a set of ``elementary'' wiggly segments
+\[
+\widetilde {\wigglyArcs_P}:=\set{(\square,i)}{\square \in \{l,r,u,d\}, i\in \{2,\ldots,n-1\}}.
+\]
+For these elementary edges, it is easy to choose $R$ to ensure that the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation} are satisfied.
+%
+Each wiggly segment $a$ is then associated with a formal sum of elementary wiggly segments, denoted $D(a)$. This allows us to extend the function $R$ to all wiggly segments. 
+%
+The following lemma ensures that the hypotheses need only to be satisfied for the non-face $\{(l,i),(r,i)\}$:
+%
+\begin{lemma}
+\label{l:truncation-works}
+This decomposition $D$ has the following property. For every non-face $F=\{a, a'\}$, let $b$ (resp. $b'$) denote the upper hull (resp. lower hull) of $a$ and $a'$. Then:
+\begin{itemize}
+\item If $a$ and $a'$ are crossing, then $\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=0$,
+\item Otherwise, $a$ and $a'$ are pointed, and
+\[
+2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)},
+\]
+\end{itemize} 
+\end{lemma}
+
+Define $\widetilde R$ on $\widetilde {\wigglyArcs_P}$, so that the only linear dependence among its values is:
+\[
+2\pth{\widetilde R((l,i))+\widetilde R((r,i))} - \pth{\widetilde R((u,i))+\widetilde R((d,i))}=0.
+\]
+%
+
+Extend $\widetilde R$ linearly on $\Z[\widetilde V]$, and define
+\[
+R:\wigglyArcs_P\to \R^d, a\mapsto \widetilde R(D(a))
+\]
+By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. Indeed, for every non-face $F=\{a, a'\}$ (with $b,b'$ the lower and upper hull of $a,a'$),
+\begin{itemize}
+\item If $a$ and $a'$ are crossing, then 
+\begin{align*}
+\pth{R(a)+R(a')}-\pth{ R(b)+R(b')} &= \pth{\widetilde R(D(a))+\widetilde R(D(a')}-\pth{ \widetilde R(D(b)+\widetilde R(D(b')}\\
+&= \widetilde R \pth{\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}} \\
+&=0,
+\end{align*}
+\item Otherwise, $a$ and $a'$ are pointed, and
+\begin{align*}
+2\pth{R(a)+R(a')}-\pth{ R(b)+R(b')}
+&= 2\pth{\widetilde R(D(a))+\widetilde R(D(a'))}-\pth{ \widetilde R(D(b))+\widetilde R(D(b'))}\\
+&=\widetilde R \pth{2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}} \\
+&= \widetilde R \pth{2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}}\\
+&=0
+\end{align*}
+\end{itemize}
+In both cases, $\{b,b'\}$ is a compatible pair of s and therefore a face of $WC_P$. It remains to specify a height function $f:\wigglyArcs_P\to \R$ before fully satisfying the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}.
+
+ %we introduce the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{alpha}
