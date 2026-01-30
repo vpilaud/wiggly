@@ -4,6 +4,27 @@
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue}
 \usepackage{tikz}
 \usepackage[noabbrev,capitalise]{cleveref}
+\usepackage{subcaption}
+\usepackage{tikz, tikz-3dplot}
+\usepackage{arcs}
+\usetikzlibrary{math, calc, arrows, arrows.meta} % LIBRARY NEEDED FOR PICTURE
+\usetikzlibrary{tikzmark, bending}
+
+\newcommand{\arcThroughThreePoints}[4][]{
+	\coordinate (middle1) at ($(#2)!.5!(#3)$);
+	\coordinate (middle2) at ($(#3)!.5!(#4)$);
+	\coordinate (aux1) at ($(middle1)!1!90:(#3)$);
+	\coordinate (aux2) at ($(middle2)!1!90:(#4)$);
+	\coordinate (center) at ($(intersection of middle1--aux1 and middle2--aux2)$);
+	\draw[#1] 
+	let \p1=($(#2)-(center)$),
+	\p2=($(#4)-(center)$),
+	\n0={veclen(\p1)},       % Radius
+	\n1={atan2(\y1,\x1)}, % angles
+	\n2={atan2(\y2,\x2)},
+	\n3={\n2>\n1?\n2:\n2+360}
+	in (#2) arc(\n1:\n3:\n0);
+}
 
 \graphicspath{{figures/}}
 \makeatletter
@@ -215,38 +236,38 @@ line from~\cite{BapatPilaud25} as an $\epsilon$ factor.
 \begin{definition}
     \label{d:rigidity-vector}
     Let $\epsilon > 0$.
-    The \defn{rigidity vector} of a wiggly segment $a = (p, q, A, B)$ is defined as
-    $R_\epsilon: \wigglyArcs_P \to (\R^2)^P$, with $R_\epsilon(a) = r(a) + \epsilon w(a)$, where
+    The \defn{rigidity vector} of a wiggly segment $\alpha = (p, q, A, B)$ is defined as
+    $R_\epsilon: \wigglyArcs_P \to (\R^2)^P$, with $R_\epsilon(\alpha) = r(\alpha) + \epsilon w(\alpha)$, where
     \[
-        r(a)_v =
+        r(\alpha)_v =
         \begin{cases}
-            \hphantom{+}\vec{a}_1&\text{if } v = p\\
-            -\vec{a}_1&\text{if } v = q\\
+            \hphantom{+}\vec{\alpha}_1&\text{if } v = p\\
+            -\vec{\alpha}_1&\text{if } v = q\\
             \zero&\text{otherwise},
         \end{cases}
         %
         \quad\quad
         %
-        w(a)_v =
+        w(\alpha)_v =
         \begin{cases}
-            -(\norm{v - p} + \norm{q - v})\, \vec{a}_2&\text{if } v\in A\\
-            \hphantom{+}(\norm{v - p} + \norm{q - v})\, \vec{a}_2&\text{if } v\in B\\
-            \left(\sum_{v\in A} \norm{q - v}\; - \;\sum_{v\in B} \norm{q - v}\right)\, \vec{a}_2&\text{if } v = p\\
-            \left(\sum_{v\in A} \norm{v - p}\; - \;\sum_{v\in B} \norm{v - p}\right)\, \vec{a}_2&\text{if } v = q\\
+            -(\norm{v - p} + \norm{q - v})\, \vec{\alpha}_2&\text{if } v\in A\\
+            \hphantom{+}(\norm{v - p} + \norm{q - v})\, \vec{\alpha}_2&\text{if } v\in B\\
+            \left(\sum_{v\in A} \norm{q - v}\; - \;\sum_{v\in B} \norm{q - v}\right)\, \vec{\alpha}_2&\text{if } v = p\\
+            \left(\sum_{v\in A} \norm{v - p}\; - \;\sum_{v\in B} \norm{v - p}\right)\, \vec{\alpha}_2&\text{if } v = q\\
             \zero&\text{otherwise},
         \end{cases}
     \]
-    where $\vec{a}_1 := q - p$ and $\vec{a}_2 := (p_y - q_y,\, q_x - p_x)$,
-    the orthogonal rotation of $\vec{a}_1$.
+    where $\vec{\alpha}_1 := q - p$ and $\vec{\alpha}_2 := (p_y - q_y,\, q_x - p_x)$,
+    the orthogonal rotation of $\vec{\alpha}_1$.
 \end{definition}
 
 While the rigidity vector is defined as a set of vectors in $\R^2$ indexed by $P$,
 it can be naturally embedded as a vector of $\R^{2\cardinal{P}}$.
 
-The term $r(a)$ is precisely the rigidity vector in the sense of classical rigidity for
+The term $r(\alpha)$ is precisely the rigidity vector in the sense of classical rigidity for
 generic point sets in $\R^2$.
-It describes the longitudinal stress induced by $a$ on its endpoints.
-The term $w(a)$ describes the orthogonal stress induced by the wiggly segment $a$ on its endpoints
+It describes the longitudinal stress induced by $\alpha$ on its endpoints.
+The term $w(\alpha)$ describes the orthogonal stress induced by the wiggly segment $\alpha$ on its endpoints
 and the points it wefts around.
 
 \begin{definition}
@@ -255,7 +276,7 @@ and the points it wefts around.
     and cones given by the faces of $\reducedWigglyComplex_P$.
 \end{definition}
 
-When $a$ is a non-wiggly segment, we have that $R_\epsilon(a) = r(a)$.
+When $\alpha$ is a non-wiggly segment, we have that $R_\epsilon(\alpha) = r(\alpha)$.
 Hence, when $P$ is a generic point set, the rigidity wiggly fan coincides with the
 rigidity fan from~\cite{RoteSantosStreinu03}, and is thus polytopal.
 
@@ -311,18 +332,731 @@ We begin by defining the function $R$ on a set of ``elementary'' wiggly segments
 \]
 For these elementary segments, it is easy to choose $R$ to ensure that the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation} are satisfied.
 %
-Each wiggly segment $a$ is then associated with a formal sum of elementary wiggly segments, denoted $D(a)$. This allows us to extend the function $R$ to all wiggly segments. 
-%
+Each wiggly segment $\alpha$ is then associated with a formal sum of elementary wiggly segments, denoted $D(\alpha)$. This allows us to extend the function $R$ to all wiggly segments. 
+
+\begin{definition}
+	Let $\alpha$ be a wiggly arc. A \textit{truncation} of $\alpha$ at $i$ is defined in the following way:
+	\begin{enumerate}
+		\item Fix a frame / window starting at the $i-1$-st node and ending at the $i+1$-st node;
+		\item Draw the segment of the chosen wiggly arc in the interior of the frame and draw the endpoints of the wiggly arc to the $i-1$-st node and the $i+1$-st node. 
+	\end{enumerate}
+	We denote the truncation of $\alpha$ around $i$ as $Tr_i(\alpha)$.
+\end{definition}
+
+
+
+\begin{example}
+	Figure \ref{Fig-trunc-eg1} shows two crossing wiggly arcs $\alpha$ and $\alpha'$. Another two arcs $\beta$ and $\beta'$ are added to create a dependent set.
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}[t]{\linewidth}
+			\centering
+			\begin{tikzpicture}
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\arcThroughThreePoints[]{-0.5,0}{0.5,-0.5}{1,0}; 
+				\arcThroughThreePoints[]{-0.5,0}{-1,0.5}{-2,0}; 
+				\arcThroughThreePoints[]{2,0}{1,0.5}{-1,0};
+				
+				\arcThroughThreePoints[dashed]{2,0}{0,1.5}{-2,0};
+				\arcThroughThreePoints[dashed]{-1,0}{0,-0.75}{1,0};
+				
+				\fill
+				(0,0) circle (\rr)
+				;
+				\foreach \aa in {-1,1} {
+					\tikzset{xscale=\aa}
+					\fill
+					(\x,0) circle (\rr)
+					(2*\x,0) circle (\rr)
+					;
+				}
+				
+				\node at (-1*\x, 0.75*\x) {\small $\alpha$};
+				\node at (1*\x, 0.75*\x) {\small $\alpha'$};
+				
+				\node at (0, 1.75*\x) {\small $\beta$};
+				\node at (0, -\x) {\small $\beta'$};
+				
+				\node at (-2*\x,-0.25*\x) {\scriptsize $1$}; 
+				\node at (-1*\x,-0.25*\x) {\scriptsize $2$}; 
+				\node at (0*\x,-0.25*\x) {\scriptsize $3$}; 
+				\node at (1*\x,-0.25*\x) {\scriptsize $4$}; 
+				\node at (2*\x,-0.25*\x) {\scriptsize $5$}; 
+			\end{tikzpicture}
+			\caption{}
+			\label{Subfig-trunc-eg1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\alpha):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\arcThroughThreePoints[]{-1,0}{0,-0.5}{1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\alpha):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\draw[]
+					(-1*\x,0) -- (0,0)
+					;
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\alpha):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\alpha)$}
+			\label{Subfig-trunc-eg1-al}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\draw[]
+					(0,0) -- (\x,0)
+					;
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\alpha'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\alpha'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\alpha'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\alpha')$}
+			\label{Subfig-trunc-eg1-al'}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\beta):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\beta):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\beta):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\beta)$}
+			\label{Subfig-trunc-eg1-be}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\draw[]
+					(0,0) -- (\x,0)
+					;
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\beta'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\arcThroughThreePoints[]{-1,0}{0,-0.5}{1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\beta'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\draw[]
+					(-\x,0) -- (0,0)
+					;
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\beta'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+			\end{tikzpicture}
+			\caption{$Tr_i(\beta')$}
+			\label{Subfig-trunc-eg1-be'}
+		\end{subfigure}
+		\caption{Example of truncation}
+		\label{Fig-trunc-eg1}
+	\end{figure}
+\end{example}
+
+\begin{example} Figure \ref{Fig-trunc-eg1} shows two non-pointed wiggly arcs $\alpha, \alpha'$. Another two arcs $\beta,\beta'$ are added to give a dependent set.
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}[t]{\linewidth}
+			\centering
+			\begin{tikzpicture}
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+					\XS=5;
+				}
+				
+				\arcThroughThreePoints[dashed]{-0.025,0.27}{-1,0.75}{-2,0};
+				\arcThroughThreePoints[dashed]{0.025,0.23}{1,-0.25}{2,0};
+				
+				\arcThroughThreePoints[dashed]{-0.025,-0.23}{-1,0.25}{-2,0};
+				\arcThroughThreePoints[dashed]{0.025,-0.27}{1,-0.75}{2,0};
+				
+				\arcThroughThreePoints[]{0,0}{-1,0.5}{-2,0};
+				\arcThroughThreePoints[]{0,0}{1,-0.5}{2,0};
+				
+				\fill
+				(0,0) circle (\rr)
+				;
+				\foreach \aa in {-1,1} {
+					\tikzset{xscale=\aa}
+					\fill
+					(\x,0) circle (\rr)
+					(2*\x,0) circle (\rr)
+					;
+				}
+				
+				\node at (-1*\x, 0.6*\x) {\small $\alpha$};
+				\node at (1*\x, -0.6*\x) {\small $\alpha'$};
+				
+				\node at (0, 0.6*\x) {\small $\beta$};
+				\node at (0, -0.75*\x) {\small $\beta'$};
+				
+				\node at (-2*\x,-0.25*\x) {\scriptsize $1$}; 
+				\node at (-1*\x,-0.25*\x) {\scriptsize $2$}; 
+				\node at (0*\x,-0.25*\x) {\scriptsize $3$}; 
+				\node at (1*\x,-0.25*\x) {\scriptsize $4$}; 
+				\node at (2*\x,-0.25*\x) {\scriptsize $5$}; 
+				
+				\begin{scope}[xshift=\XS cm]
+					
+					\arcThroughThreePoints[red!80!black]{1,0}{0,0.5}{-1,0};
+					\arcThroughThreePoints[red!80!black]{-1,0}{0,-0.5}{1,0};
+					
+					\draw[red!80!black]
+					(-\x,0) -- (\x,0)
+					;
+					
+					\fill[red!80!black]
+					(0,0) circle (\rr)
+					;
+					\foreach \aa in {-1,1} {
+						\tikzset{xscale=\aa}
+						\fill[red!80!black]
+						(\x,0) circle (\rr)
+						;
+					}
+					
+					\node at (-1*\x,-0.25*\x) {\scriptsize {\color{red!80!black}$2$}}; 
+					\node at (0*\x,-0.25*\x) {\scriptsize {\color{red!80!black}$3$}}; 
+					\node at (1*\x,-0.25*\x) {\scriptsize {\color{red!80!black}$4$}}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{}
+			\label{Subfig-trunc-eg2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\alpha):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\draw[]
+					(-\x,0) -- (0,0)
+					;
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\alpha):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\alpha):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\alpha)$}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\alpha'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\draw[]
+					(0,0) -- (\x,0)
+					;
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\alpha'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\arcThroughThreePoints[]{-1,0}{0,-0.5}{1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\alpha'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\alpha')$}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\beta):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\beta):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\arcThroughThreePoints[]{-1,0}{0,-0.5}{1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\beta):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\beta)$}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.24\linewidth}
+			\centering
+			\begin{tikzpicture}[scale=0.65]
+				\tikzmath{
+					\x=1;
+					\rr=0.08*\x;
+					\YS=2.5;
+				}
+				
+				\begin{scope}[yshift=-\YS cm]
+					
+					\arcThroughThreePoints[]{1,0}{0,0.5}{-1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_2(\beta'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $1$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $3$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-1.5*\YS cm]
+					
+					\arcThroughThreePoints[]{-1,0}{0,-0.5}{1,0};
+					
+					\fill
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_3(\beta'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $2$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $4$}; 
+					
+				\end{scope}
+				
+				\begin{scope}[yshift=-2*\YS cm]
+					
+					\arcThroughThreePoints[]{-1,0}{0,-0.5}{1,0};
+					
+					\fill[]
+					(-1,0) circle (\rr)
+					(0,0) circle (\rr)
+					(1,0) circle (\rr)
+					;
+					
+					\node at (-2.25*\x,0) {\scriptsize $Tr_4(\beta'):$};
+					
+					\node at (-1*\x,-0.3*\x) {\scriptsize $3$}; 
+					\node at (0*\x,-0.3*\x) {\scriptsize $4$}; 
+					\node at (1*\x,-0.3*\x) {\scriptsize $5$}; 
+					
+				\end{scope}
+				
+			\end{tikzpicture}
+			\caption{$Tr_i(\beta')$}
+		\end{subfigure}
+		\caption{Example of truncation}
+	\end{figure}
+	
+	For this example, 
+	\begin{align*}
+		Tr_i(\alpha) + Tr_i(\alpha')  = \tfrac{1}{2}( Tr_i(\beta) + Tr_i(\beta') ),
+	\end{align*}
+	for $i=2,4$. For $i=3$, we actually have ``no cancellation'' in the coloured picture in Figure \ref{Subfig-trunc-eg2}.
+\end{example}
+
+We want to establish the following statement.
+
+\begin{lemma}
+	For two incompatible arcs $\alpha, \alpha'$, let $\beta, \beta'$ to be the choices for the upper and lower hulls to form a circuit. 
+	\begin{itemize}
+		\item $\alpha, \alpha'$ are crossing arcs: define the truncation decomposition $D(\alpha)$ (likewise for $D(\alpha')$) to be the formal sum
+		\[
+		D(\alpha) := \sum_{i=2}^{n-1} Tr_i(\alpha), 
+		\]
+		then for $i \in [2, n-1]$, we have 
+		\[
+		Tr_i (\alpha) + Tr_i (\alpha') =  Tr_i (\beta) + Tr_i (\beta').
+		\]
+		\item $\alpha, \alpha'$ are non-pointed arcs: suppose $j+1$ is their common endpoint, then for $i \neq j$
+		\begin{align*}
+			2(Tr_i (\alpha) + Tr_i (\alpha')) = Tr_i (\beta) + Tr_i (\beta');
+		\end{align*}
+		and for $i = j$,
+		\begin{align*}
+			\begin{cases}
+				Tr_i (\alpha) + Tr_i (\alpha') = l + r,  \\  
+				Tr_i (\beta) + Tr_i (\beta') = u + d.
+			\end{cases}\quad \text{for } i = j;
+		\end{align*}
+	\end{itemize}
+\end{lemma}
+
 The following lemma ensures that the hypotheses need only to be satisfied for the non-face $\{(l,i),(r,i)\}$:
 %
 \begin{lemma}
 \label{l:truncation-works}
-This decomposition $D$ has the following property. For every non-face $F=\{a, a'\}$, let $b$ (resp. $b'$) denote the upper hull (resp. lower hull) of $a$ and $a'$. Then:
+This decomposition $D$ has the following property. For every non-face $F=\{\alpha, \alpha'\}$, let $\beta$ (resp. $\beta'$) denote the upper hull (resp. lower hull) of $\alpha$ and $\alpha'$. Then:
 \begin{itemize}
-\item If $a$ and $a'$ are crossing, then $\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=0$,
-\item Otherwise, $a$ and $a'$ are pointed at node $i$, and
+\item If $\alpha$ and $\alpha'$ are crossing, then $\pth{D(\alpha)+D(\alpha')}-\pth{ D(\beta)+D(\beta')}=0$,
+\item Otherwise, $\alpha$ and $\alpha'$ are pointed at node $i$, and
 \[
-2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}.
+2\pth{D(\alpha)+D(\alpha')}-\pth{ D(\beta)+D(\beta')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}.
 \]
 \end{itemize} 
 \end{lemma}
@@ -336,26 +1070,27 @@ For example, define $\widetilde R$ on $\widetilde {\wigglyArcs_P}$ as described 
 %
 Extend $\widetilde R$ linearly on $\Z[\widetilde V]$, and define
 \[
-R:\wigglyArcs_P\to \R^d, a\mapsto \widetilde R(D(a)).
+R:\wigglyArcs_P\to \R^d, \alpha\mapsto \widetilde R(D(\alpha)).
 \]
-By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. Indeed, for every non-face $F=\{a, a'\}$ (with $b,b'$ the lower and upper hull of $a,a'$):
+By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. Indeed, for every non-face $F=\{\alpha, \alpha'\}$ (with $\beta,\beta'$ the lower and upper hull of $\alpha,\alpha'$):
 \begin{itemize}
-\item If $a$ and $a'$ are crossing, then 
+\item If $\alpha$ and $\alpha'$ are crossing, then 
 \begin{align*}
-\pth{R(a)+R(a')}-\pth{ R(b)+R(b')} &= \pth{\widetilde R(D(a))+\widetilde R(D(a')}-\pth{ \widetilde R(D(b)+\widetilde R(D(b')}\\
-&= \widetilde R \pth{\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}} \\
+\pth{R(\alpha)+R(\alpha')}-\pth{ R(\beta)+R(\beta')} &= \pth{\widetilde R(D(\alpha))+\widetilde R(D(\alpha')}-\pth{ \widetilde R(D(\beta)+\widetilde R(D(\beta')}\\
+&= \widetilde R \pth{\pth{D(\alpha)+D(\alpha')}-\pth{ D(\beta)+D(\beta')}} \\
 &=0,
 \end{align*}
-\item Otherwise, $a$ and $a'$ are pointed at node $i$, and
+\item Otherwise, $\alpha$ and $\alpha'$ are pointed at node $i$, and
 \begin{align*}
-2\pth{R(a)+R(a')}-\pth{ R(b)+R(b')}
-&= 2\pth{\widetilde R(D(a))+\widetilde R(D(a'))}-\pth{ \widetilde R(D(b))+\widetilde R(D(b'))}\\
-&=\widetilde R \pth{2\pth{D(a)+D(a')}-\pth{ D(b)+D(b')}} \\
+2\pth{R(\alpha)+R(\alpha')}-\pth{ R(\beta)+R(\beta')}
+&= 2\pth{\widetilde R(D(\alpha))+\widetilde R(D(\alpha'))}-\pth{ \widetilde R(D(\beta))+\widetilde R(D(\beta'))}\\
+&=\widetilde R \pth{2\pth{D(\alpha)+D(\alpha')}-\pth{ D(\beta)+D(\beta')}} \\
 &= \widetilde R \pth{2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}}\\
-&=0
+&=0.
 \end{align*}
 \end{itemize}
-In both cases, $\{b,b'\}$ is a compatible pair of s and therefore a face of $WC_P$. It remains to specify a height function $f:\wigglyArcs_P\to \R$ before fully satisfying the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}.
+In both cases, $\{\beta,\beta'\}$ is a compatible pair of s and therefore a face of $WC_P$. It remains to specify a height function $f:\wigglyArcs_P\to \R$ before fully satisfying the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}.
+
 
  %we introduce the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
