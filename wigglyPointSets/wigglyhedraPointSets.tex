@@ -461,14 +461,17 @@ We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
 \label{sec:rigidity}
 The normal fan of the polytope mentioned in~\cref{thm:polytope} is spanned by rigidity vectors of wiggly edges, which we now define.
 First, given a wiggly arc \(\arc\) with endpoints \(p\) and \(q\) in a point set \(P\), the  points of \(P\) lying on the open segment \(]p,q[\) are called the~\defn{waypoints} of \(\arc\).
-The rigidity vector of \(\arc\) is the combination of a longitudinal component that lies along \(\arc\), and a transversal component orthogonal to \(\arc\).
-Only the endpoints of \(\arc\) contribute to the longitudinal component, while only the endpoints together with the waypoints contribute to the transversal component.
-  The longitudinal rigidity vector was used extensively in~\cite{RoteSantosStreinu-polytope} to construct a polytope in the case of points in general position.
-  When \(P\) is arbitrary, we show in ?? that a perturbation of the longitudinal rigidity vector by a small multiple of the transversal rigidity vector gives us a complete normal fan.
 
-  All rigidity vectors lie in \((\R^2)^P \cong (\R^2)^n\).
-  Given \(x \in \R^2\) and \(p \in P\), for convenience, we denote by \(x \mathbbm{1}_p\) or \(x \cdot \mathbbm{1}_p\) the vector in \((\R^2)^P\) that has \(x\) in the \(p\)th coordinate and zero elsewhere.
-  In the following definitions, let \(P\) be a point set and \(\arc\) a wiggly segment with endpoints \(p\) and \(q\).
+All rigidity vectors lie in \((\R^2)^P \cong (\R^2)^n\).
+The rigidity vector of \(\arc\) is the combination of a longitudinal component whose every coordinate is parallel to \(\arc\), and a transversal component whose every coordinate is orthogonal to \(\arc\).
+The longitudinal component is zero at any coordinate that is not an endpoint.
+The transversal component is zero at any coordinate that is neither an endpoint nor a waypoint.
+The longitudinal rigidity vector was used extensively in~\cite{RoteSantosStreinu-polytope} to construct a polytope in the case of points in general position.
+When \(P\) is arbitrary, we need to perturb the longitudinal rigidity vector by a small multiple of the transversal rigidity vector.
+We show in ??? that this procedure gives us a complete normal fan.
+
+Given \(x \in \R^2\) and \(r \in P\), denote by \(x \mathbbm{1}_r\) or \(x \cdot \mathbbm{1}_r\) the vector in \((\R^2)^P\) that has \(x\) in the \(r\)th coordinate and zero elsewhere.
+  In the following definitions, let \(\arc\) be a wiggly segment on a point set \(P\), with endpoints \(p\) and \(q\).
 \begin{definition}
   The~\defn{longitudinal rigidity vector} \(R_l(\arc)\) of \(\arc\) is defined as
   \[R_l(\arc) = (p-q) \mathbbm{1}_p  + (q-p) \mathbbm{1}_q.\]
@@ -486,8 +489,14 @@ For a vector \(w \in \R^2\), denote by \(w^{\perp}\) the rotation of \(w\) by \(
 \begin{definition}
   For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(R^{\epsilon}(\arc)\) is defined as
   \[R^{\epsilon}(\arc) = R_l(\arc) + \epsilon R_t(\arc).\]
-  The \defn{\(\epsilon\)-rigidity matrix} of \(P\) is a matrix \(M_P\) with rows indexed by the wiggly arcs on \(P\).
-  For any \(\arc\), the row corresponding to \(\arc\) is \(R^{\epsilon}(\arc)\).
+\end{definition}
+We now assemble the rigidity vectors into rigidity matrices.
+All of these have rows indexed by the wiggly arcs on \(P\).
+Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
+\begin{definition}
+  The~\defn{longitudinal rigidity matrix} of \(P\) is the matrix \(M_l(P)\) whose row indexed by \(\arc\) is \(R_l(\arc)\).
+The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(M_t(P)\) whose row indexed by \(\arc\) is \(R_t(\arc)\).
+The~\defn{(total) \(\epsilon\)-rigidity matrix} of \(P\) is the matrix \(M^{\epsilon}(P)\) defined as \(M_l(P) + \epsilon M_t(P)\).
 \end{definition}
 % \begin{definition}
 % The \defn{rigidity matrix} of the point set~$P \eqdef \{p_1, \dots, p_n\} \subseteq \R^2$ is the matrix~$R_P$ with $\binom{n}{2}$ rows and $2n$ columns where the $k$th pair of entries in the $(i,j)$th column contains the coordinates of~$p_i-p_j$ if $k = i$, of $pj-p_i$ if~$k = j$, and $0$ otherwise.
