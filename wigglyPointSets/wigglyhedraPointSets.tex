@@ -498,6 +498,25 @@ Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
 The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(M_t(P)\) whose row indexed by \(\arc\) is \(R_t(\arc)\).
 The~\defn{(total) \(\epsilon\)-rigidity matrix} of \(P\) is the matrix \(M^{\epsilon}(P)\) defined as \(M_l(P) + \epsilon M_t(P)\).
 \end{definition}
+To justify the name~\emph{rigidity matrix}, we need to consider infinitesimal motions of point sets.
+An~\defn{infinitesimal motion} of the point set \(P\) is the assignment of a vector \(v_p \in \R^2\) for each point \(p \in P\).
+These can be assembled into an infinitesimal motion vector \((v_p)_{p \in P} \in (\R^2)^P\).
+We think of such a vector as the tangent vector at \(P\) to a differentiable path in the configuration space of point sets.
+The rigid motions of the entire plane \(\R^2\) are translations and rotations, and their tangent vectors at \(P\) are the infinitesimal translations and infinitesimal rotations, respectively.
+Precisely, an~\defn{infinitesimal translation} assigns a constant \(v \in \R^2\) to each \(p \in P\).
+An~\defn{infinitesimal rotation} around some point \(w \in \R^2\) assigns a fixed scalar multiple of \((p - w)^{\perp}\) to each \(p \in P\).
+The vector space spanned by all infinitesimal translations and rotations is called the space of~\defn{infinitesimal rigid motions}.
+It is easy to check that this is a 3-dimensional subspace of \((\R^2)^P\).
+\begin{proposition}
+  For any \(\epsilon > 0\), the \(\epsilon\)-rigidity matrix \(M^{\epsilon}(P)\) has rank \(2n - 3\).
+  Its kernel is precisely the space of infinitesimal rigid motions.
+\end{proposition}
+\begin{proof}
+  It is easy to check that the infinitesimal rigid motions all lie in the kernel of \(M^{\epsilon}(P)\).
+  To show that nothing else lies in the kernel, we show that the row space of \(M^{\epsilon}(P)\) has dimension at least \(2n - 3\).
+\fbox{TODO}
+\end{proof}
+
 % \begin{definition}
 % The \defn{rigidity matrix} of the point set~$P \eqdef \{p_1, \dots, p_n\} \subseteq \R^2$ is the matrix~$R_P$ with $\binom{n}{2}$ rows and $2n$ columns where the $k$th pair of entries in the $(i,j)$th column contains the coordinates of~$p_i-p_j$ if $k = i$, of $pj-p_i$ if~$k = j$, and $0$ otherwise.
 % \end{definition}
