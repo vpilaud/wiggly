@@ -472,12 +472,12 @@ We show in ??? that this procedure gives us a complete normal fan.
 
 Given \(x \in \R^2\) and \(r \in P\), denote by \(x \mathbbm{1}_r\) or \(x \cdot \mathbbm{1}_r\) the vector in \((\R^2)^P\) that has \(x\) in the \(r\)th coordinate and zero elsewhere.
   In the following definitions, let \(\arc\) be a wiggly segment on a point set \(P\), with endpoints \(p\) and \(q\).
-\begin{definition}
+\begin{definition}\label{def:lrv}
   The~\defn{longitudinal rigidity vector} \(R_l(\arc)\) of \(\arc\) is defined as
   \[R_l(\arc) = (p-q) \mathbbm{1}_p  + (q-p) \mathbbm{1}_q.\]
 \end{definition}
 For a vector \(w \in \R^2\), denote by \(w^{\perp}\) the rotation of \(w\) by \(90^{\circ}\) in the anti-clockwise direction.
-\begin{definition}
+\begin{definition}\label{def:trv}
   The~\defn{transversal rigidity vector} \(R_t(\arc)\) of \(\arc\) is a row vector in \((\R^2)^P\) defined as follows.
   Let \(w_1, \ldots, w_r\) be the waypoints of \(\arc\) in order from \(p\) to \(q\).
   For convenience, set \(p = w_0\) and \(q = w_{r+1}\).
@@ -486,14 +486,14 @@ For a vector \(w \in \R^2\), denote by \(w^{\perp}\) the rotation of \(w\) by \(
   where \(\mathsf{sgn} = +1\) if \(\arc\) passes to the right of \(w_{i+1} - w_{i-1}\) around \(w_i\), and \(\mathsf{sgn} = -1\) otherwise.
   The vector \(R_t(\arc)\) is the sum of all these contributions for \(i \in [1,r]\).
 \end{definition}
-\begin{definition}
+\begin{definition}\label{def:rv}
   For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(R^{\epsilon}(\arc)\) is defined as
   \[R^{\epsilon}(\arc) = R_l(\arc) + \epsilon R_t(\arc).\]
 \end{definition}
 We now assemble the rigidity vectors into rigidity matrices.
 All of these have rows indexed by the wiggly arcs on \(P\).
 Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
-\begin{definition}
+\begin{definition}\label{def:rm}
   The~\defn{longitudinal rigidity matrix} of \(P\) is the matrix \(M_l(P)\) whose row indexed by \(\arc\) is \(R_l(\arc)\).
 The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(M_t(P)\) whose row indexed by \(\arc\) is \(R_t(\arc)\).
 The~\defn{(total) \(\epsilon\)-rigidity matrix} of \(P\) is the matrix \(M^{\epsilon}(P)\) defined as \(M_l(P) + \epsilon M_t(P)\).
@@ -513,8 +513,45 @@ It is easy to check that this is a 3-dimensional subspace of \((\R^2)^P\).
 \end{proposition}
 \begin{proof}
   It is easy to check that the infinitesimal rigid motions all lie in the kernel of \(M^{\epsilon}(P)\).
-  To show that nothing else lies in the kernel, we show that the row space of \(M^{\epsilon}(P)\) has dimension at least \(2n - 3\).
-\fbox{TODO}
+  Let us show that nothing else lies in the kernel.
+  Let \(\b{v} = (v_p)_{p \in P}\) be an infinitesimal motion that lies in the kernel of \(M^{\epsilon}(P)\).
+  By possibly adding a rigid motion to \(b(v)\), we may assume that the first two points of \(P\) are fixed by \(\b(v)\).
+  That is, \(v_{p_1} = v_{p_2} = 0\).
+  Suppose for contradiction that there is some point \(p_k \in P\) such that \(v_{p_k} \neq 0\).
+
+  First suppose that \(p_k\) does not lie on the line \(p_1p_2\), which means that \(p_1\), \(p_2\), and \(p_k\) form a triangle.
+  By moving \(p_k\) closer to \(p_1\) if necessary, assume that \(v_{p_i} = 0\) for all intermediate points \(p_i \in P\) that lie on the open segment \(]p_1,p_k[\).
+  Similarly by moving \(p_{k}\) closer to \(p_2\) if necessary, assume that \(v_{p_i} = 0\) for all intermediate points \(p_i \in P\) on the open segment \(]p_2,p_k[\).
+
+  Only finitely many points of \(P\) lie in the original triangle \(p_1p_2p_k\).
+  Thus by iterating the above process a finite number of times, we may assume that for each \(p_i \in P\) such that \(p_i \in ]p_1,p_k[\) or \(p_i \in ]p_2,p_k[\), we have \(v_{p_i} = 0\).
+  
+  Let \(\arc\) be any wiggly segment with endpoints \(p_1\) and \(p_k\).
+  Recall that \(M^{\epsilon}(P) \cdot \b{v} = 0\), and consider the entry indexed by \(\arc\) of this product.
+  The \(\arc\)th row of \(M^{\epsilon}(P)\) is non-zero only at the endpoints and waypoints of \(\arc\).
+  Among these coordinates, \(\b{v}\) is non-zero only at \(p_k\).
+  Thus by~\cref{def:rv,def:lrv,def:trv,def:rm}, we obtain the equation
+  \[(p_k - p_1)\cdot v_{p_k} = 0.\]
+  Thus \(v_{p_k}\) is orthogonal to \(p_k - p_1\).
+  Repeating this argument for \(p_2\), we see that \(v_{p_k}\) is orthogonal to \(p_k - p_2\) as well.
+  Since \(p_k\) does not lie on the line \(p_1p_2\), it follows that \(v_{p_k} = 0\), giving the desired contradiction.
+
+  Now suppose that \(p_k\) lies on the line \(p_1p_2\).
+  By inductively computing the entries of \(M^{\epslion}(P) \cdot \b(v)\) corresponding to segments between successive points on this line, we can check that \(v_{p_k}\) is orthogonal to The line \(p_1p_2\).
+
+  If \(p_k\in ]p_1,p_2[\), let \(\arc\) be a wiggly segment from \(p_1\) to \(p_2\)
+  such that in a neighbourhood of any waypoint \(p_i\), the arc \(\arc\) and the vector \(v_{p_i}\) lie on opposite sides of the line \(p_1p_2\).
+  Then the only contribution to the \(\arc\)th entry of \(M^{\epsilon}(P) \cdot \b{v}\) is from the transversal rigidity vectors, and the output is strictly positive.
+  This is a contradiction.
+
+  Suppose \(p_1\) lies between \(p_k\) and \(p_2\) on the line \(p_1p_2\).
+  By changing \(p_k\) if necessary, assume that it is the closest point in \(P\) to \(p_1\) on this line such that \(v(p_k) \ne 0\).
+  By the previous argument, every point \(p_i \in [p_1,p_2]\) has \(v_{p_i} = 0\).
+  Consider any wiggly segment \(\arc\) with endpoints \(p_k\) and \(p_2\).
+  Then the only contribution to \(M^{\epslion}(P)\cdot \b{v}\) comes from the transverse rigidity vectors, and it is a single dot product of \(v_k\) with a non-zero parallel vector.
+  This is non-zero unless \(v_{p_k} = 0\), and we again get a contradiction.
+
+  We conclude that \(v_{p_k} = 0\) for all \(p_k \in P\), proving that the kernel of \(M^{\epsilon}(P)\) is spanned by the infinitesimal rigid motions.
 \end{proof}
 
 % \begin{definition}
