@@ -5,6 +5,7 @@
 \usepackage{tikz}
 \usepackage[noabbrev,capitalise]{cleveref}
 \usepackage{subcaption}
+\usepackage{comment}
 \usepackage{tikz, tikz-3dplot}
 \usepackage{arcs}
 \usetikzlibrary{math, calc, arrows, arrows.meta} % LIBRARY NEEDED FOR PICTURE
@@ -335,12 +336,15 @@ For these elementary segments, it is easy to choose $R$ to ensure that the hypot
 Each wiggly segment $\alpha$ is then associated with a formal sum of elementary wiggly segments, denoted $D(\alpha)$. This allows us to extend the function $R$ to all wiggly segments. 
 
 \begin{definition}
-	Let $\alpha$ be a wiggly arc. A \textit{truncation} of $\alpha$ at $i$ is defined in the following way:
+	Let $\alpha$ be a wiggly arc. A \defn{truncation} of $\alpha$ at $i$ is defined in the following way:
 	\begin{enumerate}
 		\item Fix a frame / window starting at the $i-1$-st node and ending at the $i+1$-st node;
 		\item Draw the segment of the chosen wiggly arc in the interior of the frame and draw the endpoints of the wiggly arc to the $i-1$-st node and the $i+1$-st node. 
 	\end{enumerate}
-	We denote the truncation of $\alpha$ around $i$ as $Tr_i(\alpha)$.
+	We denote the truncation of $\alpha$ around $i$ as $Tr_i(\alpha)$. Define the \defn{truncation decomposition} $D(\alpha)$ to be the formal sum
+		\[
+		D(\alpha) := \sum_{i=2}^{n-1} Tr_i(\alpha). %\in \Z[\widetilde {\wigglyArcs_P}].
+		\]
 \end{definition}
 
 
@@ -1023,56 +1027,60 @@ Each wiggly segment $\alpha$ is then associated with a formal sum of elementary 
 We want to establish the following statement.
 
 \begin{lemma}
-	For two incompatible arcs $\alpha, \alpha'$, let $\beta, \beta'$ to be the choices for the upper and lower hulls to form a circuit. 
+    \label{l:truncation-works}
+	For two incompatible arcs $\alpha, \alpha'$, let $\beta, \beta'$ be the upper and lower hulls. 
 	\begin{itemize}
-		\item $\alpha, \alpha'$ are crossing arcs: define the truncation decomposition $D(\alpha)$ (likewise for $D(\alpha')$) to be the formal sum
-		\[
-		D(\alpha) := \sum_{i=2}^{n-1} Tr_i(\alpha), 
-		\]
+		\item If $\alpha, \alpha'$ are crossing arcs: 
 		then for $i \in [2, n-1]$, we have 
 		\[
 		Tr_i (\alpha) + Tr_i (\alpha') =  Tr_i (\beta) + Tr_i (\beta').
 		\]
-		\item $\alpha, \alpha'$ are non-pointed arcs: suppose $j+1$ is their common endpoint, then for $i \neq j$
+		Consequentially, 
+		\[
+		D(\alpha) + D(\alpha') - D(\beta)+D(\beta')=0.
+		\]
+		\item If $\alpha, \alpha'$ are non-pointed arcs: suppose $j+1$ is their common endpoint, then for $i \neq j$,
 		\begin{align*}
 			2(Tr_i (\alpha) + Tr_i (\alpha')) = Tr_i (\beta) + Tr_i (\beta');
 		\end{align*}
 		and for $i = j$,
 		\begin{align*}
 			\begin{cases}
-				Tr_i (\alpha) + Tr_i (\alpha') = l + r,  \\  
-				Tr_i (\beta) + Tr_i (\beta') = u + d.
-			\end{cases}\quad \text{for } i = j;
+				Tr_i (\alpha) + Tr_i (\alpha') = (l,j) + (r,j),  \\  
+				Tr_i (\beta) + Tr_i (\beta') = (u,j) + (d,j).
+			\end{cases}%\quad \text{for } i = j;
 		\end{align*}
+        Consequentially,
+        \[
+   		2\pth{D(\alpha)+D(\alpha')} - \pth{D(\beta)+D(\beta')} = 2\pth{(l,j)+(r,j)} - \pth{(u,j)+(d,j)}.
+		\]
 	\end{itemize}
 \end{lemma}
 
-The following lemma ensures that the hypotheses need only to be satisfied for the non-face $\{(l,i),(r,i)\}$:
-%
-\begin{lemma}
-\label{l:truncation-works}
-This decomposition $D$ has the following property. For every non-face $F=\{\alpha, \alpha'\}$, let $\beta$ (resp. $\beta'$) denote the upper hull (resp. lower hull) of $\alpha$ and $\alpha'$. Then:
-\begin{itemize}
-\item If $\alpha$ and $\alpha'$ are crossing, then $\pth{D(\alpha)+D(\alpha')}-\pth{ D(\beta)+D(\beta')}=0$,
-\item Otherwise, $\alpha$ and $\alpha'$ are pointed at node $i$, and
+This ensures that when choosing the vector configuration $R$, we only need to be careful of the non-faces of type $\{(l,i),(r,i)\}$. More precisely,
+%\medskip
+\begin{corollary}
+\label{c:extension}
+If $\widetilde R:\widetilde {\wigglyArcs_P}\to \R^d$ is such that the only linear dependences among its values are:
 \[
-2\pth{D(\alpha)+D(\alpha')}-\pth{ D(\beta)+D(\beta')}=2\pth{(l,i)+(r,i)} - \pth{(u,i)+(d,i)}.
+2\pth{\widetilde R((l,i))+\widetilde R((r,i))} - \pth{\widetilde R((u,i))+\widetilde R((d,i))}=0, \qquad \forall i\in\{2,\ldots,n-1\},
 \]
-\end{itemize} 
-\end{lemma}
-\medskip
+then there exists $R:\wigglyArcs_P\to \R^d$ satisfying the condition of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. 
 
-Define $\widetilde R$ on $\widetilde {\wigglyArcs_P}$, so that the only linear dependences among its values are:
-\[
-2\pth{\widetilde R((l,i))+\widetilde R((r,i))} - \pth{\widetilde R((u,i))+\widetilde R((d,i))}=0, \qquad \forall i\in\{2,\ldots,n-1\}.
-\]
-For example, define $\widetilde R$ on $\widetilde {\wigglyArcs_P}$ as described in Definition~\ref{d:rigidity-vector}. 
-%
+More precisely, for every minimum non-face $F=\{\alpha,\alpha'\}$ of $\Delta$, let $\beta, \beta'$ be the upper and lower hulls. The set $\{\beta,\beta'\}$ is a face of $\wigglyArcs_P$, and
+    \begin{itemize}
+    \item if $\alpha$ and $\alpha'$ are crossing arcs: then $R(\alpha)+R(\alpha')=R(\beta)+R(\beta')$,
+    \item if $\alpha$ and $\alpha'$ are non-pointed arcs: then $2R(\alpha)+2R(\alpha')=R(\beta)+R(\beta')$.
+    \end{itemize}
+\end{corollary}
+\begin{proof}
 Extend $\widetilde R$ linearly on $\Z[\widetilde V]$, and define
 \[
 R:\wigglyArcs_P\to \R^d, \alpha\mapsto \widetilde R(D(\alpha)).
 \]
-By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}. Indeed, for every non-face $F=\{\alpha, \alpha'\}$ (with $\beta,\beta'$ the lower and upper hull of $\alpha,\alpha'$):
+The conclusion follows by Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$.
+\begin{comment}
+Indeed, for every non-face $F=\{\alpha, \alpha'\}$ (with $\beta,\beta'$ the lower and upper hull of $\alpha,\alpha'$):
 \begin{itemize}
 \item If $\alpha$ and $\alpha'$ are crossing, then 
 \begin{align*}
@@ -1089,8 +1097,14 @@ By Lemma~\ref{l:truncation-works} and linearity of $\widetilde R$, $R$ satisfies
 &=0.
 \end{align*}
 \end{itemize}
-In both cases, $\{\beta,\beta'\}$ is a compatible pair of s and therefore a face of $WC_P$. It remains to specify a height function $f:\wigglyArcs_P\to \R$ before fully satisfying the hypotheses of Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}.
+\end{comment}
+The pair $\{\beta,\beta'\}$ is compatible and therefore a face of $\wigglyArcs_P$. 
+\end{proof}
+\begin{example}
+The function $\widetilde R$ defined on $\widetilde {\wigglyArcs_P}$ as described in Definition~\ref{d:rigidity-vector} satisfies the condition of Corollary~\ref{c:extension}. 
+\end{example}
 
+It remains to specify a height function $f:\wigglyArcs_P\to \R$ before being able to apply Theorem~\ref{thm:simplicial-complex-is-regular-triangulation}.
 
  %we introduce the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
