@@ -43,7 +43,7 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{defprop}[theorem]{Definition/Proposition}
-\newtheorem{warning}[theorem]{Warning}
+%\newtheorem{warning}[theorem]{Warning}
 \crefname{notation}{Notation}{Notations}
 \crefname{problem}{Problem}{Problems}
  
@@ -537,7 +537,7 @@ It is easy to check that this is a 3-dimensional subspace of \((\R^2)^P\).
   Since \(p_k\) does not lie on the line \(p_1p_2\), it follows that \(v_{p_k} = 0\), giving the desired contradiction.
 
   Now suppose that \(p_k\) lies on the line \(p_1p_2\).
-  By inductively computing the entries of \(M^{\epslion}(P) \cdot \b(v)\) corresponding to segments between successive points on this line, we can check that \(v_{p_k}\) is orthogonal to The line \(p_1p_2\).
+  By inductively computing the entries of \(M^{\epsilon}(P) \cdot \b(v)\) corresponding to segments between successive points on this line, we can check that \(v_{p_k}\) is orthogonal to The line \(p_1p_2\).
 
   If \(p_k\in ]p_1,p_2[\), let \(\arc\) be a wiggly segment from \(p_1\) to \(p_2\)
   such that in a neighbourhood of any waypoint \(p_i\), the arc \(\arc\) and the vector \(v_{p_i}\) lie on opposite sides of the line \(p_1p_2\).
@@ -548,7 +548,7 @@ It is easy to check that this is a 3-dimensional subspace of \((\R^2)^P\).
   By changing \(p_k\) if necessary, assume that it is the closest point in \(P\) to \(p_1\) on this line such that \(v(p_k) \ne 0\).
   By the previous argument, every point \(p_i \in [p_1,p_2]\) has \(v_{p_i} = 0\).
   Consider any wiggly segment \(\arc\) with endpoints \(p_k\) and \(p_2\).
-  Then the only contribution to \(M^{\epslion}(P)\cdot \b{v}\) comes from the transverse rigidity vectors, and it is a single dot product of \(v_k\) with a non-zero parallel vector.
+  Then the only contribution to \(M^{\epsilon}(P)\cdot \b{v}\) comes from the transverse rigidity vectors, and it is a single dot product of \(v_k\) with a non-zero parallel vector.
   This is non-zero unless \(v_{p_k} = 0\), and we again get a contradiction.
 
   We conclude that \(v_{p_k} = 0\) for all \(p_k \in P\), proving that the kernel of \(M^{\epsilon}(P)\) is spanned by the infinitesimal rigid motions.
