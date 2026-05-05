@@ -1,6 +1,7 @@
 \documentclass{amsart}
 
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, thmtools, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, shuffle, xargs, multicol, overpic, pdflscape, multirow, hvfloat, minibox, accents, array, multido, xifthen, a4wide, ae, aecompl, blkarray, pifont, mathtools, etoolbox, dsfont, bbm}
 \usepackage{marginnote}
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue}
@@ -611,11 +612,11 @@ It is easy to check that this is a 3-dimensional subspace of \((\R^2)^P\).
 The proof relies on the following statement.
 
 \begin{theorem}
-Let~$\simplex$ be a $(d-1)$-dimensional pseudomanifold without boundary, and let~$\b{R} : V \to \R^d$ be a vector configuration and~$f : V \to \R^+$ be a height function both labeled by the vertex set~$V$ of~$\simplex$.
+Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, and let~$\b{R} : V \to \R^d$ be a vector configuration and~$f : V \to \R^+$ be a height function both labeled by the vertex set~$V$ of~$\simplex$.
 Then the following are equivalent:
 \begin{itemize}
   %\item $\simplex$ is the coherent triangulation of the vector configuration~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$\lambda(v) \, \b{R}(v)$ for all~$v \in V$,
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in V$,
   \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is
   \[
     F = \set{v \in V}{\lambda(v) < 0},
@@ -628,23 +629,26 @@ Then the following are equivalent:
 \end{theorem}
 
 \begin{proof}
-  Let $T$ be the regular triangulation given by $f$.
+\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
+  Let $T$ be the regular triangulation of $\b{R}(V)$ given by $f$). 
+  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
   
-  Assume $\simplex$ is the boundary complex of the convex hull of the points~$lambda(v) \, \b{R}(v)$ for all~$v\in V$, and consider $F$, a minimal non-face of $\simplex$.
+  Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v\in V$. Consider $F$, a minimal non-face of $\simplex$.
   
-  Choose a point $x\in \relint{F}$.
-  Since $T$ is a triangulation covering $\conv{p_i}$, there is a unique $G\in T$ such that $x\in \relint{G}$.
-  As $x\in \conv{F}, \conv{G}$, there are two convex combinations
+  Choose a point $x\in \relint{\b{R}(F)}$.
+  Since $T$ is a triangulation covering $\cone{\b{R}(V)}$, there is a unique $G\in T$ such that $x\in \relint{G}$.
+  As $x\in \conv{F} \cap\cone{G}$, there are two convex combinations
   \[
     x = \sum_{p_i\in G} \lambda_i p_i = \sum_{q_j\in F} \mu_j q_j,
   \]
   with all $\lambda_i, \mu_j \geq 0$, unique up to scaling.
-  Furthermore, no $\mu_j$ can be $0$ since $F$ is a minimal non-face, and no
+  Furthermore, no $\mu_j$ can be $0$ since $F$ is a minimal non-face of $\simplex$, and no
   $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$.
   
   Hence, the linear dependence $\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$ has
   $F$ as its negative part.
-  Finally, since $F$ is a non-face, it lies above $G$ in the height embedding given by $f$, so
+  Finally, since $F$ is a non-face of $\simplex$, its relative interior is contained in the interior of $\conv(\b{R}(V))$, so
+\paco{Why are there no cancellations in this formula?}
   \[
     \sum_{p_i \in G} \lambda_i f(p_i) - \sum_{q_j\in F} \mu_j f(q_j) < 0.
   \]
@@ -655,9 +659,8 @@ Then the following are equivalent:
   While $G$ is not necessarily a face of $T$, it is below $F$, so $F$ is not a face of $T$.
   
   As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
-  Since $\simplex$ has no boundary, its dual graph is $d$-regular, so in fact $T = \simplex$.
-  
-  
+  Now, two connected pseudo-manifolds (without bounddary) of the same dimension vccannot be properly contained in one another, so  $T = \simplex$.
+
 \end{proof}
 
 The first step of the proof is thus to understand the minimal non faces of the wiggly complex~$\reducedWigglyComplex_P$.
