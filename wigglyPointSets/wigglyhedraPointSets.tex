@@ -451,7 +451,7 @@ Let~$Q$ denote the wiggly quadrangle obtained by merging the two wiggly triangle
 By~\cref{prop:diagonals}, there are precisely two wiggly segments of~$P$ inside~$Q$ and compatible with~$Q$.
 This proves that~$\wigglyFlipGraph_P$ is $(v+2w-3)$-regular.
 
-Consider now an arbitrary order~$p_1, \dots, p_n$ of~$P$ such that~$p_i$ lies on the complement of the convex hull of~$\{p_1, \dots, p_{i-1}$ for all~$i \in [n]$.
+Consider now an arbitrary order~$p_1, \dots, p_n$ of~$P$ such that~$p_i$ lies on the complement of the convex hull of~$\{p_1, \dots, p_{i-1}\}$ for all~$i \in [n]$.
 For all~$i \in [n]$, define inductively the wiggly triangulation~$T_i^\circ$ of~$P_i \eqdef \{p_1, \dots, p_i\}$ obtained from~$T_{i-1}^\circ$ by adding all external wiggly segments of~$P_i$.
 We prove by induction on~$i$ that any wiggly triangulation of~$P_i$ is connected by flips to~$T_i^\circ$.
 For any wiggly triangulation~$T_i$ of~$P_i$, consider the wiggly triangulation~$T_{i-1}$ obtained from~$T_i$ by flipping all internal wiggly segments incident to~$p_i$, and then deleting~$p_i$ and its two incident external wiggly arcs.
@@ -471,42 +471,37 @@ Paco will write this section.
 IN PROGRESS. IT OVERLAPS WITH THE NEXT ONE, AND DEPARTS FROM IT IN TERMS OF NOTATION FROM TIME TO TIME. 
 }
 
-Our construction of the wiggly fan is based on rigidity considerations, similar to those used in \cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set. In fact, for point sets in general position our construction restricts to the pone in that paper. Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity thepory.
+Our construction of the wiggly fan is based on rigidity considerations, similar to those used in~\cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set. In fact, for point sets in general position our construction restricts to the one in that paper. Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity theory.
 
-Let $P\subset \R^2$ be a point set , consisting of $n$ points $p_1,\dots,p_n$. The~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:
+Let $P \subset \R^2$ be a point set , consisting of $n$ points $p_1,\dots,p_n$. The~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:
 \[
-R(P):=
+R(P) \eqdef
 \begin{pmatrix}
-p_1-p_2 & p_2-p_1 & 0 & \dots & 0 & 0 \\
-p_1-p_3 & 0 & p_3-p_1 & \dots & 0 & 0 \\
+p_1-p_2 & p_2-p_1 & 0 & \cdots & 0 & 0 \\
+p_1-p_3 & 0 & p_3-p_1 & \cdots & 0 & 0 \\
 \vdots & \vdots & \vdots & & \vdots & \vdots \\
-p_1-p_n & 0 & 0 & \dots & 0 & p_n-p_1 \\
-0 & p_2-p_3 & p_3-p_2 & \dots & 0 & 0 \\
+p_1-p_n & 0 & 0 & \cdots & 0 & p_n-p_1 \\
+0 & p_2-p_3 & p_3-p_2 & \cdots & 0 & 0 \\
 \vdots & \vdots & \vdots & & \vdots & \vdots \\
-0 & 0 & 0 & \dots & p_{n-1}-p_n & p_n-p_{n-1}
+0 & 0 & 0 & \cdots & p_{n-1}-p_n & p_n-p_{n-1}
 \end{pmatrix}
 \]
-That is to say, we have a row vector $R(p,q)\in (\R^2)^n \cong (\R^2)^P$ associated to each pair of points $p,q\in P$; all entries in $R(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $p-q$ and the block corresponding to $q$ has the block $q-p$.
+That is to say, we have a row vector $R(p,q)\in (\R^2)^n \cong (\R^2)^P$ associated to each pair of points~${p,q\in P}$.
+All entries in $R(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $p-q$ and the block corresponding to $q$ has the block $q-p$.
 
-Considering $R(P)$ as a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, it has the following interpretation: each $v=(v_1,\dots,v_n) \in (\R^2)^n$ is understood as a vector of velocities (or infinitesimal displacements) for the points in $P$, and the vector $R(P) v \in \R^{\binom{n}{2}}$ returns in the coordinate $\{i,j\} \in \R^{\binom{n}{2}}$ the value
-\[
-(p_i-p_j)\cdot (v_i-v_j),
-\]
-which equals the (infinitesimal) increase or decrease of the length of the segment $[p_i,q_i]$ under that motion.
+The matrix $R(P)$, considered as a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, has the following interpretation: each~${v = (v_1,\dots,v_n) \in (\R^2)^n}$ is understood as a vector of velocities (or infinitesimal displacements) for the points in $P$, and the vector $R(P) v \in \R^{\binom{n}{2}}$ returns in the coordinate $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_i-p_j)\cdot (v_i-v_j)$, which equals the (infinitesimal) increase or decrease of the length of the segment $[p_i,q_i]$ under that motion.
 
-The kernel of $R(P)$ are the infinitesimal motions that do not change any distance between points, that is, moving the whole point set as if it was a rigid block. If $P$ affinely spans $\R^2$ (whcih we always assume) then $R(P)$ has rank $2n-3$ and its three-dimensional kernel is generated by the vectors of the form $T_v:=(v,...,v)$ for an arbitrary $v\in \R^2$ plus the vector 
+The kernel of $R(P)$ are the infinitesimal motions that do not change any distance between points, that is, moving the whole point set as if it was a rigid block. If $P$ affinely spans $\R^2$ (which we always assume) then $R(P)$ has rank $2n-3$ and its three-dimensional kernel is generated by the vectors of the form $T_v:=(v,...,v)$ for an arbitrary $v\in \R^2$ plus the vector 
 \[
 P^\perp:=(p_1^\perp, \dots, p_n^\perp),
 \]
-where $(x,y)^\perp:=(-y,x)$ denotes the rotation of of $(x,y)$ by \(90^{\circ}\) in the positive direction.
-The former represent global translations and the latter an (infinitesimal) rotation with center at the origin.
-We denote this kernel $se(P)$%
-\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P$ is that it equals the  Lie algebra of the Lie group $SE(2)$ of Euclidean motions in the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $o\in \R^2$ produces as infinitesimal motion of $P$ the vector $P^\perp - T_o$.
-}
+where $(x,y)^\perp:=(-y,x)$ denotes the rotation of~$(x,y)$ by \(90^{\circ}\) in the positive direction.
+The former represent \defn{global translations} and the latter an (infinitesimal) \defn{rotation} with center at the origin.
+We denote\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P$ is that it equals the  Lie algebra of the Lie group $SE(2)$ of Euclidean motions in the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $o\in \R^2$ produces as infinitesimal motion of $P$ the vector $P^\perp - T_o$.} this kernel $se(P)$.
 
-The dual map $\R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $R(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $R(P)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
+The dual map $R(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $R(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $R(P)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
 
-If we now consider a set of edges $E\subset \binom{n}{2}$, this defines a restricted matrix $R_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $R_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $R_E(P)^T$ represents the equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $R_E(P)$ has rank $E$.%
+If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $R_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $R_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $R_E(P)^T$ represents the equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $R_E(P)$ has rank $E$.%
 \footnote{This information is captured by the linear matroid of rows of $R(P)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones). Consequently, that matroid is called the (infinitisimal) rigidity matroid of $P$.}
 
 The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in general position (and hence,  wiggly arcs are just straightline segments), the wiggly fan can be embedded associating to each vertex $\{i,j\}$ the corresponding rigidity vector $R(i,j)$, producing a complete polytopal fan. In order to generalize this to non-general position we need to modify the definition of rigidity vector associated to a wiggly arc.
