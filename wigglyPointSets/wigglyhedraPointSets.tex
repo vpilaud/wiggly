@@ -318,6 +318,22 @@ The \defn{length} of an arc is the infimum of the lengths of the representatives
 A \defn{wiggly segment} is an arc whose length is the Euclidean distance between its endpoints.
 \end{definition}
 
+{\color{blue}
+\Paco{I rewrote this definition. Part of the reason is that the definition above allows for oriented arcs that wind an arbitrary number of times arond each intermediate point. But, also, I prefer to avoid the use of length in the definition.}\begin{definition}
+\label{def:wigglySegments}
+An \defn{oriented arc} from~$p$ to~$q$ is an isotopy class in the set of continuous maps~$\alpha : [0,1] \mapsto \R^2$ with~$\alpha(0) = p$, $\alpha(1) = q$ and~$\alpha(]0,1[) \subseteq \R^2 \ssm P$.
+%We say that~$p$ and~$q$ are the \defn{endpoints} of~$\arc$, and that $\arc$ is \defn{incident} to $p$ and~$q$.
+An \defn{arc} is an oriented arc modulo reorientation.
+
+Let~$S \subseteq P$ be the subset of points along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc from $p$ to $q$ obtained  perturbing the straightline arc $\alpha(t)\to (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner.%
+\footnote{E.g., for each $r\in ]p,q[$ substitute a small half-circle with center at $r$ for a the portion of $\alpha$ going over $r$.} Thus, wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left of the arc and a subset $R$ to the right.
+We encode each of them as the quadruple~$(p, q, L, R) \sim (q, p, R, L)$.
+
+An \defn{external} wiggly segment is one of the form~$(p, q, L, \emptyset)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
+\Paco{It seems to me that in the definition of dissection we only want to consider external the arcs whose end-points are vertices of $\conv(P)$. With the previous definition external arcs can end at arbitrary points of $\partial(\conv(P))$.}
+\end{definition}
+}
+
 \begin{definition}
 \label{def:compatible}
 A set~$D$ of wiggly segments is
@@ -497,7 +513,7 @@ P^\perp:=(p_1^\perp, \dots, p_n^\perp),
 \]
 where $(x,y)^\perp:=(-y,x)$ denotes the rotation of~$(x,y)$ by \(90^{\circ}\) in the positive direction.
 The former represent \defn{global translations} and the latter an (infinitesimal) \defn{rotation} with center at the origin.
-We denote\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P$ is that it equals the  Lie algebra of the Lie group $SE(2)$ of Euclidean motions in the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $o\in \R^2$ produces as infinitesimal motion of $P$ the vector $P^\perp - T_o$.} this kernel $se(P)$.
+We denote\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P)$ is that this kernel equals the Lie algebra of the Lie group $SE(2)$ of Euclidean motions of the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $o\in \R^2$ produces as infinitesimal motion of $P$ the vector $P^\perp - T_o$.} this kernel $se(P)$.
 
 The dual map $R(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $R(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $R(P)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
 
@@ -518,7 +534,10 @@ Hence, the usual rigidity vector $R(p,q)$ as defined above can be expressed as f
   \]
 \end{definition}
 
-To this vector we add a transversal part depending on the intermediate points $L \cup R$ along the arc.
+To this vector we add a transversal part depending on the intermediate points along the segment $[p,q]$.
+Here, a vector in $(\R^2)^P$ is called \defn{transversal} to the segment $[p,q]$ if it is of the form
+$(q-p)^\perp \left(\sum_{r\in P} \lambda_r \mathbbm{1}_r\right)$ with $\lambda_r = 0$ if $r\not\in [p,q]$.
+
 For each point $r\in L\cup R$, let $\lambda_r$ and $\mu_r$ denote the barycentric coordinates of $r$ in $[p,q]$. That is, $\lambda,\mu\in [0,1]$ are the unique numbers such that
 \[
 r = \lambda_r p + \mu_r  q,
@@ -529,19 +548,32 @@ or, equivalently,
 \[
 r-p = \mu_r  (q-p), 
 \quad
-r-q = \lambda_r  (p-q).
-\]
-We denote
-\[
-R_t(p,q;r):= (p-q)^\perp (\lambda_r \mathbbm{1}_p + \mu_r \mathbbm{1}_q - \mathbbm{1}_r).
+q-r = \lambda_r  (q-p).
 \]
 
 \begin{definition}\label{def:trv}
+For each $r\in P \cap\, ]p,q[$ consider the following vector, transversal to $[p,q]$:
+\begin{align*}
+R_t(p,q;r) \eqdef& 
+(q-p)^\perp \mathbbm{1}_r - (q-r)^\perp  \mathbbm{1}_p - (r-p)^\perp  \mathbbm{1}_q) \\
+=&(q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q ).
+\end{align*}
   The~\defn{transversal rigidity vector} \(R_t(\arc)\) of $\arc=(p, q, L, R)$ is a row vector in \((\R^2)^P\) defined as 
   \[
-  R_t(\arc) = \sum_{r\in L} R_t(p,q;r) - \sum_{r\in R} R_t(p,q;r).
+  R_t(\arc) \eqdef \sum_{r\in L} R_t(p,q;r) - \sum_{r\in R} R_t(p,q;r).
   \]
 \end{definition}
+
+\Paco{It may be good to define the rigidity vector for a $(p,q,L,R)$ where $L$ and $R$ are disjoint subsets of $]p,q[\cap P$, but not necessarily including all points. This allows us to write things like
+\[
+R^{\epsilon}(p,q,L,R) + R^{\epsilon}(p,q,R,L) = R^{\epsilon}(p,q,\emptyset,\emptyset)
+\]
+or, more generally,
+\[
+R^{\epsilon}(p,q,L,R) + R^{\epsilon}(p,q,L',R') = R^{\epsilon}(p,q,((L\cup L')\setminus(R\cup R'),(R\cup R')\setminus(L\cup L')),
+\]
+whenever $L\cap L'=R\cap R'=\emptyset$.
+}
 
 \begin{definition}\label{def:rv}
   For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(R^{\epsilon}(\arc)\) is defined as
@@ -555,29 +587,26 @@ The transversal component is considered much smaller than the longitudinal one, 
 One important point is that the transversal part is designed to be orthogonal to the kernel $se(P)$ of the usual rigidity matrix of $P$. Indeed, by linearity we only need to check this for the individual contributions $R_t(p,q;r)$ of the points in $L\cup R$. For infinitesimal translations we have
 \[
 R_t(p,q;r) (v,\dots,v) =
-(p-q)^\perp (\lambda_r \mathbbm{1}_p + \mu_r \mathbbm{1}_q - \mathbbm{1}_r) (v,\dots,v) =0
+(q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (v,\dots,v) =0
 \]
 since
 \[
- (\lambda_r \mathbbm{1}_p + \mu_r \mathbbm{1}_q - \mathbbm{1}_r) (v,\dots,v) =
-(\lambda_r  + \mu_r  - 1)  v  = 0. 
+ (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (v,\dots,v) =
+(1 - \lambda_r  - \mu_r )  v  = 0. 
 \]
 For the rotation $P^\perp:=(p_1^\perp, \dots, p_n^\perp)$ we have
 \begin{align*}
 R_t(p,q;r) (p_1^\perp, \dots, p_n^\perp) 
-&= (p-q)^\perp (\lambda_r \mathbbm{1}_p + \mu_r \mathbbm{1}_q - \mathbbm{1}_r) (p_1^\perp, \dots, p_n^\perp) =0 
+&= (q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (p_1^\perp, \dots, p_n^\perp) =0 
 \end{align*}
 since
 \[
- (\lambda_r \mathbbm{1}_p + \mu_r \mathbbm{1}_q - \mathbbm{1}_r) (p_1^\perp, \dots, p_n^\perp) =
-\lambda_r p^\perp + \mu_r q^\perp - r^\perp =0
+ (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (p_1^\perp, \dots, p_n^\perp) =
+r^\perp - \lambda_r p^\perp - \mu_r q^\perp  =
+(r - \lambda_r p - \mu_r q)^\perp  =0.
 \]
 
-In fact, the vectors $\{R_t(p,q;r)\}_{r\in L\cup R}$ are a basis for the linear space 
-\[
-\left\{ (p-q)^\perp \left(\sum_{r\in P} \lambda_r \mathbbm{1}_r\right) : \lambda_r=0 \text{ if } r \not\in L \cup R \cup \{p,q\} \right\} \cap se(P)^\perp.
-\]
-
+In fact, the vectors $\{R_t(p,q;r)\}_{r\in L\cup R}$ are a basis for the linear space of vectors transversal to $[p,q]$ and orthogonal to $se(P)^\perp$.
 \end{remark}
 
 
