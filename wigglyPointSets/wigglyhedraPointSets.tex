@@ -570,19 +570,6 @@ The intuition behind this definition is to think of the wiggly arc as a rubberba
 The transversal component is considered much smaller than the longitudinal one. In fact, the parameter $\epsilon$ will later be required to be ``sufficiently small'' in some of our proofs.
 \end{remark}
 
-Our main reason to allow for partial wiggly segments in the definition of the rigidity vector is the following statement:
-\begin{lemma}
-\label{lema:partial_rigidity}
-Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P \cap {]p,q[}$. Then,
-\[
-\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A) = 2 \Reps(p,q, L,R).
-\]
-\end{lemma}
-
-\begin{proof}
-For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$. For the transversal parts just observe that the contributions of the points from $A\cup B$ cancel out when we add $\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A)$.
-\end{proof}
-
 One important feature of the rigidity vectors we are defining is that they are still orthogonal to the kernel $se(P)$ of the usual rigidity matrix of $P$. 
 
 \begin{lemma}
@@ -641,6 +628,20 @@ On the other hand, Lemma~\ref{lema:partial_rigidity} implies that for every $\ar
 \Reps(p,q,L,R) + \Reps(p,q,R,L) = 2\Reps(p,q, \varnothing, \varnothing) =  2\Rvector(p,q).
 \]
 Hence, the row-span of $\Meps(P)$ contains the row-span of the usual rigidity matrix $\Mmatrix(P)$, hence the kernel of $\Meps(P)$ is contained in that of $\Mmatrix(P)$.
+\end{proof}
+
+Our main reason to allow for partial wiggly segments in the definition of the rigidity vector is the following statement:
+
+\begin{lemma}
+\label{lema:partial_rigidity}
+Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P \cap {]p,q[}$. Then,
+\[
+\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A) = 2 \Reps(p,q, L,R).
+\]
+\end{lemma}
+
+\begin{proof}
+For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$. For the transversal parts just observe that the contributions of the points from $A\cup B$ cancel out when we add $\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A)$.
 \end{proof}
 
 \begin{lemma}
