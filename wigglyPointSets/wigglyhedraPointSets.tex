@@ -126,6 +126,8 @@
 \newcommand{\paco}[1]{\todo[size=\scriptsize, color=orange!30]{\rm #1 \\ \hfill --- P.}}
 \newcommand{\Paco}[1]{\todo[size=\tiny,inline,color=orange!30]{#1 \hfill --- PS.}}
 \newcommand{\asilata}[2][]{\todo[size=\scriptsize, color=orange!30,#1]{\rm #2 \\ \hfill --- A.}}
+\newcommand{\david}[1]{\todo[size=\scriptsize, color=violet!30]{\rm #1 \\ \hfill --- D.}}
+\newcommand{\David}[1]{\todo[size=\tiny,inline,color=violet!30]{#1 \hfill --- D.}}
 
 % lattices
 \newcommand{\meet}{\wedge} % meet
@@ -663,12 +665,13 @@ Hence, the row-span of $\Meps(P)$ contains the row-span of the usual rigidity ma
 The proof relies on the following statement.
 
 \begin{theorem}
-Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, and let~$\b{R} : V \to \R^d$ be a vector configuration and~$f : V \to \R^+$ be a height function both labeled by the vertex set~$V$ of~$\simplex$.
+Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
+and let~$\b{R} : V \to \R^d$ be a vector configuration and~$f : V \to \R^+$ be a height function.
 Then the following are equivalent:
 \begin{itemize}
   %\item $\simplex$ is the coherent triangulation of the vector configuration~$\b{R}$ with respect to the height function~$f$,
   \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in V$,
-  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
   \[
     F = \set{v \in V}{\lambda(v) < 0},
     \qquad
@@ -680,29 +683,38 @@ Then the following are equivalent:
 \end{theorem}
 
 \begin{proof}
-\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
-  Let $T$ be the regular triangulation of $\b{R}(V)$ given by $f$). 
+%\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
+  Let $T$ be the regular triangulation of $\b{R}(V)$ given by $f$.
   That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
   
-  Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v\in V$. Consider $F$, a minimal non-face of $\simplex$.
+  Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
+  the points~$f(v) \, \b{R}(v)$ for all~$v\in V$.
+  Consider $F$, a minimal non-face of $\simplex$.
   
-  Choose a point $x\in \relint{\b{R}(F)}$.
-  Since $T$ is a triangulation covering $\cone{\b{R}(V)}$, there is a unique $G\in T$ such that $x\in \relint{G}$.
-  As $x\in \conv{F} \cap\cone{G}$, there are two convex combinations
+  Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
+  Since $T$ is a triangulation covering $\cone{\b{R}(V)}$, there is a unique $G\in T$ such that
+  $x\in \relint{G}$.
+  As $x\in \cone{\b{R}(F)} \cap\cone{G}$, there are two convex combinations
   \[
     x = \sum_{p_i\in G} \lambda_i p_i = \sum_{q_j\in F} \mu_j q_j,
   \]
   with all $\lambda_i, \mu_j \geq 0$, unique up to scaling.
-  Furthermore, no $\mu_j$ can be $0$ since $F$ is a minimal non-face of $\simplex$, and no
-  $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$.
-  
-  Hence, the linear dependence $\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$ has
-  $F$ as its negative part.
-  Finally, since $F$ is a non-face of $\simplex$, its relative interior is contained in the interior of $\conv(\b{R}(V))$, so
-\paco{Why are there no cancellations in this formula?}
+  Consider the linear dependence $\lambda - \mu$. %$\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$.
+
+  Since $F$ is a non-face of $T$, $\relint{\conv{f \, \b{R}(F)}} \subseteq \relint{\conv{f \, \b{R}(V)}}$
+  and, along the ray $x$, $\conv{f\, G}$, a face of the convex hull,
+  lies strictly below $\conv{f\, \b{R}(F)}$, so
+  \paco{Why are there no cancellations in this formula?}
+  \david{There may be some cancellations, but the result cannot be zero because that would imply that
+         the relative interior of a non-face of $T$ is part of the convex hull.}
   \[
-    \sum_{p_i \in G} \lambda_i f(p_i) - \sum_{q_j\in F} \mu_j f(q_j) < 0.
+    \sum_{p_i \in G} \lambda_i f(p_i) < \sum_{q_j\in F} \mu_j f(q_j),
   \]
+  i.e., $\lambda - \mu$ evaluates negatively with $f$.
+
+  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
+  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
+  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
   
   For the converse, assume this is true for all minimal non-faces.
   For each minimal non-face $F$, consider the positive support of its linear dependence,
@@ -710,7 +722,7 @@ Then the following are equivalent:
   While $G$ is not necessarily a face of $T$, it is below $F$, so $F$ is not a face of $T$.
   
   As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
-  Now, two connected pseudo-manifolds (without bounddary) of the same dimension vccannot be properly contained in one another, so  $T = \simplex$.
+  Now, two connected pseudo-manifolds (without boundary) of the same dimension cannot be properly contained in one another, so  $T = \simplex$.
 
 \end{proof}
 
