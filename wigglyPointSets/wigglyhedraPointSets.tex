@@ -80,7 +80,7 @@
 \newcommand{\ssm}{\smallsetminus} % small set minus
 \newcommand{\dotprod}[2]{\left\langle \, #1 \; \middle| \; #2 \, \right\rangle} % dot product
 \newcommand{\symdif}{\,\triangle\,} % symmetric difference
-\newcommand{\one}{\b{1}} % the all one vector
+\newcommand{\one}{\mathbbm{1}} % the all one vector
 \newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
 \newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
 \newcommand{\simplex}{\b{\triangle}} % simplex
@@ -327,7 +327,7 @@ An \defn{arc} is an oriented arc modulo reorientation.
 Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg, for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left of the (oriented) arc and a subset $R$ to the right.
 For this reason we encode each wiggly segment as a quadruple~$\arc = (p, q, L, R)$ and, slightly abusing notation, will call $\arc$ itself a wiggly segment. Observe that $(p, q, L, R)$ and $(q, p, R, L)$ are considered the same wiggly segment.
 
-An \defn{external} wiggly segment is one of the form~$(p, q, L, \emptyset)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
+An \defn{external} wiggly segment is one of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
 \end{definition}
 
 \begin{definition}
@@ -513,30 +513,30 @@ If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a res
 \section{Wiggly rigidity}
 \label{sec:w_rigidity}
 
-The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\emptyset,\emptyset)$), the wiggly complex can be embedded into a complete (in its linear span) and polytopal fan~$(\R^2)^P$ by associating to each~$(p,q) \in \binom{P}{2}$ the corresponding rigidity vector~$\Rvector(p,q)$. In order to generalise this to non-general position we need to modify the definition of rigidity vector associated to a wiggly arc.
+The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\varnothing,\varnothing)$), the wiggly complex can be embedded into a complete (in its linear span) and polytopal fan~$(\R^2)^P$ by associating to each~$(p,q) \in \binom{P}{2}$ the corresponding rigidity vector~$\Rvector(p,q)$. In order to generalise this to non-general position we need to modify the definition of rigidity vector associated to a wiggly arc.
 
 Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union does not necessarily cover~${]p,q[} \cap P$.
 %We introduce the following notation: 
-For each $r\in P$ let $\mathbbm{1}_r$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \mathbbm{1}_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere. 
+For each $r\in P$ let $\one_r$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere. 
 Hence, the usual rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
 
 \begin{definition}\label{def:lrv}
 The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of~$[p,q]$ in~$P$. That is,
 \[
-\Rlong(\arc) := (p-q) (\mathbbm{1}_p  - \mathbbm{1}_q).
+\Rlong(\arc) := (p-q) (\one_p  - \one_q).
 \]
 \end{definition}
 
 To this vector we add a transversal part depending on the intermediate points along the segment~$[p,q]$.
 Here, a vector in $(\R^2)^P$ is called \defn{transversal} to the segment $[p,q]$ if it is of the form
-$w \left(\sum_{r\in P} \lambda_r \mathbbm{1}_r\right)$ with $w\in \R^2$ orthogonal to $q-p$ and $\lambda_r = 0$ if $r\not\in [p,q]$.
+$w \left(\sum_{r\in P} \lambda_r \one_r\right)$ with $w\in \R^2$ orthogonal to $q-p$ and $\lambda_r = 0$ if $r\not\in [p,q]$.
 
 \begin{definition}\label{def:trv}
 For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$:
 \begin{align*}
 \Rtrans(p,q;r) \eqdef& 
-(q-p)^\perp \mathbbm{1}_r - (q-r)^\perp  \mathbbm{1}_p - (r-p)^\perp  \mathbbm{1}_q) 
-%\\ =&(q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q ).
+(q-p)^\perp \one_r - (q-r)^\perp  \one_p - (r-p)^\perp  \one_q) 
+%\\ =&(q-p)^\perp (\one_r - \lambda_r \one_p - \mu_r \one_q ).
 \end{align*}
 The~\defn{transversal rigidity vector} \(\Rtrans(\arc)\) of $\arc=(p, q, L, R)$ is a row vector in \((\R^2)^P\) defined as 
 \[
@@ -554,7 +554,7 @@ with $\lambda_r,\mu_r \ge 0$ and  $\lambda_r  + \mu_r  = 1$.
 The coefficients  $\lambda_r$ and $\mu_r$ are the \defn{barycentric coordinates} of~$r$ in $[p,q]$ and can alternatively be defined via~$r-p = \mu_r  (q-p)$ and $q-r = \lambda_r  (q-p)$.
 It is straightforward that 
 \[
-\Rtrans(p,q;r)  = (q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q).
+\Rtrans(p,q;r)  = (q-p)^\perp (\one_r - \lambda_r \one_p - \mu_r \one_q).
 \]
 \end{remark}
 
@@ -592,7 +592,7 @@ Every $\Reps(p,q,L,R)$ is orthogonal to $se(P)$.
 The longitudinal parts are orthogonal since they are the usual rigidity vectors. 
 For the transversal parts, by linearity we only need to check that the individual contribution $\Rtrans(p,q;r)$ of each point $r$ in $L\cup R$ is orthogonal to the translations $(v,\dots,v)$ and the rotation $(s^\perp)_{s\in P}$, which generate $se(P)$.
 
-Writing $\Rtrans(p,q;r) = (q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q)$ in the fashion of Remark~\ref{rem:barycentric}, for infinitesimal translations we have that
+Writing $\Rtrans(p,q;r) = (q-p)^\perp (\one_r - \lambda_r \one_p - \mu_r \one_q)$ in the fashion of Remark~\ref{rem:barycentric}, for infinitesimal translations we have that
 \[
 \Rtrans(p,q;r) (v,\dots,v) = 0,
 \quad \text{and} \quad
@@ -600,12 +600,12 @@ Writing $\Rtrans(p,q;r) = (q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p -
 \]
 because
 \[
-(\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (v,\dots,v) =
+(\one_r - \lambda_r \one_p - \mu_r \one_q) (v,\dots,v) =
 (1 - \lambda_r  - \mu_r )  v  = 0. 
 \]
 and
 \[
-(\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (s^\perp)_{s\in P} =
+(\one_r - \lambda_r \one_p - \mu_r \one_q) (s^\perp)_{s\in P} =
 r^\perp - \lambda_r p^\perp - \mu_r q^\perp  =
 (r - \lambda_r p - \mu_r q)^\perp  =0.
 \qedhere
@@ -636,9 +636,21 @@ Its kernel is precisely the space of infinitesimal rigid motions $se(P)$.
 Lemma~\ref{lemma:kernel} guarantees that the infinitesimal rigid motions all lie in the kernel of \(\Meps(P)\).
 On the other hand, Lemma~\ref{lema:partial_rigidity} implies that for every $\arc=(p,q,L,R)$ we have
 \[
-\Reps(p,q,L,R) + \Reps(p,q,R,L) = 2\Reps(p,q, \emptyset, \emptyset) =  2\Rvector(p,q).
+\Reps(p,q,L,R) + \Reps(p,q,R,L) = 2\Reps(p,q, \varnothing, \varnothing) =  2\Rvector(p,q).
 \]
 Hence, the row-span of $\Meps(P)$ contains the row-span of the usual rigidity matrix $\Mmatrix(P)$, hence the kernel of $\Meps(P)$ is contained in that of $\Mmatrix(P)$.
+\end{proof}
+
+\begin{lemma}
+Assume that~$p_1, p_2, p_3, q$ are distinct points of~$P$ such that~$q$ lies in the interior of the convex hull of~$p_1$, $p_2$ and~$p_3$, and let~$\arc_i$ be the partial arc~$(p_i, q, \varnothing, \varnothing)$ for each~$i \in [3]$.
+Then for any equilibrium stress~$w$ of~$P$, there exist non-negative~$\lambda_1, \lambda_2, \lambda_3$ such that~$w - \sum_{i = 1}^3 \lambda_i \Reps(\arc_i)$ has a vanishing component at~$q$.
+\end{lemma}
+
+\begin{proof}
+Consider the component~$\one_q w \in \R^2$ of~$w$ at~$q$.
+If it points towards~$p_i$, then it is a positive combination~$\one_q w = \lambda_i (p_i - q)$ and we fix~$\lambda_j = 0$ for~$j \ne i$.
+If it points between~$p_i$ and~$p_j$, then it is a positive combination~$\one_q w = \lambda_i (p_i-q) + \lambda_j (p_j-q)$, and we fix~$\lambda_k = 0$ for~$k \notin \{i,j\}$.
+We obtain that~$\one_q \bigl( w - \sum_{i = 1}^3 \lambda_i \Reps(\arc_i) \bigr) = \one_q w - \sum_{i=1}^3 \lambda_i (p_i-q) = 0$.
 \end{proof}
 
 
