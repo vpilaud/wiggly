@@ -316,17 +316,15 @@ Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2
 A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
 We denote by~$n = v + w$ the number of points of~$P$, where~$v$ are extremal and~$w$ are not.
 We first define the wiggly segments of~$P$.
-Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open interval~$]p,q[$.
-
+Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open segment~$]p,q[$.
 
 \begin{definition}
 \label{def:wigglySegments}
-An \defn{oriented arc} from~$p$ to~$q$ is an isotopy class in the set of continuous maps~$\alpha : [0,1] \mapsto \R^2$ that satisfy~$\alpha(0) = p$, $\alpha(1) = q$ and~$\alpha(]0,1[) \subseteq \R^2 \ssm P$.
+For~$p,q \in P$, an \defn{oriented arc} from~$p$ to~$q$ is an isotopy class in the set of continuous maps~${\alpha : [0,1] \mapsto \R^2}$ that satisfy~$\alpha(0) = p$, $\alpha(1) = q$ and~$\alpha(]0,1[) \subseteq \R^2 \ssm P$.
 %We say that~$p$ and~$q$ are the \defn{endpoints} of~$\arc$, and that $\arc$ is \defn{incident} to $p$ and~$q$.
 An \defn{arc} is an oriented arc modulo reorientation.
 
-Let~$P$ be a point set, let $p,q\in P$, and let $S = P \cap\, ]p,q[$ be the subset of points along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc from $p$ to $q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner.%
-\footnote{E.g., for each $r\in ]p,q[$ substitute a small half-circle with center at $r$ for a the portion of $\alpha$ going over $r$.} Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left of the (oriented) arc and a subset $R$ to the right.
+Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg, for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left of the (oriented) arc and a subset $R$ to the right.
 For this reason we encode each wiggly segment as a quadruple~$\arc = (p, q, L, R)$ and, slightly abusing notation, will call $\arc$ itself a wiggly segment. Observe that $(p, q, L, R)$ and $(q, p, R, L)$ are considered the same wiggly segment.
 
 An \defn{external} wiggly segment is one of the form~$(p, q, L, \emptyset)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
@@ -364,7 +362,7 @@ See \cref{fig:wigglyComplexSquarre}\,(left).
 \begin{remark}
 A few observations about \cref{def:wigglySegments,def:compatible,def:wigglyDissection,def:wigglyComplex}:
 \begin{enumerate}
-\item The wiggly segments could also be encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, and the non-crossing and pointedness conditions are then purely combinatorial (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
+\item When wiggly segments are encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, the non-crossing and pointedness conditions can be expressed in purely combinatorial terms (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to also define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
 \item As the $v$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
 In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $v$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
 \item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
@@ -478,7 +476,7 @@ We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
 \section{Classical rigidity}
 \label{sec:rigidity}
 
-Our construction of the wiggly fan is based on rigidity considerations, similar to those used in~\cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set. In fact, for point sets in general position our construction restricts to the one in that paper. Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity theory.
+Our construction of the wiggly fan is based on rigidity considerations, similar to those used in~\cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set. In fact, for point sets in general position our construction restricts to the one in that paper. Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity theory.\vincent{change this sentence}
 
 Let $P \subset \R^2$ be a point set, consisting of $n$ points $p_1,\dots,p_n$. Recall that the~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:
 \[
@@ -499,7 +497,7 @@ All entries in $\Rvector(p,q)$ are zero except for two blocks of size two: the b
 The matrix $\Mmatrix(P)$, considered as a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, has the following interpretation: each~${v = (v_p)_{p\in P} \in (\R^2)^P}$ is understood as an~\defn{infinitesimal motion} of the point set \(P\), that is, is the assignment of a velocity vector \(v_p \in \R^2\) to each point \(p \in P\). Then, the vector $\Mmatrix(P) v \in \R^{\binom{n}{2}}$ records, for each pair $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_i-p_j)\cdot (v_i-v_j)$, which equals the (infinitesimal) relative increase or decrease of the length of the segment $[p_i,q_i]$ under that motion.
 
 
-The kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points, that is, those moving the whole point set as if it was a rigid block. We call them \defn{infinitesimal rigid motions}. If $P$ affinely spans $\R^2$, which we always assume, then $\Mmatrix(p)$ has rank $2n-3$ and its three-dimensional kernel is generated by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion 
+The kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points, that is, those moving the whole point set as if it was a rigid block. We call them \defn{infinitesimal rigid motions}. If $P$ affinely spans $\R^2$, which we always assume\vincent{do we? We want the wigglyhedron of~\cite{BapatPilaud} as special case...}, then $\Mmatrix(p)$ has rank $2n-3$ and its three-dimensional kernel is generated by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion 
 \[
 (p^\perp)_{p\in P} = (p_1^\perp, \dots, p_n^\perp),
 \]
@@ -510,51 +508,50 @@ We denote\footnote{Although we only need to think of it as a linear space, our r
 The dual map $\Mmatrix(p)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $\Mmatrix(p)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
 
 If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
-\footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones). Consequently, that matroid is called the (infinitisimal) rigidity matroid of $P$.}
+\footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
 
 \section{Wiggly rigidity}
 \label{sec:w_rigidity}
 
-The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\emptyset,\emptyset)$), the wiggly complex can be embedded in $(\R^2)^P$ associating to each  $(p,q)\in \binom{P}{2}$ the corresponding rigidity vector $\Rvector(p,q)$, and this procedure produces a complete (in its linear span) and polytopal fan. In order to generalise this to non-general position we need to modify the definition of rigidity vector associated to a wiggly arc.
+The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\emptyset,\emptyset)$), the wiggly complex can be embedded into a complete (in its linear span) and polytopal fan~$(\R^2)^P$ by associating to each~$(p,q) \in \binom{P}{2}$ the corresponding rigidity vector~$\Rvector(p,q)$. In order to generalise this to non-general position we need to modify the definition of rigidity vector associated to a wiggly arc.
 
-Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of $]p,q[ \cap P$, but not necessarily with $L \cup R = ]p,q[ \cap P$.
-We introduce the following notation: for each $r\in P$ let $\mathbbm{1}_r$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \mathbbm{1}_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere. 
+Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union does not necessarily cover~${]p,q[} \cap P$.
+%We introduce the following notation: 
+For each $r\in P$ let $\mathbbm{1}_r$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \mathbbm{1}_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere. 
 Hence, the usual rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
 
 \begin{definition}\label{def:lrv}
-  The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of $[p,q]$ in $P$. That is,
-  \[
-  \Rlong(\arc) := (p-q) (\mathbbm{1}_p  - \mathbbm{1}_q).
-  \]
+The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of~$[p,q]$ in~$P$. That is,
+\[
+\Rlong(\arc) := (p-q) (\mathbbm{1}_p  - \mathbbm{1}_q).
+\]
 \end{definition}
 
-To this vector we add a transversal part depending on the intermediate points along the segment $[p,q]$.
+To this vector we add a transversal part depending on the intermediate points along the segment~$[p,q]$.
 Here, a vector in $(\R^2)^P$ is called \defn{transversal} to the segment $[p,q]$ if it is of the form
 $w \left(\sum_{r\in P} \lambda_r \mathbbm{1}_r\right)$ with $w\in \R^2$ orthogonal to $q-p$ and $\lambda_r = 0$ if $r\not\in [p,q]$.
 
 \begin{definition}\label{def:trv}
-For each $r\in P \cap\, ]p,q[$ consider the following vector, transversal to $[p,q]$:
+For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$:
 \begin{align*}
 \Rtrans(p,q;r) \eqdef& 
 (q-p)^\perp \mathbbm{1}_r - (q-r)^\perp  \mathbbm{1}_p - (r-p)^\perp  \mathbbm{1}_q) 
 %\\ =&(q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q ).
 \end{align*}
-  The~\defn{transversal rigidity vector} \(\Rtrans(\arc)\) of $\arc=(p, q, L, R)$ is a row vector in \((\R^2)^P\) defined as 
-  \[
-  \Rtrans(\arc) \eqdef \sum_{r\in L} \Rtrans(p,q;r) - \sum_{r\in R} \Rtrans(p,q;r).
-  \]
+The~\defn{transversal rigidity vector} \(\Rtrans(\arc)\) of $\arc=(p, q, L, R)$ is a row vector in \((\R^2)^P\) defined as 
+\[
+\Rtrans(\arc) \eqdef \sum_{r\in L} \Rtrans(p,q;r) - \sum_{r\in R} \Rtrans(p,q;r).
+\]
 \end{definition}
 
 \begin{remark}
 \label{rem:barycentric}
-Each point $r\in ]p,q[$ can be written uniquely as 
+Each point~$r \in {]p,q[}$ can be written uniquely as 
 \[
 r = \lambda_r p + \mu_r  q,
 \]
 with $\lambda_r,\mu_r \ge 0$ and  $\lambda_r  + \mu_r  = 1$. 
-The coefficients  $\lambda_r$ and $\mu_r$ are the \defn{barycentric coordinates }of $r$ in $[p,q]$ and can alternatively be defined via
-$
-r-p = \mu_r  (q-p)$ and $q-r = \lambda_r  (q-p)$.
+The coefficients  $\lambda_r$ and $\mu_r$ are the \defn{barycentric coordinates} of~$r$ in $[p,q]$ and can alternatively be defined via~$r-p = \mu_r  (q-p)$ and $q-r = \lambda_r  (q-p)$.
 It is straightforward that 
 \[
 \Rtrans(p,q;r)  = (q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q).
@@ -562,8 +559,8 @@ It is straightforward that
 \end{remark}
 
 \begin{definition}\label{def:rv}
-  For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(\Reps(\arc)\) is defined as
-  \[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
+For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(\Reps(\arc)\) is defined as
+\[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
 \end{definition}
 
 \begin{remark}
@@ -574,7 +571,7 @@ The transversal component is considered much smaller than the longitudinal one. 
 Our main reason to allow for partial wiggly segments in the definition of the rigidity vector is the following statement:
 \begin{lemma}
 \label{lema:partial_rigidity}
-Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P\cap ]p,q[$. Then,
+Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P \cap {]p,q[}$. Then,
 \[
 \Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A) = 2 \Reps(p,q, L,R).
 \]
@@ -603,12 +600,12 @@ Writing $\Rtrans(p,q;r) = (q-p)^\perp (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p -
 \]
 because
 \[
- (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (v,\dots,v) =
+(\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (v,\dots,v) =
 (1 - \lambda_r  - \mu_r )  v  = 0. 
 \]
 and
 \[
- (\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (s^\perp)_{s\in P} =
+(\mathbbm{1}_r - \lambda_r \mathbbm{1}_p - \mu_r \mathbbm{1}_q) (s^\perp)_{s\in P} =
 r^\perp - \lambda_r p^\perp - \mu_r q^\perp  =
 (r - \lambda_r p - \mu_r q)^\perp  =0.
 \qedhere
@@ -622,27 +619,27 @@ In fact, the vectors $\{\Rtrans(p,q;r)\}_{r\in L\cup R}$ are a basis for the lin
 As usual in the classical rigidity theory, we can assemble the rigidity vectors into rigidity matrices.
 All of these have rows indexed by the wiggly arcs on \(P\).
 Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
+
 \begin{definition}\label{def:rm}
-  The~\defn{longitudinal rigidity matrix} of \(P\) is the matrix \(\Mlong(P)\) whose row indexed by \(\arc\) is \(\Rlong(\arc)\).
-The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(\Mtrans(P)\) whose row indexed by \(\arc\) is \(\Rtrans(\arc)\).
+The~\defn{longitudinal rigidity matrix} of \(P\) is the matrix \(\Mlong(P)\) whose row indexed by~\(\arc\) is \(\Rlong(\arc)\).
+The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(\Mtrans(P)\) whose row indexed by~\(\arc\) is~\(\Rtrans(\arc)\).
 The~\defn{(total) \(\epsilon\)-rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
 \end{definition}
 
 \begin{proposition}
 \label{prop:kernel}
-  Assume that $P$ affinly spans $\R^2$. Then, the \(\epsilon\)-rigidity matrix \(\Meps(P)\) has rank \(2n - 3\) for any \(\epsilon > 0\).
-  Its kernel is precisely the space of infinitesimal rigid motions $se(P)$..
+Assume that $P$ affinly spans $\R^2$. Then, the \(\epsilon\)-rigidity matrix \(\Meps(P)\) has rank~\(2n - 3\) for any \(\epsilon > 0\).
+Its kernel is precisely the space of infinitesimal rigid motions $se(P)$.
 \end{proposition}
 
 \begin{proof}
-  Lemma~\ref{lemma:kernel} guarantees that the infinitesimal rigid motions all lie in the kernel of \(\Meps(P)\).
-  On the other hand, Lemma~\ref{lema:partial_rigidity} implies that for every $\arc=(p,q,L,R)$ we have
+Lemma~\ref{lemma:kernel} guarantees that the infinitesimal rigid motions all lie in the kernel of \(\Meps(P)\).
+On the other hand, Lemma~\ref{lema:partial_rigidity} implies that for every $\arc=(p,q,L,R)$ we have
 \[
 \Reps(p,q,L,R) + \Reps(p,q,R,L) = 2\Reps(p,q, \emptyset, \emptyset) =  2\Rvector(p,q).
 \]
 Hence, the row-span of $\Meps(P)$ contains the row-span of the usual rigidity matrix $\Mmatrix(P)$, hence the kernel of $\Meps(P)$ is contained in that of $\Mmatrix(P)$.
- \end{proof}
-
+\end{proof}
 
 
 
