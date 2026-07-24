@@ -507,7 +507,7 @@ where $(x,y)^\perp:=(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{
 %
 We denote\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P)$ is that this kernel equals the Lie algebra of the Lie group $SE(2)$ of Euclidean motions of the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.} this kernel $se(P)$.
 
-The dual map $\Mmatrix(p)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $\Mmatrix(p)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
+The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $\Mmatrix(P)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
 
 If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
 \footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
@@ -519,7 +519,7 @@ The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in gen
 
 Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union does not necessarily cover~${]p,q[} \cap P$.
 %We introduce the following notation: 
-For each $r\in P$ let $\one_r$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere.
+For each $r\in P$ let $\one_p$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere.
 Hence, the usual rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
 
 \begin{definition}\label{def:lrv}
@@ -534,10 +534,10 @@ Here, a vector in $(\R^2)^P$ is called \defn{transversal} to the segment $[p,q]$
 $w \left(\sum_{r\in P} \lambda_r \one_r\right)$ with $w\in \R^2$ orthogonal to $q-p$ and $\lambda_r = 0$ if $r\not\in [p,q]$.
 
 \begin{definition}\label{def:trv}
-For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$:
+For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$: \vincent{??}
 \begin{align*}
 \Rtrans(p,q;r) \eqdef& 
-(q-p)^\perp \one_r - (q-r)^\perp  \one_p - (r-p)^\perp  \one_q)
+(q-p)^\perp \one_r - (q-r)^\perp  \one_p - (r-p)^\perp  \one_q.
 %\\ =&(q-p)^\perp (\one_r - \lambda_r \one_p - \mu_r \one_q ).
 \end{align*}
 The~\defn{transversal rigidity vector} \(\Rtrans(\arc)\) of $\arc=(p, q, L, R)$ is a row vector in \((\R^2)^P\) defined as
@@ -562,6 +562,7 @@ It is straightforward that
 
 \begin{definition}\label{def:rv}
 For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(\Reps(\arc)\) is defined as
+\vincent{should we say here that \(\Reps(\arc)\) is an equilibrium stress?}
 \[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
 \end{definition}
 
@@ -644,11 +645,10 @@ Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P \cap {]p,q[}$. Then,
 For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$. For the transversal parts just observe that the contributions of the points from $A\cup B$ cancel out when we add $\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A)$.
 \end{proof}
 
-\begin{lemma}[Convex hull lemma]
+\begin{lemma}%[Convex hull lemma]
 \label{lem:triangle}
-\paco{edited this. Paco}
-Let~$S \subset P$ and~$q\in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
-Then for any equilibrium stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an equilibrium stress with a vanishing component at~$q$.
+Let~$S \subseteq P$ and~$q\in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
+Then for any equilibrium stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an equilibrium stress with a vanishing component at~$q$.
 \end{lemma}
 
 \begin{proof}
@@ -660,7 +660,8 @@ there exists non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$\one_q w 
 
 \begin{lemma}
 \label{lem:colinear}
-Colinear lemma. Take colinear points, and kill both the longitudinal and the transversal component at the same time.
+Let~$p,q,r \in P$ be such that~$r \in {]p,q[}$, and consider the partial arcs~$\arc_p \eqdef (q, r, \varnothing, \varnothing)$, $\arc_q \eqdef (p, r, \varnothing, \varnothing)$, $\arc_r \eqdef (p, q, \{r\}, \varnothing)$ and~$\arc_r' \eqdef (p, q, \varnothing, \{r\})$. 
+Then for any equilibrium stress~$w$ of~$P$, there exists non-negative scalars~$\lambda_p, \lambda_q, \lambda_r, \lambda_r'$ such that~$w - \lambda_p \Reps(\arc_p) - \lambda_q \Reps(\arc_q) - \lambda_r \Reps(\arc_r) - \lambda_r' \Reps(\arc_r')$ is an equilibrium stress with a vanishing component at~$q$.
 \end{lemma}
 
 
@@ -864,7 +865,7 @@ The first step is to notice that
 In other words, we really see the pictures of \cref{fig:minimalNonFaces}.
 
 We now proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}.
-In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal forces.
+In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal components.
 
 
 %This perturbation uses the observations of \cref{lema:partial_rigidity,lem:triangle}.
