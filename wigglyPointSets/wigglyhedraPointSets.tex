@@ -534,7 +534,7 @@ Here, a vector in $(\R^2)^P$ is called \defn{transversal} to the segment $[p,q]$
 $w \left(\sum_{r\in P} \lambda_r \one_r\right)$ with $w\in \R^2$ orthogonal to $q-p$ and $\lambda_r = 0$ if $r\not\in [p,q]$.
 
 \begin{definition}\label{def:trv}
-For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$: \vincent{??}
+For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$:
 \begin{align*}
 \Rtrans(p,q;r) \eqdef& 
 (q-p)^\perp \one_r - (q-r)^\perp  \one_p - (r-p)^\perp  \one_q.
@@ -553,6 +553,7 @@ Each point~$r \in {]p,q[}$ can be written uniquely as
 r = \lambda_r p + \mu_r  q,
 \]
 with $\lambda_r,\mu_r \ge 0$ and  $\lambda_r  + \mu_r  = 1$.
+\vincent{Should we remove the $r$ index and just write~$\lambda$ and~$\mu$ as it is clear from the context?}
 The coefficients  $\lambda_r$ and $\mu_r$ are the \defn{barycentric coordinates} of~$r$ in $[p,q]$ and can alternatively be defined via~$r-p = \mu_r  (q-p)$ and $q-r = \lambda_r  (q-p)$.
 It is straightforward that
 \[
@@ -661,10 +662,19 @@ there exists non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$\one_q w 
 \begin{lemma}
 \label{lem:colinear}
 Let~$p,q,r \in P$ be such that~$r \in {]p,q[}$, and consider the partial arcs~$\arc_p \eqdef (q, r, \varnothing, \varnothing)$, $\arc_q \eqdef (p, r, \varnothing, \varnothing)$, $\arc_r \eqdef (p, q, \{r\}, \varnothing)$ and~$\arc_r' \eqdef (p, q, \varnothing, \{r\})$. 
-Then for any equilibrium stress~$w$ of~$P$, there exists non-negative scalars~$\lambda_p, \lambda_q, \lambda_r, \lambda_r'$ such that~$w - \lambda_p \Reps(\arc_p) - \lambda_q \Reps(\arc_q) - \lambda_r \Reps(\arc_r) - \lambda_r' \Reps(\arc_r')$ is an equilibrium stress with a vanishing component at~$q$.
+Then for any equilibrium stress~$w$ of~$P$, there exists non-negative scalars~$\lambda_p, \lambda_q, \lambda_r, \lambda_r'$ such that~$w - \lambda_p \Reps(\arc_p) - \lambda_q \Reps(\arc_q) - \lambda_r \Reps(\arc_r) - \lambda_r' \Reps(\arc_r')$ is an equilibrium stress with a vanishing component at~$r$.
 \end{lemma}
 
-
+\begin{proof}
+Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
+\[
+\lambda_p = \begin{cases} -\mu & \text{if~$\mu < 0$} \\ 0 & \text{otherwise} \end{cases} \quad
+\lambda_q = \begin{cases} 0 & \text{if~$\mu < 0$} \\ \mu & \text{otherwise} \end{cases} \quad
+\lambda_r = \begin{cases} -\nu & \text{if~$\nu < 0$} \\ 0 & \text{otherwise} \end{cases} \quad
+\lambda_r' = \begin{cases} 0 & \text{if~$\nu < 0$} \\ \nu & \text{otherwise}. \end{cases}
+\qedhere
+\]
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -837,8 +847,8 @@ The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of 
 \end{enumerate}
 %
 \begin{figure}[!h]
-\centerline{\includegraphics[scale=1]{minimalNonFaces}}
-\caption{Five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. Note that there might be some additional points of~$P$ along these arcs.}
+\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
+\caption{Five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. Note that there might be some additional points of~$P$.}
 \label{fig:minimalNonFaces}
 \end{figure}
 \end{lemma}
@@ -852,23 +862,72 @@ Minimal non-faces are minimal sets of arcs which are
 \end{itemize}
 \end{proof}
 
+Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
+Namely, $P$ might contain \defn{superfluous} points besides the points of the configurations represented in \cref{fig:minimalNonFaces}. % (which we call \defn{essential} points).
+
 \begin{proposition}
-For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, there exists a sufficiently small~$\epsilon >0$ such that there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
+For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
+%there exists a sufficiently small~$\epsilon >0$ such that 
+there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
 \end{proposition}
 
 \begin{proof}
-The first step is to notice that 
+We first assume that~$P$ has no superfluous points and we proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}:
+%In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal components.
 \begin{itemize}
-\item \cref{lema:partial_rigidity} enables us to restrict our attention to the situation where there is no additional point along the arcs of the configuration which are not in~$F$,
-\item \cref{lem:triangle} enables us to restrict our attention to the situation where there is no additional point along the arcs of the configuration which are in~$F$.
+\item In the first picture, we have
+%\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
+\[2\lambda\Reps(p, q, \varnothing, \varnothing) + 2\mu\Reps(q, r, \varnothing, \varnothing) = \lambda\mu\Reps(p, r, \{q\}, \varnothing) + \lambda\mu\Reps(p, r, \varnothing, \{q\})\]
+where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + \mu r$ and~$\lambda + \mu = 1$.
+
+\item In the second picture, we have
+%\[\frac{\Reps(p, s, \varnothing, \varnothing)}{\|p-s\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{\|q-s\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, q, \varnothing, \varnothing)}{2\|p-q\|} + \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|}\]
+\begin{multline*}
+\lambda\Reps(p, s, \varnothing, \varnothing) + \mu\Reps(q, s, \varnothing, \varnothing) + \nu\Reps(r, s, \varnothing, \varnothing) = \\ \lambda\mu\Reps(p, q, \varnothing, \varnothing) + \lambda\nu\Reps(p, r, \varnothing, \varnothing) + \mu\nu\Reps(q, r, \varnothing, \varnothing)
+\end{multline*}
+%\[
+%\Reps(p, s)/(\mu+\nu) + \Reps(q, s)/(\lambda+\nu) + \Reps(r, s)/(\lambda+\mu) = \\ \Reps(p, q)/2 + \Reps(p, r)/2 + \Reps(q, r)/2
+%\]
+%\vincent{Should we allow us to write it this way?}
+where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
+
+\item In the third picture, we have
+\begin{align*}
+\frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
+& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
+& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
+\end{align*}
+where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$.
+Note that one of the two expressions above is positive, depending on the sign of~$\lambda-\mu$.
+
+\item In the fourth picture, we have
+%\[\frac{\Reps(p, r, \{q\}, \varnothing)}{\|p-r\|} + \frac{\Reps(q, s, \{r\}, \varnothing)}{\|q-s\|} = \frac{\Reps(p, s, \{q,r\}, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|}\]
+\vincent{todo}
+
+\item In the fifth picture, we have
+%\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, s, \varnothing, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{2\|q-s\|}\]
+\vincent{todo}
 \end{itemize}
-In other words, we really see the pictures of \cref{fig:minimalNonFaces}.
 
-We now proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}.
-In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal components.
-
-
-%This perturbation uses the observations of \cref{lema:partial_rigidity,lem:triangle}.
+Finally, we reduce the general case by induction to the situation where~$P$ has no superfluous points. %, by induction on the number of superfluous points of~$P$.
+Assume that~$P$ contains a superfluous point~$r$, and let~$\bar P = P \ssm \{r\}$.
+Any wiggly arc~$\arc$ of~$P$ whose endpoints do not contain~$r$ defines a wiggly arc~$\bar\arc$ of~$\bar P$ (just forgetting~$r$ if it appears along~$\arc$).
+Moreover, the minimal non-face~$F$ of~$\extendedWigglyComplex_P$ defines a minimal non-face~$\bar F$ of~$\extendedWigglyComplex_{\bar P}$.
+By induction, we obtain a linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ where~$\bar\arc$ ranges over wiggly arcs of~$\bar P$ such that~$\lambda_{\bar\arc} < 0$ if and only if~$\bar\arc \in \bar F$.
+Observe now that any wiggly arc~$\bar\arc$ of~$\bar P$ defines a partial wiggly arc~$\arc$ of~$P$, and that $\Reps(\arc) \in (\R^2)^P$ is obtained from~$\Reps(\bar\arc) \in (\R^2)^{\bar P}$ by appending a pair of vanishing coordinates at the $r$ component.
+Observe now that:
+\begin{itemize}
+\item If~$r$ does not belong to the segment~$]p,q[$, then~$\arc$ is actually a wiggly arc of~$P$.
+\item Otherwise, we obtain by \cref{lema:partial_rigidity} that~$\Reps(\arc) = \Reps(\arc^+) + \Reps(\arc^-)$ for the wiggly arcs~$\arc^+ = (p, q, L \cup \{r\}, R)$ and~$\arc^- = (p, q, L, R \cup \{r\})$ of~$P$.
+	\begin{itemize}
+	\item If~$\bar\arc$ does not belong to~$\bar F$, then neither~$\arc^+$ not~$\arc^-$ belong to~$F$.
+	\item If~$\arc^+ \in F$, then we have~$\Reps(\arc) = \Reps(\arc^+) - \epsilon\Rtrans(p,q;r)$, where~$\Rtrans(p,q;r)$ is an equilibrium stress with a non-vanishing $r$ component. As~$r$ lies on~$]p,q[$ which are the endpoints of~$\arc^+ \in F$, we observe by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces} that either~$r$ lies in the interior of convex hull of~$\bar P$, or $r$ appears along at least one wiggly arc not in~$F$. Applying \cref{lem:triangle} or \cref{lem:colinear} accordingly, we can express~$\Rtrans(p,q;r)$ as a non-negative linear combination~$\sum \lambda^{p,q;r}_{\arc} \Reps(\arc)$ where~$\arc$ ranges over wiggly arcs of~$P$ not in~$F$.
+	\item The case~$\arc^- \in F$ is symmetric.
+	\end{itemize}
+\end{itemize}
+Hence, we can lift the linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ into a linear dependence linear dependence~$\sum \nu_{\arc} \Reps(\arc) = 0$ where~$\arc$ ranges over wiggly arcs of~$P$.
+Here, the coefficient~$\nu_{\arc}$ is essentially the coefficient~$\mu_{\bar\arc}$, except that we might have added some non-negative coefficients~$\epsilon\lambda^{p,q;r}_{\arc}$ when~$\arc \notin F$.
+Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
 \end{proof}
 
 
