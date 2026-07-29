@@ -894,11 +894,12 @@ where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r
 \item In the third picture, we have
 \begin{align*}
 \frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
-& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
-& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
+& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
+& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
 \end{align*}
 where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$.
 Note that one of the two expressions above is positive, depending on the sign of~$\lambda-\mu$.
+\vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
 
 \item In the fourth picture, we have
 %\[\frac{\Reps(p, r, \{q\}, \varnothing)}{\|p-r\|} + \frac{\Reps(q, s, \{r\}, \varnothing)}{\|q-s\|} = \frac{\Reps(p, s, \{q,r\}, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|}\]
