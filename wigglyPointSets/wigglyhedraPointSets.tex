@@ -685,6 +685,59 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Regular subdivisions and polytopal fans}
+\label{sec:regular-subdivisions}
+
+\begin{definition}
+\label{def:lifting}
+  Let $V$ be a point configuration in $\R^d$. A \emph{lifting} of $V$ is a function
+  $f\in \R^V$, which assigns a height in $\R^{d+1}$ to each point of $V$.
+\end{definition}
+
+\begin{definition}
+  \label{def:lower-hull}
+  Let $V$ be a point configuration in $\R^{d+1}$. The \emph{lower hull} of $V$ is the geometric
+  simplicial complex given by the faces of the convex hull of $V$ contained in any
+  facet whose outward normal vector has a negative last coordinate.
+\end{definition}
+
+\begin{definition}
+  \label{def:regular-subdivision}
+  Let $V$ be a point configuration in $\R^d$. An abstract polyhedral complex $C$ with
+  vertex set $V$ is a regular subdivision of $V$ if it can be realized as the lower hull of a
+  lifting of $V$.
+
+  When $C$ is simplicial, it is called a \emph{regular triangulation}, and we will denote it
+  by $\simplex$.
+\end{definition}
+
+In a regular subdivision, we say that non-faces are \emph{above} faces of the triangulation
+because they are with respect to the projection that forgets the height when embedded in
+the lifting.
+
+For a vector configuration $R\subset \R^d$, we might consider another notion of
+lifting that is more natural for our purpose.
+
+\begin{definition}
+  \label{def:length-choice}
+  Let $R$ be a vector configuration in $\R^d$. A \emph{length choice} of $R$ is a function
+  $f\in \R^R$, which assigns a length to each vector of $V$.
+\end{definition}
+
+\begin{definition}
+  \label{def:regular-fan-subdivision}
+  Let $R$ be a vector configuration that spans $\R^d$. A complete fan $F$ with rays $R$ is a
+  regular subdivision of $R$ if it can be obtained as the face fan of the convex hull of a
+  length choice of $R$.
+
+  When $F$ is simplicial, we say it is a \emph{regular triangulation} of $R$, and we denote it
+  by $\simplex$.
+\end{definition}
+
+In the case of a regular subdivision of a vector configuration, we say that non-faces are
+below faces of the subdivision because, in every direction, a face is further from the origin
+than non-faces when embedded in the length choice.
+
 \section{Proof}
 \label{sec:proof}
 
