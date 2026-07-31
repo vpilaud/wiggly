@@ -650,6 +650,7 @@ For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$
 \label{lem:triangle}
 Let~$S \subseteq P$ and~$q\in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
 Then for any equilibrium stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an equilibrium stress with a vanishing component at~$q$.
+\vincent{this is wrong. We want to say that $w$ is an equilibrium stress on $P \ssm \{q\}$ and we want to say that we obtain an equilibrium stress of~$P$ using additional arcs.}
 \end{lemma}
 
 \begin{proof}
@@ -663,6 +664,7 @@ there exists non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$\one_q w 
 \label{lem:colinear}
 Let~$p,q,r \in P$ be such that~$r \in {]p,q[}$, and consider the partial arcs~$\arc_p \eqdef (q, r, \varnothing, \varnothing)$, $\arc_q \eqdef (p, r, \varnothing, \varnothing)$, $\arc_r \eqdef (p, q, \{r\}, \varnothing)$ and~$\arc_r' \eqdef (p, q, \varnothing, \{r\})$. 
 Then for any equilibrium stress~$w$ of~$P$, there exists non-negative scalars~$\lambda_p, \lambda_q, \lambda_r, \lambda_r'$ such that~$w - \lambda_p \Reps(\arc_p) - \lambda_q \Reps(\arc_q) - \lambda_r \Reps(\arc_r) - \lambda_r' \Reps(\arc_r')$ is an equilibrium stress with a vanishing component at~$r$.
+\vincent{same here}
 \end{lemma}
 
 \begin{proof}
@@ -982,6 +984,7 @@ Observe now that:
 Hence, we can lift the linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ into a linear dependence linear dependence~$\sum \nu_{\arc} \Reps(\arc) = 0$ where~$\arc$ ranges over wiggly arcs of~$P$.
 Here, the coefficient~$\nu_{\arc}$ is essentially the coefficient~$\mu_{\bar\arc}$, except that we might have added some non-negative coefficients~$\epsilon\lambda^{p,q;r}_{\arc}$ when~$\arc \notin F$.
 Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
+\vincent{We need to use small $\epsilon$. We can only apply the triangle lemma when we know that the external edges have strictly positive coefficient.}
 \end{proof}
 
 
