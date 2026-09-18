@@ -47,7 +47,7 @@
 %\newtheorem{warning}[theorem]{Warning}
 \crefname{notation}{Notation}{Notations}
 \crefname{problem}{Problem}{Problems}
- 
+
 % math special letters
 \newcommand{\R}{\mathbb{R}} % reals
 \newcommand{\N}{\mathbb{N}} % naturals
@@ -719,8 +719,11 @@ In a regular subdivision, we say that non-faces are \emph{above} faces of the tr
 because they are with respect to the projection that forgets the height when embedded in
 the lifting.
 
-For a vector configuration $R\subset \R^d$, we might consider another notion of
-lifting that is more natural for our purpose.
+A related notion of regular subdivisions can be derived for vector configurations
+through homogenization.
+If $V$ is a point configuration, let $R = \left(\begin{smallmatrix}V \\ 1\end{smallmatrix}\right)$ be its
+canonical homogenization attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
+hyperplane with last coordinate equal to $1$.
 
 \begin{definition}
   \label{def:length-choice}
@@ -730,17 +733,28 @@ lifting that is more natural for our purpose.
 
 \begin{definition}
   \label{def:regular-fan-subdivision}
-  Let $R$ be a vector configuration that spans $\R^d$. A complete fan $F$ with rays $R$ is a
-  regular subdivision of $R$ if it can be obtained as the face fan of the convex hull of a
-  length choice of $R$.
+  Let $R$ be a vector configuration. A fan $F$ with rays $R$ is a regular subdivision
+  of $R$ if it can be obtained as the face fan of the convex hull of a length choice of $R$.
 
-  When $F$ is simplicial, we say it is a \emph{regular triangulation} of $R$, and we denote it
-  by $\simplex$.
+  When $F$ is simplicial, we say it is a \emph{regular triangulation} of $R$,
+  and we denote it by $\simplex$.
 \end{definition}
 
-In the case of a regular subdivision of a vector configuration, we say that non-faces are
-below faces of the subdivision because, in every direction, a face is further from the origin
-than non-faces when embedded in the length choice.
+For any point configuration, it is easy to see that every regular triangulation
+attained by a lifting can just as well be attained through homogenization and a
+\emph{length choice}, but the later notion is more general in the sense that it
+also applies to vector configurations whose cone spans $\R^{d+1}$, for which
+no dehomogenization is possible.
+
+It is clear that when the cone of a vector configuration $R$ spans $\R^{d+1}$,
+all of its regular subdivisions are complete fans, and regular triangulations
+are simplicial spheres.
+As we aim to realize one such simplicial sphere, this is the notion of regular
+subdivisions that we prefer.
+
+In this setting, we say that non-faces of a regular triangulation are \emph{below}
+faces of the subdivision because, in every direction, a face is further from the
+origin than non-faces when embedded in the length choice.
 
 \section{Proof}
 \label{sec:proof}
@@ -754,66 +768,66 @@ The proof relies on the following statement.
 \Paco{I think this theorem needs a section of its own, explaining teh paradigm of "regular subdivisons", its relation to giving lengths to the vectors, the notion of "above/below", etc. You can look at Section 2.2 of \url{https://doi.org/10.1007/s00454-024-00698-y
 } which does more or less that (the contents would certainly be different}
 
-\David{Lifting version of the theorem}
-\begin{theorem}
-  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
-  let~$\b{R} : V \to \R^d$ be a vector configuration and let~$f : V \to \R^+$ be a height function.
-  Then the following are equivalent:
-  \begin{itemize}
-    %\item $\simplex$ is the coherent triangulation of the vector configuration~$\b{R}$ with respect to the height function~$f$,
-    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in V$,
-    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
-    \[
-      F = \set{v \in V}{\lambda(v) < 0},
-      \qquad
-      \sum_{v \in V} \lambda(v) \, \b{R}(v) = \b{0},
-      \qquad\text{and}\qquad
-      \sum_{v \in V} \lambda(v) \, f(v) < 0.
-    \]
-  \end{itemize}
-\end{theorem}
-
-\begin{proof}
-  %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
-  Let $T$ be the regular triangulation of $\b{R}(V)$ given by the height function $f$.
-  %That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
-  
-  Assume $\simplex=T$; that is, $\Delta$ is the lower convex hull of the points~$(\b{R}(v), f(v))$
-  for all~$v\in V$.
-  Consider $F$, a minimal non-face of $\simplex$.
-  
-  Choose a point $x\in \relint{\conv{\b{R}(F)}}$.
-  Since $T$ is a triangulation covering $\conv{\b{R}(V)}$, there is a unique $G\in T$ such that
-  $x\in \relint{G}$.
-  As $x\in \conv{\b{R}(F)} \cap\conv{G}$, there are two convex combinations
-  \[
-    x = \sum_{p_i\in G} \lambda_i p_i = \sum_{q_j\in F} \mu_j q_j,
-  \]
-  with all $\lambda_i, \mu_j \geq 0$, unique up to scaling.
-  Consider the linear dependence $\lambda - \mu$. %$\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$.
-  
-  Since $F$ is a non-face of $T$, $\relint{\conv{\{(\b{R}(v), f(v)): v\in F\}}} \subseteq \relint{\conv{\{(\b{R}(v), f(v)): v\in V\}}}$
-  and, when restricted to $x$, $\conv{(\b{R}(G), f(G))}$, a face of the convex hull,
-  lies strictly below $\conv{(\b{R}(F), f(F))}$, so
-  the relative interior of a non-face of $T$ is part of the convex hull.
-  \[
-    \sum_{p_i \in G} \lambda_i f(p_i) < \sum_{q_j\in F} \mu_j f(q_j),
-  \]
-  i.e., $\lambda - \mu$ evaluates negatively with $f$.
-  
-  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
-  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
-  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
-  
-  For the converse, assume this is true for all minimal non-faces.
-  For each minimal non-face $F$, consider the positive support of its linear dependence,
-  $G = \lambda^+$.
-  While $G$ is not necessarily a face of $T$, it is below $F$, so $F$ is not a face of $T$.
-  
-  As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
-  Now, two connected pseudo-manifolds (without boundary) of the same dimension cannot be properly contained in one another, so  $T = \simplex$.
-
-\end{proof}
+%\David{Lifting version of the theorem}
+%\begin{theorem}
+%  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
+%  let~$\b{R} : V \to \R^d$ be a vector configuration and let~$f : V \to \R^+$ be a height function.
+%  Then the following are equivalent:
+%  \begin{itemize}
+%    %\item $\simplex$ is the coherent triangulation of the vector configuration~$\b{R}$ with respect to the height function~$f$,
+%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in V$,
+%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
+%    \[
+%      F = \set{v \in V}{\lambda(v) < 0},
+%      \qquad
+%      \sum_{v \in V} \lambda(v) \, \b{R}(v) = \b{0},
+%      \qquad\text{and}\qquad
+%      \sum_{v \in V} \lambda(v) \, f(v) < 0.
+%    \]
+%  \end{itemize}
+%\end{theorem}
+%
+%\begin{proof}
+%  %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
+%  Let $T$ be the regular triangulation of $\b{R}(V)$ given by the height function $f$.
+%  %That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
+%
+%  Assume $\simplex=T$; that is, $\Delta$ is the lower convex hull of the points~$(\b{R}(v), f(v))$
+%  for all~$v\in V$.
+%  Consider $F$, a minimal non-face of $\simplex$.
+%
+%  Choose a point $x\in \relint{\conv{\b{R}(F)}}$.
+%  Since $T$ is a triangulation covering $\conv{\b{R}(V)}$, there is a unique $G\in T$ such that
+%  $x\in \relint{G}$.
+%  As $x\in \conv{\b{R}(F)} \cap\conv{G}$, there are two convex combinations
+%  \[
+%    x = \sum_{p_i\in G} \lambda_i p_i = \sum_{q_j\in F} \mu_j q_j,
+%  \]
+%  with all $\lambda_i, \mu_j \geq 0$, unique up to scaling.
+%  Consider the linear dependence $\lambda - \mu$. %$\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$.
+%
+%  Since $F$ is a non-face of $T$, $\relint{\conv{\{(\b{R}(v), f(v)): v\in F\}}} \subseteq \relint{\conv{\{(\b{R}(v), f(v)): v\in V\}}}$
+%  and, when restricted to $x$, $\conv{(\b{R}(G), f(G))}$, a face of the convex hull,
+%  lies strictly below $\conv{(\b{R}(F), f(F))}$, so
+%  the relative interior of a non-face of $T$ is part of the convex hull.
+%  \[
+%    \sum_{p_i \in G} \lambda_i f(p_i) < \sum_{q_j\in F} \mu_j f(q_j),
+%  \]
+%  i.e., $\lambda - \mu$ evaluates negatively with $f$.
+%
+%  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
+%  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
+%  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
+%
+%  For the converse, assume this is true for all minimal non-faces.
+%  For each minimal non-face $F$, consider the positive support of its linear dependence,
+%  $G = \lambda^+$.
+%  While $G$ is not necessarily a face of $T$, it is below $F$, so $F$ is not a face of $T$.
+%
+%  As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
+%  Now, two connected pseudo-manifolds (without boundary) of the same dimension cannot be properly contained in one another, so  $T = \simplex$.
+%
+%\end{proof}
 
 \David{Weight version of the theorem}
 \begin{theorem}
