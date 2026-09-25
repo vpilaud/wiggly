@@ -650,7 +650,7 @@ For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$
 
 \begin{lemma}%[Convex hull lemma]
 \label{lem:triangle}
-Let~$S \subseteq P$ and~$q\in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
+Let~$S \subseteq P$ and~$q \in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
 Then for any equilibrium stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an equilibrium stress with a vanishing component at~$q$.
 \vincent{this is wrong. We want to say that $w$ is an equilibrium stress on $P \ssm \{q\}$ and we want to say that we obtain an equilibrium stress of~$P$ using additional arcs.}
 \end{lemma}
@@ -661,6 +661,12 @@ Since the component~$\one_q w \in \R^2$ of~$w$ at~$q$ belongs to the cone genera
 %If it points between~$p_i$ and~$p_j$ for some~$i,j \in [3]$, then it is a positive combination~$\one_q w = \lambda_i (p_i-q) + \lambda_j (p_j-q)$, and we fix~$\lambda_k = 0$ for~$k \notin \{i,j\}$.
 there exists non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$\one_q w = \sum_{s \in S} \lambda_s (s-q)$, hence~$\one_q \bigl( w - \sum_{s \in S} \lambda_s \Reps(\arc_s) \bigr) = \one_q w - \sum_{s \in S} \lambda_s (s-q) = 0$.
 \end{proof}
+
+\begin{lemma}%[Convex hull lemma]
+\label{lem:triangle}
+Let~$Q \eqdef \{q_1, q_2, q_3\} \subseteq P$ and~$r \in \conv(Q) \cap P$. For each~$i \in [3]$, consider the partial arcs~$\arc_i \eqdef (q_i, r, \varnothing, \varnothing)$ and~$\arc[\beta]_i \eqdef (q_{i-1}, q_{i+1}, \varnothing, \varnothing)$ (where indices are understood modulo~$3$).
+Then for any~$v \in \cone(Q - r)$, there exist scalars~$\lambda_i \in \R_{\ge 0}$ and~$\mu_i \in \R$~for~$i \in [3]$ such that~$\Mmatrix(P)^T \bigl(\sum_{i \in [3]} \lambda_i \Reps(\arc_i) + \mu_i \Reps(\arc[\beta]_i) \bigr) = v \one_r$.
+\end{lemma}
 
 \begin{lemma}
 \label{lem:colinear}
