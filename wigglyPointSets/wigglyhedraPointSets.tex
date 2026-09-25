@@ -81,6 +81,7 @@
 \newcommand{\dotprod}[2]{\left\langle \, #1 \; \middle| \; #2 \, \right\rangle} % dot product
 \newcommand{\symdif}{\,\triangle\,} % symmetric difference
 \newcommand{\one}{\mathbbm{1}} % the all one vector
+\newcommand{\zero}{\mathbbm{0}} % the all zeros vector
 \newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
 \newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
 \newcommand{\simplex}{\b{\triangle}} % simplex
@@ -698,91 +699,163 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 \section{Regular subdivisions and polytopal fans}
 \label{sec:regular-subdivisions}
 
+In this section we often distinguish between \emph{points} and \emph{vectors} in $\R^d$.
+This distinction indicates whether we regard $\R^d$ as an affine space or as a vector space.
+
+\david{replaced point/vector configurations by finite point/vector sets}
+\david{different letters: liftings now use $h$ and dilation factors use $f$}
 \begin{definition}
 \label{def:lifting}
-  Let $V$ be a point configuration in $\R^d$. A \emph{lifting} of $V$ is a function
-  $f\in \R^V$, which assigns a height in $\R^{d+1}$ to each point of $V$.
+  Let $V$ be a finite point set in $\R^d$. A \emph{height choice} for $V$ is a
+  function $h\in \R_+^V$, which assigns a positive height in $\R^{d+1}$ to each
+  point of $V$.
+  This choice induces a \emph{lifting} of $V$, $(V h(V))$.
 \end{definition}
 
 \begin{definition}
   \label{def:lower-hull}
-  Let $V$ be a point configuration in $\R^{d+1}$. The \emph{lower hull} of $V$ is the geometric
-  polyhedral complex given by the faces of the convex hull of $V$ contained in any
-  facet whose outward normal vector has a negative last coordinate.
+  Let $V$ be a finite point set in $\R^{d+1}$. The \emph{lower hull} (resp. upper hull)
+  of $V$ is the geometric polyhedral complex given by the faces of the convex hull of $V$
+  contained in any facet whose outward normal vector has a negative
+  (resp. positive) last coordinate.
 \end{definition}
 
 \begin{definition}
   \label{def:regular-subdivision}
-  Let $V$ be a point configuration in $\R^d$. An abstract polyhedral complex $C$ with
-  vertex set $V$ is a regular subdivision of $V$ if it can be realized as the lower hull of a
-  lifting of $V$.
+  Let $V$ be a finite point set in $\R^d$. An abstract polyhedral complex $C$ with
+  vertex set $V$ is a regular subdivision of $V$ if it can be realized as the lower hull
+  of a lifting of $V$.
 
   When $C$ is simplicial, it is called a \emph{regular triangulation}, and we will denote it
   by $\simplex$.
 \end{definition}
 
-In a regular subdivision, we say that non-faces are \emph{above} faces of the triangulation
-because they are with respect to the projection that forgets the height when embedded in
-the lifting.
+% In a regular subdivision, we say that non-faces are \emph{above} faces of the triangulation
+% because they are with respect to the projection that forgets the height when embedded in
+% the lifting.
 
-A related notion of regular subdivisions can be derived for vector configurations
+A related notion of regular subdivisions can be derived for sets of vectors
 through homogenization.
-If $V$ is a point configuration, let $R = \left(\begin{smallmatrix}V \\ 1\end{smallmatrix}\right)$ be its
-canonical homogenization attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
+\david{new notation for homogenization: $\tilde x$}
+If $V$ is a finite point set, denote by $\tilde V \coloneqq \{\tilde v \coloneqq (v, 1) \;|\; v \in V\}$
+its canonical homogenization, attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
 hyperplane with last coordinate equal to $1$.
 
+\david{renamed length choice to dilation (factor) choice}
 \begin{definition}
-  \label{def:length-choice}
-  Let $R$ be a vector configuration in $\R^d$. A \emph{length choice} of $R$ is a function
-  $f\in \R^R$, which assigns a length to each vector of $V$.
+  \label{def:dilation-choice}
+  Let $R$ be a finite set of vectors in $\R^d$. A \emph{dilation choice} for $R$ is a
+  function $f\in \R_+^R$, which assigns a dilation factor to each vector of $V$.
+
+  This choice induces a \emph{dilation} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$.
+\end{definition}
+
+\david{new definition for the lemma below}
+\begin{definition}
+   \label{def:outer-hull}
+   Let $R$ be a finite set of vectors in $\R^d$. The \emph{outer hull} of $R$ is the
+   geometric polyhedral complex given by the faces of the convex hull of $R \cup \{\zero\}$
+   that don't contain the origin.
 \end{definition}
 
 \begin{definition}
   \label{def:regular-fan-subdivision}
-  Let $R$ be a vector configuration. A fan $F$ with rays $R$ is a regular subdivision
-  of $R$ if it can be obtained as the face fan of the convex hull of a length choice of $R$.
+  Let $R$ be a finite set of vectors. A fan $F$ with rays $R$ is a regular subdivision
+  of $R$ if it can be obtained as the face fan of the outer convex hull of a
+  \emph{dilation} of $R$.
 
   When $F$ is simplicial, we say it is a \emph{regular triangulation} of $R$,
   and we denote it by $\simplex$.
 \end{definition}
 
-For any point configuration, it is easy to see that every regular triangulation
-attained by a lifting can just as well be attained through homogenization and a
-\emph{length choice}, but the later notion is more general in the sense that it
-also applies to vector configurations whose cone spans $\R^{d+1}$, for which
-no dehomogenization is possible.
+\david{new lemma}
+\begin{lemma}
+   \label{lemma:point-triangulation-as-vector-triangulation}
+   Let $P$ be a finite point set and $h\in \R^P$ a \emph{height choice} for $P$.
+   The abstract polyhedral complex $S$ realized by the (point) regular subdivision
+   of $P$ induced by $h$ is also realized by the (vector) regular subdivision of
+   $\tilde P$ induced by the dilation factor $\tfrac{1}{h}$.
+\end{lemma}
+\begin{proof}
+   To make our arguments clearer,
+   denote by $S_P$ the geometric embedding of $S$ induced by $P$, by $S_H$
+   the geometric embedding given by the lower hull of $(P, h(P))$, and by $S_V$
+   the geometric embedding of $S$ given by the outer hull of the dilation
+   $\tfrac{1}{h} \cdot \tilde P$.
 
-It is clear that when the cone of a vector configuration $R$ spans $\R^{d+1}$,
-all of its regular subdivisions are complete fans, and regular triangulations
-are simplicial spheres.
-As we aim to realize one such simplicial sphere, this is the notion of regular
-subdivisions that we prefer.
+   We will prove that non-faces of $S_H$ coincide with those of $S_V$.
+   This equivalence is trivial for non-faces that are contained in a larger face.
 
-In this setting, we say that non-faces of a regular triangulation are \emph{below}
-faces of the subdivision because, in every direction, a face is further from the
-origin than non-faces when embedded in the length choice.
+   Consider a non-face of $S$, $E$, not contained in any face.
+   Let $E_P$ be the geometric embedding of $E$ in $S_P$.
+   Since affine maps preserve convex hulls, assume wlog that $\zero\in \relint(E_P)$.
+   Since $S$ is a regular subdivision of $P$,
+   there is also a unique minimal face $F$ with geometric embedding $F_P$
+   such that $\zero\in \relint(F_P)$.
+
+   % Let $\tilde \zero := (\zero, 1) \in \R^{d+1}$ be the homogenization of the zero vector.
+   Now, consider the expression of $\zero$ as convex combinations of the vertices
+   of $E_P$ and $F_P$, and the corresponding expressions of multiples of $\tilde \zero$ on the dilation of $\tilde P$,
+   \[
+      \zero = \sum_{p\in E_P} \lambda_p p = \sum_{p\in F_P} \mu_p p,
+      \quad\quad
+      \tilde \zero = \lambda \sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda}\cdot \tfrac{\tilde p}{h(p)} =
+      \mu \sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu}\cdot \tfrac{\tilde p}{h(p)},
+   \]
+   % where $\lambda = \sum_{p\in E_P} \lambda_p h(p)$, $\mu = \sum_{p\in F_P} \mu_p h(p)$ are the factors
+   where $\lambda = \sum \lambda_p h(p)$, $\mu = \sum \mu_p h(p)$ are the factors
+   needed to obtain convex combinations.
+
+   The fact that $E$ is a non-face of $S_H$ not contained in any face is equivalent to the existence
+   of $F$, a face strictly below, with the following inequality on the lifting axis, $\tilde \zero$,
+   \[
+      \tilde \zero \cdot \left(\sum_{p\in E_P} \lambda_p (p, h(p))\right) =
+      \sum_{p\in E_P} \lambda_p h(p) = \lambda > \mu = \sum_{p\in F_P} \mu_p h(p) =
+      \tilde \zero \cdot \left(\sum_{p\in F_P} \mu_p (p, h(p))\right).
+   \]
+
+   This is equivalent to the following inequality on $S_V$ along the ray of $\tilde \zero$,
+   \[
+      \tilde \zero \cdot \left(\sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda} \tfrac{\tilde p}{h(p)}\right) =
+      \tfrac{1}{\lambda} < \tfrac{1}{\mu} =
+      \tilde \zero \cdot \left(\sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu} \tfrac{\tilde p}{h(p)}\right).
+   \]
+   which in turn, with the existence of $F$, is equivalent to $E$ being a non-face of $S_V$
+   not contained in a face, since, by definition, a face of the outer hull of $S_V$ that intersects
+   a ray cannot do so at the origin, and hence must attain the maximum along
+   this ray among all potential faces.
+\end{proof}
+
+This lemma shows that both notions of regular subdivisions are equivalent, however,
+the notion for vectors is more general in the sense that it also applies to
+cyclic sets of vectors (spanning a non-trivial lineality space),
+which cannot be dehomogenized.
+
+It is clear that when a finite set of vectors $R$ is totally cyclic,
+i.e., its cone spans $\R^{d+1}$, all of its regular subdivisions are complete fans,
+and its regular triangulations are simplicial spheres.
+As we aim to realize one such simplicial sphere, this is the notion that we will use.
+
+% In this setting, we say that non-faces of a regular triangulation are \emph{below}
+% faces of the subdivision because, in every direction, a face is further from the
+% origin than non-faces when embedded in the length choice.
 
 \section{Proof}
 \label{sec:proof}
-
-%\begin{definition}
-%Let $\b{R} : V \to \R^d$ be a vector configuration and~$f : V \to \R$ be a height function with the same label set~$V$.
-%The \defn{coherent subdivision} of~$(\b{R}, f)$ is the projection into~$\R^V$ of the lower hull of the 
-%\end{definition}
 
 The proof relies on the following statement.
 \Paco{I think this theorem needs a section of its own, explaining teh paradigm of "regular subdivisons", its relation to giving lengths to the vectors, the notion of "above/below", etc. You can look at Section 2.2 of \url{https://doi.org/10.1007/s00454-024-00698-y
 } which does more or less that (the contents would certainly be different}
 
-%\David{Lifting version of the theorem}
+%\David{Lifting version of the theorem, we prefer the dilation version below}
 %\begin{theorem}
 %  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
-%  let~$\b{R} : V \to \R^d$ be a vector configuration and let~$f : V \to \R^+$ be a height function.
+%  let~$\b{R} : V \to \R^d$ be a vector embedding and let~$f : V \to \R^+$ be a height function.
 %  Then the following are equivalent:
 %  \begin{itemize}
-%    %\item $\simplex$ is the coherent triangulation of the vector configuration~$\b{R}$ with respect to the height function~$f$,
+%    %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
 %    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in V$,
-%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
+%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
 %    \[
 %      F = \set{v \in V}{\lambda(v) < 0},
 %      \qquad
@@ -835,15 +908,16 @@ The proof relies on the following statement.
 %
 %\end{proof}
 
-\David{Weight version of the theorem}
+\David{Dilation version of the theorem}
 \begin{theorem}
 Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
-let~$\b{R} : V \to \R^d$ be a vector configuration and~$f : V \to \R^+$ be a weight function.
+let~$\b{R} : V \to \R^d$ be a vector embedding of $V$ and~$f : V \to \R^+$ be a dilation choice for $V$.
 Then the following are equivalent:
 \begin{itemize}
-  %\item $\simplex$ is the coherent triangulation of the vector configuration~$\b{R}$ with respect to the height function~$f$,
+  %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
   \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in V$,
-  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector
+  configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
   \[
     F = \set{v \in V}{\lambda(v) < 0},
     \qquad
@@ -862,7 +936,6 @@ Then the following are equivalent:
   Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
   the points~$f(v) \, \b{R}(v)$ for all~$v\in V$.
   Consider $F$, a minimal non-face of $\simplex$.
-
 
   Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
   Since $T$ is a triangulation covering $\cone{\b{R}(V)} = \cone{f\, \b{R}(V)}$,
@@ -906,7 +979,7 @@ Then the following are equivalent:
   
   As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
   Now, two connected pseudo-manifolds (without boundary) of the same dimension
-  cannot be properly contained in one another, so  $T = \simplex$.
+  cannot be properly contained in one another, so $T = \simplex$.
 \end{proof}
 
 \newpage
