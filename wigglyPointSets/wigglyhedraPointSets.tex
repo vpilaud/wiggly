@@ -513,6 +513,7 @@ where $(x,y)^\perp:=(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{
 We denote\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P)$ is that this kernel equals the Lie algebra of the Lie group $SE(2)$ of Euclidean motions of the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.} this kernel $se(P)$.
 
 The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $\Mmatrix(P)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
+\vincent{Also define forces under equilibrium.}
 
 If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
 \footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
@@ -668,7 +669,7 @@ there exists non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$\one_q w 
 \begin{lemma}%[Convex hull lemma]
 \label{lem:triangle}
 Let~$Q \eqdef \{q_1, q_2, q_3\} \subseteq P$ and~$r \in \conv(Q) \cap P$. For each~$i \in [3]$, consider the partial arcs~$\arc_i \eqdef (q_i, r, \varnothing, \varnothing)$ and~$\arc[\beta]_i \eqdef (q_{i-1}, q_{i+1}, \varnothing, \varnothing)$ (where indices are understood modulo~$3$).
-Then for any~$v \in \cone(Q - r)$, there exist scalars~$\lambda_i \in \R_{\ge 0}$ and~$\mu_i \in \R$~for~$i \in [3]$ such that~$\Mmatrix(P)^T \bigl(\sum_{i \in [3]} \lambda_i \Reps(\arc_i) + \mu_i \Reps(\arc[\beta]_i) \bigr) = v \one_r$.
+Then for any~$w \in \langle \Rtrans(p,q;r) \, | \, p,q \in P, \; r \in {]p,q[} \rangle$ such that~$\one_r w  \in \cone(Q - r)$, there exist scalars~$\lambda_i \in \R_{\ge 0}$ and~$\mu_i \in \R$~for~$i \in [3]$ such that~$\Mmatrix(P)^T \bigl(\sum_{i \in [3]} \lambda_i \Reps(\arc_i) + \mu_i \Reps(\arc[\beta]_i) \bigr) = w$.
 \end{lemma}
 
 \begin{lemma}
