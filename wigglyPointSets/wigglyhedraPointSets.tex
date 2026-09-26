@@ -2,7 +2,9 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, thmtools, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, shuffle, xargs, multicol, overpic, pdflscape, multirow, hvfloat, minibox, accents, array, multido, xifthen, a4wide, ae, aecompl, blkarray, pifont, mathtools, etoolbox, dsfont, bbm}
+%\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, thmtools, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, shuffle, xargs, multicol, overpic, pdflscape, multirow, hvfloat, minibox, accents, array, multido, xifthen, a4wide, ae, aecompl, blkarray, pifont, mathtools, etoolbox, dsfont, bbm} 
+% Paco: quito el paquete thmtools, que me da errores.
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, shuffle, xargs, multicol, overpic, pdflscape, multirow, hvfloat, minibox, accents, array, multido, xifthen, a4wide, ae, aecompl, blkarray, pifont, mathtools, etoolbox, dsfont, bbm}
 \usepackage{marginnote}
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue}
 \usepackage[all]{xy}
@@ -80,8 +82,8 @@
 \newcommand{\ssm}{\smallsetminus} % small set minus
 \newcommand{\dotprod}[2]{\left\langle \, #1 \; \middle| \; #2 \, \right\rangle} % dot product
 \newcommand{\symdif}{\,\triangle\,} % symmetric difference
-\newcommand{\one}{\mathbbm{1}} % the all one vector
-\newcommand{\zero}{\mathbbm{0}} % the all zeros vector
+\newcommand{\one}{\mathbf{1}} % the all one vector
+\newcommand{\zero}{\mathbf{0}} % the all zeros vector
 \newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
 \newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
 \newcommand{\simplex}{\b{\triangle}} % simplex
@@ -699,91 +701,96 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 \section{Regular subdivisions and polytopal fans}
 \label{sec:regular-subdivisions}
 
-In this section we often distinguish between \emph{points} and \emph{vectors} in $\R^d$.
-This distinction indicates whether we regard $\R^d$ as an affine space or as a vector space.
+In this section we review the main results about regular triangulations, and their relation to polytopality, in the spritit of \cite[Chapter 9]{DeLoeraRambauSantos}. 
+%For this, we need to distinguish between \emph{points} and \emph{vectors}. Both are elements of $\R^d$, but in the case of points  we regard  $\R^d$ as an affine space and in the second case as a vector space.
+\paco{the point set is $A$, not $V$. some occurences may still need change}
+\david{different letters: liftings now use $h$ and scaling factors use $f$}
 
-\david{replaced point/vector configurations by finite point/vector sets}
-\david{different letters: liftings now use $h$ and dilation factors use $f$}
-\begin{definition}
+\begin{definition}[Regular triangulation of a vector set; see, e.g., \cite{DeLoeraRambauSantos}]
 \label{def:lifting}
-  Let $V$ be a finite point set in $\R^d$. A \emph{height choice} for $V$ is a
-  function $h\in \R_+^V$, which assigns a positive height in $\R^{d+1}$ to each
-  point of $V$.
-  This choice induces a \emph{lifting} of $V$, $(V h(V))$.
-\end{definition}
-
-\begin{definition}
-  \label{def:lower-hull}
-  Let $V$ be a finite point set in $\R^{d+1}$. The \emph{lower hull} (resp. upper hull)
-  of $V$ is the geometric polyhedral complex given by the faces of the convex hull of $V$
-  contained in any facet whose outward normal vector has a negative
+  Let $A$ be a finite vector set in $\R^d$. A \emph{height function} for $A$ is a
+  function $h\in \R_+^A$.
+  This choice induces a \emph{lifting} of $A$, which is the vector set $A^h := \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
+  $h$ assigns positive heights in $\R^{d+1}$ to  vectors of $A$.
+  
+%\end{definition}
+%
+%\begin{definition}
+%  \label{def:lower-hull}
+  %Let $A^h$ be a finite point set in $\R^{d+1}$. 
+  The \emph{lower hull} (resp. upper hull)
+  of $A^h$ is the geometric polyhedral fan given by the faces of the positive span of $A^h$
+  contained in some facet whose outward normal vector has a negative
   (resp. positive) last coordinate.
-\end{definition}
-
-\begin{definition}
-  \label{def:regular-subdivision}
-  Let $V$ be a finite point set in $\R^d$. An abstract polyhedral complex $C$ with
-  vertex set $V$ is a regular subdivision of $V$ if it can be realized as the lower hull
-  of a lifting of $V$.
-
-  When $C$ is simplicial, it is called a \emph{regular triangulation}, and we will denote it
-  by $\simplex$.
+%\end{definition}
+%
+%\begin{definition}
+%  \label{def:regular-subdivision}
+  %Let $A$ be a finite point set in $\R^d$. 
+  An abstract polyhedral complex $C$ with
+  vertex set $A$ is a regular subdivision of $A$ if it can be realized as the lower hull
+  of a lifting of $A^h$ for some lifting function $h$.
+  When $C$ is simplicial, it is called a \emph{regular triangulation}.
+  %, and we will denote it by $\simplex$.
 \end{definition}
 
 % In a regular subdivision, we say that non-faces are \emph{above} faces of the triangulation
 % because they are with respect to the projection that forgets the height when embedded in
 % the lifting.
 
-A related notion of regular subdivisions can be derived for sets of vectors
-through homogenization.
-\david{new notation for homogenization: $\tilde x$}
-If $V$ is a finite point set, denote by $\tilde V \coloneqq \{\tilde v \coloneqq (v, 1) \;|\; v \in V\}$
-its canonical homogenization, attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
-hyperplane with last coordinate equal to $1$.
+A related notion of regular subdivisions can be derived from assigning lengths to the elements of the set.
+%through homogenization.
+%\david{new notation for homogenization: $\tilde x$}
+%If $A$ is a finite point set, denote by $\tilde V \coloneqq \{\tilde v \coloneqq (v, 1) \;|\; v \in V\}$
+%its canonical homogenization, attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
+%hyperplane with last coordinate equal to $1$.
 
-\david{renamed length choice to dilation (factor) choice}
+\david{renamed length choice to scaling (factor) choice}
 \begin{definition}
-  \label{def:dilation-choice}
-  Let $R$ be a finite set of vectors in $\R^d$. A \emph{dilation choice} for $R$ is a
-  function $f\in \R_+^R$, which assigns a dilation factor to each vector of $V$.
-
-  This choice induces a \emph{dilation} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$.
-\end{definition}
-
-\david{new definition for the lemma below}
-\begin{definition}
-   \label{def:outer-hull}
-   Let $R$ be a finite set of vectors in $\R^d$. The \emph{outer hull} of $R$ is the
+  \label{def:scaling-choice}
+  Let $R$ be a finite set of vectors in $\R^d$. A \emph{scaling function} for $R$ is a
+  function $f\in \R_+^R$.
+  This choice induces a \emph{scaling} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$, 
+  which is the vector set $f R := \{(f p\}\subset \R^{d}$; put differently,  
+  $f$ scales vectors of $R$.
+%\end{definition}
+%
+%\david{new definition for the lemma below}
+%\begin{definition}
+%   \label{def:outer-hull}
+ %  Let $R$ be a finite set of vectors in $\R^d$. 
+   The \emph{outer hull} of $fR$ is the
    geometric polyhedral complex given by the faces of the convex hull of $R \cup \{\zero\}$
    that don't contain the origin.
-\end{definition}
-
-\begin{definition}
-  \label{def:regular-fan-subdivision}
-  Let $R$ be a finite set of vectors. A fan $F$ with rays $R$ is a regular subdivision
-  of $R$ if it can be obtained as the face fan of the outer convex hull of a
-  \emph{dilation} of $R$.
-
-  When $F$ is simplicial, we say it is a \emph{regular triangulation} of $R$,
-  and we denote it by $\simplex$.
+%\end{definition}
+%
+%\begin{definition}
+%  \label{def:regular-fan-subdivision}
+%  Let $R$ be a finite set of vectors. 
+  A fan $F$ with rays $R$ is a \emph{scaling subdivision}
+  of $R$ if it can be obtained as the outer hull of some positive scaling of $R$.
+  \emph{scaling} of $R$.
+%
+  When $F$ is simplicial, we say it is a \emph{scaling triangulation} of $R$.
+%  and we denote it by $\simplex$.
 \end{definition}
 
 \david{new lemma}
-\begin{lemma}
+\begin{lemma}[{\cite[Corollary 9.5.3]{DeLoeraRambauSantos}}]
    \label{lemma:point-triangulation-as-vector-triangulation}
-   Let $P$ be a finite point set and $h\in \R^P$ a \emph{height choice} for $P$.
-   The abstract polyhedral complex $S$ realized by the (point) regular subdivision
-   of $P$ induced by $h$ is also realized by the (vector) regular subdivision of
-   $\tilde P$ induced by the dilation factor $\tfrac{1}{h}$.
+   Let $R$ be a finite vector set.
+   Then, the regular subdicision of $R$ obtained with a certain a \emph{height choice}  $h\in \R^P$ coincides
+   with the scaling subdivision of $R$ obtained with the scaling $f(p) := \tfrac{1}{h(P)}$.
 \end{lemma}
 \begin{proof}
+\paco{The book does only the case $f\equiv h \equiv 1$.}
    To make our arguments clearer,
    denote by $S_P$ the geometric embedding of $S$ induced by $P$, by $S_H$
-   the geometric embedding given by the lower hull of $(P, h(P))$, and by $S_V$
-   the geometric embedding of $S$ given by the outer hull of the dilation
+   the geometric embedding given by the lower hull of $(P, h(P))$, and by $S_A$
+   the geometric embedding of $S$ given by the outer hull of the scaling
    $\tfrac{1}{h} \cdot \tilde P$.
 
-   We will prove that non-faces of $S_H$ coincide with those of $S_V$.
+   We will prove that non-faces of $S_H$ coincide with those of $S_A$.
    This equivalence is trivial for non-faces that are contained in a larger face.
 
    Consider a non-face of $S$, $E$, not contained in any face.
@@ -795,7 +802,7 @@ hyperplane with last coordinate equal to $1$.
 
    % Let $\tilde \zero := (\zero, 1) \in \R^{d+1}$ be the homogenization of the zero vector.
    Now, consider the expression of $\zero$ as convex combinations of the vertices
-   of $E_P$ and $F_P$, and the corresponding expressions of multiples of $\tilde \zero$ on the dilation of $\tilde P$,
+   of $E_P$ and $F_P$, and the corresponding expressions of multiples of $\tilde \zero$ on the scaling of $\tilde P$,
    \[
       \zero = \sum_{p\in E_P} \lambda_p p = \sum_{p\in F_P} \mu_p p,
       \quad\quad
@@ -814,14 +821,14 @@ hyperplane with last coordinate equal to $1$.
       \tilde \zero \cdot \left(\sum_{p\in F_P} \mu_p (p, h(p))\right).
    \]
 
-   This is equivalent to the following inequality on $S_V$ along the ray of $\tilde \zero$,
+   This is equivalent to the following inequality on $S_A$ along the ray of $\tilde \zero$,
    \[
       \tilde \zero \cdot \left(\sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda} \tfrac{\tilde p}{h(p)}\right) =
       \tfrac{1}{\lambda} < \tfrac{1}{\mu} =
       \tilde \zero \cdot \left(\sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu} \tfrac{\tilde p}{h(p)}\right).
    \]
-   which in turn, with the existence of $F$, is equivalent to $E$ being a non-face of $S_V$
-   not contained in a face, since, by definition, a face of the outer hull of $S_V$ that intersects
+   which in turn, with the existence of $F$, is equivalent to $E$ being a non-face of $S_A$
+   not contained in a face, since, by definition, a face of the outer hull of $S_A$ that intersects
    a ray cannot do so at the origin, and hence must attain the maximum along
    this ray among all potential faces.
 \end{proof}
@@ -840,21 +847,17 @@ As we aim to realize one such simplicial sphere, this is the notion that we will
 % faces of the subdivision because, in every direction, a face is further from the
 % origin than non-faces when embedded in the length choice.
 
-\section{Proof}
-\label{sec:proof}
 
-The proof relies on the following statement.
-\Paco{I think this theorem needs a section of its own, explaining teh paradigm of "regular subdivisons", its relation to giving lengths to the vectors, the notion of "above/below", etc. You can look at Section 2.2 of \url{https://doi.org/10.1007/s00454-024-00698-y
-} which does more or less that (the contents would certainly be different}
+Thus, proving that a fan is polytopal is the same as proving that it is a regular subdivision. The next result is our key way of showing that:
 
-%\David{Lifting version of the theorem, we prefer the dilation version below}
+%\David{Lifting version of the theorem, we prefer the scaling version below}
 %\begin{theorem}
-%  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
+%  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
 %  let~$\b{R} : V \to \R^d$ be a vector embedding and let~$f : V \to \R^+$ be a height function.
 %  Then the following are equivalent:
 %  \begin{itemize}
 %    %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in V$,
+%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in A$,
 %    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
 %    \[
 %      F = \set{v \in V}{\lambda(v) < 0},
@@ -872,7 +875,7 @@ The proof relies on the following statement.
 %  %That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
 %
 %  Assume $\simplex=T$; that is, $\Delta$ is the lower convex hull of the points~$(\b{R}(v), f(v))$
-%  for all~$v\in V$.
+%  for all~$v\in A$.
 %  Consider $F$, a minimal non-face of $\simplex$.
 %
 %  Choose a point $x\in \relint{\conv{\b{R}(F)}}$.
@@ -909,13 +912,14 @@ The proof relies on the following statement.
 %\end{proof}
 
 \David{Dilation version of the theorem}
+\Paco{In fact, the version we use in the rigidity configuration is (I think) the **height** version. What was important form the previous discussion is showing that  "regular subdivision" = "polytopal fan"}
 \begin{theorem}
-Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $V$,
-let~$\b{R} : V \to \R^d$ be a vector embedding of $V$ and~$f : V \to \R^+$ be a dilation choice for $V$.
+Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
+let~$\b{R} : V \to \R^d$ be a vector embedding of $A$ and~$f : V \to \R^+$ be a scaling choice for $A$.
 Then the following are equivalent:
 \begin{itemize}
   %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in V$,
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in A$,
   \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector
   configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
   \[
@@ -934,7 +938,7 @@ Then the following are equivalent:
   That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
   
   Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
-  the points~$f(v) \, \b{R}(v)$ for all~$v\in V$.
+  the points~$f(v) \, \b{R}(v)$ for all~$v\in A$.
   Consider $F$, a minimal non-face of $\simplex$.
 
   Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
@@ -1081,6 +1085,9 @@ Here, the coefficient~$\nu_{\arc}$ is essentially the coefficient~$\mu_{\bar\arc
 Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
 \vincent{We need to use small $\epsilon$. We can only apply the triangle lemma when we know that the external edges have strictly positive coefficient.}
 \end{proof}
+
+\section{Proof}
+\label{sec:proof}
 
 
 
