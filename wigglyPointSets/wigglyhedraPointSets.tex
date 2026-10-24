@@ -383,6 +383,42 @@ In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, d
 %The wiggly complex~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$v+2w-3$.
 %\end{theorem}
 
+It is sometimes convenient to characterize a simplicial complex by the minimal sets that are not faces in it. For the wiggly complex the following statement gives us such a characterization.
+
+\begin{lemma}
+\paco{moved this lemma}
+\label{lem:minimalNonFaces}
+The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
+\begin{enumerate}[(i)]
+\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs,
+\item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs,
+\item two crossing arcs whose four endpoints are aligned,
+\item two crossing arcs with three endpoints aligned,
+\item two crossing arcs whose endpoints are in convex position.
+\end{enumerate}
+%
+\end{lemma}
+\begin{figure}[!h]
+\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
+\centerline{a {\it stick},  \qquad\quad a {\it wye}, \qquad\quad a {\it double-U}, \qquad\quad a {\it trident}, \qquad a {\it cross}}
+\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
+Note that there might be some additional points of~$P$ in the convex hull of each.}
+\label{fig:minimalNonFaces}
+\end{figure}
+
+\begin{proof}
+Minimal non-faces are minimal sets of arcs which are 
+\begin{itemize}
+\item either non-pointed: this yields (i) and (ii) depending on whether or not the endpoints are all aligned,
+\item or crossing: this yeilds (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
+\qedhere
+\end{itemize}
+\end{proof}
+
+Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
+Namely, each of the arcs in the figures may have additional points along it. E.g., if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly arcs with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
+\paco{Not sure I like the name superfluous. They are not superfluous at all...}
+
 The goal of this paper is to prove the following statement, already proved for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{RoteSantosStreinu-polytope}.
 
 \begin{theorem}
@@ -498,6 +534,8 @@ p_1-p_n & 0 & 0 & \cdots & 0 & p_n-p_1 \\
 0 & 0 & 0 & \cdots & p_{n-1}-p_n & p_n-p_{n-1}
 \end{pmatrix}
 \]
+\paco{I am not doing it yet, but in order to have a good dependence in the trident I think we needed to change all signs in the rigidity matrix; that is, ``positive'' stress represensts compression and negative represents extension}
+
 That is to say, we have a row vector $\Rvector(p,q)\in (\R^2)^n \cong (\R^2)^P$ associated to each pair of points~${p,q\in P}$.
 All entries in $\Rvector(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $p-q$ and the block corresponding to $q$ has the block $q-p$.
 
@@ -712,38 +750,9 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 \section{Proof}
 \label{sec:proof}
 
-The first step of the proof is thus to understand the minimal non faces of the wiggly complex~$\reducedWigglyComplex_P$.
+The first step of the proof is  to show that it minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$ has an associated delf-stress naturally associated to it.
 
-\begin{lemma}
-\paco{move this lemma to the section on the wiggly complex}
-\label{lem:minimalNonFaces}
-The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
-\begin{enumerate}[(i)]
-\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs,
-\item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs,
-\item two crossing arcs whose four endpoints are aligned,
-\item two crossing arcs with three endpoints aligned,
-\item two crossing arcs whose endpoints are in convex position.
-\end{enumerate}
-%
-\begin{figure}[!h]
-\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
-\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. Note that there might be some additional points of~$P$ in the convex hull of each.}
-\label{fig:minimalNonFaces}
-\end{figure}
-\end{lemma}
 
-\begin{proof}
-Minimal non-faces are minimal sets of arcs which are 
-\begin{itemize}
-\item either non-pointed: this yields (i) and (ii) depending on whether or not the endpoints are all aligned,
-\item or crossing: this yeilds (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
-\qedhere
-\end{itemize}
-\end{proof}
-
-Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
-Namely, $P$ might contain \defn{superfluous} points besides the points of the configurations represented in \cref{fig:minimalNonFaces}. % (which we call \defn{essential} points).
 
 \begin{proposition}
 For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
