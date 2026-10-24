@@ -750,55 +750,185 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 \section{Proof}
 \label{sec:proof}
 
-The first step of the proof is  to show that it minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$ has an associated delf-stress naturally associated to it.
+The first step of the proof is  to show that it minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$ has an associated self-stress naturally associated to it. Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNonFaces2}
 
-
+\begin{figure}[!h]
+\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
+\centerline{a {\it stick},  \qquad\quad a {\it wye}, \qquad\quad a {\it double-U}, \qquad\quad a {\it trident}, \qquad a {\it cross}}
+\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
+Note that there might be some additional points of~$P$ in the convex hull of each.}
+\label{fig:minimalNonFaces2}
+\end{figure}
 
 \begin{proposition}
-For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
+\label{prop:fundamentalDependence}
+Let~$P$ be a configuration consisting only of the three (for the stick) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
+%For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
 there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
 \end{proposition}
 
 \begin{proof}
-We first assume that~$P$ has no superfluous points and we proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}:
+%We first assume that~$P$ has no superfluous points and we proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}:
 %In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal components.
-\begin{itemize}
-\item In the first picture, we have
+%\begin{itemize}
+%\item 
+The \emph{wye} and the \emph{cross} both consist of four points in general position. In particular, the wiggly arcs involved have no transversal part and wiggly rigidity coincides with classical rigidity. It is well-known that in classical rigidity any affine dependence
+\[
+\sum_{i\in P} \lambda_i p_i =0, \quad \sum_i \lambda_i =0
+\]
+implies a rigidity dependence, namely
+\[
+\sum_{i,j\in P} \lambda_i \lambda_j \Rlong(p_i,p_j) =0.
+\]
+In this dependence an arc $[p_i, p_j]$ has positive or negative sign depending on whether $\lambda_i$ and $\lambda_j$ have the same or opposite signs. In the wye and the cross, the unique (modulo scaling) affine dependence has coefficients of opposite sign precisely in the arcs that form the minimal non-face.
+
+%\item 
+In the \emph{stick}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
-\[2\lambda\Reps(p, q, \varnothing, \varnothing) + 2\mu\Reps(q, r, \varnothing, \varnothing) = \lambda\mu\Reps(p, r, \{q\}, \varnothing) + \lambda\mu\Reps(p, r, \varnothing, \{q\})\]
-where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + \mu r$ and~$\lambda + \mu = 1$.
+\begin{align*}
+  \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
+=& \lambda(1-\lambda)\Rlong(p, r) ,
+\end{align*}
+that is,
+\begin{align*}
+ \lambda\Reps(p, q, \varnothing, \varnothing) + (1-\lambda)\Reps(q, r, \varnothing, \varnothing) 
+=& \tfrac12[ \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) + \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\})].
+\end{align*}
+%\item In the second picture, we have
+%%\[\frac{\Reps(p, s, \varnothing, \varnothing)}{\|p-s\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{\|q-s\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, q, \varnothing, \varnothing)}{2\|p-q\|} + \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|}\]
+%\begin{multline*}
+%\lambda\Reps(p, s, \varnothing, \varnothing) + \mu\Reps(q, s, \varnothing, \varnothing) + \nu\Reps(r, s, \varnothing, \varnothing) = \\ \lambda\mu\Reps(p, q, \varnothing, \varnothing) + \lambda\nu\Reps(p, r, \varnothing, \varnothing) + \mu\nu\Reps(q, r, \varnothing, \varnothing)
+%\end{multline*}
+%%\[
+%%\Reps(p, s)/(\mu+\nu) + \Reps(q, s)/(\lambda+\nu) + \Reps(r, s)/(\lambda+\mu) = \\ \Reps(p, q)/2 + \Reps(p, r)/2 + \Reps(q, r)/2
+%%\]
+%%\vincent{Should we allow us to write it this way?}
+%where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
 
-\item In the second picture, we have
-%\[\frac{\Reps(p, s, \varnothing, \varnothing)}{\|p-s\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{\|q-s\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, q, \varnothing, \varnothing)}{2\|p-q\|} + \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|}\]
-\begin{multline*}
-\lambda\Reps(p, s, \varnothing, \varnothing) + \mu\Reps(q, s, \varnothing, \varnothing) + \nu\Reps(r, s, \varnothing, \varnothing) = \\ \lambda\mu\Reps(p, q, \varnothing, \varnothing) + \lambda\nu\Reps(p, r, \varnothing, \varnothing) + \mu\nu\Reps(q, r, \varnothing, \varnothing)
-\end{multline*}
-%\[
-%\Reps(p, s)/(\mu+\nu) + \Reps(q, s)/(\lambda+\nu) + \Reps(r, s)/(\lambda+\mu) = \\ \Reps(p, q)/2 + \Reps(p, r)/2 + \Reps(q, r)/2
-%\]
-%\vincent{Should we allow us to write it this way?}
-where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
-
-\item In the third picture, we have
+%\item 
+In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. Then:
 \begin{align*}
 \frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
 & = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
 & = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
 \end{align*}
-where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$.
 Note that one of the two expressions above is non-negative, depending on the sign of~$\lambda-\mu$.
 \vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
 
-\item In the fourth picture, we have
-%\[\frac{\Reps(p, r, \{q\}, \varnothing)}{\|p-r\|} + \frac{\Reps(q, s, \{r\}, \varnothing)}{\|q-s\|} = \frac{\Reps(p, s, \{q,r\}, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|}\]
-\vincent{todo}
-
-\item In the fifth picture, we have
-%\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, s, \varnothing, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{2\|q-s\|}\]
-\vincent{todo}
+%\item 
+The last case, the \emph{trident}, is more complicated. Let $s'$ be the orthogonal projection of $s$ to the line $pqr$.
+We need the following three parameters to describe the configuration modulo rigid motion and dilation: 
+\Paco{In this proof I change the sign in all the $\Rlong$. That is, I use $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$. This is needed to get the correct signs}
+\begin{itemize}
+\item $\lambda\in [0,1]$, the barycentric position of $q$ along $[p,r]$, so that $q=\lambda p + (1-\lambda) r$.
+\item $\mu\in \R$, the barycentric positionof $s'$ with respect to  $[p,r]$, so that $s'=\mu p + (1-\mu) r$. Observe that $s'$ may not be in $[p,q]$. That is, we cannot assume $\mu\in [0,1]$.
+\item $\nu \in \R_{>0}$, the unique scalar such that $(s-s') = \nu (r-p)^\perp$. We assume $\nu >0$ since we can label the points $p,q,r$ so that $s$ is to the left of the (oriented) line $pqr$.
 \end{itemize}
 
+To construct the appropriate dependence, we first notice that there is unique (modulo a scalar) way to combine the three vectors $\Rlong(s, \cdot)$ that cancels the force at $s$, namely:
+\begin{align*}
+\Rvector_1:= &\lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
+= &\lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
+= &\lambda (s-p) \one_p  - (s-q) \one_q + (1-\lambda) (s-r) \one_r.
+\end{align*}
+Rewriting each $s-x$ as $(s-s')+(s'-x)$ decomposes $\Rvector_1$ into a transversal  part $\Rvector_1^{(t)}$ and a longitudinal part  $\Rvector_1^{(l)}$ that we evaluate separately:
+\begin{align*}
+\Rvector_1^{(l)}= & \lambda (s'-p) \one_p  - (s'-q) \one_q + (1-\lambda) (s'-r) \one_r\\
+= &\lambda (1-\mu) (r-p) \one_p   - (\lambda - \mu) (r-p) \one_q  + (1-\lambda) \mu (p-r) \one_r\\
+= &[\lambda (1-\mu)  \one_p   - (\lambda - \mu) \one_q  - (1-\lambda) \mu \one_r](r-p),\\
+ \Rvector_1^{(t)}=&  (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
+= &  \nu[(r-q)^\perp \one_p -  (r-p)^\perp \one_q + (q-p)^\perp \one_r]\\
+= &  -\nu \Rtrans(p,r;q).
+\end{align*}
+In the longitudinal part we have used that
+\begin{align*} 
+(s'-p) \one_q =& [ (\mu p + (1-\mu) r)- p ] \one_p =  (1 - \mu) (r-p) \one_p, \\
+(s'-q) \one_q =& [ (\mu p + (1-\mu) r)- (\lambda p + (1-\lambda) r) ] \one_q =  (\lambda - \mu) (r-p) \one_q, \\
+(s'-r) \one_r =& [ (\mu p + (1-\mu) r)-  r) ] \one_r =  - \mu (r-p) \one_r,
+\end{align*}
+and in the transversal part that
+\[
+s-s' =\nu (r-p)^\perp =\frac\nu{\lambda} (r-q)^\perp = \frac\nu{1-\lambda} (q-p)^\perp.
+\]
+
+In order to cancel the transversal part we subtract $\tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing,\{q\}) =
+\tfrac{\nu}{\epsilon} \Rlong(p,r) -  {\nu} \Rtrans(p,r;q)$, to obtain:
+\begin{align*}
+\Rvector_2:= & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing, \{q\}) \\
+=&[\lambda (1-\mu)  \one_p   + (\mu - \lambda) \one_q  - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r).
+\end{align*}
+
+The coefficient of $\one_q$ in this expression is zero if and only if $\lambda=\mu$; that is, if $q=s'$. In case this does not happen we cancel that coefficient with $\Rlong(p,q)$ or $\Rlong(q,r)$, depending on the sign of $\lambda - \mu$. For this observe that
+\begin{align*}
+\Rlong(q,r) &= (r-q)(\one_q-\one_r) =  \lambda (r -p)(\one_q-\one_r),\\
+\Rlong(p,q) &= (q-p)(\one_p-\one_q) = (1-\lambda) (r -p)(\one_p-\one_q).
+\end{align*}
+
+
+Let us assume that $\mu > \lambda$, so that the coefficient of $\one_q$ in $\Rvector_2$ is a \emph{positive} multiple of $(r-p)$. To cancel it we need a positive multipel of $\Rlong(p,q)$, namely:
+\begin{align*}
+\Rvector_3 := & \Rvector_2 + \tfrac{\mu-\lambda}{1-\lambda} \Rlong(p,q) 
+	 =\Rvector_2 + (\mu-\lambda)(r -p)(\one_p-\one_q)\\
+= &[\lambda (1-\mu)  \one_p   - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) + (\mu-\lambda)(r -p) \one_p \\
+= &(1-\lambda) \mu (\one_p   - \one_r)(r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
+= &(1-\lambda) \mu \Rlong(p,r) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
+= &\left( (1-\lambda) \mu - \tfrac{\nu}{\epsilon} \right)\Rlong(p,r).
+\end{align*}
+
+Observe that, since we assume $\epsilon$ ``very small'' compared to all the geometric parameters of the configuration, the coefficient in front of 
+$\Rlong(p,q)$ is negative. Let us change its sign and normalize by $2\epsilon$ to get
+\begin{align*}
+- 2\epsilon \Rvector_3 
+= &2(\nu-  (1-\lambda) \mu \epsilon) 2 \Rlong(p,r) \\
+= &( \nu-   (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big). \\
+\end{align*}
+So, the final linear dependence that we are looking for is 
+\[
+\Rvector_4 := 2\epsilon \Rvector_3  + ( \nu-  (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big) =0.
+\]
+Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used along the construction, to finally obtain those of the dependence.
+
+\begin{table}[htb]
+\begin{center}
+\begin{array}{r|ccccccc}
+&\Rlong(p,s)&\Rlong(q,s)&\Rlong(r,s)&\Rlong(p,q)&\Rlong(q,r)&\Reps(p,r; \varnothing, \{q\})& \Reps(p,r; \{q\}, \varnothing)\\
+\hline
+\Rvector_1 & \lambda & -1 & 1-\lambda & 0 & 0 & 0 & 0 \\
+\Rvector_2 &\lambda & -1 & 1-\lambda & 0 & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
+\Rvector_3 &\lambda & -1 & 1-\lambda &  \tfrac{\mu-\lambda}{1-\lambda} & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
+2\epsilon \Rvector_3 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -2\nu & 0 \\
+ \Rvector_4 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -  \nu-  (1-\lambda) \mu \epsilon &  \nu-  (1-\lambda) \mu \epsilon \\
+ \text{sign} & + & - & + & 0+ & 0 & - & + \\
+\end{array}
+\end{center}
+\caption{The linear dpendence of \cref{prop:fundamentalDependence}, assuming $\mu\ge \lambda$.
+The signs of the coefficients are as required assuming $\epsilon$ sufficiently small so that   $|(1-\lambda) \mu\epsilon| <\nu$.
+}
+\label{table:trident}
+\end{table}
+
+The calculations assume $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$ can be obtained from it adding to $\Rvector_4$ the appropriate multiple of the dependence
+\begin{align*}
+& 2 \lambda\Rlong(p, q) + 2(1-\lambda)\Rlong(q, r) 
+=  \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) + \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\}).
+\end{align*}
+We leave it to the reader to check that the  following coefficients change:  
+that of $\Rlong(p,q)$ would be zero, that of  $\Rlong(q,r)$ would be $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in those of $\Reps(p,r; \varnothing, \{q\})$ and  $\Reps(p,r; \{q\}, \varnothing)$ the part multiplying $\epsilon$ would need to be  $-\lambda(1-\mu)$ instead of $-(1-\lambda)\mu$.
+%\end{itemize}
+\end{proof}
+
+\begin{proposition}
+\label{prop:fundamentalDependence}
+Let~$P$ be arbitrary. 
+For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
+there exists a sufficiently small~$\epsilon >0$ such that 
+there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
+\end{proposition}
+
+
+\begin{proof}
+\Paco{Old. Probably to be removed}
 Finally, we reduce the general case by induction to the situation where~$P$ has no superfluous points. %, by induction on the number of superfluous points of~$P$.
 Assume that~$P$ contains a superfluous point~$r$, and let~$\bar P = P \ssm \{r\}$.
 Any wiggly arc~$\arc$ of~$P$ whose endpoints do not contain~$r$ defines a wiggly arc~$\bar\arc$ of~$\bar P$ (just forgetting~$r$ if it appears along~$\arc$).
