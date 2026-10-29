@@ -616,7 +616,7 @@ Hence, the classical rigidity vector $\Rvector(p,q)$ as defined above can be exp
 \begin{definition}\label{def:lrv}
 The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of~$[p,q]$ in~$P$. That is,
 \[
-\Rlong(\arc) := (p-q) (\one_p  - \one_q).
+\Rlong(\arc) := (q-p) (\one_p  - \one_q).
 \]
 \end{definition}
 
@@ -822,24 +822,25 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{The wigglyhedron is polytopal}
-\label{sec:wigglyhedron}
+\section{A dependence for each minimal non-face}
+\label{sec:circuit}
 
-We here prove that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
-In fact, we show the following more precise statement.
+\Paco{Theorems~\ref{thm:main} and \ref{thm:regularLiftingVersion} should probably go to the introduction. I am putting them here for now just to explain why we want to contruct the dependences}
+
+Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
+More precisely, we show the following:
 
 
 \begin{theorem}
+\label{thm:main}
 Let $P$ be a point set with $n_1$ extremal and $n_2$ non-extremal points. Let $n=n_1+n_2$. Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
 \begin{enumerate}
-\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.
-\item $\reducedWigglyComplex_P$, realized as the link of the $n_1$ external arcs, is a complete simplicial fan in the quotient space 
-$\Equil(P) / \Ext(P) \cong \R^{2n_2+n_1-3}$, where $\Ext(P)$ is the linear span of the $n_1$ external wiggly rigidity vectors.
-\item The fan $\reducedWigglyComplex_P$ is polytopal.
+\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (i.e., it is a triangulation of) $\Equil_+^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative boundary.}
+\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_1$ boundary arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_2+n_1-3}$, where $\Ext(P)$ is the linear span of the $n_1$ external wiggly rigidity vectors.
 \end{enumerate}
 \end{theorem}
 
-In fact, part (1) follows from (2) and the (obvious) fact that the $n_1$ external wiggly arcs are independent. So, we only need to prove (2) and (3). We prove both together, using the following result proved in the appendix:
+In fact, part (1) follows from (2) and the (obvious) fact that the $n_1$ external wiggly arcs are independent. So, we only need to prove (2). For that we use the following result proved in the appendix:
 
 \begin{theorem}
 \label{thm:regularLiftingVersion}
@@ -861,7 +862,7 @@ Then the following are equivalent:
 \end{itemize}
 \end{theorem}
 
-So, our goal is to construct a linear dependence as in this statement, for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly rigidity vectors.
+So, our goal in this section is to construct a linear dependence as in this statement, for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly rigidity vectors.
 Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNonFaces2}
 
 \begin{figure}[!h]
@@ -879,7 +880,7 @@ Although the linear dependence needs to be on the whole wiggly configuration, le
 Let~$P$ be a configuration consisting only of the three (for the stick) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
 %For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
-the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part is~$F$.
+the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part is exactly~$F$.
 \end{proposition}
 
 \begin{proof}
@@ -921,7 +922,9 @@ that is,
 %where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
 
 %\item 
-In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. Then:
+In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. 
+\paco{This needs to be re-checked, since the $\Rlong$ part has changed sign.}
+Then:
 \begin{align*}
 \frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
 & = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
@@ -1032,6 +1035,18 @@ that of  $\Rlong(q,r)$ becomes $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in t
 %\end{itemize}
 \end{proof}
 
+In what follows we use the following notation. A dependence or, more generally, a linear combination of wiggly rigidity vectors in a configuration $P$, will be represented as its vector of coefficients, which we normally denote $D$. That is, $D \in \R^{\{\text{wiggly arcs in $P$}\}}$. By forgetting the $L$ and $R$ in each wiggly arc $(p,q,L,R)$, any such $D$ induces also a vector $D_{\operatorname{l}} \in \R^{\binom{P}{2}}$. The vectors $D$ and $D_{\operatorname{l}}$ induce loads $\Meps(P)^T D$ and $\Mmatrix(P)^T D_{\operatorname{l}}$ in $P$. 
+
+\begin{corollary}
+\label{coro:spanNonFace}
+Let $F$ be a minimal non-face in an arbitrary configuration $P$. Let $P_F$ be the configuration of three or four points consisting of the extremal points in $F$ and let $P' = P \cap \conv(P_F)$. Then, $\Equil_+^\epsilon(P')$ together with $\{-\Reps(\arc): \arc\in F\}$ positively span $\Equil^\epsilon(P')$.
+\end{corollary}
+
+\begin{proof}
+TO DO
+\end{proof}
+
+
 \begin{proposition}
 \label{prop:fgeneralDependence}
 Let~$P$ be arbitrary. 
@@ -1040,7 +1055,11 @@ there exists a sufficiently small~$\epsilon >0$ such that
 there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
 \end{proposition}
 
+\begin{proof}
+TO DO
+\end{proof}
 
+{\color{blue}
 \begin{proof}
 \Paco{Old. Probably to be removed}
 Finally, we reduce the general case by induction to the situation where~$P$ has no superfluous points. %, by induction on the number of superfluous points of~$P$.
@@ -1064,7 +1083,7 @@ Here, the coefficient~$\nu_{\arc}$ is essentially the coefficient~$\mu_{\bar\arc
 Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
 \vincent{We need to use small $\epsilon$. We can only apply the triangle lemma when we know that the external edges have strictly positive coefficient.}
 \end{proof}
-
+}
 
 
 \vincent{Add a remark that there would be another possible realization of the wigglyhedron using iterative face truncations of pseudotriangulation polytopes, by deformation of the point set from general position. Thanks Spencer!}
