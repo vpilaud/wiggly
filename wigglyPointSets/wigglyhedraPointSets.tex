@@ -163,6 +163,8 @@
 \newcommand{\Mlong}{\Mmatrix_{\operatorname{l}}} % longitudinal rigidity vector
 \newcommand{\Mtrans}{\Mmatrix_{\operatorname{t}}} % transversol rigidity vector
 \newcommand{\Meps}{\Mmatrix^\epsilon} % total rigidity vector
+\newcommand{\Equil}{\operatorname{Eq} } % equilibrium loads
+\newcommand{\Triv}{\operatorname{Tr} } % trivial motions
 
 
 
@@ -321,7 +323,8 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 
 Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
 A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
-We denote by~$n = v + w$ the number of points of~$P$, where~$v$ are extremal and~$w$ are not.
+We denote by~$n = n_1 + n_2$ the number of points of~$P$, where~$n_1$ are extremal and~$n_2$ are not.
+\paco{changed $v$, $w$ to $n_1$, $n_2$, since $v$ is used for other things}
 We first define the wiggly segments of~$P$.
 Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open segment~$]p,q[$.
 
@@ -370,8 +373,8 @@ See \cref{fig:wigglyComplexSquarre}\,(left).
 A few observations about \cref{def:wigglySegments,def:compatible,def:wigglyDissection,def:wigglyComplex}:
 \begin{enumerate}
 \item When wiggly segments are encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, the non-crossing and pointedness conditions can be expressed in purely combinatorial terms (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to also define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
-\item As the $v$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
-In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $v$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
+\item As the $n_1$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
+In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $n_1$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
 \item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
 \end{enumerate}
 \end{remark}
@@ -379,20 +382,56 @@ In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, d
 %The following statement, known for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations}, was extended in~\cite[Coro.~3.21]{BapatDeopurkarLicata} to the general case.
 %
 %\begin{theorem}[{\cite[Coro.~3.21]{BapatDeopurkarLicata}}]
-%%The extended (resp.~reduced) wiggly complex~$\extendedWigglyComplex_P$ (resp.~$\reducedWigglyComplex_P$) is a simplicial ball (resp.~sphere) of dimension~$2n-3$ (resp.~$v+2w-3$).
-%The wiggly complex~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$v+2w-3$.
+%%The extended (resp.~reduced) wiggly complex~$\extendedWigglyComplex_P$ (resp.~$\reducedWigglyComplex_P$) is a simplicial ball (resp.~sphere) of dimension~$2n-3$ (resp.~$n_1+2n_2-3$).
+%The wiggly complex~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$n_1+2n_2-3$.
 %\end{theorem}
+
+It is sometimes convenient to characterize a simplicial complex by the minimal sets that are not faces in it. For the wiggly complex the following statement gives us such a characterization.
+
+\begin{lemma}
+\paco{moved this lemma}
+\label{lem:minimalNonFaces}
+The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
+\begin{enumerate}[(i)]
+\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs,
+\item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs,
+\item two crossing arcs whose four endpoints are aligned,
+\item two crossing arcs with three endpoints aligned,
+\item two crossing arcs whose endpoints are in convex position.
+\end{enumerate}
+%
+\end{lemma}
+\begin{figure}[!h]
+\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
+\centerline{a \defn{stick},  \qquad\quad a \defn{wye}, \qquad\quad a \defn{double-U}, \qquad\quad a \defn{trident}, \qquad a \defn{cross}}
+\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
+Note that there might be some additional points of~$P$ in the convex hull of each.}
+\label{fig:minimalNonFaces}
+\end{figure}
+
+\begin{proof}
+Minimal non-faces are minimal sets of arcs which are 
+\begin{itemize}
+\item either non-pointed: this yields (i) and (ii) depending on whether or not the endpoints are all aligned,
+\item or crossing: this yeilds (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
+\qedhere
+\end{itemize}
+\end{proof}
+
+Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
+Namely, each of the arcs in the figures may have additional points along it. E.g., if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly arcs with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
+\paco{Not sure I like the name superfluous. They are not superfluous at all...}
 
 The goal of this paper is to prove the following statement, already proved for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{RoteSantosStreinu-polytope}.
 
 \begin{theorem}
 \label{thm:polytope}
-The wiggly complex~$\reducedWigglyComplex_P$ is isomorphic to the boundary complex of a simple polytope of dimension~$v+2w-3$.
+The wiggly complex~$\reducedWigglyComplex_P$ is isomorphic to the boundary complex of a simple polytope of dimension~$n_1+2n_2-3$.
 \end{theorem}
 
-\cref{thm:polytope} implies in particular that~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$v+2w-4$, a result independently established in~\cite[Coro.~3.21]{BapatDeopurkarLicata}.
+\cref{thm:polytope} implies in particular that~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$n_1+2n_2-4$, a result independently established in~\cite[Coro.~3.21]{BapatDeopurkarLicata}.
 Note that their proof proceeds via a deformation argument, describing how the wiggly complex varies under a small perturbation of the point set.
-By contrast, our approach gives a direct polytopal realization, but it depends on the fact that the wiggly complex~$\reducedWigglyComplex_P$ is a simplicial pseudomanifold without boundary of dimension~$v+2w-4$.
+By contrast, our approach gives a direct polytopal realization, but it depends on the fact that the wiggly complex~$\reducedWigglyComplex_P$ is a simplicial pseudomanifold without boundary of dimension~$n_1+2n_2-4$.
 We thus  sketch a direct proof of this fact, both to avoid reliance on~\cite[Coro.~3.21]{BapatDeopurkarLicata} and because we believe it offers useful geometric and combinatorial insight into the structure of the wiggly complex.
 
 \begin{definition}
@@ -461,7 +500,7 @@ The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ of~$P$ is the graph with a ver
 \end{definition}
 
 \begin{proposition}
-The wiggly flip graph~$\wigglyFlipGraph_P$ is regular of degree~$v+2w-3$ and connected.
+The wiggly flip graph~$\wigglyFlipGraph_P$ is regular of degree~$n_1+2n_2-3$ and connected.
 \end{proposition}
 
 \begin{proof}[Proof sketch]
@@ -489,49 +528,95 @@ Let $P \subset \R^2$ be a point set, consisting of $n$ points $p_1,\dots,p_n$. R
 \[
 \Mmatrix(P) \eqdef
 \begin{pmatrix}
-p_1-p_2 & p_2-p_1 & 0 & \cdots & 0 & 0 \\
-p_1-p_3 & 0 & p_3-p_1 & \cdots & 0 & 0 \\
+p_2-p_1 & p_1-p_2 & 0 & \cdots & 0 & 0 \\
+p_3-p_1 & 0 & p_1-p_3 & \cdots & 0 & 0 \\
 \vdots & \vdots & \vdots & & \vdots & \vdots \\
-p_1-p_n & 0 & 0 & \cdots & 0 & p_n-p_1 \\
-0 & p_2-p_3 & p_3-p_2 & \cdots & 0 & 0 \\
+p_n-p_1 & 0 & 0 & \cdots & 0 & p_1-p_n \\
+0 & p_3-p_2 & p_2-p_3 & \cdots & 0 & 0 \\
 \vdots & \vdots & \vdots & & \vdots & \vdots \\
-0 & 0 & 0 & \cdots & p_{n-1}-p_n & p_n-p_{n-1}
+0 & 0 & 0 & \cdots & p_{n}-p_{n-1} & p_{n-1}-p_{n}
 \end{pmatrix}
 \]
+\paco{In order to have a good dependence in the trident I needed to change all signs in the rigidity matrix; that is, positive  represensts compression/contraction and negative represents extension/dilation}
+
 That is to say, we have a row vector $\Rvector(p,q)\in (\R^2)^n \cong (\R^2)^P$ associated to each pair of points~${p,q\in P}$.
-All entries in $\Rvector(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $p-q$ and the block corresponding to $q$ has the block $q-p$.
+All entries in $\Rvector(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $q-p$ and the block corresponding to $q$ has the block $p-q$.
 
-The matrix $\Mmatrix(P)$, considered as a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, has the following interpretation: each~${v = (v_p)_{p\in P} \in (\R^2)^P}$ is understood as an~\defn{infinitesimal motion} of the point set \(P\), that is, is the assignment of a velocity vector \(v_p \in \R^2\) to each point \(p \in P\). Then, the vector $\Mmatrix(P) v \in \R^{\binom{n}{2}}$ records, for each pair $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_i-p_j)\cdot (v_i-v_j)$, which equals the (infinitesimal) relative increase or decrease of the length of the segment $[p_i,q_i]$ under that motion.
+The matrix $\Mmatrix(P)$, considered as a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, has the following interpretation: each~${v = (v_p)_{p\in P} \in (\R^2)^P}$ is understood as an~\defn{infinitesimal motion} of the point set \(P\), that is, is the assignment of a velocity vector \(v_p \in \R^2\) to each point \(p \in P\). Then, the vector $\Mmatrix(P) v \in \R^{\binom{n}{2}}$ records, for each pair $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_i-p_j)\cdot (v_i-v_j)$, which equals the (infinitesimal) relative increase (if negative) or decrease (if positive) of the length of the segment $[p_i,q_i]$ under that motion.%
+\footnote{We are taking the matrix with a sign opposite to the standard convention, since that will be more convenient in our setting}
 
 
-The kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points, that is, those moving the whole point set as if it was a rigid block. We call them \defn{infinitesimal rigid motions}. If $P$ affinely spans $\R^2$, which we always assume\vincent{do we? We want the wigglyhedron of~\cite{BapatPilaud} as special case...}, then $\Mmatrix(p)$ has rank $2n-3$ and its three-dimensional kernel is generated by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion
+
+The kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points. 
+\Paco{If $P$ is contained in a line we must distinguish between ``kernel of $\Mmatrix(P)$'' and ``rigid motions''. The latter has dimension three, but the former is the (not direct) sum of it with the $n$-dimensional space of transversal motions, and has dimension $n+1$.}
+If $P$ affinely spans $\R^2$ then $\Mmatrix(P)$ has rank $2n-3$ and its three-dimensional kernel consists of the~\defn{infinitesimal rigid motions}, that is, those moving the whole point set as if it was a rigid block. They are generatad by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion
 \[
 (p^\perp)_{p\in P} = (p_1^\perp, \dots, p_n^\perp),
 \]
 where $(x,y)^\perp:=(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{\circ}\) in the positive direction.
 %
-We denote\footnote{Although we only need to think of it as a linear space, our reason for the notation $se(P)$ is that this kernel equals the Lie algebra of the Lie group $SE(2)$ of Euclidean motions of the plane, acting as global rigid motions on $P$. Observe that the kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.} this kernel $se(P)$.
+\footnote{The kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.}
+We denote this space $\Triv(P)$. Observe that if $|P|>2$ but it does not affinely span $\R^2$ then $\Triv(P)$ is not the whole kernel of $\Mmatrix(P)$. In this case $\Mmatrix(P)$ has rank $n-1$ and its $(n+1)$-dimensional kernel is the (not direct) sum of $\Triv(P)$ with the $n$-dimensional space of motions perpendicular to the line spanned by $P$.
 
-The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension or compression stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_i-p_j)$ is the resulting force at point $p_i$. The kernel of $\Mmatrix(P)^T$ hence represents the stresses that can be applied to the rods and produce no net force on each $p_i$. These are called \defn{equilibrium stresses}.
-\vincent{Also define forces under equilibrium.}
+The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension (if negative) or compression (if positive) stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_j-p_i)$ is the resulting force at point $p_i$. 
+In rigidity theory, such an assignment $(f_1,\dots,f_n)$ of forces at the points $p_1,\dots, p_n$ is  called a \defn{load}.
+\paco{citar Whiteley o Graver-Sevatius-Servatius?}
+The orthogonal complement of $\Triv(P)$ contains the image of $\Mmatrix(P)^T w$ and consists of the loads satisfying the following three equations:
+\[
+\sum_{i=1}^n f_i =0, \qquad \sum_{i=1}^n p_i \times f_i =0.
+\]
+The physical interpretation is that these loads have 
+zero resultant and zero moment: if the points are part of a rigid body, those forces applied to those points produce no motion.
+When this happens we say that the load $(f_1,\dots,f_n)$ is \defn{balanced} or \defn{in equilibrium}. We denote the space of them by $\Equil(P)$. 
+Again, if $|P|=2$ or if it affinely spans $\R^2$ then $\Equil(P)$ equals the image of $\Mmatrix(P)^T$, but if $|P|>2$ and $P$ is contained in a line then the image of $\Mmatrix(P)^T$ has rank $n-1$ and consists only of the \defn{longitudinal} loads in equilibrium; that is, loads $(f_1,\dots,f_n)$ that are in equilibrium and have every $f_i$ parallel to the affine span of $P$.
 
-If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
+The kernel of $\Mmatrix(P)^T$ consists of the stresses that can be applied to the rods and produce no net force on any $p_i$. These are called \defn{equilibrium stresses}.
+
+Also interesting for us is the positive part of $\Equil(P)$, that is, the loads that can be obtained as non-negative combinations of  rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote them $\Equil_+(P)$.
+
+\begin{lemma}
+\label{lem:equil_cone}
+If $P$ affinely spans $\R^2$ then
+$\Equil_+(P)$ is a full-dimensional pointed cone in $\Equil(P)$. Moreover, let $B(P)$ denote the set of row-vectors of  $-\Mmatrix(P)$ corresponding to boundary edges of $P$ (so that $|B(P)| = n_1)$. Then, adding $B(P)$ to $\Equil_+(P)$ positively spans the whole of $\Equil(P)$.
+\end{lemma}
+
+\begin{proof}
+That $\Equil_+(P)$ is full-dimensional in $\Equil(P)$ is obvious, since it is the cone generated by a (linear) generating set of $\Equil(P)$. That it is pointed follows from the fact that every generator of $\Equil_+(P)$ (that is, every row of $\Mmatrix(P)$) has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
+\[
+\langle \Rvector(p_i,p_j), (p_1,\dots, p_n)\rangle =
+(p_j-p_i) p_i + (p_i-p_j) p_j = - (p_i-p_j)^2.
+\]
+
+For the last part we need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rows of $\Equil_+(P)$ plus a positive combination of those in $B(P)$. So, let $(f_1,\dots,f_n)$ be a load in equilibrium. For each non-extremal point $p_i$ of $P$, consider a set of (at most three, perhaps two) extremal points $p,q,r$ such that $p_i \in \conv(p,q,r)$. writing $f_i$ as a positive combination of the vectors $f_i-p$, $f_i-q$ and $f_i-r$ allows us to subtract a positive combination of $\Rvector(p,p_i)$, $\Rvector(q,p_i)$, and $\Rvector(r,_i)$ to cancel $f_i$. Thus, we can assume $f_i=0$ for every non-extremal vertices or, equivalently, we can assume $P$ to be in convex position.
+In this case the result follows from the main result of \cite{RoteSantosStreinu-polytope}.
+\Paco{Explanation: \cite{RoteSantosStreinu-polytope} show that the cones corresponding to triangulations of the $n$-gon actually triangulate the cone $\Equil_+(P)$. The fact that the link of $-B(P)$ is spherical (the associahedron) implies that $-B(P)$ meets the interior of $\Equil_+(P)$, which in turn implies that $\Equil_+(P) \cup B(P)$ positively spans $\Equil(P)$.\\
+I am not writing the details since I would hope there could be a more direct prove of this Lemma}
+\end{proof}
+
+If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the \defn{self-stresses} or  equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
 \footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
+
+\ 
+
 
 \section{Wiggly rigidity}
 \label{sec:w_rigidity}
 
-The main result of  \cite{RoteSantosStreinu-polytope} is that when $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\varnothing,\varnothing)$), the wiggly complex can be embedded into a complete (in its linear span) and polytopal fan~$(\R^2)^P$ by associating to each~$(p,q) \in \binom{P}{2}$ the corresponding rigidity vector~$\Rvector(p,q)$. In order to generalise this to non-general position we need to modify the definition of rigidity vector associated to a wiggly arc.
+When $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\varnothing,\varnothing)$), the wiggly complex coincides with the complex of \defn{pointed non-crossing graphs}, whose maximal elements are the \defn{pointed pseudo-triangulations}.
+The main result of  \cite{RoteSantosStreinu-polytope} is that in this case $\reducedWigglyComplex_P$ can be embedded as a complete and polytopal fan in~$\Equil(P) \subset (\R^2)^P$ by associating to each~$(p,q) \in \binom{P}{2}$ the corresponding rigidity vector~$\Rvector(p,q)$. 
+We here generalize that construction to non-general position, for which we need to introduce a version of rigidity adapted to wiggly arcs.%
+\footnote{
+A different generalization of the construction of \cite{RoteSantosStreinu-polytope}, based on removing the pointedness assumption, is in~\cite{OrdenSantos}. It would be interesting to find a common generalization of that one and the one in this paper.}
 
-Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union does not necessarily cover~${]p,q[} \cap P$.
+Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union is not necessarily~${]p,q[} \cap P$.
 %We introduce the following notation: 
-For each $r\in P$ let $\one_p$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere.
-Hence, the usual rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
+For each $p\in P$ let $\one_p$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere.
+Hence, the classical rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
 
 \begin{definition}\label{def:lrv}
 The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of~$[p,q]$ in~$P$. That is,
 \[
-\Rlong(\arc) := (p-q) (\one_p  - \one_q).
+\Rlong(\arc) := (q-p) (\one_p  - \one_q).
 \]
 \end{definition}
 
@@ -568,7 +653,7 @@ It is straightforward that
 \end{remark}
 
 \begin{definition}\label{def:rv}
-For \(\epsilon > 0\), the~\defn{(total) \(\epsilon\)-rigidity vector} \(\Reps(\arc)\) is defined as
+For \(\epsilon > 0\), the~\defn{\(\epsilon\)-rigidity vector} \(\Reps(\arc)\) is defined as
 \vincent{should we say here that \(\Reps(\arc)\) is an equilibrium stress?}
 \[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
 \end{definition}
@@ -578,16 +663,36 @@ The intuition behind this definition is to think of the wiggly arc as a rubberba
 The transversal component is considered much smaller than the longitudinal one. In fact, the parameter $\epsilon$ will later be required to be ``sufficiently small'' in some of our proofs.
 \end{remark}
 
-One important feature of the rigidity vectors we are defining is that they are still orthogonal to the kernel $se(P)$ of the usual rigidity matrix of $P$.
+Our main reason to allow for partial wiggly arcs in the definition of the rigidity vector is the following statement:
 
 \begin{lemma}
-\label{lemma:kernel}
-Every $\Reps(p,q,L,R)$ is orthogonal to $se(P)$.
+\label{lema:partial_rigidity}
+Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P \cap {]p,q[}$. Then,
+\[
+\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A) = 2 \Reps(p,q, L,R).
+\]
+In particular,
+\[
+\Reps(p,q,  A , B) + \Reps(p,q,  B,  A) = 2 \Rlong(p,q).
+\]
 \end{lemma}
 
 \begin{proof}
-The longitudinal parts are orthogonal since they are the usual rigidity vectors.
-For the transversal parts, by linearity we only need to check that the individual contribution $\Rtrans(p,q;r)$ of each point $r$ in $L\cup R$ is orthogonal to the translations $(v,\dots,v)$ and the rotation $(s^\perp)_{s\in P}$, which generate $se(P)$.
+For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$. For the transversal parts just observe that the contributions of the points from $A\cup B$ cancel out when we add $\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A)$.
+\end{proof}
+
+
+One important feature of the wiggly rigidity vectors is that they are still equilibrium loads in the standard sense.
+%we are defining is that they still produce forces in equilibrium, that is, they are orthogonal  to the kernel $\Triv(P)$ of the usual rigidity matrix of $P$:
+
+\begin{lemma}
+\label{lemma:kernel}
+Every $\Reps(p,q,L,R)$ belongs to to $\Equil(P) = \Triv(P)^\perp$.
+\end{lemma}
+
+\begin{proof}
+The longitudinal parts lie in $\Equil(P)$ since they are the usual rigidity vectors.
+For the transversal parts, by linearity we only need to check that the individual contribution $\Rtrans(p,q;r)$ of each point $r$ in $L\cup R$ is orthogonal to the translations $(v,\dots,v)$ and the rotation $(s^\perp)_{s\in P}$, which generate $\Triv(P)$.
 
 Writing $\Rtrans(p,q;r) = (q-p)^\perp (\one_r - \lambda_r \one_p - \mu_r \one_q)$ in the fashion of Remark~\ref{rem:barycentric}, for infinitesimal translations we have that
 \[
@@ -610,9 +715,10 @@ r^\perp - \lambda_r p^\perp - \mu_r q^\perp  =
 \end{proof}
 
 \begin{remark}
-In fact, the vectors $\{\Rtrans(p,q;r)\}_{r\in L\cup R}$ are a basis for the linear space of vectors transversal to $[p,q]$ and orthogonal to $se(P)^\perp$.
+In fact, the vectors $\{\Rtrans(p,q;r)\}_{r\in L\cup R}$ are a basis for the linear space of vectors transversal to $[p,q]$ and contained in $\Equil(P)$.
 \end{remark}
 
+\paco{I am not sure whether we use the matrices}
 As usual in the classical rigidity theory, we can assemble the rigidity vectors into rigidity matrices.
 All of these have rows indexed by the wiggly arcs on \(P\).
 Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
@@ -623,35 +729,46 @@ The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(\Mtrans(P)\) whos
 The~\defn{(total) \(\epsilon\)-rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
 \end{definition}
 
+One interesting difference with classical rigidity is that now \(\Meps(P)\) has rank~\(2n - 3\) even if $P$ does not affinely span $\R^2$.
+
 \begin{proposition}
 \label{prop:kernel}
-Assume that $P$ affinly spans $\R^2$. Then, the \(\epsilon\)-rigidity matrix \(\Meps(P)\) has rank~\(2n - 3\) for any \(\epsilon > 0\).
-Its kernel is precisely the space of infinitesimal rigid motions $se(P)$.
+\paco{partially removed spanning assumption. Not needed}
+As long as $n\ge 2$, the \(\epsilon\)-rigidity matrix $\Meps(P)$ has rank~\(2n - 3\) for any \(\epsilon > 0\).
+Its kernel is the space $\Triv(P)$ of infinitesimal rigid motions and its row-span (kernel of \(\Meps(P)^T\)) is the space of loads in equilibrium $\Equil(P)$.
 \end{proposition}
 
 \begin{proof}
-Lemma~\ref{lemma:kernel} guarantees that the infinitesimal rigid motions all lie in the kernel of \(\Meps(P)\).
-On the other hand, Lemma~\ref{lema:partial_rigidity} implies that for every $\arc=(p,q,L,R)$ we have
+Lemma~\ref{lemma:kernel} implies that the row-span of $\Meps(P)$ is contained in $\Equil(P)$ which has dimension $2n-3$.
+We only need to show the converse containment. 
+
+If $P$ affinely spans $\R^2$ we use that, by Lemma~\ref{lema:partial_rigidity}, the row span of  $\Meps(P)$ contains the row-span of the classical rigidity matrix $\Mmatrix(P)$, which equals $\Equil(P)$.
+
+If $P$ does not affinely span $\R^2$, let its points be $p_1,\dots,p_n$, in order.
+Then, to the row-span of $\Meps(P)$, of dimension $n-1$ and containing only longitudinal vectors, we can add the following $n-2$ vectors:
 \[
-\Reps(p,q,L,R) + \Reps(p,q,R,L) = 2\Reps(p,q, \varnothing, \varnothing) =  2\Rvector(p,q).
+\Reps(p_1,p_k; \{p_2,\dots,p_{k-1}\}, \varnothing), \qquad k=3,\dots, n.
 \]
-Hence, the row-span of $\Meps(P)$ contains the row-span of the usual rigidity matrix $\Mmatrix(P)$, hence the kernel of $\Meps(P)$ is contained in that of $\Mmatrix(P)$.
+These are clearly independent of one another and of the longitudinal vectors in $\Meps(P)$, since the transversal part of the $k$-th one is supported exactly in the points $\{p_2,\dots, p_{k-1}$.
 \end{proof}
 
-Our main reason to allow for partial wiggly segments in the definition of the rigidity vector is the following statement:
-
 \begin{lemma}
-\label{lema:partial_rigidity}
-Let $p,q\in P$ and let $A,B,L,R$ be disjoint subsets of $P \cap {]p,q[}$. Then,
-\[
-\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A) = 2 \Reps(p,q, L,R).
-\]
+\label{lem:equil_cone_epsilon}
+$\Equil^\epsilon_+(P)$ is a full-dimensional pointed cone in $\Equil(P)$. Moreover, let $B^\epsilon(P)$ be the set of row-vectors of  $-\Meps(P)$ corresponding to boundary wiggly arcs. 
+Then,  adding $B^\epsilon(P)$ to $\Equil^\epsilon_+(P)$ positively spans the whole of $\Equil(P)$.
 \end{lemma}
 
 \begin{proof}
-For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$. For the transversal parts just observe that the contributions of the points from $A\cup B$ cancel out when we add $\Reps(p,q,L \cup A,R\cup B) + \Reps(p,q,L \cup B,R\cup A)$.
+When $P$ affinely spans $\R^2$ all this follows trivially from Lemma~\ref{lem:equil_cone}. Indeed, as $\epsilon$ goes to zero $\Equil^\epsilon_+(P)$ goes to the row span of $\Mmatrix(P)$, which equals $\Equil(P)$. Similarly, $B^\epsilon(P)$ converges to $B(P)$ so that the positive span of $\Equil^\epsilon_+(P)\cup B^\epsilon(P)$ `converges' to that of $\Equil_+(P)\cup B(P)$, which is $\Equil(P)$.
+
+So, suppose for the rest of the proof that $P=\{p_1,\dots,p_n\}$ consists of points along a line, in this order. That $\Equil^\epsilon_+(P)$ has dimension $2n-3$ still follows from the fact that its generators linearly generate $\Equil+(P)$. For the fact that $B^\epsilon(P)$ to $\Equil^\epsilon_+(P)$ positively spans the whole of $\Equil(P)$ consider an arbitrary load in equilibrium $(f_1,\dots,f_n)$. By using positive multiples of $R(p_k, p_n, \pm\{p_{k+1},\dots, p_{n-1}\})$, in this order, for $k=1,\dots,n-2$ we can cancel the transversal part of $f_{k}$, so that only those of $p_{n-1}$ and $p_n$ survive. But the fact that the load remains in equilibrium implies that at the end those two transversal parts also vanish.
+
+Hence we can now assume that $(f_1,\dots,f_n)$ only has transversal components. Then, as in the proof of Lemma~\ref{lem:equil_cone}, subtracting positive multiples of $\Rlong(p_1,p_i)$ and $\Rlong(p_i,p_n)$ we can kill the longitudinal parts for all $i=2,\dots,n$. (We can use the $\Rlong$ vectors since, by Lemma~\ref{lema:partial_rigidity}, they are in $\Equil^\epsilon_+(P)$). So, at the end only the longitudinal parts at points $p_1$ and $p_n$ survive and, by the equilibrium condition, the remaining load is a (perhaps not positive) multiple of $\Rlong(p_1,p_n)$. But, again by Lemma~\ref{lema:partial_rigidity}, $\Rlong(p_1,p_n)$ is the average of the two boundary arcs $\Rlong(p_1,p_n, \varnothing,\{p_2,\dots, p_{n-1}\})$ and $\Rlong(p_1,p_n,\{p_2,\dots, p_{n-1}, \varnothing\})$.
 \end{proof}
 
+
+\Paco{Starting here things are shaky. But, also, if we resort to the ``dirty trick'' of enclosing the whole configuration in a big triangle, we may not need these lemmas}
+{\color{blue}
 \begin{lemma}%[Convex hull lemma]
 \label{lem:triangle}
 Let~$S \subseteq P$ and~$q \in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
@@ -701,95 +818,250 @@ Decomposing~$\one_q w = \mu (q-p) + \nu (q-p)^\perp$, we have
 \qedhere
 \]
 \end{proof}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Wigglyhedron}
-\label{sec:wigglyhedron}
+\section{A dependence for each minimal non-face}
+\label{sec:circuit}
+
+\Paco{Theorems~\ref{thm:main} and \ref{thm:regularLiftingVersion} should probably go to the introduction. I am putting them here for now just to explain why we want to contruct the dependences}
+
+Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
+More precisely, we show the following:
 
 
-
-\section{Proof}
-\label{sec:proof}
-
-The first step of the proof is thus to understand the minimal non faces of the wiggly complex~$\reducedWigglyComplex_P$.
-
-\begin{lemma}
-\paco{move this lemma to the section on the wiggly complex}
-\label{lem:minimalNonFaces}
-The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
-\begin{enumerate}[(i)]
-\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs,
-\item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs,
-\item two crossing arcs whose four endpoints are aligned,
-\item two crossing arcs with three endpoints aligned,
-\item two crossing arcs whose endpoints are in convex position.
+\begin{theorem}
+\label{thm:main}
+Let $P$ be a point set with $n_1$ extremal and $n_2$ non-extremal points. Let $n=n_1+n_2$. Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
+\begin{enumerate}
+\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (i.e., it is a triangulation of) $\Equil_+^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative boundary.}
+\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_1$ boundary arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_2+n_1-3}$, where $\Ext(P)$ is the linear span of the $n_1$ external wiggly rigidity vectors.
 \end{enumerate}
-%
+\end{theorem}
+
+In fact, part (1) follows from (2) and the (obvious) fact that the $n_1$ external wiggly arcs are independent. So, we only need to prove (2). For that we use the following result proved in the appendix:
+
+\begin{theorem}
+\label{thm:regularLiftingVersion}
+Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
+let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$h : A \to \R^{>0}$ be a \defn{weight choice} for $A$.
+Then the following are equivalent:
+\begin{itemize}
+  %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$\left\{\tfrac1{f(\arc)} \, \b{R}(\arc) : \arc \in A\right\}$,
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
+  configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$h$, that is,
+  \[
+    F = \set{\arc \in A}{\lambda(\arc) < 0},
+    \qquad
+    \sum_{\arc \in A} \lambda(\arc) \, \b{R}(\arc) = \b{0},
+    \qquad\text{and}\qquad
+    \sum_{\arc \in A} {\lambda(\arc)}{f(\arc)} < 0.
+  \]
+\end{itemize}
+\end{theorem}
+
+So, our goal in this section is to construct a linear dependence as in this statement, for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly rigidity vectors.
+Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNonFaces2}
+
 \begin{figure}[!h]
 \centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
-\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. Note that there might be some additional points of~$P$ in the convex hull of each.}
-\label{fig:minimalNonFaces}
+\centerline{a {\it stick},  \qquad\quad a {\it wye}, \qquad\quad a {\it double-U}, \qquad\quad a {\it trident}, \qquad a {\it cross}}
+\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
+Note that there might be some additional points of~$P$ in the convex hull of each.}
+\label{fig:minimalNonFaces2}
 \end{figure}
-\end{lemma}
 
-\begin{proof}
-Minimal non-faces are minimal sets of arcs which are 
-\begin{itemize}
-\item either non-pointed: this yields (i) and (ii) depending on whether or not the endpoints are all aligned,
-\item or crossing: this yeilds (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
-\qedhere
-\end{itemize}
-\end{proof}
-
-Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
-Namely, $P$ might contain \defn{superfluous} points besides the points of the configurations represented in \cref{fig:minimalNonFaces}. % (which we call \defn{essential} points).
+Although the linear dependence needs to be on the whole wiggly configuration, let us first look at the simplified case where the only points of the configuration are the extremes of the arcs in the non-face.
 
 \begin{proposition}
-For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
+\label{prop:fundamentalDependence}
+Let~$P$ be a configuration consisting only of the three (for the stick) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
+%For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
-there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
+the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part is exactly~$F$.
 \end{proposition}
 
 \begin{proof}
-We first assume that~$P$ has no superfluous points and we proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}:
+%We first assume that~$P$ has no superfluous points and we proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}:
 %In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal components.
-\begin{itemize}
-\item In the first picture, we have
+%\begin{itemize}
+%\item 
+The \emph{wye} and the \emph{cross} both consist of four points in general position. In particular, the wiggly arcs involved have no transversal part and wiggly rigidity coincides with classical rigidity. It is well-known that in classical rigidity any affine dependence
+\[
+\sum_{i\in P} \lambda_i p_i =0, \quad \sum_i \lambda_i =0
+\]
+implies a rigidity dependence, namely
+\[
+\sum_{i,j\in P} \lambda_i \lambda_j \Rlong(p_i,p_j) =0.
+\]
+In this dependence an arc $[p_i, p_j]$ has positive or negative sign depending on whether $\lambda_i$ and $\lambda_j$ have the same or opposite signs. In the wye and the cross, the unique (modulo scaling) affine dependence has coefficients of opposite sign precisely in the arcs that form the minimal non-face.
+
+%\item 
+In the \emph{stick}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
-\[2\lambda\Reps(p, q, \varnothing, \varnothing) + 2\mu\Reps(q, r, \varnothing, \varnothing) = \lambda\mu\Reps(p, r, \{q\}, \varnothing) + \lambda\mu\Reps(p, r, \varnothing, \{q\})\]
-where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + \mu r$ and~$\lambda + \mu = 1$.
+\begin{align*}
+  \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
+=& \lambda(1-\lambda)\Rlong(p, r) ,
+\end{align*}
+that is,
+\begin{align*}
+ \lambda\Reps(p, q, \varnothing, \varnothing) + (1-\lambda)\Reps(q, r, \varnothing, \varnothing) 
+=& \tfrac12[ \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) + \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\})].
+\end{align*}
+%\item In the second picture, we have
+%%\[\frac{\Reps(p, s, \varnothing, \varnothing)}{\|p-s\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{\|q-s\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, q, \varnothing, \varnothing)}{2\|p-q\|} + \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|}\]
+%\begin{multline*}
+%\lambda\Reps(p, s, \varnothing, \varnothing) + \mu\Reps(q, s, \varnothing, \varnothing) + \nu\Reps(r, s, \varnothing, \varnothing) = \\ \lambda\mu\Reps(p, q, \varnothing, \varnothing) + \lambda\nu\Reps(p, r, \varnothing, \varnothing) + \mu\nu\Reps(q, r, \varnothing, \varnothing)
+%\end{multline*}
+%%\[
+%%\Reps(p, s)/(\mu+\nu) + \Reps(q, s)/(\lambda+\nu) + \Reps(r, s)/(\lambda+\mu) = \\ \Reps(p, q)/2 + \Reps(p, r)/2 + \Reps(q, r)/2
+%%\]
+%%\vincent{Should we allow us to write it this way?}
+%where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
 
-\item In the second picture, we have
-%\[\frac{\Reps(p, s, \varnothing, \varnothing)}{\|p-s\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{\|q-s\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, q, \varnothing, \varnothing)}{2\|p-q\|} + \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|}\]
-\begin{multline*}
-\lambda\Reps(p, s, \varnothing, \varnothing) + \mu\Reps(q, s, \varnothing, \varnothing) + \nu\Reps(r, s, \varnothing, \varnothing) = \\ \lambda\mu\Reps(p, q, \varnothing, \varnothing) + \lambda\nu\Reps(p, r, \varnothing, \varnothing) + \mu\nu\Reps(q, r, \varnothing, \varnothing)
-\end{multline*}
-%\[
-%\Reps(p, s)/(\mu+\nu) + \Reps(q, s)/(\lambda+\nu) + \Reps(r, s)/(\lambda+\mu) = \\ \Reps(p, q)/2 + \Reps(p, r)/2 + \Reps(q, r)/2
-%\]
-%\vincent{Should we allow us to write it this way?}
-where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
-
-\item In the third picture, we have
+%\item 
+In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. 
+\paco{This needs to be re-checked, since the $\Rlong$ part has changed sign.}
+Then:
 \begin{align*}
 \frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
 & = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
 & = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
 \end{align*}
-where~$\lambda,\mu \in \R_{>0}$ are such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$.
 Note that one of the two expressions above is non-negative, depending on the sign of~$\lambda-\mu$.
 \vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
 
-\item In the fourth picture, we have
-%\[\frac{\Reps(p, r, \{q\}, \varnothing)}{\|p-r\|} + \frac{\Reps(q, s, \{r\}, \varnothing)}{\|q-s\|} = \frac{\Reps(p, s, \{q,r\}, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|}\]
-\vincent{todo}
-
-\item In the fifth picture, we have
-%\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, s, \varnothing, \varnothing)}{2\|p-s\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{2\|q-s\|}\]
-\vincent{todo}
+%\item 
+\Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$.}
+The last case, the \emph{trident}, is more complicated. Let $s'$ be the orthogonal projection of $s$ to the line $pqr$.
+The following three parameters  describe the configuration $\{p,q,r,s\}$ up to rigid motion and dilation: 
+\begin{itemize}
+\item $\lambda\in [0,1]$, the barycentric position of $q$ along $[p,r]$, so that $q=\lambda p + (1-\lambda) r$.
+\item $\mu\in \R$, the barycentric position of $s'$ with respect to  $p$ and $r$, so that $s'=\mu p + (1-\mu) r$. Observe that $s'$ may not be in $[p,r]$. That is, we cannot assume $\mu\in [0,1]$.
+\item $\nu \in \R_{>0}$, the unique scalar such that $(s-s') = \nu (r-p)^\perp$. We assume $\nu >0$ since we can label the points $p,q,r$ so that $s$ is to the left of the (oriented) line $pqr$.
 \end{itemize}
 
+To construct the appropriate dependence, we first notice that there is unique (modulo a scalar) way to combine the three vectors $\Rlong(\cdot, s)$ that cancels the force at $s$, namely:
+\begin{align*}
+\Rvector_1:= &\lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
+= &\lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
+= &\lambda (s-p) \one_p  - (s-q) \one_q + (1-\lambda) (s-r) \one_r.
+\end{align*}
+Rewriting each $s-x$ as $(s-s')+(s'-x)$ decomposes $\Rvector_1$ into a transversal  part $\Rvector_1^{\operatorname{t}}$ and a longitudinal part  $\Rvector_1^{\operatorname{l}}$ that we evaluate separately:
+\begin{align*}
+\Rvector_1^{\operatorname{l}}= & \lambda (s'-p) \one_p  - (s'-q) \one_q + (1-\lambda) (s'-r) \one_r\\
+= &\lambda (1-\mu) (r-p) \one_p   - (\lambda - \mu) (r-p) \one_q  + (1-\lambda) \mu (p-r) \one_r\\
+= &[\lambda (1-\mu)  \one_p   - (\lambda - \mu) \one_q  - (1-\lambda) \mu \one_r](r-p),\\
+ \Rvector_1^{\operatorname{t}}=&  (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
+= &  \nu[(r-q)^\perp \one_p -  (r-p)^\perp \one_q + (q-p)^\perp \one_r]\\
+= &  -\nu \Rtrans(p,r;q).
+\end{align*}
+In the longitudinal part we have used that
+\begin{align*} 
+(s'-p) \one_q =& [ (\mu p + (1-\mu) r)- p ] \one_p =  (1 - \mu) (r-p) \one_p, \\
+(s'-q) \one_q =& [ (\mu p + (1-\mu) r)- (\lambda p + (1-\lambda) r) ] \one_q =  (\lambda - \mu) (r-p) \one_q, \\
+(s'-r) \one_r =& [ (\mu p + (1-\mu) r)-  r) ] \one_r =  - \mu (r-p) \one_r,
+\end{align*}
+and in the transversal part that
+\[
+s-s' =\nu (r-p)^\perp =\frac\nu{\lambda} (r-q)^\perp = \frac\nu{1-\lambda} (q-p)^\perp.
+\]
+
+In order to cancel the transversal part we subtract $\tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing,\{q\}) =
+\tfrac{\nu}{\epsilon} \Rlong(p,r) -  {\nu} \Rtrans(p,r;q)$ from $\Rvector_1$, to obtain:
+\begin{align*}
+\Rvector_2:= & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing, \{q\}) \\
+=&[\lambda (1-\mu)  \one_p   + (\mu - \lambda) \one_q  - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r).
+\end{align*}
+
+The coefficient of $\one_q$ in this expression is zero if and only if $\lambda=\mu$; that is, if $q=s'$. In case this does not happen we cancel that coefficient with $\Rlong(p,q)$ or $\Rlong(q,r)$, depending on the sign of $\lambda - \mu$. For this observe that
+\begin{align*}
+\Rlong(q,r) &= (r-q)(\one_q-\one_r) =  \lambda (r -p)(\one_q-\one_r),\\
+\Rlong(p,q) &= (q-p)(\one_p-\one_q) = (1-\lambda) (r -p)(\one_p-\one_q).
+\end{align*}
+
+
+Let us assume that $\mu > \lambda$, so that the coefficient of $\one_q$ in $\Rvector_2$ is a \emph{positive} multiple of $(r-p)$. To cancel it we need to add to $\Rvector_2$ a positive multiple of $\Rlong(p,q)$, namely:
+\begin{align*}
+\Rvector_3 := & \Rvector_2 + \tfrac{\mu-\lambda}{1-\lambda} \Rlong(p,q) 
+	 =\Rvector_2 + (\mu-\lambda)(r -p)(\one_p-\one_q)\\
+= &[\lambda (1-\mu)  \one_p   - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) + (\mu-\lambda)(r -p) \one_p \\
+= &(1-\lambda) \mu (\one_p   - \one_r)(r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
+= &(1-\lambda) \mu \Rlong(p,r) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
+= &\left( (1-\lambda) \mu - \tfrac{\nu}{\epsilon} \right)\Rlong(p,r).
+\end{align*}
+Multiplying both sides by $-2\epsilon$:
+\begin{align*}
+- 2\epsilon \Rvector_3 
+= &2(\nu-  (1-\lambda) \mu \epsilon) 2 \Rlong(p,r) \\
+= &( \nu-   (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big). 
+\end{align*}
+
+So, the final linear dependence that we are looking for is 
+\[
+\Rvector_4 := 2\epsilon \Rvector_3  + ( \nu-  (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big) =0.
+\]
+Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used along the construction, to finally obtain those of the dependence.
+
+\begin{table}[htb]
+\begin{center}
+\begin{array}{r|ccccccc}
+&\Rlong(p,s)&\Rlong(q,s)&\Rlong(r,s)&\Rlong(p,q)&\Rlong(q,r)&\Reps(p,r; \varnothing, \{q\})& \Reps(p,r; \{q\}, \varnothing)\\
+\hline
+\Rvector_1 & \lambda & -1 & 1-\lambda & 0 & 0 & 0 & 0 \\
+\Rvector_2 &\lambda & -1 & 1-\lambda & 0 & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
+\Rvector_3 &\lambda & -1 & 1-\lambda &  \tfrac{\mu-\lambda}{1-\lambda} & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
+2\epsilon \Rvector_3 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -2\nu & 0 \\
+0 =  \Rvector_4 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -  \nu-  (1-\lambda) \mu \epsilon &  \nu-  (1-\lambda) \mu \epsilon \\
+ \hline
+ \text{sign} & + & - & + & + & 0 & - & + \\
+\end{array}
+\end{center}
+\caption{The linear dependence $\Rvector_4$ of \cref{prop:fundamentalDependence} for a trident, assuming $\mu > \lambda$.
+The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-\lambda) \mu\epsilon| <\nu$.
+}
+\label{table:trident}
+\end{table}
+
+The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$ can be dealt with adding to $\Rvector_4$ the appropriate multiple of the same dependence used for the stick:
+\begin{align*}
+& 2 \lambda\Rlong(p, q) + 2(1-\lambda)\Rlong(q, r) 
+-   \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) - \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\}) .
+\end{align*}
+When $\mu-\lambda < 0$, adding to $ \Rvector_4$ the appropriate positive multiple of this dependence so as to make the coefficient of $\Rlong(p,q)$ vanish,  the following coefficients change:  
+that of  $\Rlong(q,r)$ becomes $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in those of $\Reps(p,r; \varnothing, \{q\})$ and  $\Reps(p,r; \{q\}, \varnothing)$ the summand containing $\epsilon$  changes to  $-\lambda(1-\mu)\epsilon$ instead of $-(1-\lambda)\mu\epsilon$.
+%\end{itemize}
+\end{proof}
+
+In what follows we use the following notation. A dependence or, more generally, a linear combination of wiggly rigidity vectors in a configuration $P$, will be represented as its vector of coefficients, which we normally denote $D$. That is, $D \in \R^{\{\text{wiggly arcs in $P$}\}}$. By forgetting the $L$ and $R$ in each wiggly arc $(p,q,L,R)$, any such $D$ induces also a vector $D_{\operatorname{l}} \in \R^{\binom{P}{2}}$. The vectors $D$ and $D_{\operatorname{l}}$ induce loads $\Meps(P)^T D$ and $\Mmatrix(P)^T D_{\operatorname{l}}$ in $P$. 
+
+\begin{corollary}
+\label{coro:spanNonFace}
+Let $F$ be a minimal non-face in an arbitrary configuration $P$. Let $P_F$ be the configuration of three or four points consisting of the extremal points in $F$ and let $P' = P \cap \conv(P_F)$. Then, $\Equil_+^\epsilon(P')$ together with $\{-\Reps(\arc): \arc\in F\}$ positively span $\Equil^\epsilon(P')$.
+\end{corollary}
+
+\begin{proof}
+TO DO
+\end{proof}
+
+
+\begin{proposition}
+\label{prop:fgeneralDependence}
+Let~$P$ be arbitrary. 
+For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
+there exists a sufficiently small~$\epsilon >0$ such that 
+there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
+\end{proposition}
+
+\begin{proof}
+TO DO
+\end{proof}
+
+{\color{blue}
+\begin{proof}
+\Paco{Old. Probably to be removed}
 Finally, we reduce the general case by induction to the situation where~$P$ has no superfluous points. %, by induction on the number of superfluous points of~$P$.
 Assume that~$P$ contains a superfluous point~$r$, and let~$\bar P = P \ssm \{r\}$.
 Any wiggly arc~$\arc$ of~$P$ whose endpoints do not contain~$r$ defines a wiggly arc~$\bar\arc$ of~$\bar P$ (just forgetting~$r$ if it appears along~$\arc$).
@@ -811,7 +1083,7 @@ Here, the coefficient~$\nu_{\arc}$ is essentially the coefficient~$\mu_{\bar\arc
 Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
 \vincent{We need to use small $\epsilon$. We can only apply the triangle lemma when we know that the external edges have strictly positive coefficient.}
 \end{proof}
-
+}
 
 
 \vincent{Add a remark that there would be another possible realization of the wigglyhedron using iterative face truncations of pseudotriangulation polytopes, by deformation of the point set from general position. Thanks Spencer!}
@@ -1036,6 +1308,7 @@ Thus, proving that a fan is polytopal is the same as proving that it is a regula
 \David{Dilation version of the theorem}
 \Paco{In fact, the version we use in the rigidity configuration is (I think) the **height** version. What was important form the previous discussion is showing that  "regular subdivision" = "polytopal fan"}
 \begin{theorem}
+\label{thm:regularDilationVersion}
 Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
 let~$\b{R} : V \to \R^d$ be a vector embedding of $A$ and~$f : V \to \R^+$ be a scaling choice for $A$.
 Then the following are equivalent:
