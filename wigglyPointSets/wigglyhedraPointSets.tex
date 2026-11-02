@@ -128,7 +128,7 @@
 \newcommand{\vincent}[1]{\todo[size=\scriptsize, color=blue!30]{\rm #1 \\ \hfill --- V.}}
 \newcommand{\paco}[1]{\todo[size=\scriptsize, color=orange!30]{\rm #1 \\ \hfill --- P.}}
 \newcommand{\Paco}[1]{\todo[size=\tiny,inline,color=orange!30]{#1 \hfill --- PS.}}
-\newcommand{\asilata}[2][]{\todo[size=\scriptsize, color=orange!30,#1]{\rm #2 \\ \hfill --- A.}}
+\newcommand{\asilata}[2][]{\todo[size=\scriptsize, color=green!30,#1]{\rm #2 \\ \hfill --- AB.}}
 \newcommand{\david}[1]{\todo[size=\scriptsize, color=violet!30]{\rm #1 \\ \hfill --- D.}}
 \newcommand{\David}[1]{\todo[size=\tiny,inline,color=violet!30]{#1 \hfill --- D.}}
 
@@ -393,11 +393,11 @@ It is sometimes convenient to characterize a simplicial complex by the minimal s
 \label{lem:minimalNonFaces}
 The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
 \begin{enumerate}[(i)]
-\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs,
-\item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs,
-\item two crossing arcs whose four endpoints are aligned,
-\item two crossing arcs with three endpoints aligned,
-\item two crossing arcs whose endpoints are in convex position.
+\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs (stick),
+\item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs (wye),
+\item two crossing arcs whose four endpoints are aligned (double-U),
+\item two crossing arcs with three endpoints aligned (trident),
+\item two crossing arcs whose endpoints are in convex position (cross).
 \end{enumerate}
 %
 \end{lemma}
@@ -413,7 +413,7 @@ Note that there might be some additional points of~$P$ in the convex hull of eac
 Minimal non-faces are minimal sets of arcs which are 
 \begin{itemize}
 \item either non-pointed: this yields (i) and (ii) depending on whether or not the endpoints are all aligned,
-\item or crossing: this yeilds (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
+\item or crossing: this yields (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
 \qedhere
 \end{itemize}
 \end{proof}
@@ -421,6 +421,7 @@ Minimal non-faces are minimal sets of arcs which are
 Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
 Namely, each of the arcs in the figures may have additional points along it. E.g., if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly arcs with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
 \paco{Not sure I like the name superfluous. They are not superfluous at all...}
+\asilata{How about~\defn{waypoints}?}
 
 The goal of this paper is to prove the following statement, already proved for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{RoteSantosStreinu-polytope}.
 
@@ -556,7 +557,9 @@ If $P$ affinely spans $\R^2$ then $\Mmatrix(P)$ has rank $2n-3$ and its three-di
 where $(x,y)^\perp:=(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{\circ}\) in the positive direction.
 %
 \footnote{The kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.}
-We denote this space $\Triv(P)$. Observe that if $|P|>2$ but it does not affinely span $\R^2$ then $\Triv(P)$ is not the whole kernel of $\Mmatrix(P)$. In this case $\Mmatrix(P)$ has rank $n-1$ and its $(n+1)$-dimensional kernel is the (not direct) sum of $\Triv(P)$ with the $n$-dimensional space of motions perpendicular to the line spanned by $P$.
+We denote the space of infinitesimal rigid motions by $\Triv(P)$.
+\asilata{I got confused at first by the notation Tr for \(\Triv(P)\), because I thought it meant translations. Should we change the macro to Triv(P) instead?}
+Observe that if $|P|>2$ but it does not affinely span $\R^2$ then $\Triv(P)$ is not the whole kernel of $\Mmatrix(P)$. In this case $\Mmatrix(P)$ has rank $n-1$ and its $(n+1)$-dimensional kernel is the (not direct) sum of $\Triv(P)$ with the $n$-dimensional space of motions perpendicular to the line spanned by $P$.
 
 The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension (if negative) or compression (if positive) stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_j-p_i)$ is the resulting force at point $p_i$. 
 In rigidity theory, such an assignment $(f_1,\dots,f_n)$ of forces at the points $p_1,\dots, p_n$ is  called a \defn{load}.
@@ -849,7 +852,7 @@ let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$h : A \to \R^{>0}$ be
 Then the following are equivalent:
 \begin{itemize}
   %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$\left\{\tfrac1{f(\arc)} \, \b{R}(\arc) : \arc \in A\right\}$,
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$\left\{\tfrac1{h(\arc)} \, \b{R}(\arc) : \arc \in A\right\}$,
   \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
   configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$h$, that is,
   \[
@@ -857,8 +860,9 @@ Then the following are equivalent:
     \qquad
     \sum_{\arc \in A} \lambda(\arc) \, \b{R}(\arc) = \b{0},
     \qquad\text{and}\qquad
-    \sum_{\arc \in A} {\lambda(\arc)}{f(\arc)} < 0.
+    \sum_{\arc \in A} {\lambda(\arc)}{h(\arc)} < 0.
   \]
+  \asilata{Fixed typos: changed \(f\) to \(h\) in the above two bullet points.}
 \end{itemize}
 \end{theorem}
 
@@ -932,6 +936,27 @@ Then:
 \end{align*}
 Note that one of the two expressions above is non-negative, depending on the sign of~$\lambda-\mu$.
 \vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
+\asilata{I redid the proof above in a slightly different way to convince myself of the signs etc. I am thus making another attempt at writing it. This is mostly for a sanity check and can probably be removed later on.}
+
+{\color{green!80!black}{In the \emph{double-U}, let \(x = |q-p|,\; y = |r - q|\;, z = |s -r|\) be the distances between succesive pairs of points.
+The following coefficients give the desired linear dependence, depending on the sign of \(z-x\).
+Note that in each column, all but the first two entries are non-negative.
+\[
+  \begin{array}{rcc}
+    \text{Vector}& z - x \geq 0 & z - x \leq 0\\
+    \hline
+    
+    \Reps(p,r,\varnothing,\{q\})& -(y + 2z) & -(y+2z)\\
+    \Reps(q,s,\varnothing,\{r\})& -(y + 2x) & -(y+2x)\\
+    \Reps(p,s,\varnothing,\{q,r\})& y & y\\
+    \Reps(p,q,\varnothing,\varnothing)&(y/x)(z-x) & 0\\
+    \Reps(q,r,\varnothing,\varnothing)& (y+x)(y + 2z) & (y+z)(y + 2x)\\
+    \Reps(r,s,\varnothing,\varnothing)& 0 & (y/z)(x-z)\\
+    \Reps(p,s,\{q\},\{r\})& x(y+2z)/2(x+y+z) & z(y+2x)/2(x+y+z)\\
+    \Reps(p,s,\{r\},\{q\})& x(y+2z)/2(x+y+z) & z(y+2x)/2(x+y+z)\\
+  \end{array}
+\]
+}}
 
 %\item 
 \Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$.}
@@ -1007,7 +1032,7 @@ Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used alo
 
 \begin{table}[htb]
 \begin{center}
-\begin{array}{r|ccccccc}
+\[\begin{array}{r|ccccccc}
 &\Rlong(p,s)&\Rlong(q,s)&\Rlong(r,s)&\Rlong(p,q)&\Rlong(q,r)&\Reps(p,r; \varnothing, \{q\})& \Reps(p,r; \{q\}, \varnothing)\\
 \hline
 \Rvector_1 & \lambda & -1 & 1-\lambda & 0 & 0 & 0 & 0 \\
@@ -1017,7 +1042,7 @@ Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used alo
 0 =  \Rvector_4 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -  \nu-  (1-\lambda) \mu \epsilon &  \nu-  (1-\lambda) \mu \epsilon \\
  \hline
  \text{sign} & + & - & + & + & 0 & - & + \\
-\end{array}
+\end{array}\]
 \end{center}
 \caption{The linear dependence $\Rvector_4$ of \cref{prop:fundamentalDependence} for a trident, assuming $\mu > \lambda$.
 The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-\lambda) \mu\epsilon| <\nu$.
