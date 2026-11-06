@@ -922,6 +922,7 @@ that is,
 %where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
 
 %\item 
+{\color{blue}
 In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. 
 \paco{This needs to be re-checked, since the $\Rlong$ part has changed sign.}
 Then:
@@ -932,6 +933,25 @@ Then:
 \end{align*}
 Note that one of the two expressions above is non-negative, depending on the sign of~$\lambda-\mu$.
 \vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
+}
+
+In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
+Hence we have
+\[
+q-p = (1-\lambda)(s-p) \quad
+r-q = (\lambda+\mu-1)(s-p) \quad
+s-r = (1-\mu)(s-p) \quad
+r-p = \mu(s-p) \quad
+s-q = \lambda(s-p)
+\]
+so that we obtain
+\begin{align*}
+\Reps(p, r, \varnothing, \{q\}) & = \mu (\one_p - \one_r ) \cdot (s-p) + \epsilon \bigl( (\lambda+\mu-1) \one_p + (1-\lambda) \one_r - \mu \one_q \bigr) \cdot (s-p)^\perp \\
+\end{align*}
+Then:
+\[
+\frac{1}{\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{1}{\lambda} \Reps(q, s, \{r\}, \varnothing) = \Reps(p, s, \{q,r\}, \varnothing) + \frac{1}{\lambda + \mu - 1} \Reps(q, r, \varnothing, \varnothing).
+\]
 
 %\item 
 \Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$.}
@@ -1007,6 +1027,7 @@ Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used alo
 
 \begin{table}[htb]
 \begin{center}
+$
 \begin{array}{r|ccccccc}
 &\Rlong(p,s)&\Rlong(q,s)&\Rlong(r,s)&\Rlong(p,q)&\Rlong(q,r)&\Reps(p,r; \varnothing, \{q\})& \Reps(p,r; \{q\}, \varnothing)\\
 \hline
@@ -1018,6 +1039,7 @@ Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used alo
  \hline
  \text{sign} & + & - & + & + & 0 & - & + \\
 \end{array}
+$
 \end{center}
 \caption{The linear dependence $\Rvector_4$ of \cref{prop:fundamentalDependence} for a trident, assuming $\mu > \lambda$.
 The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-\lambda) \mu\epsilon| <\nu$.
