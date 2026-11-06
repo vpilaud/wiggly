@@ -981,8 +981,9 @@ Note that in each column, all but the first two entries are non-negative.
 \]
 }}
 
+\vincent{Below is a new version which makes more sense...}
 In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
-Hence we have
+Hence
 \[
 q-p = (1-\lambda)(s-p) \quad
 r-q = (\lambda+\mu-1)(s-p) \quad
@@ -990,14 +991,31 @@ s-r = (1-\mu)(s-p) \quad
 r-p = \mu(s-p) \quad
 s-q = \lambda(s-p)
 \]
-so that we obtain
+We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
 \begin{align*}
-\Reps(p, r, \varnothing, \{q\}) & = \mu (\one_p - \one_r ) \cdot (s-p) + \epsilon \bigl( (\lambda+\mu-1) \one_p + (1-\lambda) \one_r - \mu \one_q \bigr) \cdot (s-p)^\perp \\
+\Rtrans(p, r, \varnothing, \{q\}) & = \bigl( (\lambda+\mu-1) \one_p - \mu \one_q + (1-\lambda) \one_r \bigr) \cdot (s-p)^\perp, \\
+\Rtrans(q, s, \varnothing, \{r\}) & = \bigl( (1-\mu) \one_q - \lambda \one_r + (\lambda+\mu-1) \one_s \bigr) \cdot (s-p)^\perp, \\
+\text{and} \quad \Rtrans(p, s, \varnothing, \{q,r\}) & = \bigl( (1+\lambda-\mu) \one_p + \one_r + \one_q + (1-\lambda+\mu) \one_s  \bigr) \cdot (s-p)^\perp,
 \end{align*}
-%Then:
-%\[
-%\frac{1}{\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{1}{\lambda} \Reps(q, s, \{r\}, \varnothing) = \Reps(p, s, \{q,r\}, \varnothing) + \frac{1}{\lambda + \mu - 1} \Reps(q, r, \varnothing, \varnothing).
-%\]
+namely
+\[
+(1+\lambda-\mu) \Rtrans(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Rtrans(q, s, \varnothing, \{r\}) + (1-\lambda-\mu) \Rtrans(p, s, \varnothing, \{q,r\}) = 0.
+\]
+We then observe that
+\begin{multline*}
+(1+\lambda-\mu) \R(p, r) + (1-\lambda+\mu) \R(q, s) + (1-\lambda-\mu) \R(p, s) = \\
+= \bigl( (1-\mu)(1-\lambda+\mu) \one_p + \lambda (1-\lambda+\mu) \one_q - \mu (1+\lambda-\mu) \one_r - (1-\lambda)(1+\lambda-\mu) \one_s \bigr) \cdot (s-p).
+\end{multline*}
+If~$\lambda(1-\lambda) \le \mu(1-\mu)$, then we obtain
+\begin{multline*}
+(1+\lambda-\mu) \R(p, r) + (1-\lambda+\mu) \R(q, s) + (1-\lambda-\mu) \R(p, s) = \\
+= (1+\lambda-\mu)(1-\lambda)\R(p, s) + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{\mu}\R(p, r) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \R(q, r),
+\end{multline*}
+from which we conclude that
+\begin{multline*}
+\frac{\mu(1-\mu)-\lambda(1-\lambda)+2\lambda\mu}{2\mu} \Reps(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Reps(q, s, \varnothing, \{r\}) = \\ \lambda(1-\lambda+\mu) \Reps(p, s, \varnothing, \{q,r\}) + (1-\lambda)(1+\lambda-\mu) \Reps(p, s, \{q,r\}, \varnothing) \\ + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Reps(q, r, \varnothing, \varnothing).
+\end{multline*}
+If~$\lambda(1-\lambda) \ge \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
 
 %\item 
 \Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$.}
