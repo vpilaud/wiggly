@@ -163,8 +163,8 @@
 \newcommand{\Mlong}{\Mmatrix_{\operatorname{l}}} % longitudinal rigidity vector
 \newcommand{\Mtrans}{\Mmatrix_{\operatorname{t}}} % transversol rigidity vector
 \newcommand{\Meps}{\Mmatrix^\epsilon} % total rigidity vector
-\newcommand{\Equil}{\operatorname{Eq} } % equilibrium loads
-\newcommand{\Triv}{\operatorname{Tr} } % trivial motions
+\newcommand{\Equil}{\operatorname{Equil} } % equilibrium loads
+\newcommand{\Triv}{\operatorname{Triv} } % trivial motions
 
 
 
@@ -549,7 +549,7 @@ The matrix $\Mmatrix(P)$, considered as a linear map $(\R^2)^n\to \R^{\binom{n}{
 
 
 The kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points. 
-\Paco{If $P$ is contained in a line we must distinguish between ``kernel of $\Mmatrix(P)$'' and ``rigid motions''. The latter has dimension three, but the former is the (not direct) sum of it with the $n$-dimensional space of transversal motions, and has dimension $n+1$.}
+\Paco{If $P$ is contained in a line we may distinguish between ``kernel of $\Mmatrix(P)$'' and ``rigid motions''. The latter has dimension three, but the former is the (not direct) sum of it with the $n$-dimensional space of transversal motions, and has dimension $n+1$.}
 If $P$ affinely spans $\R^2$ then $\Mmatrix(P)$ has rank $2n-3$ and its three-dimensional kernel consists of the~\defn{infinitesimal rigid motions}, that is, those moving the whole point set as if it was a rigid block. They are generatad by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion
 \[
 (p^\perp)_{p\in P} = (p_1^\perp, \dots, p_n^\perp),
@@ -564,17 +564,17 @@ Observe that if $|P|>2$ but it does not affinely span $\R^2$ then $\Triv(P)$ is 
 The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension (if negative) or compression (if positive) stresses applied to the individual rods. Then the vector $\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_j-p_i)$ is the resulting force at point $p_i$. 
 In rigidity theory, such an assignment $(f_1,\dots,f_n)$ of forces at the points $p_1,\dots, p_n$ is  called a \defn{load}.
 \paco{citar Whiteley o Graver-Sevatius-Servatius?}
-The orthogonal complement of $\Triv(P)$ contains the image of $\Mmatrix(P)^T w$ and consists of the loads satisfying the following three equations:
+The kernel of $\Mmatrix(P)^T$, that is, the linear space of dependences among rows of $\Mmatrix(P)$, consists of the stresses that applied to the rods  produce no net force on any $p_i$. 
+These are called \defn{equilibrium stresses}. 
+
+The orthogonal complement of $\Triv(P)$ consists of the loads satisfying the following three equations:
 \[
 \sum_{i=1}^n f_i =0, \qquad \sum_{i=1}^n p_i \times f_i =0.
 \]
 The physical interpretation is that these loads have 
 zero resultant and zero moment: if the points are part of a rigid body, those forces applied to those points produce no motion.
 When this happens we say that the load $(f_1,\dots,f_n)$ is \defn{balanced} or \defn{in equilibrium}. We denote the space of them by $\Equil(P)$. 
-Again, if $|P|=2$ or if it affinely spans $\R^2$ then $\Equil(P)$ equals the image of $\Mmatrix(P)^T$, but if $|P|>2$ and $P$ is contained in a line then the image of $\Mmatrix(P)^T$ has rank $n-1$ and consists only of the \defn{longitudinal} loads in equilibrium; that is, loads $(f_1,\dots,f_n)$ that are in equilibrium and have every $f_i$ parallel to the affine span of $P$.
-
-The kernel of $\Mmatrix(P)^T$ consists of the stresses that can be applied to the rods and produce no net force on any $p_i$. These are called \defn{equilibrium stresses}.
-
+Again, if $|P|=2$ or if it affinely spans $\R^2$ then $\Equil(P)$ equals the image of $\Mmatrix(P)^T$, but if $|P|>2$ and $P$ is contained in a line then the image of $\Mmatrix(P)^T$ is properly contained in $\Equil(P)$. It has rank $n-1$ and consists only of the \defn{longitudinal} loads in equilibrium; that is, loads $(f_1,\dots,f_n)$ that are in equilibrium and have every $f_i$ parallel to the affine span of $P$. We denote that space by $\Equil_{\operatorname{l}}(P)$.
 
 \vincent{Improve the following}
 
@@ -598,30 +598,37 @@ If $P$ is a circuit, we get a rigidity dependence with products of determinants.
 In particular, we get the linear dependences of the wye and the cross configurations.
 \end{corollary}
 
-Also interesting for us is the positive part of $\Equil(P)$, that is, the loads that can be obtained as non-negative combinations of  rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote them $\Equil_+(P)$.
+Also interesting for us is the positive part of $\Equil_{\operatorname{l}}(P)$, that is, the loads that can be obtained as non-negative combinations of  rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote them $\Equil_+(P)$.
+
 
 \begin{lemma}
 \label{lem:equil_cone}
-If $P$ affinely spans $\R^2$ then
-$\Equil_+(P)$ is a full-dimensional pointed cone in $\Equil(P)$. Moreover, let $B(P)$ denote the set of row-vectors of  $-\Mmatrix(P)$ corresponding to boundary edges of $P$ (so that $|B(P)| = n_1)$. Then, adding $B(P)$ to $\Equil_+(P)$ positively spans the whole of $\Equil(P)$.
+%If $P$ affinely spans $\R^2$ then
+$\Equil_+(P)$ is a full-dimensional pointed cone in $\Equil_{\operatorname{l}}(P)$. Moreover, let $B(P)$ denote the set of row-vectors of  $-\Mmatrix(P)$ corresponding to boundary edges of $P$ (so that $|B(P)| = n_1$ if $P$ spans $\R^2$ and $|B(P)| = 1$ if not). Then, adding $B(P)$ to $\Equil_+(P)$ positively spans the whole of $\Equil(P)$.
 \end{lemma}
 
 \begin{proof}
+
 \vincent{Most of this proof will disappear by applying the previous lemma.}
-That $\Equil_+(P)$ is full-dimensional in $\Equil(P)$ is obvious, since it is the cone generated by a (linear) generating set of $\Equil(P)$. That it is pointed follows from the fact that every generator of $\Equil_+(P)$ (that is, every row of $\Mmatrix(P)$) has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
+That $\Equil_+(P)$ is full-dimensional in $\Equil_{\operatorname{l}}(P)$ is obvious, since it is the cone generated by a (linear) generating set of $\Equil_{\operatorname{l}}(P)$. That it is pointed follows from the fact that every generator of $\Equil_+(P)$ (that is, every row of $\Mmatrix(P)$) has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
 \[
 \langle \Rvector(p_i,p_j), (p_1,\dots, p_n)\rangle =
 (p_j-p_i) p_i + (p_i-p_j) p_j = - (p_i-p_j)^2.
 \]
 
-For the last part we need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rows of $\Equil_+(P)$ plus a positive combination of those in $B(P)$. So, let $(f_1,\dots,f_n)$ be a load in equilibrium. For each non-extremal point $p_i$ of $P$, consider a set of (at most three, perhaps two) extremal points $p,q,r$ such that $p_i \in \conv(p,q,r)$. writing $f_i$ as a positive combination of the vectors $f_i-p$, $f_i-q$ and $f_i-r$ allows us to subtract a positive combination of $\Rvector(p,p_i)$, $\Rvector(q,p_i)$, and $\Rvector(r,p_i)$ to cancel $f_i$. Thus, we can assume $f_i=0$ for every non-extremal vertices or, equivalently, we can assume $P$ to be in convex position.
-In this case the result follows from the main result of \cite{RoteSantosStreinu-polytope}.
-\Paco{Explanation: \cite{RoteSantosStreinu-polytope} show that the cones corresponding to triangulations of the $n$-gon actually triangulate the cone $\Equil_+(P)$. The fact that the link of $-B(P)$ is spherical (the associahedron) implies that $-B(P)$ meets the interior of $\Equil_+(P)$, which in turn implies that $\Equil_+(P) \cup B(P)$ positively spans $\Equil(P)$.\\
-I am not writing the details since I would hope there could be a more direct prove of this Lemma}
-\end{proof}
+For the last part we need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rows of $\Equil_+(P)$ plus a positive combination of those in $B(P)$. So, let $(f_1,\dots,f_n)$ be a load in equilibrium. For each non-extremal point $p_i$ of $P$, consider a set of (at most three, perhaps two) extremal points $p,q,r$ such that $p_i \in \conv(p,q,r)$. writing $f_i$ as a positive combination of the vectors $f_i-p$, $f_i-q$ and $f_i-r$ allows us to subtract a positive combination of $\Rvector(p,p_i)$, $\Rvector(q,p_i)$, and $\Rvector(r,_i)$ to cancel $f_i$. Thus, we can assume $f_i=0$ for every non-extremal vertices or, equivalently, we can assume $P$ to be in convex position. In particular, if $P$ is contained in a line there is nothing left to prove.
+
+If $P$ is in convex position and affinely spans $\R^2$, denote its points as $p_1,\dots,p_{n}$ in cyclic order. Let us prove, by induction on $n$, that for every $i,j\in [n]$ the corresponding negated rigidity vector $-\Rvector(i,j)$ can be written as a linear combination of other rigidity vectors in such a way that all coefficients, except perhaps those of boundary edges, are nonnegative. By inductive hypothesis we know that when $i,n\in [n-1]$ then we can write $-\Rvector(i,j)$ in that way, except we may need to use a negative coefficient in $\Rvector(n-1,2)$. That is to say, we only need to prove the claim for edges of the form $\{i,n\}$ and for the edge $\{n-1,2\}$.
+
+For this, we consider the graph $G$ in the picture, consisting of precisely thoes edges plus the boundary edges. $G$ has $2n-2$ edges, hence its corresponding rows must have at least one linear dependence, whose coefficients we denote $(\lambda_{i,j})_{ \{i,j\} \in G\}}$. Now, for every $i$ other than $n$ there are exactly three edges in $G$ incident to $i$, namely  $\{i, i-1\}$, $\{i,i+1\}$ and a third edge $\{i,j\}$ for some $j$. The fact that 
+$p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies that $\lambda_{i,i\pm1}$ have the same sign, opposite to that of $\lambda_{i,j}$. A fortiori this implies that al the boundary $\lambda_{i,j}$ have the same sign (say negative) and all the interior ones have the opposite sign (say positive). Equivalently,  the $\Rvector(i,j)$ of every interior edge is a linear combination of the rest with negative coefficient only in the boundary edges, as we wanted to show.
+\Paco{Old explanation: \cite{RoteSantosStreinu-polytope} show/imply among other things that the quotient/contraction rows(M) / boundaryrows(M) is totally cyclic. That is, the cone spanned by the boundary rows meets the (relative) interior of the cone spanned by all rows. This, in turn, implies that the cone spanned by all the rows plus the negative of the boundary rows is a linear space.
+\\
+I am not writing the details since I hope for a more direct prove of this Lemma}
 
 If we now consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the \defn{self-stresses} or  equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
 \footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
+\end{proof}
 
 \section{Wiggly rigidity}
 \label{sec:w_rigidity}
