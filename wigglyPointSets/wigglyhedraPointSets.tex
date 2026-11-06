@@ -393,7 +393,7 @@ It is sometimes convenient to characterize a simplicial complex by the minimal s
 \label{lem:minimalNonFaces}
 The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
 \begin{enumerate}[(i)]
-\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs (stick),
+\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs (double-I),
 \item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs (wye),
 \item two crossing arcs whose four endpoints are aligned (double-U),
 \item two crossing arcs with three endpoints aligned (trident),
@@ -933,7 +933,7 @@ Although the linear dependence needs to be on the whole wiggly configuration, le
 
 \begin{proposition}
 \label{prop:fundamentalDependence}
-Let~$P$ be a configuration consisting only of the three (for the stick) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
+Let~$P$ be a configuration consisting only of the three (for the double-I) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
 %For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
 the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part is exactly~$F$.
@@ -955,7 +955,7 @@ implies a rigidity dependence, namely
 In this dependence an arc $[p_i, p_j]$ has positive or negative sign depending on whether $\lambda_i$ and $\lambda_j$ have the same or opposite signs. In the wye and the cross, the unique (modulo scaling) affine dependence has coefficients of opposite sign precisely in the arcs that form the minimal non-face.
 
 %\item 
-In the \emph{stick}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
+In the \emph{double-I}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
 \begin{align*}
   \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
@@ -1142,7 +1142,7 @@ The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-
 \label{table:trident}
 \end{table}
 
-The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$ can be dealt with adding to $\Rvector_4$ the appropriate multiple of the same dependence used for the stick:
+The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$ can be dealt with adding to $\Rvector_4$ the appropriate multiple of the same dependence used for the double-I:
 \begin{align*}
 & 2 \lambda\Rlong(p, q) + 2(1-\lambda)\Rlong(q, r) 
 -   \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) - \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\}) .
