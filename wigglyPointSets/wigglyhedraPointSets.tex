@@ -394,7 +394,7 @@ It is sometimes convenient to characterize a simplicial complex by the minimal s
 \label{lem:minimalNonFaces}
 The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
 \begin{enumerate}[(i)]
-\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs (stick),
+\item two arcs sharing an endpoint which lies in the interior of the segment defined by the other endpoints of the arcs (double-I),
 \item three arcs sharing an endpoint which lies in the interior of the convex hull of the other endpoints of the arcs (wye),
 \item two crossing arcs whose four endpoints are aligned (double-U),
 \item two crossing arcs with three endpoints aligned (trident),
@@ -403,8 +403,20 @@ The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of 
 %
 \end{lemma}
 \begin{figure}[!h]
-\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
-\centerline{a \defn{stick},  \qquad\quad a \defn{wye}, \qquad\quad a \defn{double-U}, \qquad\quad a \defn{trident}, \qquad a \defn{cross}}
+	\centerline{
+		\begin{tabular}{c@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad}c}
+			\includegraphics[scale=1]{doubleI} &
+			\includegraphics[scale=1]{wye} &
+			\raisebox{.5cm}{\includegraphics[scale=1]{doubleU}} &
+			\includegraphics[scale=1]{phi} &
+			\includegraphics[scale=1]{cross} \\
+			\defn{double-I} &
+			\defn{wye} &
+			\defn{double-U} &
+			\defn{trident} &
+			\defn{cross}			
+		\end{tabular}
+	}
 \caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
 Note that there might be some additional points of~$P$ in the convex hull of each.}
 \label{fig:minimalNonFaces}
@@ -573,7 +585,7 @@ Let $(\lambda_1,\dots,\lambda_n)$ be an affine dependence on $P$. That is,
 \]
 Then $(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress. That is:
 \[
-\sum_{i,j\in P} \lambda_i \lambda_j \Rlong(p_i,p_j) =0.
+\sum_{i,j\in P} \lambda_i \lambda_j \Rvector(p_i,p_j) =0.
 \]
 \end{lemma}
 
@@ -923,8 +935,20 @@ So, our goal in this section is to construct a linear dependence as in this stat
 Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNonFaces2}
 
 \begin{figure}[!h]
-\centerline{\includegraphics[scale=1]{minimalNonFacesLabeled}}
-\centerline{a {\it stick},  \qquad\quad a {\it wye}, \qquad\quad a {\it double-U}, \qquad\quad a {\it trident}, \qquad a {\it cross}}
+	\centerline{
+		\begin{tabular}{c@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad}c}
+			\includegraphics[scale=1]{doubleI} &
+			\includegraphics[scale=1]{wye} &
+			\raisebox{.5cm}{\includegraphics[scale=1]{doubleU}} &
+			\includegraphics[scale=1]{phi} &
+			\includegraphics[scale=1]{cross} \\
+			\defn{double-I} &
+			\defn{wye} &
+			\defn{double-U} &
+			\defn{trident} &
+			\defn{cross}			
+		\end{tabular}
+	}
 \caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
 Note that there might be some additional points of~$P$ in the convex hull of each.}
 \label{fig:minimalNonFaces2}
@@ -934,7 +958,7 @@ Although the linear dependence needs to be on the whole wiggly configuration, le
 
 \begin{proposition}
 \label{prop:fundamentalDependence}
-Let~$P$ be a configuration consisting only of the three (for the stick) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
+Let~$P$ be a configuration consisting only of the three (for the double-I) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
 %For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
 the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part is exactly~$F$.
@@ -956,7 +980,7 @@ implies a rigidity dependence, namely
 In this dependence an arc $[p_i, p_j]$ has positive or negative sign depending on whether $\lambda_i$ and $\lambda_j$ have the same or opposite signs. In the wye and the cross, the unique (modulo scaling) affine dependence has coefficients of opposite sign precisely in the arcs that form the minimal non-face.
 
 %\item 
-In the \emph{stick}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
+In the \emph{double-I}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
 \begin{align*}
   \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
@@ -1013,8 +1037,9 @@ Note that in each column, all but the first two entries are non-negative.
 \]
 }}
 
+\vincent{Below is a new version which makes more sense...}
 In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
-Hence we have
+Hence
 \[
 q-p = (1-\lambda)(s-p) \quad
 r-q = (\lambda+\mu-1)(s-p) \quad
@@ -1022,14 +1047,31 @@ s-r = (1-\mu)(s-p) \quad
 r-p = \mu(s-p) \quad
 s-q = \lambda(s-p)
 \]
-so that we obtain
+We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
 \begin{align*}
-\Reps(p, r, \varnothing, \{q\}) & = \mu (\one_p - \one_r ) \cdot (s-p) + \epsilon \bigl( (\lambda+\mu-1) \one_p + (1-\lambda) \one_r - \mu \one_q \bigr) \cdot (s-p)^\perp \\
+\Rtrans(p, r, \varnothing, \{q\}) & = \bigl( (\lambda+\mu-1) \one_p - \mu \one_q + (1-\lambda) \one_r \bigr) \cdot (s-p)^\perp, \\
+\Rtrans(q, s, \varnothing, \{r\}) & = \bigl( (1-\mu) \one_q - \lambda \one_r + (\lambda+\mu-1) \one_s \bigr) \cdot (s-p)^\perp, \\
+\text{and} \quad \Rtrans(p, s, \varnothing, \{q,r\}) & = \bigl( (1+\lambda-\mu) \one_p + \one_r + \one_q + (1-\lambda+\mu) \one_s  \bigr) \cdot (s-p)^\perp,
 \end{align*}
-%Then:
-%\[
-%\frac{1}{\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{1}{\lambda} \Reps(q, s, \{r\}, \varnothing) = \Reps(p, s, \{q,r\}, \varnothing) + \frac{1}{\lambda + \mu - 1} \Reps(q, r, \varnothing, \varnothing).
-%\]
+namely
+\[
+(1+\lambda-\mu) \Rtrans(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Rtrans(q, s, \varnothing, \{r\}) + (1-\lambda-\mu) \Rtrans(p, s, \varnothing, \{q,r\}) = 0.
+\]
+We then observe that
+\begin{multline*}
+(1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
+= \bigl( (1-\mu)(1-\lambda+\mu) \one_p + \lambda (1-\lambda+\mu) \one_q - \mu (1+\lambda-\mu) \one_r - (1-\lambda)(1+\lambda-\mu) \one_s \bigr) \cdot (s-p).
+\end{multline*}
+If~$\lambda(1-\lambda) \le \mu(1-\mu)$, then we obtain
+\begin{multline*}
+(1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
+= (1+\lambda-\mu)(1-\lambda)\Rvector(p, s) + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{\mu}\Rvector(p, r) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Rvector(q, r),
+\end{multline*}
+from which we conclude that
+\begin{multline*}
+\frac{\mu(1-\mu)-\lambda(1-\lambda)+2\lambda\mu}{2\mu} \Reps(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Reps(q, s, \varnothing, \{r\}) = \\ \lambda(1-\lambda+\mu) \Reps(p, s, \varnothing, \{q,r\}) + (1-\lambda)(1+\lambda-\mu) \Reps(p, s, \{q,r\}, \varnothing) \\ + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Reps(q, r, \varnothing, \varnothing).
+\end{multline*}
+If~$\lambda(1-\lambda) \ge \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
 
 %\item 
 \Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$.}
@@ -1125,7 +1167,7 @@ The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-
 \label{table:trident}
 \end{table}
 
-The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$ can be dealt with adding to $\Rvector_4$ the appropriate multiple of the same dependence used for the stick:
+The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$ can be dealt with adding to $\Rvector_4$ the appropriate multiple of the same dependence used for the double-I:
 \begin{align*}
 & 2 \lambda\Rlong(p, q) + 2(1-\lambda)\Rlong(q, r) 
 -   \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) - \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\}) .
