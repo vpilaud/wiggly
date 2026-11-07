@@ -166,6 +166,7 @@
 \newcommand{\Meps}{\Mmatrix^\epsilon} % total rigidity vector
 \newcommand{\Equil}{\operatorname{Equil} } % equilibrium loads
 \newcommand{\Triv}{\operatorname{Triv} } % trivial motions
+\newcommand{\Comp}{\operatorname{Comp} } % compression loasd
 
 % formating the table of contents
 \setcounter{tocdepth}{4}
@@ -618,51 +619,51 @@ zero resultant and zero moment: if the points are part of a rigid body, those fo
 When this happens we say that the load $(f_1,\dots,f_n)$ is \defn{balanced} or \defn{in equilibrium}. We denote the space of them by $\Equil(P)$. 
 Again, if $P$ affinely spans $\R^2$ then $\Equil(P)$ \emph{equals} $\Ima(\Mmatrix(P)^T)$, while if $P$ is contained in a line then $\Ima(\Mmatrix(P)^T)$ is the intersection of $\Equil(P)$ with the $n$-dimensional space of \defn{longitudinal loads}, that is, loads in the direction of that line. Equilibrium in this case poses only one additional constraint, so the image of $\Mmatrix(P)^T$ is indeed $(n-1)$-dimensional.
 
-Also interesting for us is the positive part of $\Ima(\Mmatrix(P)^T)$, that is, the loads that can be obtained as non-negative combinations of rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote the set of them by $\Ima_+(\Mmatrix(P)^T)$.
-\paco{Notation. Do we like $\Ima_+(\Mmatrix(P)^T)$? We could use $\operatorname{Comp}(P)$, os not use a notation at all}
-\vincent{I would use $\operatorname{Comp}(P)$.}
-$\Ima_+(\Mmatrix(P)^T)$ is a full-dimensional pointed cone in $\Ima(\Mmatrix(P)^T)$, since every generator of $\Ima_+(\Mmatrix(P)^T)$ (that is, every row of $\Mmatrix(P)$) has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
+\paco{not sure we need this paragraph}
+If we  consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the \defn{self-stresses} or  equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
+\footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
+
+
+Also interesting for us is the positive part of $\Ima(\Mmatrix(P)^T)$, that is, the loads that can be obtained as non-negative combinations of rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote the set of them by $\Comp(P)$.
+\vincent{I would use $\operatorname{Comp}(P)$.}\paco{Done}
+$\Comp(P)$ is a full-dimensional pointed cone in $\Ima(\Mmatrix(P)^T)$, since every row of $\Mmatrix(P)$ has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
 \[
 \langle \Rvector(p_i,p_j), (p_1,\dots, p_n)\rangle =
 (p_j-p_i) p_i + (p_i-p_j) p_j = - (p_i-p_j)^2.
 \]
+(Observe that Farkas Lemma implies more: $\Comp(P)$ is the outer polar cone of the cone of expansive motions, where expansive motions are the $v=(v_i)_{i\in [n]}$ with $\Mmatrix(P) v \le 0$).
 
 Let $\Ematrix(P)$ denote the set of external rigidity vectors (\ie rigidity vectors $\Rvector(p_i,p_j)$ where $p_i$ and $p_j$ are consecutive vertices of $\conv(P)$, so that $|\Ematrix_-(P)| = n_\circ$ if $P$ spans $\R^2$ and $|\Ematrix_-(P)| = 1$ if it spans a line).
 
 \begin{lemma}
 \label{lem:equil_cone}
-If $P$ is in general position then
-$-\Ematrix(P)$ together with $\Ima_+(\Mmatrix(P)^T)$ positively spans the whole of $\Ima(\Mmatrix(P)^T)$.
+If the only points of $P$ in $\partial(\conv P)$ are the extremal ones then $-\Ematrix(P)$ together with $\Comp(P)$ positively spans the whole of $\Ima(\Mmatrix(P)^T)$.
 \end{lemma}
 
 \begin{proof}
-We need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rigidity vectors plus perhaps a negative combination of those in $\Ematrix(P)$. So, let $f=(f_p)_{p\in P}$ be a load in equilibrium. Let $p_1,\dots, p_{n_\circ}\in P$ denote the vertices of $\conv(P)$, in cyclic order. If $p\in P$ is not a vertex, let $(\lambda_1,\dots,\lambda_n)\in \R_{\ge0}^{n_\circ}$ be such that $\sum_{i=1}^{n_\circ} \lambda_i (p_i-p) = f_p$. Such $\lambda$'s exist since $p$ lies in the interior of $\conv(p_1,\dots, p_{n_\circ})$. Then, subtracting from $f$ the linear combination $\sum_{i=1}^{n_\circ} \lambda_i \Rvector(p,p_i)$ we get a new load in equilibrium with zero force at $p$. Repeating the process with all the non-vertices of $P$ we get one which is non-zero only at vertices, which implies we can assume without loss of generality that $P=\{p_1,\dots, p_{n_\circ}\}$, \ie that $P$ is in convex position and $n=n_\circ$.
+We need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rigidity vectors plus perhaps a negative combination of those in $\Ematrix(P)$. So, let $f=(f_p)_{p\in P}$ be a load in equilibrium. Let $p_1,\dots, p_{n_\circ}\in P$ denote the extremal points, that is, the vertices of $\conv(P)$, in cyclic order. If $p\in P$ is not extremal, our assumption is that it lies in the interior of $\conv(P)$. This implies there exist  $\lambda_1,\dots,\lambda_n \in \R_{\ge 0}^{n_\circ}$ such that $\sum_{i=1}^{n_\circ} \lambda_i (p_i-p) = f_p$. Then, subtracting from $f$ the linear combination $\sum_{i=1}^{n_\circ} \lambda_i \Rvector(p,p_i)$ we get a new load in equilibrium with zero force at $p$. Repeating the process with all the non-vertices of $P$ we get one which is non-zero only at vertices, which implies we can assume without loss of generality that $P=\{p_1,\dots, p_{n_\circ}\}$, \ie that $P$ is in convex position and $n=n_\circ$.
 
 In the convex-position case we prove the following claim, equivalent to our lemma: For every $i,j\in [n]$, the vector $-\Rvector(p_i,p_j)$ can be written as a linear combination of external rigidity vectors plus a nonnegative combination of the rest. Induction on $n$ allows us to assume the following: every $-\Rvector(p_i,p_j)$ with $i,j\in[n-1]$ can be written in the form we want except we may perhaps need a negative coefficient also in $\Rvector(p_1,p_{n-1})$, which is external in the configuration $\{p_1,\dots, p_{n-1}\}$. 
 
-Put differently, we only need to prove the claim for the  vectors $-\Rvector(p_1,p_{n-1})$ and those of the form $-\Rvector(p_i,p_n)$.
-For this, we consider the graph $G$ in Figure~\ref{fig:octagon}, consisting of precisely those edges plus the external edges. $G$ has $2n-2$ edges, hence its corresponding rigidity vectors must have at least one linear dependence, whose coefficients we denote $(\lambda_{i,j})_{ \{i,j\} \in G}$. Now, for every $i$ other than $n$ there are exactly three edges in $G$ incident to $i$, namely  $\{i, i-1\}$, $\{i,i+1\}$ and a third edge $\{i,j\}$ for some $j$. 
+Put differently, we only need to prove the claim for the  vector $-\Rvector(p_1,p_{n-1})$ and for those of the form $-\Rvector(p_i,p_n)$.
+For this, we consider the graph $G$ in Figure~\ref{fig:octagon}, consisting of precisely of those edges plus the external edges. $G$ has $2n-2$ edges, hence its corresponding rigidity vectors must have at least one linear dependence, whose coefficients we denote $(\lambda_{i,j})_{ \{i,j\} \in G}$. Now, for every $i$ other than $n$ there are exactly three edges in $G$ incident to $i$, namely  $\{i, i-1\}$, $\{i,i+1\}$ and a third edge $\{i,j\}$ for some $j$. 
 
 \begin{figure}[htb]
 	\includegraphics[width=6cm]{octagon-dependence.jpg}
-	\caption{The graph $G$ in the proof of Lemma~\ref{lem:equil_cone}.}
+	\caption{The graph $G$ in the proof of Lemma~\ref{lem:equil_cone}. Colors blue and red indicate the signs of coefficients in its unique self-stress}
 	\label{fig:octagon}
 \end{figure}
 
 
 The fact that 
-$p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies that $\lambda_{i,i\pm1}$ have the same sign, opposite to that of $\lambda_{i,j}$. A fortiori this implies that all the $\lambda_{i,j}$ of external edges have the same sign (say negative) and all the interior ones have the opposite sign (say positive). Equivalently,  the $-\Rvector(i,j)$ of every interior edge is a linear combination of the rest with negative coefficient only in the boundary edges, as we wanted to show.
+$p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies that $\lambda_{i,i\pm1}$ have the same sign, opposite to that of $\lambda_{i,j}$. A fortiori this implies that all the $\lambda_{i,j}$ of external edges have the same sign (say negative) and all the interior ones have the opposite sign (say positive). Equivalently,  the $-\Rvector(i,j)$ of every interior edge is a linear combination of the rest and with negative coefficient only in the boundary edges, as we wanted to show.
 \end{proof}
 
 \begin{remark}
-The attentive reader may have noticed that the general position assumption in Lemma~\ref{lem:equil_cone} can be weakened to ``$\partial P$ has no points of $P$ other than the extremal ones''. 
-But the lemma is not true for arbitrary $P$, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
-Its rigidity matrix has six rows and rank five, so the only linear dependence among rows is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lemma:affine_dependence}. Geometrically, this means that $\Ima_+(\Mmatrix(P)^T)$ is the cone over e $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding the negative external rigidity vectors does not span the whole linear space, only the half-space having that facet in its boundary.
+The lemma is not true when $P$ has additional boundary points, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
+Its rigidity matrix has six rows and rank five, so the only linear dependence among rows is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lemma:affine_dependence}. Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But, then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding to the cone the negative external rigidity vectors does not span the whole linear space, only the half-space containing that facet in its boundary.
 \end{remark}
 
-\paco{not sure we need this paragraph}
-If we  consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the \defn{self-stresses} or  equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
-\footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
 
 \section{Wiggly rigidity}
 \label{sec:w_rigidity}
@@ -816,24 +817,28 @@ Then, to the row-span of $\Meps(P)$, of dimension $n-1$ and containing only long
 These are clearly independent of one another and of the longitudinal vectors in $\Meps(P)$, since the transversal part of the $k$-th one is supported exactly in the points $\{p_2,\dots, p_{k-1}$.
 \end{proof}
 
-As in the previous section, let us now look at the positive part of $\Ima(\Meps(P)^T$, that is, the cone $\Ima_+(\Meps(P)^T$ generated by the wiggly rigidity vectors. 
-Again, it turns out that the same result we had in classical rigidity (\cref{lem:equil_cone}) holds without the  assumptions on $P$ needed there.
+As in the previous section, let us now look at the positive part of $\Equil(P)$, that is, the cone $\Comp(P)^\epsilon(P)$ generated by the wiggly rigidity vectors. 
+Again, it turns out that a  result similar to what we had in classical rigidity (\cref{lem:equil_cone}) holds without the  assumptions on $P$ needed there.
+
+Recall that an external wiggly rigidity arc is one of the form $(p,q, S, \varnothing)$, where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order and $S = P \cap ]p,q[$. We now introduce the corresponding \defn{antiexternal wiggly arc} to be $(p,q, \varnothing, S)$.
+Let $\Ematrix^\epsilon(P)$ denote the set of external and antiexternal wiggly rigidity vectors.
 
 \begin{lemma}
 \label{lem:equil_cone_epsilon}
-Let $\Ematrix^\epsilon(P)$ denote the set of external wiggly rigidity vectors.
-Then
-$-\Ematrix^\epsilon(P)$ together with $\Ima_+(\Meps(P)^T)$ positively spans the whole of $\Ima(\Meps(P)^T)$.
+$-\Ematrix^\epsilon(P)$ together with $\Comp(P)$ positively spans the whole of $\Equil(P)$.
+\paco{The Lemma must be true without the antiexternal arcs, since it follows from our main result, but I do not see an (easy) direct proof}
 \end{lemma}
 
 \begin{proof}
-As in the proof of \cref{lem:equil_cone}, our first goal is to show that from any load in equilibrium, subtracting nonnegative combinations of wiggly rigidity vectors we can get another load that vanishes at all points that are not extremal. Observe that in this step we are allowed to use partial wiggly arcs since, by~\cref{lema:partial_rigidity}, any partial wiggly rigidity vector is a positive combination of total ones. The process to cancel forces at non-extremal points is then exactly the same as in \cref{lem:equil_cone}: if $p$ lies in the interior of $\conv{P}$ we cancel the force at $p$ using the longitudinal rigidity vectors $\Rlong(p,p_i)$ for the extremal points $p_i$; if $p$ lies in the relative interior of an edge $\{p_i,p_{i+1}\}$ of $\conv(P)$ we cancel the force at $p$ using the longitudinal vectors $\Rlong(p,p_i)$ and $\Rlong(p,p_{i+1})$, plus the (perhaps partial) wiggly vectors $\Reps(p_i,p_{i+1}, \{p\},\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  \{p\})$. 
+As in the proof of \cref{lem:equil_cone}, our first goal is to show that from any load in equilibrium, subtracting nonnegative combinations of wiggly rigidity vectors we can get another load that vanishes at all points that are not extremal. 
+Observe that in this step we are allowed to use partial wiggly arcs since, by~\cref{lema:partial_rigidity}, any partial wiggly rigidity vector is a positive combination of total ones. 
+With this in mind we can cancel forces at non-extremal points with a small variation of what we did in \cref{lem:equil_cone}: 
+if $p$ lies in the interior of $\conv{P}$ we cancel the force at $p$ using the longitudinal rigidity vectors $\Rlong(p,p_i)$ for the extremal points $p_i$; 
+if $p$ lies in the relative interior of an edge $\{p_i,p_{i+1}\}$ of $\conv(P)$ we cancel the force at $p$ using the longitudinal vectors $\Rlong(p,p_i)$ and $\Rlong(p,p_{i+1})$, plus the (perhaps partial) wiggly vectors $\Reps(p_i,p_{i+1}, \{p\},\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  \{p\})$. 
 
-Observe that this can be done even when $\conv(P)$ is a segment $[p_1,p_2]$. Moreover, in this case the final load is automatically a multiple of $\Rlong(p_1,p_2)$, which in turn is the sum of the two external wiggly rigidity vectors.
+Observe that this can be done even when $\conv(P)$ is a segment $[p_1,p_2]$. Moreover, in this case the final load is automatically a multiple of $\Rlong(p_1,p_2)$, which in turn is the sum of the two external wiggly rigidity vectors. This finishes the proof for the case of a segment.
 
-So, for the rest of the prove we assume without loss of generality that $P$ affinely spans $\R^2$ and that the load we want to resolve  vanishes except at extremal vectors. Then,~\cref{lema:partial_rigidity} implies that this load is a linear combination of the longitudinal external vectors $\Rlong(p_i,p_{i+1})$, each of which is in turn a combination of the external and `anti-external' wiggly vectors $\Reps(p_i,p_{i+1}, S,\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  S)$, where $S=P\cap \conv(p_i,p_{i+1}) \setminus \{p_i,p_{i+1})$. Hence, the only thing left to prove is that each negative anti-external vector $-\Reps(p_i,p_{i+1},\varnothing,  S)$ can be resolved as a positive combination of arbitrary wiggly vectors plus an arbitrary combination of external ones. For this, let $S=\{q_1,\dots,q_k\}$, with the points ordered 
-
-TO BE FINISHED
+So, for the rest of the proof we assume without loss of generality that $P$ affinely spans $\R^2$ and that the load we want to resolve  vanishes except at extremal vectors. Then,~\cref{lema:partial_rigidity} implies that this load is a linear combination of the longitudinal external vectors $\Rlong(p_i,p_{i+1})$, each of which is in turn a combination of the corresponding external and antiexternal wiggly vectors $\Reps(p_i,p_{i+1}, S,\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  S)$.
 \end{proof}
 
 
