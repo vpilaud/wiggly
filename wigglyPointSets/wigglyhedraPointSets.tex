@@ -569,13 +569,14 @@ But if $\conv(P)$ is contained in a line $\ell$, then $\ker(\Mmatrix(P))$ is the
 
 The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension (if negative) or compression (if positive) stresses applied to the individual rods. Then the vector~$\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_j-p_i)$ is the resulting force at point $p_i$. 
 In rigidity theory, such an assignment $(f_1,\dots,f_n)$ of forces at the points $p_1,\dots, p_n$ is  called a \defn{load}.
-\paco{citar Whiteley o Graver-Sevatius-Servatius?}
+\paco{cita. Whiteley? Graver-Sevatius-Servatius?}
 The kernel of $\Mmatrix(P)^T$, that is, the linear space of dependences among rows of~$\Mmatrix(P)$, consists of the stresses that applied to the rods  produce no net force on any $p_i$. 
 These are called \defn{equilibrium stresses}. 
 
 \begin{lemma}
 \label{lem:affineDependenceGivesEquilibriumStress}
 \vincent{Not sure this was a good idea to place this lemma here. It cuts a little bit the flow...}
+\paco{I think it is good.  I now refer to it in~\cref{rem:trident_example} and~\cref{foot:matroid}}
 If~$(\lambda_1,\dots,\lambda_n)$ is an affine dependence on~$P$, then~$(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress of~$P$. That is, 
 \[
 \sum_{i\in P} \lambda_i p_i =0, \quad \sum_{i\in P} \lambda_i =0
@@ -621,10 +622,9 @@ zero resultant and zero moment: if the points are part of a rigid body, those fo
 When this happens we say that the load $(f_1,\dots,f_n)$ is \defn{balanced} or \defn{in equilibrium}. We denote the space of them by $\Equil(P)$. 
 Again, if $P$ affinely spans $\R^2$ then $\Equil(P)$ \emph{equals} $\Ima(\Mmatrix(P)^T)$, while if $P$ is contained in a line then $\Ima(\Mmatrix(P)^T)$ is the intersection of $\Equil(P)$ with the $n$-dimensional space of \defn{longitudinal loads}, that is, loads in the direction of that line. Equilibrium in this case poses only one additional constraint, so the image of $\Mmatrix(P)^T$ is indeed $(n-1)$-dimensional.
 
-\paco{not sure we need this paragraph}
 If we  consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the \defn{self-stresses} or  equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
-\footnote{This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.}
-
+\footnote{\label{foot:matroid}This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.
+For example,~\cref{lem:affineDependenceGivesEquilibriumStress} says that if $S$ is affinely dependent then the complete graph $K_S$ on $S$ is also dependent in the rigidity matroid. An easy rank computation shows that if $S$ is minimally affinely dependent (a circuit, in matroid terminology) then $K_S$ is a circuit too.}%
 
 Also interesting for us is the positive part of $\Ima(\Mmatrix(P)^T)$, that is, the loads that can be obtained as non-negative combinations of rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote the set of them by $\Comp(P)$.
 \vincent{I would use $\operatorname{Comp}(P)$.}\paco{Done}
@@ -662,6 +662,7 @@ $p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies t
 \end{proof}
 
 \begin{remark}
+\label{rem:trident_example}
 The lemma is not true when $P$ has additional boundary points, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
 Its rigidity matrix has six rows and rank five, so the only linear dependence among rows is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lem:affineDependenceGivesEquilibriumStress}. 
 Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But, then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding to the cone the negative external rigidity vectors does not span the whole linear space, only the half-space containing that facet in its boundary.
@@ -848,7 +849,7 @@ So, for the rest of the proof we assume without loss of generality that $P$ affi
 \Paco{Starting here things are shaky. But, also, if we resort to the ``dirty trick'' of enclosing the whole configuration in a big triangle, we may not need these lemmas}
 {\color{blue}
 \begin{lemma}%[Convex hull lemma]
-\label{lem:triangle}
+\label{lem:triangle1}
 Let~$S \subseteq P$ and~$q \in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
 Then for any equilibrium stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an equilibrium stress with a vanishing component at~$q$.
 \vincent{this is wrong. We want to say that $w$ is an equilibrium stress on $P \ssm \{q\}$ and we want to say that we obtain an equilibrium stress of~$P$ using additional arcs.}
@@ -862,13 +863,13 @@ there exists non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$\one_q w 
 \end{proof}
 
 \begin{lemma}%[Convex hull lemma]
-\label{lem:triangle}
+\label{lem:triangle2}
 Let~$Q \eqdef \{q_1, q_2, q_3\} \subseteq P$ and~$r \in \conv(Q) \cap P$. For each~$i \in [3]$, consider the partial arcs~$\arc_i \eqdef (q_i, r, \varnothing, \varnothing)$ and~$\arc[\beta]_i \eqdef (q_{i-1}, q_{i+1}, \varnothing, \varnothing)$ (where indices are understood modulo~$3$).
 Then for any~$w \in \langle \Rtrans(p,q;r) \, | \, p,q \in P, \; r \in {]p,q[} \rangle$ such that~$\one_r w  \in \cone(Q - r)$, there exist scalars~$\lambda_i \in \R_{\ge 0}$ and~$\mu_i \in \R$~for~$i \in [3]$ such that~$\Mmatrix(P)^T \bigl(\sum_{i \in [3]} \lambda_i \Reps(\arc_i) + \mu_i \Reps(\arc[\beta]_i) \bigr) = w$.
 \end{lemma}
 
 \begin{lemma}%[Convex hull lemma]
-\label{lem:triangle}
+\label{lem:triangle3}
 Let~$Q \eqdef \{q_1, q_2, q_3\} \subseteq P$ clockwise and~$r \in {]q_1, q_2[}$.
 %For each~$i \in [3]$, consider the partial arcs~$\arc_i \eqdef (q_i, r, \varnothing, \varnothing)$ and~$\arc[\beta]_i \eqdef (q_{i-1}, q_{i+1}, \varnothing, \varnothing)$ (where indices are understood modulo~$3$).
 Then there exist scalars~$\lambda_i \in \R_{\ge 0}$ and~$\mu_i \in \R$~for~$i \in [3]$ such that~$\sum_{i \in [3]} \lambda_i \Rlong(q_i, r) + \mu_i \Rlong(q_{i-1}, q_{i+1}) = \Rtrans(q_1, q_2; r)$, where indices are understood modulo~$3$.
@@ -1212,7 +1213,7 @@ Observe now that:
 \item Otherwise, we obtain by \cref{lema:partial_rigidity} that~$\Reps(\arc) = \Reps(\arc^+) + \Reps(\arc^-)$ for the wiggly arcs~$\arc^+ = (p, q, L \cup \{r\}, R)$ and~$\arc^- = (p, q, L, R \cup \{r\})$ of~$P$.
 	\begin{itemize}
 	\item If~$\bar\arc$ does not belong to~$\bar F$, then neither~$\arc^+$ not~$\arc^-$ belong to~$F$.
-	\item If~$\arc^+ \in F$, then we have~$\Reps(\arc) = \Reps(\arc^+) - \epsilon\Rtrans(p,q;r)$, where~$\Rtrans(p,q;r)$ is an equilibrium stress with a non-vanishing $r$ component. As~$r$ lies on~$]p,q[$ which are the endpoints of~$\arc^+ \in F$, we observe by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces} that either~$r$ lies in the interior of convex hull of~$\bar P$, or $r$ appears along at least one wiggly arc not in~$F$. Applying \cref{lem:triangle} or \cref{lem:colinear} accordingly, we can express~$\Rtrans(p,q;r)$ as a non-negative linear combination~$\sum \lambda^{p,q;r}_{\arc} \Reps(\arc)$ where~$\arc$ ranges over wiggly arcs of~$P$ not in~$F$.
+	\item If~$\arc^+ \in F$, then we have~$\Reps(\arc) = \Reps(\arc^+) - \epsilon\Rtrans(p,q;r)$, where~$\Rtrans(p,q;r)$ is an equilibrium stress with a non-vanishing $r$ component. As~$r$ lies on~$]p,q[$ which are the endpoints of~$\arc^+ \in F$, we observe by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces} that either~$r$ lies in the interior of convex hull of~$\bar P$, or $r$ appears along at least one wiggly arc not in~$F$. Applying \cref{lem:triangle2} or \cref{lem:colinear} accordingly, we can express~$\Rtrans(p,q;r)$ as a non-negative linear combination~$\sum \lambda^{p,q;r}_{\arc} \Reps(\arc)$ where~$\arc$ ranges over wiggly arcs of~$P$ not in~$F$.
 	\item The case~$\arc^- \in F$ is symmetric.
 	\end{itemize}
 \end{itemize}
