@@ -167,20 +167,18 @@
 \newcommand{\Equil}{\operatorname{Equil} } % equilibrium loads
 \newcommand{\Triv}{\operatorname{Triv} } % trivial motions
 
-
-
 % formating the table of contents
 \setcounter{tocdepth}{4}
-\makeatletter
-\def\l@part{\@tocline{1}{8pt}{0pc}{}{}}
-\def\l@section{\@tocline{1}{4pt}{0pc}{}{}}
-\makeatother
-\let\oldtocpart=\tocpart
-\renewcommand{\tocpart}[2]{\sc\large\oldtocpart{#1}{#2}}
-\let\oldtocsection=\tocsection
-\renewcommand{\tocsection}[2]{\bf\oldtocsection{#1}{#2}}
-\let\oldtocsubsubsection=\tocsubsubsection
-\renewcommand{\tocsubsubsection}[2]{\quad\oldtocsubsubsection{#1}{#2}}
+%\makeatletter
+%\def\l@part{\@tocline{1}{8pt}{0pc}{}{}}
+%\def\l@section{\@tocline{1}{1pt}{0pc}{}{}}
+%\makeatother
+%\let\oldtocpart=\tocpart
+%\renewcommand{\tocpart}[2]{\sc\large\oldtocpart{#1}{#2}}
+%\let\oldtocsection=\tocsection
+%\renewcommand{\tocsection}[2]{\bf\oldtocsection{#1}{#2}}
+%\let\oldtocsubsubsection=\tocsubsubsection
+%\renewcommand{\tocsubsubsection}[2]{\quad\oldtocsubsubsection{#1}{#2}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -325,7 +323,6 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
 A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
 We denote by~$n = n_\circ + n_\bullet$ the number of points of~$P$, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
-\paco{changed $v$, $w$ to $n_\circ$, $n_\bullet$, since $v$ is used for other things}
 We first define the wiggly segments of~$P$.
 Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open segment~$]p,q[$.
 
@@ -335,7 +332,7 @@ For~$p,q \in P$, an \defn{oriented arc} from~$p$ to~$q$ is an isotopy class in t
 %We say that~$p$ and~$q$ are the \defn{endpoints} of~$\arc$, and that $\arc$ is \defn{incident} to $p$ and~$q$.
 An \defn{arc} is an oriented arc modulo reorientation.
 
-Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg, for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left of the (oriented) arc and a subset $R$ to the right.
+Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left and a subset $R$ to the right of the (oriented) arc.
 For this reason we encode each wiggly segment as a quadruple~$\arc = (p, q, L, R)$ and, slightly abusing notation, will call $\arc$ itself a wiggly segment. Observe that $(p, q, L, R)$ and $(q, p, R, L)$ are considered the same wiggly segment.
 
 An \defn{external} wiggly segment is one of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
@@ -390,7 +387,6 @@ In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, d
 It is sometimes convenient to characterize a simplicial complex by the minimal sets that are not faces in it. For the wiggly complex the following statement gives us such a characterization.
 
 \begin{lemma}
-\paco{moved this lemma}
 \label{lem:minimalNonFaces}
 The minimal non-faces of the wiggly complex~$\reducedWigglyComplex_P$ can be of five different types, illustrated in \cref{fig:minimalNonFaces}:
 \begin{enumerate}[(i)]
@@ -427,14 +423,13 @@ Minimal non-faces are minimal sets of arcs which are
 \begin{itemize}
 \item either non-pointed: this yields (i) and (ii) depending on whether or not the endpoints are all aligned,
 \item or crossing: this yields (iii), (iv) and (v), depending on the number of aligned endpoints of the crossing arcs.
-\qedhere
 \end{itemize}
-\end{proof}
-
 Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
-Namely, each of the arcs in the figures may have additional points along it. E.g., if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly arcs with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
+Namely, each of the arcs in the figures may have additional points along it.
+\Eg if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly arcs with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
 \paco{Not sure I like the name superfluous. They are not superfluous at all...}
 \asilata{How about~\defn{waypoints}?}
+\end{proof}
 
 The goal of this paper is to prove the following statement, already proved for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{RoteSantosStreinu-polytope}.
 
@@ -536,7 +531,9 @@ We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
 \section{Classical rigidity}
 \label{sec:rigidity}
 
-Our construction of the wiggly fan is based on rigidity considerations, similar to those used in~\cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set. In fact, for point sets in general position our construction restricts to the one in that paper. Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity theory.\vincent{change this sentence}
+Our construction of the wiggly fan is based on rigidity considerations, similar to those used in~\cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set in general position.
+In fact, for point sets in general position our construction restricts to the one in that paper.
+Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity theory.
 
 Let $P \subset \R^2$ be a point set, consisting of $n$ points $p_1,\dots,p_n$. Recall that the~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:
 \[
@@ -564,10 +561,8 @@ These include the~\defn{infinitesimal rigid motions}, that is, those moving the 
 \[
 (p^\perp)_{p\in P} = (p_1^\perp, \dots, p_n^\perp),
 \]
-where $(x,y)^\perp:=(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{\circ}\) in the positive direction.%
-\footnote{The kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.}
-We denote the space of infinitesimal rigid motions by $\Triv(P)$.%
-\asilata{I got confused at first by the notation Tr for \(\Triv(P)\), because I thought it meant translations. Should we change the macro to Triv(P) instead?}
+where $(x,y)^\perp\eqdef(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{\circ}\) in the positive direction\footnote{The kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $w\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (w^\perp,\dots,w^\perp)$.}.
+We denote the space of infinitesimal rigid motions by $\Triv(P)$.
 If $P$ affinely spans $\R^2$ then $\ker(\Mmatrix(P))$ \emph{equals} \(\Triv(P)\), so that $\Mmatrix(P)$ has rank $2n-3$
 But if $\conv(P)$ is contained in a line $\ell$, then $\ker(\Mmatrix(P))$ is the sum of \(\Triv(P)\) with the $n$-dimensional space of motions orthogonal to $\ell$. In this case $\Mmatrix(P)$ has rank $n-1$ and its kernel has dimension $n+1$.
 
@@ -579,12 +574,10 @@ These are called \defn{equilibrium stresses}.
 
 \begin{lemma}
 \label{lemma:affine_dependence}
-Let $(\lambda_1,\dots,\lambda_n)$ be an affine dependence on $P$. That is, 
+If~$(\lambda_1,\dots,\lambda_n)$ is an affine dependence on~$P$, then~$(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress of~$P$. That is, 
 \[
-\sum_{i\in P} \lambda_i p_i =0, \quad \sum_{i\in P} \lambda_i =0.
-\]
-Then $(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress. That is:
-\[
+\sum_{i\in P} \lambda_i p_i =0, \quad \sum_{i\in P} \lambda_i =0
+\qquad\Longrightarrow\qquad
 \sum_{i,j\in P} \lambda_i \lambda_j \Rvector(p_i,p_j) =0.
 \]
 \end{lemma}
@@ -592,16 +585,19 @@ Then $(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress. Th
 \begin{proof}
 Let $f_i$ be the force at $p_i$ produced by the load $(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$. Then:
 \[
-f_i = \lambda_i\sum_{j \in P\setminus \{i\}} \lambda_j (p_j - p_i)=
-\lambda_i\left(\sum_{j \in P\setminus \{i\}} \lambda_j p_j\right) - \lambda_i \left(\sum_{j \in P\setminus \{i\}} \lambda_j\right) p_i =
--\lambda_i\left( \lambda_i p_i\right) + \lambda_i  \lambda_i p_i = 0.
+f_i
+= \sum_{j \in P\setminus \{i\}} \lambda_i\lambda_j (p_j - p_i)
+%= \lambda_i\sum_{j \in P\setminus \{i\}} \lambda_j (p_j - p_i)
+= \lambda_i\biggl(\sum_{j \in P\setminus \{i\}} \lambda_j p_j\biggr) - \lambda_i \biggl(\sum_{j \in P\setminus \{i\}} \lambda_j\biggr) p_i
+= \lambda_i(- \lambda_i p_i) - \lambda_i  (-\lambda_i) p_i
+= 0.
 \]
 \end{proof}
 
 \begin{corollary}
 Let $P=\{p_1,p_2,p_3,p_4\}$ consist of four points affinely spanning $\R^2$. Then, the following is an equilibrium stress on $P$:
 \[
-\lambda_{i,j}:= \det(p_i,p_k,p_l) \det(p_j,p_k,p_l),
+\lambda_{i,j}\eqdef \det(p_i,p_k,p_l) \det(p_j,p_k,p_l),
 \]
 where $\{i,j,k,l\} = \{1,2,3,4\}$.
 
@@ -609,7 +605,7 @@ In particular,  in both the wye and the cross of Figure~\ref{fig:minimalNonFaces
 \end{corollary}
 
 \begin{proof}
-Follows from the previous lemma taking into account that $\lambda_i:= (-1)^i \det(p_1,\stackrel{\overset{\frown}{p_i}}{\dots}, p_4)$ defines an affine dependence.
+Follows from the previous lemma taking into account that $\lambda_i\eqdef (-1)^i \det(p_1,\stackrel{\overset{\frown}{p_i}}{\dots}, p_4)$ defines an affine dependence.
 \end{proof}
 
 
@@ -624,13 +620,14 @@ Again, if $P$ affinely spans $\R^2$ then $\Equil(P)$ \emph{equals} $\Ima(\Mmatri
 
 Also interesting for us is the positive part of $\Ima(\Mmatrix(P)^T)$, that is, the loads that can be obtained as non-negative combinations of rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote the set of them by $\Ima_+(\Mmatrix(P)^T)$.
 \paco{Notation. Do we like $\Ima_+(\Mmatrix(P)^T)$? We could use $\operatorname{Comp}(P)$, os not use a notation at all}
+\vincent{I would use $\operatorname{Comp}(P)$.}
 $\Ima_+(\Mmatrix(P)^T)$ is a full-dimensional pointed cone in $\Ima(\Mmatrix(P)^T)$, since every generator of $\Ima_+(\Mmatrix(P)^T)$ (that is, every row of $\Mmatrix(P)$) has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
 \[
 \langle \Rvector(p_i,p_j), (p_1,\dots, p_n)\rangle =
 (p_j-p_i) p_i + (p_i-p_j) p_j = - (p_i-p_j)^2.
 \]
 
-Let $\Ematrix(P)$ denote the set of external rigidity vectors (i.e., rigidity vectors $\Rvector(p_i,p_j)$ where $p_i$ and $p_j$ are consecutive vertices of $\conv(P)$, so that $|\Ematrix_-(P)| = n_\circ$ if $P$ spans $\R^2$ and $|\Ematrix_-(P)| = 1$ if it spans a line).
+Let $\Ematrix(P)$ denote the set of external rigidity vectors (\ie rigidity vectors $\Rvector(p_i,p_j)$ where $p_i$ and $p_j$ are consecutive vertices of $\conv(P)$, so that $|\Ematrix_-(P)| = n_\circ$ if $P$ spans $\R^2$ and $|\Ematrix_-(P)| = 1$ if it spans a line).
 
 \begin{lemma}
 \label{lem:equil_cone}
@@ -639,7 +636,7 @@ $-\Ematrix(P)$ together with $\Ima_+(\Mmatrix(P)^T)$ positively spans the whole 
 \end{lemma}
 
 \begin{proof}
-We need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rigidity vectors plus perhaps a negative combination of those in $\Ematrix(P)$. So, let $f=(f_p)_{p\in P}$ be a load in equilibrium. Let $p_1,\dots, p_{n_\circ}\in P$ denote the vertices of $\conv(P)$, in cyclic order. If $p\in P$ is not a vertex, let $(\lambda_1,\dots,\lambda_n)\in \R_{\ge0}^{n_\circ}$ be such that $\sum_{i=1}^{n_\circ} \lambda_i (p_i-p) = f_p$. Such $\lambda$'s exist since $p$ lies in the interior of $\conv(p_1,\dots, p_{n_\circ})$. Then, subtracting from $f$ the linear combination $\sum_{i=1}^{n_\circ} \lambda_i \Rvector(p,p_i)$ we get a new load in equilibrium with zero force at $p$. Repeating the process with all the non-vertices of $P$ we get one which is non-zero only at vertices, which implies we can assume without loss of generality that $P=\{p_1,\dots, p_{n_\circ}\}$, i.e., that $P$ is in convex position and $n=n_\circ$.
+We need to show that every load in equilibrium can be expressed as a non-negative combination of arbitrary rigidity vectors plus perhaps a negative combination of those in $\Ematrix(P)$. So, let $f=(f_p)_{p\in P}$ be a load in equilibrium. Let $p_1,\dots, p_{n_\circ}\in P$ denote the vertices of $\conv(P)$, in cyclic order. If $p\in P$ is not a vertex, let $(\lambda_1,\dots,\lambda_n)\in \R_{\ge0}^{n_\circ}$ be such that $\sum_{i=1}^{n_\circ} \lambda_i (p_i-p) = f_p$. Such $\lambda$'s exist since $p$ lies in the interior of $\conv(p_1,\dots, p_{n_\circ})$. Then, subtracting from $f$ the linear combination $\sum_{i=1}^{n_\circ} \lambda_i \Rvector(p,p_i)$ we get a new load in equilibrium with zero force at $p$. Repeating the process with all the non-vertices of $P$ we get one which is non-zero only at vertices, which implies we can assume without loss of generality that $P=\{p_1,\dots, p_{n_\circ}\}$, \ie that $P$ is in convex position and $n=n_\circ$.
 
 In the convex-position case we prove the following claim, equivalent to our lemma: For every $i,j\in [n]$, the vector $-\Rvector(p_i,p_j)$ can be written as a linear combination of external rigidity vectors plus a nonnegative combination of the rest. Induction on $n$ allows us to assume the following: every $-\Rvector(p_i,p_j)$ with $i,j\in[n-1]$ can be written in the form we want except we may perhaps need a negative coefficient also in $\Rvector(p_1,p_{n-1})$, which is external in the configuration $\{p_1,\dots, p_{n-1}\}$. 
 
@@ -684,7 +681,7 @@ Hence, the classical rigidity vector $\Rvector(p,q)$ as defined above can be exp
 \begin{definition}\label{def:lrv}
 The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of~$[p,q]$ in~$P$. That is,
 \[
-\Rlong(\arc) := (q-p) (\one_p  - \one_q).
+\Rlong(\arc) \eqdef (q-p) (\one_p  - \one_q).
 \]
 \end{definition}
 
@@ -903,7 +900,7 @@ More precisely, we show the following:
 \label{thm:main}
 Let $P$ be a point set with $n_\circ$ extremal and $n_\bullet$ non-extremal points. Let $n=n_\circ+n_\bullet$. Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
 \begin{enumerate}
-\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (i.e., it is a triangulation of) $\Equil_+^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
+\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Equil_+^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
 \item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly rigidity vectors.
 \end{enumerate}
 \end{theorem}
@@ -1074,7 +1071,7 @@ from which we conclude that
 If~$\lambda(1-\lambda) \ge \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
 
 %\item 
-\Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) := (q-p) (\one_p  - \one_q)$.}
+\Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) \eqdef (q-p) (\one_p  - \one_q)$.}
 The last case, the \emph{trident}, is more complicated. Let $s'$ be the orthogonal projection of $s$ to the line $pqr$.
 The following three parameters  describe the configuration $\{p,q,r,s\}$ up to rigid motion and dilation: 
 \begin{itemize}
@@ -1085,7 +1082,7 @@ The following three parameters  describe the configuration $\{p,q,r,s\}$ up to r
 
 To construct the appropriate dependence, we first notice that there is unique (modulo a scalar) way to combine the three vectors $\Rlong(\cdot, s)$ that cancels the force at $s$, namely:
 \begin{align*}
-\Rvector_1:= &\lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
+\Rvector_1\eqdef &\lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
 = &\lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
 = &\lambda (s-p) \one_p  - (s-q) \one_q + (1-\lambda) (s-r) \one_r.
 \end{align*}
@@ -1112,7 +1109,7 @@ s-s' =\nu (r-p)^\perp =\frac\nu{\lambda} (r-q)^\perp = \frac\nu{1-\lambda} (q-p)
 In order to cancel the transversal part we subtract $\tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing,\{q\}) =
 \tfrac{\nu}{\epsilon} \Rlong(p,r) -  {\nu} \Rtrans(p,r;q)$ from $\Rvector_1$, to obtain:
 \begin{align*}
-\Rvector_2:= & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing, \{q\}) \\
+\Rvector_2\eqdef & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing, \{q\}) \\
 =&[\lambda (1-\mu)  \one_p   + (\mu - \lambda) \one_q  - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r).
 \end{align*}
 
@@ -1125,7 +1122,7 @@ The coefficient of $\one_q$ in this expression is zero if and only if $\lambda=\
 For the time being 
 let us assume that $\mu > \lambda$ (we will later say how things change if $\mu < \lambda$. Then, the coefficient of $\one_q$ in $\Rvector_2$ is a \emph{positive} multiple of $(r-p)$. To cancel it we need to add to $\Rvector_2$ a positive multiple of $\Rlong(p,q)$, namely:
 \begin{align*}
-\Rvector_3 := & \Rvector_2 + \tfrac{\mu-\lambda}{1-\lambda} \Rlong(p,q) 
+\Rvector_3 \eqdef & \Rvector_2 + \tfrac{\mu-\lambda}{1-\lambda} \Rlong(p,q) 
 	 =\Rvector_2 + (\mu-\lambda)(r -p)(\one_p-\one_q)\\
 = &[\lambda (1-\mu)  \one_p   - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) + (\mu-\lambda)(r -p) \one_p \\
 = &(1-\lambda) \mu (\one_p   - \one_r)(r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
@@ -1141,7 +1138,7 @@ Multiplying both sides by $-2\epsilon$:
 
 So, the final linear dependence that we are looking for is 
 \[
-\Rvector_4 := 2\epsilon \Rvector_3  + ( \nu-  (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big) =0.
+\Rvector_4 \eqdef 2\epsilon \Rvector_3  + ( \nu-  (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big) =0.
 \]
 Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used along the construction, to finally obtain those of the dependence.
 
@@ -1242,11 +1239,11 @@ In this section we review the main results about regular triangulations, and the
 \paco{the point set is $A$, not $V$. some occurences may still need change}
 \david{different letters: liftings now use $h$ and scaling factors use $f$}
 
-\begin{definition}[Regular triangulation of a vector set; see, e.g., \cite{DeLoeraRambauSantos}]
+\begin{definition}[Regular triangulation of a vector set; see, \eg \cite{DeLoeraRambauSantos}]
 \label{def:lifting}
   Let $A$ be a finite vector set in $\R^d$. A \emph{height function} for $A$ is a
   function $h\in \R_+^A$.
-  This choice induces a \emph{lifting} of $A$, which is the vector set $A^h := \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
+  This choice induces a \emph{lifting} of $A$, which is the vector set $A^h \eqdef \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
   $h$ assigns positive heights in $\R^{d+1}$ to  vectors of $A$.
   
 %\end{definition}
@@ -1287,7 +1284,7 @@ A related notion of regular subdivisions can be derived from assigning lengths t
   Let $R$ be a finite set of vectors in $\R^d$. A \emph{scaling function} for $R$ is a
   function $f\in \R_+^R$.
   This choice induces a \emph{scaling} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$, 
-  which is the vector set $f R := \{(f p\}\subset \R^{d}$; put differently,  
+  which is the vector set $f R \eqdef \{(f p\}\subset \R^{d}$; put differently,  
   $f$ scales vectors of $R$.
 %\end{definition}
 %
@@ -1316,7 +1313,7 @@ A related notion of regular subdivisions can be derived from assigning lengths t
    \label{lemma:point-triangulation-as-vector-triangulation}
    Let $R$ be a finite vector set.
    Then, the regular subdicision of $R$ obtained with a certain a \emph{height choice}  $h\in \R^P$ coincides
-   with the scaling subdivision of $R$ obtained with the scaling factor $f(p) := \tfrac{1}{h(P)}$.
+   with the scaling subdivision of $R$ obtained with the scaling factor $f(p) \eqdef \tfrac{1}{h(P)}$.
 \end{lemma}
 \begin{proof}
 \paco{The book does only the case $f\equiv h \equiv 1$.}
@@ -1336,7 +1333,7 @@ A related notion of regular subdivisions can be derived from assigning lengths t
    there is also a unique minimal face $F$ with geometric embedding $F_P$
    such that $\zero\in \relint(F_P)$.
 
-   % Let $\tilde \zero := (\zero, 1) \in \R^{d+1}$ be the homogenization of the zero vector.
+   % Let $\tilde \zero \eqdef (\zero, 1) \in \R^{d+1}$ be the homogenization of the zero vector.
    Now, consider the expression of $\zero$ as convex combinations of the vertices
    of $E_P$ and $F_P$, and the corresponding expressions of multiples of $\tilde \zero$ on the scaling of $\tilde P$,
    \[
@@ -1375,7 +1372,7 @@ cyclic sets of vectors (spanning a non-trivial lineality space),
 which cannot be dehomogenized.
 
 It is clear that when a finite set of vectors $R$ is totally cyclic,
-i.e., its cone spans $\R^{d+1}$, all of its regular subdivisions are complete fans,
+\ie its cone spans $\R^{d+1}$, all of its regular subdivisions are complete fans,
 and its regular triangulations are simplicial spheres.
 As we aim to realize one such simplicial sphere, this is the notion that we will use.
 
@@ -1431,7 +1428,7 @@ Thus, proving that a fan is polytopal is the same as proving that it is a regula
 %  \[
 %    \sum_{p_i \in G} \lambda_i f(p_i) < \sum_{q_j\in F} \mu_j f(q_j),
 %  \]
-%  i.e., $\lambda - \mu$ evaluates negatively with $f$.
+%  \ie $\lambda - \mu$ evaluates negatively with $f$.
 %
 %  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
 %  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
@@ -1527,7 +1524,7 @@ Then the following are equivalent:
 
 
 %\clearpage
-\addtocontents{toc}{ \vspace{.1cm} }
+%\addtocontents{toc}{ \vspace{.1cm} }
 \bibliographystyle{alpha}
 \bibliography{wigglyhedra}
 \label{sec:biblio}
