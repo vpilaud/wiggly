@@ -323,8 +323,8 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 
 Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
 A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
-We denote by~$n = n_1 + n_2$ the number of points of~$P$, where~$n_1$ are extremal and~$n_2$ are not.
-\paco{changed $v$, $w$ to $n_1$, $n_2$, since $v$ is used for other things}
+We denote by~$n = n_\circ + n_\bullet$ the number of points of~$P$, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
+\paco{changed $v$, $w$ to $n_\circ$, $n_\bullet$, since $v$ is used for other things}
 We first define the wiggly segments of~$P$.
 Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open segment~$]p,q[$.
 
@@ -373,8 +373,8 @@ See \cref{fig:wigglyComplexSquarre}\,(left).
 A few observations about \cref{def:wigglySegments,def:compatible,def:wigglyDissection,def:wigglyComplex}:
 \begin{enumerate}
 \item When wiggly segments are encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, the non-crossing and pointedness conditions can be expressed in purely combinatorial terms (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to also define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
-\item As the $n_1$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
-In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $n_1$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
+\item As the $n_\circ$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
+In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $n_\circ$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
 \item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
 \end{enumerate}
 \end{remark}
@@ -382,8 +382,8 @@ In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, d
 %The following statement, known for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{PocchiolaVegter,RoteSantosStreinu-pseudotriangulations}, was extended in~\cite[Coro.~3.21]{BapatDeopurkarLicata} to the general case.
 %
 %\begin{theorem}[{\cite[Coro.~3.21]{BapatDeopurkarLicata}}]
-%%The extended (resp.~reduced) wiggly complex~$\extendedWigglyComplex_P$ (resp.~$\reducedWigglyComplex_P$) is a simplicial ball (resp.~sphere) of dimension~$2n-3$ (resp.~$n_1+2n_2-3$).
-%The wiggly complex~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$n_1+2n_2-3$.
+%%The extended (resp.~reduced) wiggly complex~$\extendedWigglyComplex_P$ (resp.~$\reducedWigglyComplex_P$) is a simplicial ball (resp.~sphere) of dimension~$2n-3$ (resp.~$n_\circ+2n_\bullet-3$).
+%The wiggly complex~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$n_\circ+2n_\bullet-3$.
 %\end{theorem}
 
 It is sometimes convenient to characterize a simplicial complex by the minimal sets that are not faces in it. For the wiggly complex the following statement gives us such a characterization.
@@ -439,12 +439,12 @@ The goal of this paper is to prove the following statement, already proved for a
 
 \begin{theorem}
 \label{thm:polytope}
-The wiggly complex~$\reducedWigglyComplex_P$ is isomorphic to the boundary complex of a simple polytope of dimension~$n_1+2n_2-3$.
+The wiggly complex~$\reducedWigglyComplex_P$ is isomorphic to the boundary complex of a simple polytope of dimension~$n_\circ+2n_\bullet-3$.
 \end{theorem}
 
-\cref{thm:polytope} implies in particular that~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$n_1+2n_2-4$, a result independently established in~\cite[Coro.~3.21]{BapatDeopurkarLicata}.
+\cref{thm:polytope} implies in particular that~$\reducedWigglyComplex_P$ is a simplicial sphere of dimension~$n_\circ+2n_\bullet-4$, a result independently established in~\cite[Coro.~3.21]{BapatDeopurkarLicata}.
 Note that their proof proceeds via a deformation argument, describing how the wiggly complex varies under a small perturbation of the point set.
-By contrast, our approach gives a direct polytopal realization, but it depends on the fact that the wiggly complex~$\reducedWigglyComplex_P$ is a simplicial pseudomanifold without boundary of dimension~$n_1+2n_2-4$.
+By contrast, our approach gives a direct polytopal realization, but it depends on the fact that the wiggly complex~$\reducedWigglyComplex_P$ is a simplicial pseudomanifold without boundary of dimension~$n_\circ+2n_\bullet-4$.
 We thus  sketch a direct proof of this fact, both to avoid reliance on~\cite[Coro.~3.21]{BapatDeopurkarLicata} and because we believe it offers useful geometric and combinatorial insight into the structure of the wiggly complex.
 
 \begin{definition}
@@ -513,7 +513,7 @@ The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ of~$P$ is the graph with a ver
 \end{definition}
 
 \begin{proposition}
-The wiggly flip graph~$\wigglyFlipGraph_P$ is regular of degree~$n_1+2n_2-3$ and connected.
+The wiggly flip graph~$\wigglyFlipGraph_P$ is regular of degree~$n_\circ+2n_\bullet-3$ and connected.
 \end{proposition}
 
 \begin{proof}[Proof sketch]
@@ -616,7 +616,7 @@ Also interesting for us is the positive part of $\Equil_{\operatorname{l}}(P)$, 
 \begin{lemma}
 \label{lem:equil_cone}
 %If $P$ affinely spans $\R^2$ then
-$\Equil_+(P)$ is a full-dimensional pointed cone in $\Equil_{\operatorname{l}}(P)$. Moreover, let $B(P)$ denote the set of row-vectors of  $-\Mmatrix(P)$ corresponding to boundary edges of $P$ (so that $|B(P)| = n_1$ if $P$ spans $\R^2$ and $|B(P)| = 1$ if not). Then, adding $B(P)$ to $\Equil_+(P)$ positively spans the whole of $\Equil(P)$.
+$\Equil_+(P)$ is a full-dimensional pointed cone in $\Equil_{\operatorname{l}}(P)$. Moreover, let $B(P)$ denote the set of row-vectors of  $-\Mmatrix(P)$ corresponding to boundary edges of $P$ (so that $|B(P)| = n_\circ$ if $P$ spans $\R^2$ and $|B(P)| = 1$ if not). Then, adding $B(P)$ to $\Equil_+(P)$ positively spans the whole of $\Equil(P)$.
 \end{lemma}
 
 \begin{proof}
@@ -876,14 +876,14 @@ More precisely, we show the following:
 
 \begin{theorem}
 \label{thm:main}
-Let $P$ be a point set with $n_1$ extremal and $n_2$ non-extremal points. Let $n=n_1+n_2$. Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
+Let $P$ be a point set with $n_\circ$ extremal and $n_\bullet$ non-extremal points. Let $n=n_\circ+n_\bullet$. Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
 \begin{enumerate}
 \item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (i.e., it is a triangulation of) $\Equil_+^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative boundary.}
-\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_1$ boundary arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_2+n_1-3}$, where $\Ext(P)$ is the linear span of the $n_1$ external wiggly rigidity vectors.
+\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ boundary arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly rigidity vectors.
 \end{enumerate}
 \end{theorem}
 
-In fact, part (1) follows from (2) and the (obvious) fact that the $n_1$ external wiggly arcs are independent. So, we only need to prove (2). For that we use the following result proved in the appendix:
+In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly arcs are independent. So, we only need to prove (2). For that we use the following result proved in the appendix:
 
 \begin{theorem}
 \label{thm:regularLiftingVersion}
