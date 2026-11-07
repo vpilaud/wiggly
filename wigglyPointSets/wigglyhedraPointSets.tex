@@ -573,7 +573,7 @@ The kernel of $\Mmatrix(P)^T$, that is, the linear space of dependences among ro
 These are called \defn{equilibrium stresses}. 
 
 \begin{lemma}
-\label{lemma:affine_dependence}
+\label{lem:affineDependenceGivesEquilibriumStress}
 \vincent{Not sure this was a good idea to place this lemma here. It cuts a little bit the flow...}
 If~$(\lambda_1,\dots,\lambda_n)$ is an affine dependence on~$P$, then~$(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress of~$P$. That is, 
 \[
@@ -596,6 +596,7 @@ f_i
 \end{proof}
 
 \begin{corollary}
+\label{coro:equilibriumStressWyeCross}
 Let $P=\{p_1,p_2,p_3,p_4\}$ consist of four points affinely spanning $\R^2$. Then, the following is an equilibrium stress on $P$:
 \[
 \lambda_{i,j}\eqdef \det(p_i,p_k,p_l) \det(p_j,p_k,p_l),
@@ -658,7 +659,7 @@ $p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies t
 \begin{remark}
 The attentive reader may have noticed that the general position assumption in Lemma~\ref{lem:equil_cone} can be weakened to ``$\partial P$ has no points of $P$ other than the extremal ones''. 
 But the lemma is not true for arbitrary $P$, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
-Its rigidity matrix has six rows and rank five, so the only linear dependence among rows is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lemma:affine_dependence}. Geometrically, this means that $\Ima_+(\Mmatrix(P)^T)$ is the cone over the $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding the negative external rigidity vectors does not span the whole linear space, only the half-space having that facet in its boundary.
+Its rigidity matrix has six rows and rank five, so the only linear dependence among rows is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lem:affineDependenceGivesEquilibriumStress}. Geometrically, this means that $\Ima_+(\Mmatrix(P)^T)$ is the cone over the $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding the negative external rigidity vectors does not span the whole linear space, only the half-space having that facet in its boundary.
 \end{remark}
 
 \paco{not sure we need this paragraph}
@@ -975,22 +976,12 @@ the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part 
 \end{proposition}
 
 \begin{proof}
-%We first assume that~$P$ has no superfluous points and we proceed by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces}:
-%In each case, we use the self-stress to balance the longitudinal components, and we perturb with sufficiently small coefficients to balance the transversal components.
-%\begin{itemize}
-%\item 
-The \emph{wye} and the \emph{cross} both consist of four points in general position. In particular, the wiggly arcs involved have no transversal part and wiggly rigidity coincides with classical rigidity. It is well-known that in classical rigidity any affine dependence
-\[
-\sum_{i\in P} \lambda_i p_i =0, \quad \sum_i \lambda_i =0
-\]
-implies a rigidity dependence, namely
-\[
-\sum_{i,j\in P} \lambda_i \lambda_j \Rlong(p_i,p_j) =0.
-\]
-In this dependence an arc $[p_i, p_j]$ has positive or negative sign depending on whether $\lambda_i$ and $\lambda_j$ have the same or opposite signs. In the wye and the cross, the unique (modulo scaling) affine dependence has coefficients of opposite sign precisely in the arcs that form the minimal non-face.
+The \emph{wye} and the \emph{cross} both consist of four points in general position.
+In particular, the wiggly arcs involved have no transversal part and wiggly rigidity coincides with classical rigidity.
+These two cases thus directly follows from \cref{coro:equilibriumStressWyeCross}.
 
-%\item 
-In the \emph{double-I}, let~$\lambda \in ]0,1[$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
+\medskip
+In the \emph{double-I}, let~$\lambda \in {]0,1[}$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
 \begin{align*}
   \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
@@ -999,55 +990,45 @@ In the \emph{double-I}, let~$\lambda \in ]0,1[$ be the barycentric position of $
 that is,
 \begin{align*}
  \lambda\Reps(p, q, \varnothing, \varnothing) + (1-\lambda)\Reps(q, r, \varnothing, \varnothing) 
-=& \tfrac12[ \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) + \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\})].
+=& \frac{\lambda(1-\lambda)}{2} \bigl( \Reps(p, r, \{q\}, \varnothing) + \Reps(p, r, \varnothing, \{q\}) \bigr).
 \end{align*}
-%\item In the second picture, we have
-%%\[\frac{\Reps(p, s, \varnothing, \varnothing)}{\|p-s\|} + \frac{\Reps(q, s, \varnothing, \varnothing)}{\|q-s\|} + \frac{\Reps(r, s, \varnothing, \varnothing)}{\|r-s\|} = \frac{\Reps(p, q, \varnothing, \varnothing)}{2\|p-q\|} + \frac{\Reps(p, r, \varnothing, \varnothing)}{2\|p-r\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{2\|q-r\|}\]
-%\begin{multline*}
-%\lambda\Reps(p, s, \varnothing, \varnothing) + \mu\Reps(q, s, \varnothing, \varnothing) + \nu\Reps(r, s, \varnothing, \varnothing) = \\ \lambda\mu\Reps(p, q, \varnothing, \varnothing) + \lambda\nu\Reps(p, r, \varnothing, \varnothing) + \mu\nu\Reps(q, r, \varnothing, \varnothing)
-%\end{multline*}
-%%\[
-%%\Reps(p, s)/(\mu+\nu) + \Reps(q, s)/(\lambda+\nu) + \Reps(r, s)/(\lambda+\mu) = \\ \Reps(p, q)/2 + \Reps(p, r)/2 + \Reps(q, r)/2
-%%\]
-%%\vincent{Should we allow us to write it this way?}
-%where~$\lambda,\mu,\nu \in \R_{>0}$ are such that~$s = \lambda p + \mu q + \nu r$ and~$\lambda + \mu + \nu = 1$.
 
-%\item 
-{\color{blue}
-In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. 
-\paco{This needs to be re-checked, since the $\Rlong$ part has changed sign.}
-Then:
-\begin{align*}
-\frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
-& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
-& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
-\end{align*}
-Note that one of the two expressions above is non-negative, depending on the sign of~$\lambda-\mu$.
-}
-\vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
-\asilata{I redid the proof above in a slightly different way to convince myself of the signs etc. I am thus making another attempt at writing it. This is mostly for a sanity check and can probably be removed later on.}
+%{\color{blue}
+%\vincent{This is the old version. Below is a new version which makes more sense...}
+%In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) r$ and~$r = \mu s + (1-\mu) q$. 
+%\paco{This needs to be re-checked, since the $\Rlong$ part has changed sign.}
+%Then:
+%\begin{align*}
+%\frac{2-\mu}{\mu}\Reps(p, r, \{q\}, \varnothing) & + \frac{2-\lambda}{\lambda}\Reps(q, s, \{r\}, \varnothing) \\
+%& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\lambda)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\mu-\lambda}{\lambda(1-\mu)}\Reps(r, s, \varnothing, \varnothing) \\ & \qquad  + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(2-\lambda)(1-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\}) \\
+%& = \Reps(p, s, \{q,r\}, \varnothing) + \frac{(2-\mu)}{\lambda\mu}\Reps(q, r, \varnothing, \varnothing) + \frac{\lambda-\mu}{(1-\lambda)\mu}\Reps(p, q, \varnothing, \varnothing) \\ & \qquad + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{q\}, \{r\}) + \frac{(1-\lambda)(2-\mu)}{2(\lambda + \mu - \lambda\mu)} \Reps(p, s, \{r\}, \{q\})
+%\end{align*}
+%Note that one of the two expressions above is non-negative, depending on the sign of~$\lambda-\mu$.
+%}
+%\vincent{It could be slightly nicer if we rewrite these expressions in terms of $1-\lambda$ and $1-\mu$ or even $(1-\lambda)/\lambda$ and~$(1-\mu)/\mu$.}
+%\asilata{I redid the proof above in a slightly different way to convince myself of the signs etc. I am thus making another attempt at writing it. This is mostly for a sanity check and can probably be removed later on.}
+%
+%{\color{green!80!black}{In the \emph{double-U}, let \(x = |q-p|,\; y = |r - q|\;, z = |s -r|\) be the distances between succesive pairs of points.
+%The following coefficients give the desired linear dependence, depending on the sign of \(z-x\).
+%Note that in each column, all but the first two entries are non-negative.
+%\[
+%  \begin{array}{rcc}
+%    \text{Vector}& z - x \geq 0 & z - x \leq 0\\
+%    \hline
+%    
+%    \Reps(p,r,\varnothing,\{q\})& -(y + 2z) & -(y+2z)\\
+%    \Reps(q,s,\varnothing,\{r\})& -(y + 2x) & -(y+2x)\\
+%    \Reps(p,s,\varnothing,\{q,r\})& y & y\\
+%    \Reps(p,q,\varnothing,\varnothing)&(y/x)(z-x) & 0\\
+%    \Reps(q,r,\varnothing,\varnothing)& (y+x)(y + 2z) & (y+z)(y + 2x)\\
+%    \Reps(r,s,\varnothing,\varnothing)& 0 & (y/z)(x-z)\\
+%    \Reps(p,s,\{q\},\{r\})& x(y+2z)/2(x+y+z) & z(y+2x)/2(x+y+z)\\
+%    \Reps(p,s,\{r\},\{q\})& x(y+2z)/2(x+y+z) & z(y+2x)/2(x+y+z)\\
+%  \end{array}
+%\]
+%}}
 
-{\color{green!80!black}{In the \emph{double-U}, let \(x = |q-p|,\; y = |r - q|\;, z = |s -r|\) be the distances between succesive pairs of points.
-The following coefficients give the desired linear dependence, depending on the sign of \(z-x\).
-Note that in each column, all but the first two entries are non-negative.
-\[
-  \begin{array}{rcc}
-    \text{Vector}& z - x \geq 0 & z - x \leq 0\\
-    \hline
-    
-    \Reps(p,r,\varnothing,\{q\})& -(y + 2z) & -(y+2z)\\
-    \Reps(q,s,\varnothing,\{r\})& -(y + 2x) & -(y+2x)\\
-    \Reps(p,s,\varnothing,\{q,r\})& y & y\\
-    \Reps(p,q,\varnothing,\varnothing)&(y/x)(z-x) & 0\\
-    \Reps(q,r,\varnothing,\varnothing)& (y+x)(y + 2z) & (y+z)(y + 2x)\\
-    \Reps(r,s,\varnothing,\varnothing)& 0 & (y/z)(x-z)\\
-    \Reps(p,s,\{q\},\{r\})& x(y+2z)/2(x+y+z) & z(y+2x)/2(x+y+z)\\
-    \Reps(p,s,\{r\},\{q\})& x(y+2z)/2(x+y+z) & z(y+2x)/2(x+y+z)\\
-  \end{array}
-\]
-}}
-
-\vincent{Below is a new version which makes more sense...}
+\medskip
 In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
 Hence
 \[
@@ -1055,7 +1036,7 @@ q-p = (1-\lambda)(s-p) \quad
 r-q = (\lambda+\mu-1)(s-p) \quad
 s-r = (1-\mu)(s-p) \quad
 r-p = \mu(s-p) \quad
-s-q = \lambda(s-p)
+s-q = \lambda(s-p).
 \]
 We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
 \begin{align*}
@@ -1083,8 +1064,7 @@ from which we conclude that
 \end{multline*}
 If~$\lambda(1-\lambda) \ge \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
 
-%\item 
-\Paco{This is the proof where I needed to change the sign of the rigidity matrix, redefining $\Rlong(p,q) \eqdef (q-p) (\one_p  - \one_q)$.}
+\medskip
 The last case, the \emph{trident}, is more complicated. Let $s'$ be the orthogonal projection of $s$ to the line $pqr$.
 The following three parameters  describe the configuration $\{p,q,r,s\}$ up to rigid motion and dilation: 
 \begin{itemize}
