@@ -964,8 +964,9 @@ Then the following are equivalent:
 \section{A dependence for each minimal non-face}
 \label{sec:circuit}
 
-Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly rigidity vectors.
-Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNonFaces2}.
+Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are equilibrium stresses among the wiggly rigidity vectors.
+
+Although the linear dependence needs to be on the whole wiggly configuration, we first need to construct an appropriate equilibrium stress in the simplified case where the only points of the configuration are the extremes of the arcs in the non-face. We do so in our next result. Figure~\ref{fig:minimalNonFaces2} illustrates the stresses we construct for the five cases of minimal non-faces from Figure~\ref{fig:minimalNonFaces2}.
 
 \begin{figure}[!h]
 	\centerline{
@@ -973,7 +974,7 @@ Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNon
 			\includegraphics[scale=1]{doubleI} &
 			\includegraphics[scale=1]{wye} &
 			\raisebox{.5cm}{\includegraphics[scale=1]{doubleU}} &
-			\includegraphics[scale=1]{phi} &
+			\includegraphics[scale=.75]{phi-stress} &
 			\includegraphics[scale=1]{cross} \\
 			\defn{double-I} &
 			\defn{wye} &
@@ -982,12 +983,12 @@ Let us recall the five types of minimal non-faces, in Figure~\ref{fig:minimalNon
 			\defn{cross}			
 		\end{tabular}
 	}
-\caption{The five different types of minimal non-faces of the wiggly complex~$\extendedWigglyComplex_P$. 
-Note that there might be some additional points of~$P$ in the convex hull of each.}
+\caption{The self-stresses in the five minimal non-face configurations. Black and blue edges in the picture indicate edges that get  negative and positive coefficient, respectively.  In the double-U and trident some blue edges are dashed, indicating that they met get a zero, instead of positive, coefficient.
+%Note that there might be some additional points of~$P$ in the convex hull of each.
+}
 \label{fig:minimalNonFaces2}
 \end{figure}
 
-Although the linear dependence needs to be on the whole wiggly configuration, let us first look at the simplified case where the only points of the configuration are the extremes of the arcs in the non-face.
 
 \begin{proposition}
 \label{prop:fundamentalDependence}
@@ -1003,13 +1004,13 @@ In particular, the wiggly arcs involved have no transversal part and wiggly rigi
 These two cases thus directly follows from \cref{coro:equilibriumStressWyeCross}.
 
 \medskip
-In the \emph{double-I}, let~$\lambda \in {]0,1[}$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. The same argument from the previous case gives
+In the \emph{double-I}, let~$\lambda \in {]0,1[}$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. As in the previous case, \cref{coro:equilibriumStressWyeCross} gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
 \begin{align*}
   \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
-=& \lambda(1-\lambda)\Rlong(p, r) ,
+=& \lambda(1-\lambda)\Rlong(p, r)
 \end{align*}
-that is,
+or, equivalently,
 \begin{align*}
  \lambda\Reps(p, q, \varnothing, \varnothing) + (1-\lambda)\Reps(q, r, \varnothing, \varnothing) 
 =& \frac{\lambda(1-\lambda)}{2} \bigl( \Reps(p, r, \{q\}, \varnothing) + \Reps(p, r, \varnothing, \{q\}) \bigr).
@@ -1051,13 +1052,13 @@ that is,
 %}}
 
 \medskip
-In the \emph{double-U}, let~$\lambda,\mu \in \R_{>0}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
+In the \emph{double-U}, let~$\lambda,\mu \in ]0,1[$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$. We assume $\mu+\lambda >1$, which is equivalent to $p,q,r$ and $s$ being in that order along the line containing them.
 Hence
 \[
-q-p = (1-\lambda)(s-p) \quad
-r-q = (\lambda+\mu-1)(s-p) \quad
-s-r = (1-\mu)(s-p) \quad
-r-p = \mu(s-p) \quad
+q-p = (1-\lambda)(s-p), \quad
+r-q = (\lambda+\mu-1)(s-p), \quad
+s-r = (1-\mu)(s-p), \quad
+r-p = \mu(s-p), \quad
 s-q = \lambda(s-p).
 \]
 We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
@@ -1070,12 +1071,14 @@ namely
 \[
 (1+\lambda-\mu) \Rtrans(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Rtrans(q, s, \varnothing, \{r\}) + (1-\lambda-\mu) \Rtrans(p, s, \varnothing, \{q,r\}) = 0.
 \]
-We then observe that
+We then compute the same combination for the longitudinal parts:
 \begin{multline*}
 (1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
 = \bigl( (1-\mu)(1-\lambda+\mu) \one_p + \lambda (1-\lambda+\mu) \one_q - \mu (1+\lambda-\mu) \one_r - (1-\lambda)(1+\lambda-\mu) \one_s \bigr) \cdot (s-p).
 \end{multline*}
-If~$\lambda(1-\lambda) \le \mu(1-\mu)$, then we obtain
+If~$\lambda(1-\lambda) \le \mu(1-\mu)$, 
+\paco{Isn't this equivalent to $\lambda\le \mu$?}
+then we obtain
 \begin{multline*}
 (1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
 = (1+\lambda-\mu)(1-\lambda)\Rvector(p, s) + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{\mu}\Rvector(p, r) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Rvector(q, r),
