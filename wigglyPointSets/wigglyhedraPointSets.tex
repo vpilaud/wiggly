@@ -252,15 +252,15 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 %\begin{definition}
 %\label{def:wigglyComplexPointSet}
 %Fix a point set~$P$ of the plane, and an arbitrary total order~$<$ on~$P$.
-%A \defn{wiggly arc} is a quadruple~$(p,q,R,S)$ where~$p < q \in P$ and the sets~$R$ and~$S$ form a partition of the points of~$P$ located in the open segment joining~$p$ to~$q$.
-%Two wiggly arcs~$(p,q,R,S)$ and~$(p',q',R',S')$ are \defn{crossing} if 
+%A \defn{wiggly segment} is a quadruple~$(p,q,R,S)$ where~$p < q \in P$ and the sets~$R$ and~$S$ form a partition of the points of~$P$ located in the open segment joining~$p$ to~$q$.
+%Two wiggly segments~$(p,q,R,S)$ and~$(p',q',R',S')$ are \defn{crossing} if 
 %\begin{itemize}
 %\item either the segments~$[p,q]$ and~$[p',q']$ cross, 
 %\item or~$(R \cap S') \cup (\{p,q\} \cap S') \cup (R \cap \{p',q'\}) \ne \varnothing \ne (R' \cap S) \cup (\{p',q'\} \cap S) \cup (R' \cap \{p,q\})$.
 %\end{itemize}
-%A set~$X$ of wiggly arcs is \defn{pointed} if for any~$p \in P$, the wiggly arcs of~$X$ with an endpoint at~$p$ generate a pointed cone.
-%The \defn{wiggly complex}~$\extendedWigglyComplex_P$ is the simplicial complex of pairwise pointed and non-crossing subsets of wiggly arcs.
-%Note that the boundary wiggly arcs are irrelevant, which allows us to consider a reduced wiggly complex~$\extendedWigglyComplex_P$ induced by internal wiggly arcs.
+%A set~$X$ of wiggly segments is \defn{pointed} if for any~$p \in P$, the wiggly segments of~$X$ with an endpoint at~$p$ generate a pointed cone.
+%The \defn{wiggly complex}~$\extendedWigglyComplex_P$ is the simplicial complex of pairwise pointed and non-crossing subsets of wiggly segments.
+%Note that the boundary wiggly segments are irrelevant, which allows us to consider a reduced wiggly complex~$\extendedWigglyComplex_P$ induced by internal wiggly segments.
 %A \defn{wiggly pseudotriangulation} of~$P$ is a facet of~$\extendedWigglyComplex_P$.
 %The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ is the adjacency graph of the facets of~$\extendedWigglyComplex_P$.
 %%Note that, by construction, $\wigglyFlipGraph_P$ is regular.
@@ -344,7 +344,7 @@ We denote by $\wigglySegments(P)$ the set of all wiggly segments in $P$. Observe
 
 
 An \defn{external} wiggly segment is one of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
-\paco{later I  define \defn{semi-external arcs}. Should these be here?}
+\paco{later I  define \defn{semi-external segments}. Should these be here?}
 \end{definition}
 
 \begin{definition}
@@ -379,7 +379,7 @@ See \cref{fig:wigglyComplexSquarre}\,(left).
 \begin{remark}
 A few observations about \cref{def:wigglySegments,def:compatible,def:wigglyDissection,def:wigglyComplex}:
 \begin{enumerate}
-\item When wiggly segments are encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, the non-crossing and pointedness conditions can be expressed in purely combinatorial terms (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to also define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
+\item When wiggly segments are encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, the non-crossing and pointedness conditions can be expressed in purely combinatorial terms (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to also define and visualize wiggly segments and the wiggly complex in terms of isotopy classes of arcs.
 \item As the $n_\circ$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
 In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $n_\circ$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
 \item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
@@ -435,7 +435,7 @@ Minimal non-faces are minimal sets of arcs which are
 \end{itemize}
 Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
 Namely, each of the arcs in the figures may have additional points along it.
-\Eg if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly arcs with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
+\Eg if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly segments with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
 \paco{Not sure I like the name superfluous. They are not superfluous at all...}
 \asilata{How about~\defn{waypoints}?}
 \end{proof}
@@ -455,7 +455,7 @@ We thus  sketch a direct proof of this fact, both to avoid reliance on~\cite[Cor
 \begin{definition}
 Consider a wiggly dissection~$D$ of~$P$ (we actually implicitly consider a set of pairwise non-crossing representatives of the arcs of~$D$).
 The arcs of~$D$ separate the plane~$\R^2$ into connected components, whose closure we call \defn{wiggly cells}.
-We call \defn{external} cell the one outside the external wiggly arcs, and \defn{internal} all other cells.
+We call \defn{external} cell the one outside the external wiggly segments, and \defn{internal} all other cells.
 Note that each internal wiggly cell~$C$ has an external boundary component (separating it from the external cell), and may have some internal boundary component.
 The \defn{corners} of~$C$ are the convex vertices along its boundary and the \defn{chains} of~$C$ are the pieces of its boundary between two consecutive corners.
 A \defn{wiggly triangle} is a wiggly cell with $3$ corners and no internal boundary.
@@ -530,7 +530,7 @@ This proves that~$\wigglyFlipGraph_P$ is $(v+2w-3)$-regular.
 Consider now an arbitrary order~$p_1, \dots, p_n$ of~$P$ such that~$p_i$ lies on the complement of the convex hull of~$\{p_1, \dots, p_{i-1}\}$ for all~$i \in [n]$.
 For all~$i \in [n]$, define inductively the wiggly triangulation~$T_i^\circ$ of~$P_i \eqdef \{p_1, \dots, p_i\}$ obtained from~$T_{i-1}^\circ$ by adding all external wiggly segments of~$P_i$.
 We prove by induction on~$i$ that any wiggly triangulation of~$P_i$ is connected by flips to~$T_i^\circ$.
-For any wiggly triangulation~$T_i$ of~$P_i$, consider the wiggly triangulation~$T_{i-1}$ obtained from~$T_i$ by flipping all internal wiggly segments incident to~$p_i$, and then deleting~$p_i$ and its two incident external wiggly arcs.
+For any wiggly triangulation~$T_i$ of~$P_i$, consider the wiggly triangulation~$T_{i-1}$ obtained from~$T_i$ by flipping all internal wiggly segments incident to~$p_i$, and then deleting~$p_i$ and its two incident external wiggly segments.
 Then~$T_{i-1}$ is a wiggly triangulation of~$P_{i-1}$, which is connected by flips to~$T_{i-1}^\circ$ by induction.
 We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
 \end{proof}
@@ -542,9 +542,11 @@ We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
 
 Our construction of the wiggly fan is based on rigidity considerations, similar to those used in~\cite{RoteSantosStreinu-polytope} to construct the fan (and the polytope) of pseudo-triangulations of a point set in general position.
 In fact, for point sets in general position our construction restricts to the one in that paper.
-Before looking at the case of wiggly arcs, let us briefly recall the basics of (infinitesimal) rigidity theory.
+Before looking at the case of wiggly segments, let us briefly recall the basics of (infinitesimal) rigidity theory. We mostly follow~\cite{Jordan-rigidity} for notation and nomenclature, and another general source is~\cite{GraverServatiusServatius}. 
 
-Let $P \subset \R^2$ be a point set, consisting of $n$ points $p_1,\dots,p_n$. Recall that the~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:
+Almost everything we say in this section extends to arbitrary dimension, but we work out the directly the two-dimensional case.
+Let $P \subset \R^2$ be a point set, consisting of $n$ points $p_1,\dots,p_n$. The~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:%
+\footnote{Note that signs in our matrix are the opposite to the standard choice. We need this choice for some of our constructions to work}
 \[
 \Mmatrix(P) \eqdef
 \begin{pmatrix}
@@ -557,15 +559,13 @@ p_n-p_1 & 0 & 0 & \cdots & 0 & p_1-p_n \\
 0 & 0 & 0 & \cdots & p_{n}-p_{n-1} & p_{n-1}-p_{n}
 \end{pmatrix}
 \]
-\paco{In order to have a good dependence in the trident I needed to change all signs in the rigidity matrix; that is, positive  represensts compression/contraction and negative represents extension/dilation}
-
 That is to say, we have a row vector $\Rvector(p,q)\in (\R^2)^n \cong (\R^2)^P$ associated to each pair of points~${p,q\in P}$.
 All entries in $\Rvector(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $q-p \in \R^2$ and the block corresponding to $q$ has the block $p-q \in \R^2$.
 
 The matrix $\Mmatrix(P)$, considered as a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, has the following physical interpretation: each~${v = (v_p)_{p\in P} \in (\R^2)^P}$ is understood as an~\defn{infinitesimal motion} of the point set~\(P\), that is, is the assignment of a velocity vector \(v_p \in \R^2\) to each point \(p \in P\). Then, the vector~$\Mmatrix(P) v \in \R^{\binom{n}{2}}$ records, for each pair $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_i-p_j)\cdot (v_i-v_j)$, which equals the (infinitesimal) relative increase (if negative) or decrease (if positive) of the length of the segment $[p_i,q_i]$ under that motion\footnote{We are taking the matrix with a sign opposite to the standard convention, since that will be more convenient in our setting}.
 
 The kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points. 
-These include the~\defn{infinitesimal rigid motions}, that is, those moving the whole point set as if it was a rigid block. Rigid motions form a three-dimensional linear subspace of $\R^{2n}$ generated by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion
+These include the~\defn{trivial infinitesimal motions}, that is, those moving the whole point set as if it was a rigid block. Trivial motions form a three-dimensional linear subspace of $\R^{2n}$ generated by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion
 \[
 (p^\perp)_{p\in P} = (p_1^\perp, \dots, p_n^\perp),
 \]
@@ -574,17 +574,18 @@ We denote the space of infinitesimal rigid motions by $\Triv(P)$.
 If $P$ affinely spans $\R^2$ then $\ker(\Mmatrix(P))$ \emph{equals} \(\Triv(P)\), so that $\Mmatrix(P)$ has rank $2n-3$.
 But if $\conv(P)$ is contained in a line $\ell$, then $\ker(\Mmatrix(P))$ is the sum of \(\Triv(P)\) with the $n$-dimensional space of motions orthogonal to $\ell$. In this case $\Mmatrix(P)$ has rank $n-1$ and its kernel has dimension $n+1$.
 
-The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension (if negative) or compression (if positive) stresses applied to the individual rods. Then the vector~$\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_j-p_i)$ is the resulting force at point $p_i$. 
-In rigidity theory, such an assignment $(f_1,\dots,f_n)$ of forces at the points $p_1,\dots, p_n$ is  called a \defn{load}.
-\paco{cita. Whiteley? Graver-Sevatius-Servatius?}
-The kernel of $\Mmatrix(P)^T$, that is, the linear space of dependences among rows of~$\Mmatrix(P)$, consists of the stresses that applied to the rods  produce no net force on any $p_i$. 
-These are called \defn{equilibrium stresses}. 
+The dual map $\Mmatrix(P)^T  : \R^{\binom{n}{2}} \to (\R^2)^n$ also has a physical interpretation. We can think of each pair of points in $P$ as joined by a rod, and interpret each vector $w\in \R^{\binom{n}{2}}$ as expressing extension (if negative) or compression (if positive) stresses applied to the individual rods. That is, we call \defn{stresses} the elements of $\R^{\binom{n}{2}}$ interpreted as assignments of scalars to the segments in $P$.
+Then the vector~$\Mmatrix(P)^T w  \in (\R^2)^n$  equals $(f_1,\dots,f_n)$ where $f_i = \sum_j w_{ij} (p_j-p_i)$ is the resulting force at point $p_i$. 
+In rigidity theory, such an assignment $(f_1,\dots,f_n)$ of forces at the points $p_1,\dots, p_n$ is  called a \defn{load} and any stress with $\Mmatrix(P)^T w = f$ is called a \defn{resolution} of the load $f$.
+The kernel of $\Mmatrix(P)^T$, that is, the linear space of dependences among rows of~$\Mmatrix(P)$, consists of the stresses that resolve the zero load and are called \defn{self-stresses} of (the complete graph on) $P$.%
+\footnote{Note that~\cite{GraverServatiusServatius} calls \emph{stresses} what we, and~\cite{Jordan-rigidity}, call \emph{self-stresses}.}
+\paco{checked literature and ``self-stress'' is not used. Also, it may be in confilct with ``equilibrium loads'', which is more standard}
 
 \begin{lemma}
 \label{lem:affineDependenceGivesEquilibriumStress}
 \vincent{Not sure this was a good idea to place this lemma here. It cuts a little bit the flow...}
 \paco{I think it is good.  I now refer to it in~\cref{rem:trident_example} and~\cref{foot:matroid}}
-If~$(\lambda_1,\dots,\lambda_n)$ is an affine dependence on~$P$, then~$(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is an equilibrium stress of~$P$. That is, 
+If~$(\lambda_1,\dots,\lambda_n)$ is an affine dependence on~$P$, then~$(\lambda_i\lambda_j)_{\{i,j\}\in \binom{P}2}$ is a self-stress of~$P$. That is, 
 \[
 \sum_{i\in P} \lambda_i p_i =0, \quad \sum_{i\in P} \lambda_i =0
 \qquad\Longrightarrow\qquad
@@ -605,8 +606,8 @@ f_i
 \end{proof}
 
 \begin{corollary}
-\label{coro:equilibriumStressWyeCross}
-Let $P=\{p_1,p_2,p_3,p_4\}$ consist of four points affinely spanning $\R^2$. Then, the following is an equilibrium stress on $P$:
+\label{coro:selfStressWyeCross}
+Let $P=\{p_1,p_2,p_3,p_4\}$ consist of four points affinely spanning $\R^2$. Then, the following is a self-stress on $P$:
 \[
 \lambda_{i,j}\eqdef \det(p_i,p_k,p_l) \det(p_j,p_k,p_l),
 \]
@@ -620,20 +621,20 @@ Follows from the previous lemma taking into account that $\lambda_i\eqdef (-1)^i
 \end{proof}
 
 
-The image of $\Mmatrix(P)^T$ is the orthogonal complement of the kernel of $\Mmatrix(P)^T$, and is hence contained in the linear space of loads satisfying the following three equations:
+The image of $\Mmatrix(P)^T$ is the orthogonal complement of the kernel of $\Mmatrix(P)$, and is hence contained in the linear space of loads satisfying the following three equations:
 \[
 \sum_{i=1}^n f_i =0, \qquad \sum_{i=1}^n p_i \times f_i =0.
 \]
 The physical interpretation is that these loads have 
 zero resultant and zero moment: if the points are part of a rigid body, those forces applied to those points produce no motion.
 When this happens we say that the load $(f_1,\dots,f_n)$ is \defn{balanced} or \defn{in equilibrium}. We denote the space of them by $\Equil(P)$. 
-Again, if $P$ affinely spans $\R^2$ then $\Equil(P)$ \emph{equals} $\Ima(\Mmatrix(P)^T)$, while if $P$ is contained in a line then $\Ima(\Mmatrix(P)^T)$ is the intersection of $\Equil(P)$ with the $n$-dimensional space of \defn{longitudinal loads}, that is, loads in the direction of that line. Equilibrium in this case poses only one additional constraint, so the image of $\Mmatrix(P)^T$ is indeed $(n-1)$-dimensional.
+Again, if $P$ affinely spans $\R^2$ then $\Equil(P)$ \emph{equals} $\Ima(\Mmatrix(P)^T)$, while if $P$ is contained in a line parallel to a certain vector $f\in \R^2$ then $\Ima(\Mmatrix(P)^T)$ is the intersection of $\Equil(P)$ with the $n$-dimensional space $(\R f)^{n}$ of \defn{longitudinal loads}. Equilibrium in this case poses only one additional constraint, so the image of $\Mmatrix(P)^T$ is indeed $(n-1)$-dimensional.
 
-If we  consider a set of edges $E \subseteq \binom{n}{2}$, this defines a restricted matrix $\Mmatrix|_E(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $E$. Hence, $E$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the \defn{self-stresses} or  equilibrium stresses of the subgraph $E$, and $E$ is called \defn{stress-free} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
-\footnote{\label{foot:matroid}This information is captured by the linear matroid of rows of $\Rvector(p)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.
-For example,~\cref{lem:affineDependenceGivesEquilibriumStress} says that if $S$ is affinely dependent then the complete graph $K_S$ on $S$ is also dependent in the rigidity matroid. An easy rank computation shows that if $S$ is minimally affinely dependent (a circuit, in matroid terminology) then $K_S$ is a circuit too.}%
+In rigidity theory one often considers a subset of edges $G \subseteq \binom{n}{2}$; the pair $(G, P)$ is called a \defn{framework}. The framework has a restricted rigidity matrix $\Mmatrix|_G(P)$ whose kernel are the infinitesimal motions preserving the lengths of edges in $G$. Hence, $G$ is called (infinitesimally) \defn{rigid} (for the positions $P$) if $\Mmatrix|_E(P)$ has full-rank, equal to $2n-3$. Similarly, the kernel of $\Mmatrix|_E(P)^T$ represents the self-stresses supported on $G$, and $G$ is called \defn{stress-free} or \defn{independent} if that kernel is zero; that is, if $\Mmatrix|_E(P)$ has rank $E$.%
+\footnote{\label{foot:matroid}This information is captured by the linear matroid of rows of $\Mmatrix(P)$: rigid graphs are the spanning sets of rows, and stress-free graphs are the independent ones. Consequently, that matroid is called the \defn{(infinitisimal) rigidity matroid} of $P$.
+For example,~\cref{lem:affineDependenceGivesEquilibriumStress} says that if $S\subset P$ is affinely dependent then the complete graph $K_S$ on $S$ is also dependent in the rigidity matroid of $P$. An easy rank computation shows that if $S$ is minimally affinely dependent (a circuit, in matroid terminology) then $K_S$ is a circuit too.}%
 
-Also interesting for us is the positive part of $\Ima(\Mmatrix(P)^T)$, that is, the loads that can be obtained as non-negative combinations of rows of $\Mmatrix(P)$. We call them \defn{compression loads} and denote the set of them by $\Comp(P)$.
+Although not usually present in elementary treatments of rigidity, it will be very important for us to have in consideration the signs of coefficients in the stresses we use. In particular, we are interested in which loads can be obtained with non-negative stresses. We call them \defn{compression loads} and denote the set of them by $\Comp(P)$.
 \vincent{I would use $\operatorname{Comp}(P)$.}\paco{Done}
 $\Comp(P)$ is a full-dimensional pointed cone in $\Ima(\Mmatrix(P)^T)$, since every row of $\Mmatrix(P)$ has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
 \[
@@ -646,7 +647,7 @@ Let $\Ematrix(P)$ denote the set of external rigidity vectors (\ie rigidity vect
 
 \begin{lemma}
 \label{lem:equil_cone}
-If the only points of $P$ in $\partial(\conv P)$ are the extremal ones then $-\Ematrix(P)$ together with $\Comp(P)$ positively spans the whole of $\Ima(\Mmatrix(P)^T)$.
+If the only points of $P$ in $\partial(\conv P)$ are the extremal ones then $\Comp(P)$ together with $-\Ematrix(P)$ positively spans the whole of $\Ima(\Mmatrix(P)^T)$.
 \end{lemma}
 
 \begin{proof}
@@ -671,8 +672,8 @@ $p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies t
 \begin{remark}
 \label{rem:trident_example}
 The lemma is not true when $P$ has additional boundary points, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
-Its rigidity matrix has six rows and rank five, so the only linear dependence among rows is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lem:affineDependenceGivesEquilibriumStress}. 
-Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But, then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding to the cone the negative external rigidity vectors does not span the whole linear space, only the half-space containing that facet in its boundary.
+Its rigidity matrix has six rows and rank five, so the only linear dependence among rows (that is, the unique selfs-stress) is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lem:affineDependenceGivesEquilibriumStress}. 
+Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But, then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding to the cone the negative external rigidity vectors does not positively span the whole linear space, only the half-space containing that facet in its boundary.
 \end{remark}
 
 
@@ -681,11 +682,11 @@ Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with ve
 
 When $P$ is in general position (and hence,  every wiggly segment is of the form $(p,q,\varnothing,\varnothing)$), the wiggly complex coincides with the complex of \defn{pointed non-crossing graphs}, whose maximal elements are the \defn{pointed pseudo-triangulations}.
 The main result of  \cite{RoteSantosStreinu-polytope} is that in this case $\reducedWigglyComplex_P$ can be embedded as a complete and polytopal fan in~$\Equil(P) \subset (\R^2)^P$ by associating to each~$(p,q) \in \binom{P}{2}$ the corresponding rigidity vector~$\Rvector(p,q)$. 
-We here generalize that construction to non-general position, for which we need to introduce a version of rigidity adapted to wiggly arcs.%
+We here generalize that construction to non-general position, for which we need to introduce a version of rigidity adapted to wiggly segments.%
 \footnote{
 A different generalization of the construction of \cite{RoteSantosStreinu-polytope}, based on removing the pointedness assumption, is in~\cite{OrdenSantos}. It would be interesting to find a common generalization of that one and the one in this paper.}
 
-Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly arc}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union is not necessarily~${]p,q[} \cap P$.
+Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly segment}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union is not necessarily~${]p,q[} \cap P$.
 %We introduce the following notation: 
 For each $p\in P$ let $\one_p$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $r$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_r \in (\R^2)^P$ equals the vector  that has $x$ in the $r$th coordinate and zeroes elsewhere.
 Hence, the classical rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
@@ -712,35 +713,36 @@ The~\defn{transversal rigidity vector} \(\Rtrans(\arc)\) of $\arc=(p, q, L, R)$ 
 \[
 \Rtrans(\arc) \eqdef \sum_{r\in L} \Rtrans(p,q;r) - \sum_{r\in R} \Rtrans(p,q;r).
 \]
+For \(\epsilon > 0\), the~\defn{(total) wiggly-rigidity vector} \(\Reps(\arc)\) is defined as
+\vincent{should we say here that \(\Reps(\arc)\) is a load in equilibrium?}\paco{This is~\cref{lemma:kernel}}
+\[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
 \end{definition}
+
+The intuition behind this definition is to think of the wiggly segment as a rubberband pulling  the points $p$ and $q$ longitudinally towards one another, but also ``pushing'' the intermediate points in $L\cup R$ transversally away from the segment $[p,q]$, as if they were physical discs of small but non-zero radius \paco{PICTURE?}.
+The transversal component is considered much smaller than the longitudinal one. In fact, the parameter $\epsilon$ will later be required to be ``sufficiently small'' in some of our proofs.
 
 \begin{remark}
 \label{rem:barycentric}
 Each point~$r \in {]p,q[}$ can be written uniquely as
 \[
-r = \lambda_r p + \mu_r  q,
+r = \lambda p + \mu  q,
 \]
-with $\lambda_r,\mu_r \ge 0$ and  $\lambda_r  + \mu_r  = 1$.
-\vincent{Should we remove the $r$ index and just write~$\lambda$ and~$\mu$ as it is clear from the context?}
-The coefficients  $\lambda_r$ and $\mu_r$ are the \defn{barycentric coordinates} of~$r$ in $[p,q]$ and can alternatively be defined via~$r-p = \mu_r  (q-p)$ and $q-r = \lambda_r  (q-p)$.
+with $\lambda,\mu > 0$ and  $\lambda  + \mu  = 1$.
+The coefficients  $\lambda$ and $\mu$ are the \defn{barycentric coordinates} of~$r$ in $[p,q]$ and can alternatively be defined via~$r-p = \mu  (q-p)$ and $q-r = \lambda  (q-p)$.
 It is straightforward that
 \[
-\Rtrans(p,q;r)  = (q-p)^\perp (\one_r - \lambda_r \one_p - \mu_r \one_q).
+\Rtrans(p,q;r)  = (q-p)^\perp (\one_r - \lambda \one_p - \mu \one_q).
 \]
 \end{remark}
 
-\begin{definition}\label{def:rv}
-For \(\epsilon > 0\), the~\defn{\(\epsilon\)-rigidity vector} \(\Reps(\arc)\) is defined as
-\vincent{should we say here that \(\Reps(\arc)\) is an equilibrium stress?}
-\[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
-\end{definition}
+%\begin{definition}\label{def:rv}
+%For \(\epsilon > 0\), the~\defn{wiggly-rigidity vector} \(\Reps(\arc)\) is defined as
+%\vincent{should we say here that \(\Reps(\arc)\) is a load in equilibrium?}\paco{Done}
+%\[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
+%\end{definition}
 
-\begin{remark}
-The intuition behind this definition is to think of the wiggly arc as a rubberband pulling  the points $p$ and $q$ longitudinally towards one another, but also ``pushing'' the intermediate points in $L\cup R$ transversally away from the segment $[p,q]$, as if they were physical discs of small but non-zero radius \paco{PICTURE?}.
-The transversal component is considered much smaller than the longitudinal one. In fact, the parameter $\epsilon$ will later be required to be ``sufficiently small'' in some of our proofs.
-\end{remark}
 
-Our main reason to allow for partial wiggly arcs in the definition of the rigidity vector is the following statement:
+Our main reason to allow for partial wiggly segments in the definition of the rigidity vector is the following statement:
 
 \begin{lemma}
 \label{lema:partial_rigidity}
@@ -759,7 +761,7 @@ For the longitudinal parts this is obvious since they do not depend on $A,B,L,R$
 \end{proof}
 
 
-One important feature of the wiggly rigidity vectors is that they are still equilibrium loads in the standard sense.
+One important feature of the wiggly-rigidity vectors is that they are still equilibrium loads in the standard sense.
 %we are defining is that they still produce forces in equilibrium, that is, they are orthogonal  to the kernel $\Triv(P)$ of the usual rigidity matrix of $P$:
 
 \begin{lemma}
@@ -795,22 +797,22 @@ r^\perp - \lambda_r p^\perp - \mu_r q^\perp  =
 In fact, the vectors $\{\Rtrans(p,q;r)\}_{r\in L\cup R}$ are a basis for the linear space of vectors transversal to $[p,q]$ and contained in $\Equil(P)$.
 \end{remark}
 
-As usual in the classical rigidity theory, we can assemble the rigidity vectors into rigidity matrices.
-All of these have rows indexed by the set $\wigglySegments(P)$ of wiggly arcs on \(P\).
+As in the classical rigidity theory, we assemble the rigidity vectors into rigidity matrices.
+All of these have rows indexed by the set $\wigglySegments(P)$ of wiggly segments on \(P\).
 Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
 
 \begin{definition}\label{def:rm}
 The~\defn{longitudinal rigidity matrix} of \(P\) is the matrix \(\Mlong(P)\) whose row indexed by~\(\arc\) is \(\Rlong(\arc)\).
 The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(\Mtrans(P)\) whose row indexed by~\(\arc\) is~\(\Rtrans(\arc)\).
-The~\defn{(total) \(\epsilon\)-rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
+The~\defn{(total) wiggly-rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
 \end{definition}
 
-One interesting difference with classical rigidity is that now \(\Meps(P)\) has rank~\(2n - 3\) even if $P$ does not affinely span $\R^2$.
+We keep all the rigidity notation and nomenclature from the classical (longitudinal) case. The main difference with the classical setting is that stresses, in particular self-stresses, now live in $\R^{\wigglySegments(P)}$ rather than $\R^{\binom{P}{2}}$.
+Another interesting difference with classical rigidity is that now \(\Meps(P)\) has rank~\(2n - 3\) even if $P$ does not affinely span $\R^2$.
 
 \begin{proposition}
 \label{prop:kernel}
-\paco{partially removed spanning assumption. Not needed}
-As long as $n\ge 2$, the \(\epsilon\)-rigidity matrix $\Meps(P)$ has rank~\(2n - 3\) for any \(\epsilon > 0\).
+As long as $n\ge 2$, the wiggly-rigidity matrix $\Meps(P)$ has rank~\(2n - 3\) for any \(\epsilon > 0\).
 Its kernel is the space $\Triv(P)$ of infinitesimal rigid motions and its row-span (i.e., the image of \(\Meps(P)^T\)) is the space of loads in equilibrium $\Equil(P)$.
 \end{proposition}
 
@@ -828,7 +830,7 @@ Then, to the row-span of $\Meps(P)$, of dimension $n-1$ and containing only long
 These are clearly independent of one another and of the longitudinal vectors in $\Meps(P)$, since the transversal part of the $k$-th one is supported exactly in the points $\{p_2,\dots, p_{k-1}$.
 \end{proof}
 
-As in the previous section, let us now look at the positive part of $\Equil(P)$, that is, the cone $\Comp^\epsilon(P)$ generated by the wiggly rigidity vectors. 
+As in the previous section, let us now look at the positive part of $\Equil(P)$, that is, the cone $\Comp^\epsilon(P)$ generated by the wiggly-rigidity vectors. 
 Again, it turns out that a  result similar to what we had in classical rigidity (\cref{lem:equil_cone}) holds without the  assumptions on $P$ needed there.
 We keep the notation $\Ematrix(P)$ to denote the set of \emph{classical} (\ie longitudinal) rigidity vectors corresponding to boundary edges of $\conv(P)$.
 
@@ -839,8 +841,8 @@ $-\Ematrix(P)$ together with $\Comp^\epsilon(P)$ positively spans the whole of $
 \end{lemma}
 
 \begin{proof}
-As in the proof of \cref{lem:equil_cone}, our first goal is to show that from any load in equilibrium, subtracting nonnegative combinations of wiggly rigidity vectors we can get another load that vanishes at all points that are not extremal. 
-Observe that in this step we are allowed to use partial wiggly arcs since, by~\cref{lema:partial_rigidity}, any partial wiggly rigidity vector is a positive combination of total ones. 
+As in the proof of \cref{lem:equil_cone}, our first goal is to show that from any load in equilibrium, subtracting nonnegative combinations of wiggly-rigidity vectors we can get another load that vanishes at all points that are not extremal. 
+Observe that in this step we are allowed to use partial wiggly segments since, by~\cref{lema:partial_rigidity}, any partial wiggly-rigidity vector is a positive combination of total ones. 
 With this in mind we can cancel forces at non-extremal points with a small variation of what we did in \cref{lem:equil_cone}: 
 if $p$ lies in the interior of $\conv{P}$ we cancel the force at $p$ using the longitudinal rigidity vectors $\Rlong(p,p_i)$ for the extremal points $p_i$; 
 if $p$ lies in the relative interior of an edge $\{p_i,p_{i+1}\}$ of $\conv(P)$ we cancel the force at $p$ using the longitudinal vectors $\Rlong(p,p_i)$ and $\Rlong(p,p_{i+1})$, plus the (perhaps partial) wiggly vectors $\Reps(p_i,p_{i+1}, \{p\},\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  \{p\})$. 
@@ -850,7 +852,7 @@ Observe that this can be done even when $\conv(P)$ is a segment $[p_1,p_2]$. Mor
 So, we can now  assume without loss of generality that $P$ affinely spans $\R^2$ and that the load we want to resolve  vanishes except at extremal points. \cref{lema:partial_rigidity} implies that this load is a linear combination of  $\Ematrix(P)$.
 \end{proof}
 
-We want to derive the same property for wiggly arcs instead of the external longitudinal ones, except we need to assume $\epsilon$ to be small. For our next proof and in other parts of the paper we use the following elementary fact:
+We want to derive the same property for wiggly segments instead of the external longitudinal ones, except we need to assume $\epsilon$ to be small. For our next proof and in other parts of the paper we use the following elementary fact:
 
 \begin{lemma}
 \label{lemma:spanning}
@@ -863,13 +865,13 @@ Let $C$ be a convex cone linearly spanning $V\cong \R^n$ then for any finite sub
 \end{enumerate}
 \end{lemma}
 
-Recall that the \emph{external} wiggly segments are those of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. We now introduce \defn{semi-external} wiggly arcs as those of the form~$(p, q, L, R)$, with the same conditions for $p,q$.
+Recall that the \emph{external} wiggly segments are those of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. We now introduce \defn{semi-external} wiggly segments as those of the form~$(p, q, L, R)$, with the same conditions for $p,q$.
 \paco{ I here  define \defn{semi-external arcs}}
 
 
 \begin{corollary}
 \label{coro:equil_cone_epsilon}
-Let $P$ be an arbitrary point set with  extremal points $p_1,\dots,p_{n_\circ}$, in counter-clockwise order. For each $i\in [n_\circ]$ let $\Rvector^\epsilon_{i}$ denote one arbitrary choice of semi-external wiggly arc in $P$ with end-points $p_i$ and $p_{i+1}$.
+Let $P$ be an arbitrary point set with  extremal points $p_1,\dots,p_{n_\circ}$, in counter-clockwise order. For each $i\in [n_\circ]$ let $\Rvector^\epsilon_{i}$ denote one arbitrary choice of semi-external wiggly segment in $P$ with end-points $p_i$ and $p_{i+1}$.
 
 Then, for any sufficiently small $\epsilon>0$, $\Equil(P)$ is positively spanned by $\Comp^\epsilon(P)$ together with $\{-\Rvector^\epsilon_{i}:i\in [n_\circ]\}$.
 \end{corollary}
@@ -886,8 +888,8 @@ Hence $\Comp^\epsilon(P)$ together with $\{ \Rvector^\epsilon_{i}: {i\in [n_\cir
 \begin{lemma}%[Convex hull lemma]
 \label{lem:triangle1}
 Let~$S \subseteq P$ and~$q \in \conv(S) \cap P$. Let~$\arc_s$ be the partial arc~$(s, q, \varnothing, \varnothing)$ for each~$s \in S$.
-Then for any equilibrium stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an equilibrium stress with a vanishing component at~$q$.
-\vincent{this is wrong. We want to say that $w$ is an equilibrium stress on $P \ssm \{q\}$ and we want to say that we obtain an equilibrium stress of~$P$ using additional arcs.}
+Then for any self-stress~$w$ of~$P$ such that~$\one_q w \in \cone(S - q)$, there exist non-negative scalars~$\lambda_s$ for~$s \in S$ such that~$w - \sum_{s \in S} \lambda_s \Reps(\arc_s)$ is an self-stress with a vanishing component at~$q$.
+\vincent{this is wrong. We want to say that $w$ is an self-stress on $P \ssm \{q\}$ and we want to say that we obtain an self-stress of~$P$ using additional arcs.}
 \end{lemma}
 
 \begin{proof}
@@ -918,7 +920,7 @@ Then there exist scalars~$\lambda_i \in \R_{\ge 0}$ and~$\mu_i \in \R$~for~$i \i
 \begin{lemma}
 \label{lem:colinear}
 Let~$p,q,r \in P$ be such that~$r \in {]p,q[}$, and consider the partial arcs~$\arc_p \eqdef (q, r, \varnothing, \varnothing)$, $\arc_q \eqdef (p, r, \varnothing, \varnothing)$, $\arc_r \eqdef (p, q, \{r\}, \varnothing)$ and~$\arc_r' \eqdef (p, q, \varnothing, \{r\})$. 
-Then for any equilibrium stress~$w$ of~$P$, there exists non-negative scalars~$\lambda_p, \lambda_q, \lambda_r, \lambda_r'$ such that~$w - \lambda_p \Reps(\arc_p) - \lambda_q \Reps(\arc_q) - \lambda_r \Reps(\arc_r) - \lambda_r' \Reps(\arc_r')$ is an equilibrium stress with a vanishing component at~$r$.
+Then for any self-stress~$w$ of~$P$, there exists non-negative scalars~$\lambda_p, \lambda_q, \lambda_r, \lambda_r'$ such that~$w - \lambda_p \Reps(\arc_p) - \lambda_q \Reps(\arc_q) - \lambda_r \Reps(\arc_r) - \lambda_r' \Reps(\arc_r')$ is an self-stress with a vanishing component at~$r$.
 \vincent{same here}
 \end{lemma}
 
@@ -948,15 +950,15 @@ More precisely, we show the following:
 \begin{theorem}
 \label{thm:main}
 Let $P$ be a set of~$n$ points, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
-Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
+Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly segment~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
 \begin{enumerate}
 \item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Comp^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
-\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly rigidity vectors.
+\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly-rigidity vectors.
 \end{enumerate}
 \vincent{Add here the polytopal realization, either with explicit height function, or saying that it exists.}
 \end{theorem}
 
-In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly arcs are independent. So, we only need to prove (2). For that we use the following result proved in \cref{sec:regularSubdivisions}.
+In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly segments are independent. So, we only need to prove (2). For that we use the following result proved in \cref{sec:regularSubdivisions}.
 
 \begin{theorem}
 \label{thm:regularLiftingVersion}
@@ -975,7 +977,6 @@ Then the following are equivalent:
     \qquad\text{and}\qquad
     \sum_{\arc \in A} {\lambda(\arc)}{h(\arc)} < 0.
   \]
-  \asilata{Fixed typos: changed \(f\) to \(h\) in the above two bullet points.}
 \end{itemize}
 \end{theorem}
 
@@ -984,9 +985,9 @@ Then the following are equivalent:
 \section{A dependence for each minimal non-face}
 \label{sec:circuit}
 
-Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are equilibrium stresses among the wiggly rigidity vectors.
+Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly-rigidity vectors.
 
-Although the linear dependence needs to be on the whole wiggly configuration, we first construct an  equilibrium stress in the simplified case where the only points of the configuration are the extremes of the arcs in the non-face. We do so in our next result. Figure~\ref{fig:minimalNonFaces2} illustrates the stresses we construct for the five cases of minimal non-faces from Figure~\ref{fig:minimalNonFaces2}.
+Although the linear dependence needs to be on the whole wiggly configuration, we first construct an  self-stress in the simplified case where the only points of the configuration are the extremes of the arcs in the non-face. We do so in our next result. Figure~\ref{fig:minimalNonFaces2} illustrates the stresses we construct for the five cases of minimal non-faces from Figure~\ref{fig:minimalNonFaces2}.
 
 \begin{figure}[!h]
 	\centerline{
@@ -1009,9 +1010,9 @@ Although the linear dependence needs to be on the whole wiggly configuration, we
 \label{fig:minimalNonFaces2}
 \end{figure}
 
-In what follows a dependence or, more generally, a linear combination of wiggly rigidity vectors in a configuration $P$, will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
+In what follows a dependence or, more generally, a linear combination of wiggly-rigidity vectors in a configuration $P$, will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
 $D^+$ and $D^-$ the \defn{positive} and \defn{negative} part of $D$.
-%Let $D$ be such a vector. By forgetting the $L$ and $R$ in each wiggly arc $(p,q,L,R)$, any such $D$ induces also a vector $D_{\lon} \in \R^{\binom{P}{2}}$. More explicitly, the map $D \mapsto D_{\lon}$ is a linear projection that adds together the coefficients of $D$ according to the end-points of their wiggly arcs. 
+%Let $D$ be such a vector. By forgetting the $L$ and $R$ in each wiggly segment $(p,q,L,R)$, any such $D$ induces also a vector $D_{\lon} \in \R^{\binom{P}{2}}$. More explicitly, the map $D \mapsto D_{\lon}$ is a linear projection that adds together the coefficients of $D$ according to the end-points of their wiggly segments. 
 
 
 \begin{proposition}
@@ -1019,10 +1020,10 @@ $D^+$ and $D^-$ the \defn{positive} and \defn{negative} part of $D$.
 Let~$Q$ be a configuration consisting only of the three (for the double-I) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
 %For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_Q$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
-the wiggly rigidity vectors of~$Q$ have a linear dependence $D\in \R^{\wigglySegments(Q)}$ with the following two properties:
+the wiggly-rigidity vectors of~$Q$ have a linear dependence $D\in \R^{\wigglySegments(Q)}$ with the following two properties:
 \begin{enumerate}
 \item The negative part $D^-$ of the dependence equals $F$.
-\item The positive part $D^+$ of the dependence includes all the external wiggly arcs of $Q$.
+\item The positive part $D^+$ of the dependence includes all the external wiggly segments of $Q$.
 \item The coefficients in $D$ do not depend on $\epsilon$ except in the case of the trident; 
 in this case the only dependence is that the coefficients of $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ are, respectively, $-\tfrac\nu\epsilon - \kappa$ and $\tfrac\nu\epsilon - \kappa$, where $\nu$ and $\kappa$ are constants depending only on the geometry of $Q$. 
 %In particular, $D_{\lon}$ does not depend on $\epsilon$.
@@ -1033,11 +1034,11 @@ in this case the only dependence is that the coefficients of $\Reps(p,r; \varnot
 
 \begin{proof}
 The \emph{wye} and the \emph{cross} both consist of four points in general position.
-In particular, the wiggly arcs involved have no transversal part and wiggly rigidity coincides with classical rigidity.
-These two cases thus directly follows from \cref{coro:equilibriumStressWyeCross}.
+In particular, the wiggly segments involved have no transversal part and wiggly rigidity coincides with classical rigidity.
+These two cases thus directly follows from \cref{coro:selfStressWyeCross}.
 
 \medskip
-In the \emph{double-I}, let~$\lambda \in {]0,1[}$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. As in the previous case, \cref{coro:equilibriumStressWyeCross} gives
+In the \emph{double-I}, let~$\lambda \in {]0,1[}$ be the barycentric position of $q$ in $[p,r]$, that is,~$q = \lambda p + (1-\lambda) r$. As in the previous case, \cref{coro:selfStressWyeCross} gives
 %\[\frac{\Reps(p, q, \varnothing, \varnothing)}{\|p-q\|} + \frac{\Reps(q, r, \varnothing, \varnothing)}{\|q-r\|} = \frac{\Reps(p, r, \{q\}, \varnothing)}{2\|p-r\|} + \frac{\Reps(p, r, \varnothing, \{q\})}{2\|p-r\|}\]
 \begin{align*}
   \lambda\Rlong(p, q) + (1-\lambda)\Rlong(q, r) 
@@ -1233,14 +1234,14 @@ that of  $\Rlong(q,r)$ becomes $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in t
 The only dependence of the final $D$ on $\epsilon$ is the one for the trident, but the dependence is only in the summands $\pm\tfrac{\nu}{\epsilon}$ that appear in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$, as said in the statement. 
 \end{proof}
 
-We now consider an arbitrary configuration $P$ and a minimal non-face $F$ of its wiggly complex. We call $Q$ the subconfiguration of end-points in $F$ and $D\in \R^{\wigglySegments(Q)}$ the linear dependence $D$ among the wiggly arcs of $Q$ constructed in~\cref{prop:fundamentalDependence}.
-By choosing whether to consider each $p\in P\setminus Q$ to lie on the left or the right part of each wiggly arc used in $D$, we can think of $D$ as a vector of coefficients for a linear combination of wiggly arcs in $P$, which we still denote $D$. This $D\in \R^{\wigglySegments(P)}$ is no longer a dependence in $P$, since new transversal forces appear at the new points, but the fact that these forces are multiplied by $\epsilon$ allow us to cancel them for small $\epsilon$. Observe that we have a choice on how to turn the $D\in \R^{\wigglySegments(Q)}$ into a $D\in \R^{\wigglySegments(P)}$.
+We now consider an arbitrary configuration $P$ and a minimal non-face $F$ of its wiggly complex. We call $Q$ the subconfiguration of end-points in $F$ and $D\in \R^{\wigglySegments(Q)}$ the linear dependence $D$ among the wiggly segments of $Q$ constructed in~\cref{prop:fundamentalDependence}.
+By choosing whether to consider each $p\in P\setminus Q$ to lie on the left or the right part of each wiggly segment used in $D$, we can think of $D$ as a vector of coefficients for a linear combination of wiggly segments in $P$, which we still denote $D$. This $D\in \R^{\wigglySegments(P)}$ is no longer a dependence in $P$, since new transversal forces appear at the new points, but the fact that these forces are multiplied by $\epsilon$ allow us to cancel them for small $\epsilon$. Observe that we have a choice on how to turn the $D\in \R^{\wigglySegments(Q)}$ into a $D\in \R^{\wigglySegments(P)}$.
 
 
 \begin{corollary}
 \label{coro:fgeneralDependence}
 \paco{I made this statement quite explicit since the construction of the height function needs to assume that the linear dependence for each nonface $F$ is an $\epsilon$ perturbation of the one from~\cref{prop:fundamentalDependence}}
-With the above notation, there is some choice of wiggly arcs in $P$ for the support of $D$ and a certain vector $D' \in \R^{\wigglySegments(P)}$ such that for $\epsilon$ sufficiently small:
+With the above notation, there is some choice of wiggly segments in $P$ for the support of $D$ and a certain vector $D' \in \R^{\wigglySegments(P)}$ such that for $\epsilon$ sufficiently small:
 \begin{enumerate}
 \item $D+\epsilon D'$ is a wiggly self-stress for $P$.
 \item the negative part of $D+\epsilon D'$ is exactly $F$.
@@ -1267,16 +1268,16 @@ When considering $D$ in $P$ rather than $Q$, new transversal forces appear at th
 \Meps(P)^T D^- = f_{\lon} + \epsilon f_{\trans} + \epsilon f^-,
 \]
 for certain loads $f^+,f^- \in \R^{2n}$ that do not  depend on $\epsilon$. 
-This is true for any choice of how to consider $D$ in $P$ (that is, of which points of $P\setminus Q$ we consider to the left or to the right of each wiggly arc from $Q$. For what follows the only important thing is to make the choice in $D^-$ to be precisely  the minimal non-face $F$ that we are looking at. 
+This is true for any choice of how to consider $D$ in $P$ (that is, of which points of $P\setminus Q$ we consider to the left or to the right of each wiggly segment from $Q$. For what follows the only important thing is to make the choice in $D^-$ to be precisely  the minimal non-face $F$ that we are looking at. 
 
 Let $\Ematrix_{D^+}(P)$ denote the set of semi-external arcs used in $D^+$, which includes at least one representative for each boundary edge of $\conv(P)= \conv(Q)$. 
-~\cref{coro:equil_cone_epsilon} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly arcs in $\Ematrix_{D^+}(P)$. Let $D'$ be such an expression. We then have:
+~\cref{coro:equil_cone_epsilon} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly segments in $\Ematrix_{D^+}(P)$. Let $D'$ be such an expression. We then have:
 \[
 \Meps(P)^T (D^+ + \epsilon D') = f_{\lon} + \epsilon f_{\trans}  + \epsilon f^-, \qquad
 \Meps(P)^T (D^-) = f_{\lon} + \epsilon f_{\trans} + \epsilon f^-.
 \]
 Hence, $D + \epsilon D'$ is a linear dependence in $\Meps(P_F)^T$.
-The fact that $D^+$ has already a non-zero coefficient at every wiggly arc in which $D'$ has it negative, implies that for $\epsilon$ sufficiently small  $D^+ + \epsilon D'$ is still non-negative $D^-$ is still strictly negative and supported on $F$, so we are done. 
+The fact that $D^+$ has already a non-zero coefficient at every wiggly segment in which $D'$ has it negative, implies that for $\epsilon$ sufficiently small  $D^+ + \epsilon D'$ is still non-negative $D^-$ is still strictly negative and supported on $F$, so we are done. 
 
 In the case of the trident we need to take into account that $D$, hence $\Meps(P)^T D^+$ and $\Meps(P)^T D^-$ depend on $\epsilon$. 
 But this dependence is quite explicit, consisting only of the term $\pm\tfrac\nu\epsilon$ that appears in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$. That is, we can write
@@ -1285,7 +1286,7 @@ But this dependence is quite explicit, consisting only of the term $\pm\tfrac\nu
 \]
 where $f_{0}$ and $f_{1}$ are essentially the former $f_{\lon}$ and $f_{\trans}$ except for two things: the longitudinal load produced by $\tfrac\nu\epsilon$ is now explicitly written out, and the transversal load produced by $\tfrac\nu\epsilon$ now goes to $f_0$ rather than $f_1$.
 
-One additional precaution needs to be taken. In order for $\tfrac\nu\epsilon$ not to produce any net load in the points of $P\setminus Q$, when deciding how to turn the original $D\in \R^{\wigglySegments(Q)}$ into a vector in $\R^{\wigglySegments(P)}$ we make exactly the same choice in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point in $P\setminus Q$. Observe that the choice in $\Reps(p,r; \varnothing, \{q\})$ must be the original wiggly arc from $F$, but in the choice for $\Reps(p,r; \{q\}, \varnothing)$ we had complete freedom.
+One additional precaution needs to be taken. In order for $\tfrac\nu\epsilon$ not to produce any net load in the points of $P\setminus Q$, when deciding how to turn the original $D\in \R^{\wigglySegments(Q)}$ into a vector in $\R^{\wigglySegments(P)}$ we make exactly the same choice in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point in $P\setminus Q$. Observe that the choice in $\Reps(p,r; \varnothing, \{q\})$ must be the original wiggly segment from $F$, but in the choice for $\Reps(p,r; \{q\}, \varnothing)$ we had complete freedom.
 
 With this precaution we have
 \[
@@ -1294,7 +1295,7 @@ With this precaution we have
 \]
 for certain loads $f^+, f^- \in \R^{2n}$ that do not  depend on $\epsilon$, where $f'_1$ now absorbes the transversal effect of the term $\tfrac\nu\epsilon$ in the points of $P \setminus Q$. (This effect may be big, but is the same for $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point, so it contributes the same to the positive and negative sides of the dependence).
 The rest of the proof goes through: calling $\Ematrix_{D^+}(P)$  the set of semi-external arcs used in $D^+$,  
-~\cref{??} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly arcs in $\Ematrix_{D^+}(P)$. We let $D'$ be such an expression and we have have:
+~\cref{??} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly segments in $\Ematrix_{D^+}(P)$. We let $D'$ be such an expression and we have have:
 \[
 \Meps(P)^T (D^+ + \epsilon D') = \tfrac\nu\epsilon +f_{0} + \epsilon f'_{1}  + \epsilon f^-, \qquad
 \Meps(P)^T (D^-) = \tfrac\nu\epsilon +f_{0} + \epsilon f'_{1} + \epsilon f^-,
@@ -1308,21 +1309,21 @@ giving us the desired $D'$.
 \Paco{Old. Probably to be removed}
 Finally, we reduce the general case by induction to the situation where~$P$ has no superfluous points. %, by induction on the number of superfluous points of~$P$.
 Assume that~$P$ contains a superfluous point~$r$, and let~$\bar P = P \ssm \{r\}$.
-Any wiggly arc~$\arc$ of~$P$ whose endpoints do not contain~$r$ defines a wiggly arc~$\bar\arc$ of~$\bar P$ (just forgetting~$r$ if it appears along~$\arc$).
+Any wiggly segment~$\arc$ of~$P$ whose endpoints do not contain~$r$ defines a wiggly segment~$\bar\arc$ of~$\bar P$ (just forgetting~$r$ if it appears along~$\arc$).
 Moreover, the minimal non-face~$F$ of~$\extendedWigglyComplex_P$ defines a minimal non-face~$\bar F$ of~$\extendedWigglyComplex_{\bar P}$.
-By induction, we obtain a linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ where~$\bar\arc$ ranges over wiggly arcs of~$\bar P$ such that~$\lambda_{\bar\arc} < 0$ if and only if~$\bar\arc \in \bar F$.
-Observe now that any wiggly arc~$\bar\arc$ of~$\bar P$ defines a partial wiggly arc~$\arc$ of~$P$, and that $\Reps(\arc) \in (\R^2)^P$ is obtained from~$\Reps(\bar\arc) \in (\R^2)^{\bar P}$ by appending a pair of vanishing coordinates at the $r$ component.
+By induction, we obtain a linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ where~$\bar\arc$ ranges over wiggly segments of~$\bar P$ such that~$\lambda_{\bar\arc} < 0$ if and only if~$\bar\arc \in \bar F$.
+Observe now that any wiggly segment~$\bar\arc$ of~$\bar P$ defines a partial wiggly segment~$\arc$ of~$P$, and that $\Reps(\arc) \in (\R^2)^P$ is obtained from~$\Reps(\bar\arc) \in (\R^2)^{\bar P}$ by appending a pair of vanishing coordinates at the $r$ component.
 Observe now that:
 \begin{itemize}
-\item If~$r$ does not belong to the segment~$]p,q[$, then~$\arc$ is actually a wiggly arc of~$P$.
-\item Otherwise, we obtain by \cref{lema:partial_rigidity} that~$\Reps(\arc) = \Reps(\arc^+) + \Reps(\arc^-)$ for the wiggly arcs~$\arc^+ = (p, q, L \cup \{r\}, R)$ and~$\arc^- = (p, q, L, R \cup \{r\})$ of~$P$.
+\item If~$r$ does not belong to the segment~$]p,q[$, then~$\arc$ is actually a wiggly segment of~$P$.
+\item Otherwise, we obtain by \cref{lema:partial_rigidity} that~$\Reps(\arc) = \Reps(\arc^+) + \Reps(\arc^-)$ for the wiggly segments~$\arc^+ = (p, q, L \cup \{r\}, R)$ and~$\arc^- = (p, q, L, R \cup \{r\})$ of~$P$.
 	\begin{itemize}
 	\item If~$\bar\arc$ does not belong to~$\bar F$, then neither~$\arc^+$ not~$\arc^-$ belong to~$F$.
-	\item If~$\arc^+ \in F$, then we have~$\Reps(\arc) = \Reps(\arc^+) - \epsilon\Rtrans(p,q;r)$, where~$\Rtrans(p,q;r)$ is an equilibrium stress with a non-vanishing $r$ component. As~$r$ lies on~$]p,q[$ which are the endpoints of~$\arc^+ \in F$, we observe by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces} that either~$r$ lies in the interior of convex hull of~$\bar P$, or $r$ appears along at least one wiggly arc not in~$F$. Applying \cref{lem:triangle2} or \cref{lem:colinear} accordingly, we can express~$\Rtrans(p,q;r)$ as a non-negative linear combination~$\sum \lambda^{p,q;r}_{\arc} \Reps(\arc)$ where~$\arc$ ranges over wiggly arcs of~$P$ not in~$F$.
+	\item If~$\arc^+ \in F$, then we have~$\Reps(\arc) = \Reps(\arc^+) - \epsilon\Rtrans(p,q;r)$, where~$\Rtrans(p,q;r)$ is an self-stress with a non-vanishing $r$ component. As~$r$ lies on~$]p,q[$ which are the endpoints of~$\arc^+ \in F$, we observe by case analysis over all possible types of minimal non-faces~$F$ described in \cref{lem:minimalNonFaces} that either~$r$ lies in the interior of convex hull of~$\bar P$, or $r$ appears along at least one wiggly segment not in~$F$. Applying \cref{lem:triangle2} or \cref{lem:colinear} accordingly, we can express~$\Rtrans(p,q;r)$ as a non-negative linear combination~$\sum \lambda^{p,q;r}_{\arc} \Reps(\arc)$ where~$\arc$ ranges over wiggly segments of~$P$ not in~$F$.
 	\item The case~$\arc^- \in F$ is symmetric.
 	\end{itemize}
 \end{itemize}
-Hence, we can lift the linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ into a linear dependence linear dependence~$\sum \nu_{\arc} \Reps(\arc) = 0$ where~$\arc$ ranges over wiggly arcs of~$P$.
+Hence, we can lift the linear dependence~$\sum \mu_{\bar\arc} \Reps(\bar\arc) = 0$ into a linear dependence linear dependence~$\sum \nu_{\arc} \Reps(\arc) = 0$ where~$\arc$ ranges over wiggly segments of~$P$.
 Here, the coefficient~$\nu_{\arc}$ is essentially the coefficient~$\mu_{\bar\arc}$, except that we might have added some non-negative coefficients~$\epsilon\lambda^{p,q;r}_{\arc}$ when~$\arc \notin F$.
 Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
 \vincent{We need to use small $\epsilon$. We can only apply the triangle lemma when we know that the external edges have strictly positive coefficient.}
