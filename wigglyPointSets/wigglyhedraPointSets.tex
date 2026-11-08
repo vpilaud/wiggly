@@ -149,6 +149,7 @@
 
 % specific wiggly
 \newcommandx{\arc}[1][1=\alpha]{\b{#1}} % arc
+\newcommand{\wigglySegments}{\mathcal{W}} % set of wiggly segments
 \newcommand{\extendedWigglyComplex}{\overline{\mathrm{WC}}} % wiggly complex
 \newcommand{\reducedWigglyComplex}{\mathrm{WC}} % wiggly complex
 \newcommand{\wigglyFlipGraph}{\mathrm{WFG}} % wiggly flip graph
@@ -158,13 +159,15 @@
 \newcommand{\wigglyhedron}{\polytope{W}} % wigglyhedron
 \newcommand{\Asso}{\polytope{A}\mathsf{sso}} % associahedron
 \newcommand{\Rvector}{\b{\rm R}} % rigidity vector, or vector of a configuration
-\newcommand{\Rlong}{\Rvector_{\operatorname{l}}} % longitudinal rigidity vector
-\newcommand{\Rtrans}{\Rvector_{\operatorname{t}}} % transversol rigidity vector
+\newcommand{\lon}{\operatorname{l}} % longitudinal part of the rigidity matrix, vector, or load
+\newcommand{\trans}{\operatorname{t}} % transversal part of the rigidity matrix, vector, or load
+\newcommand{\Rlong}{\Rvector_{\lon}} % longitudinal rigidity vector
+\newcommand{\Rtrans}{\Rvector_{\trans}} % transversol rigidity vector
 \newcommand{\Reps}{\Rvector^\epsilon} % total rigidity vector
 \newcommand{\Mmatrix}{\b{\rm M}} % rigidity matrix
 \newcommand{\Ematrix}{\b{\rm E}} % boundary rows in rigidity matrix
-\newcommand{\Mlong}{\Mmatrix_{\operatorname{l}}} % longitudinal rigidity vector
-\newcommand{\Mtrans}{\Mmatrix_{\operatorname{t}}} % transversol rigidity vector
+\newcommand{\Mlong}{\Mmatrix_{\lon}} % longitudinal rigidity vector
+\newcommand{\Mtrans}{\Mmatrix_{\trans}} % transversol rigidity vector
 \newcommand{\Meps}{\Mmatrix^\epsilon} % total rigidity vector
 \newcommand{\Equil}{\operatorname{Equil} } % equilibrium loads
 \newcommand{\Triv}{\operatorname{Triv} } % trivial motions
@@ -337,13 +340,16 @@ An \defn{arc} is an oriented arc modulo reorientation.
 
 Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left and a subset $R$ to the right of the (oriented) arc.
 For this reason we encode each wiggly segment as a quadruple~$\arc = (p, q, L, R)$ and, slightly abusing notation, will call $\arc$ itself a wiggly segment. Observe that $(p, q, L, R)$ and $(q, p, R, L)$ are considered the same wiggly segment.
+We denote by $\wigglySegments(P)$ the set of all wiggly segments in $P$. Observe that if $P$ is in general position then we can identify $\wigglySegments(P)$ with $\binom{P}{2}$.
+
 
 An \defn{external} wiggly segment is one of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
+\paco{later I  define \defn{semi-external arcs}. Should these be here?}
 \end{definition}
 
 \begin{definition}
 \label{def:compatible}
-A set~$D$ of wiggly segments is
+A set~$D\subseteq \wigglySegments(P)$ of wiggly segments is
 \begin{itemize}
 \item \defn{non-crossing} if there exists a set of representatives of the arcs of~$D$ with pairwise disjoint relative interiors,
 \item \defn{pointed} if for any point~$p \in P$, the set of points~$q \in Q$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$,
@@ -358,7 +364,7 @@ A \defn{wiggly dissection} of~$P$ is a compatible set~$D$ of wiggly segments of~
 
 \begin{definition}
 \label{def:wigglyComplex}
-The \defn{wiggly complex}~$\reducedWigglyComplex_P$ is the simplicial complex of compatible subsets of internal wiggly segments on~$P$.
+The \defn{wiggly complex}~$\reducedWigglyComplex_P$ is the simplicial complex of compatible subsets of internal wiggly segments on~$P$. The complex has vertex set $\wigglySegments(P)$.
 %The \defn{reduced wiggly complex}~$\reducedWigglyComplex _P$ (resp.~\defn{extended wiggly complex}~$\extendedWigglyComplex_P$) is the simplicial complex of compatible subsets of internal (resp.~of all) wiggly segments on~$P$.
 See \cref{fig:wigglyComplexSquarre}\,(left).
 %
@@ -606,7 +612,7 @@ Let $P=\{p_1,p_2,p_3,p_4\}$ consist of four points affinely spanning $\R^2$. The
 \]
 where $\{i,j,k,l\} = \{1,2,3,4\}$.
 
-In particular,  in both the wye and the cross of Figure~\ref{fig:minimalNonFaces} the stress has negative sign on the edges of the non-face and positive in the rest (which coincide with the external edges of $P$).
+In particular,  in both the wye and the cross of Figure~\ref{fig:minimalNonFaces} the stress has negative sign on the edges of the non-face and positive in the rest, which coincide with the external edges of $P$.
 \end{corollary}
 
 \begin{proof}
@@ -790,7 +796,7 @@ In fact, the vectors $\{\Rtrans(p,q;r)\}_{r\in L\cup R}$ are a basis for the lin
 \end{remark}
 
 As usual in the classical rigidity theory, we can assemble the rigidity vectors into rigidity matrices.
-All of these have rows indexed by the wiggly arcs on \(P\).
+All of these have rows indexed by the set $\wigglySegments(P)$ of wiggly arcs on \(P\).
 Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
 
 \begin{definition}\label{def:rm}
@@ -841,24 +847,38 @@ if $p$ lies in the relative interior of an edge $\{p_i,p_{i+1}\}$ of $\conv(P)$ 
 
 Observe that this can be done even when $\conv(P)$ is a segment $[p_1,p_2]$. Moreover, in this case the final load is automatically a multiple of $\Rlong(p_1,p_2)$, which finishes the proof for this case.
 
-So, we can now  assume without loss of generality that $P$ affinely spans $\R^2$ and that the load we want to resolve  vanishes except at extremal vectors. Then,~\cref{lema:partial_rigidity} implies that this load is a linear combination of the longitudinal external vectors $\Rlong(p_i,p_{i+1})$.
+So, we can now  assume without loss of generality that $P$ affinely spans $\R^2$ and that the load we want to resolve  vanishes except at extremal points. \cref{lema:partial_rigidity} implies that this load is a linear combination of  $\Ematrix(P)$.
 \end{proof}
 
-We now derive the same property for the true external wiggly arcs instead of the longitudinal ones, except we need to assume $\epsilon$ fo be small.
+We want to derive the same property for wiggly arcs instead of the external longitudinal ones, except we need to assume $\epsilon$ to be small. For our next proof and in other parts of the paper we use the following elementary fact:
+
+\begin{lemma}
+\label{lemma:spanning}
+\paco{does this need a proof?}
+Let $C$ be a convex cone linearly spanning $V\cong \R^n$ then for any finite subset $S\subset C$ the following properties are equivalent: 
+\begin{enumerate}
+\item $(-S)\cup C$ positively spans $V$.
+\item $\sum_{v\in S} \lambda_v v$ lies in the interior of $C$ for some $(\lambda_v)_{v\in S} \in \R_{>0}^S$.
+\item $\sum_{v\in S} \lambda_v v$ lies in the interior of $C$ for every $(\lambda_v)_{v\in S} \in \R_{>0}^S$.
+\end{enumerate}
+\end{lemma}
+
+Recall that the \emph{external} wiggly segments are those of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. We now introduce \defn{semi-external} wiggly arcs as those of the form~$(p, q, L, R)$, with the same conditions for $p,q$.
+\paco{ I here  define \defn{semi-external arcs}}
+
 
 \begin{corollary}
 \label{coro:equil_cone_epsilon}
-Let $P$ be an arbitrary point set. Then, for any sufficiently small $\epsilon>0$, $\Equil(P)$ is positively spanned by $\Comp^\epsilon(P)$ together with the negative external wiggly arcs.
+Let $P$ be an arbitrary point set with  extremal points $p_1,\dots,p_{n_\circ}$, in counter-clockwise order. For each $i\in [n_\circ]$ let $\Rvector^\epsilon_{i}$ denote one arbitrary choice of semi-external wiggly arc in $P$ with end-points $p_i$ and $p_{i+1}$.
+
+Then, for any sufficiently small $\epsilon>0$, $\Equil(P)$ is positively spanned by $\Comp^\epsilon(P)$ together with $\{-\Rvector^\epsilon_{i}:i\in [n_\circ]\}$.
 \end{corollary}
 
 \begin{proof}
-Observe that if $C$ is a convex cone linearly spanning $V\cong \R^n$ then for any finite subset $S\subset C$ the following properties are equivalent: (i) $\lin(S)\cup C$ positively spans $V$, and (ii) $\sum_{v\in S} v$ lies in the interior of $C$.\paco{does this need a proof?}
-We apply this fact with $C=\Comp^\epsilon(P)$, which is a full-dimensional cone in $\Equil(P)$.
-
-Let $p_1,\dots,p_n$ be the extremal points in counter-clockwise order and let $\Rvector_{i}$ and $\Rvector^\epsilon_{i}$ denote respectively the classical (longitudinal) rigidity vector and the external wiggly rigidity vector along the edge $[p_i,p_{i+1}]$.
-Taking $S=\{\Rvector_{i}: i \in [n]\}$,~\cref{lem:equil_cone_epsilon} says that the vector $\sum_{i\in [n_\circ]}  \Rvector_{i}$ lies in the interior of $C$. 
-Since each $\Rvector^\epsilon_{i}$ converges to $\Rvector_{i}$ as $\epsilon$ goes to zero, the same property holds for 
-$\sum_{i\in [n_\circ]}  \Rvector^\epsilon_{i}$, for sufficiently small $\epsilon$.
+Let $\Rvector_{i}$ be the classical rigidity vector, that is, the longitudinal part of $\Rvector^\epsilon_{i}$.
+Since $\Comp^\epsilon(P)$ is a full-dimensional cone in $\Equil(P)$,~\cref{lem:equil_cone_epsilon} and \cref{lemma:spanning}  imply that the vector $\sum_{i\in [n_\circ]}  \Rvector_{i}$ lies in the interior of $\Comp^\epsilon(P)$. 
+Since each $\Rvector^\epsilon_{i}$ converges to $\Rvector_{i}$ as $\epsilon$ goes to zero, the same property holds for $\sum_{i\in [n_\circ]}  \Rvector^\epsilon_{i}$, for sufficiently small $\epsilon$. 
+Hence $\Comp^\epsilon(P)$ together with $\{ \Rvector^\epsilon_{i}: {i\in [n_\circ]} \}$  positively span $\Equil(P)$.
 \end{proof}
 
 \Paco{Starting here things are shaky. But, also, if we resort to the ``dirty trick'' of enclosing the whole configuration in a big triangle, we may not need these lemmas}
@@ -930,7 +950,7 @@ More precisely, we show the following:
 Let $P$ be a set of~$n$ points, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
 Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly arc~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
 \begin{enumerate}
-\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Equil_+^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
+\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Comp^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
 \item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly rigidity vectors.
 \end{enumerate}
 \vincent{Add here the polytopal realization, either with explicit height function, or saying that it exists.}
@@ -966,7 +986,7 @@ Then the following are equivalent:
 
 Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are equilibrium stresses among the wiggly rigidity vectors.
 
-Although the linear dependence needs to be on the whole wiggly configuration, we first need to construct an appropriate equilibrium stress in the simplified case where the only points of the configuration are the extremes of the arcs in the non-face. We do so in our next result. Figure~\ref{fig:minimalNonFaces2} illustrates the stresses we construct for the five cases of minimal non-faces from Figure~\ref{fig:minimalNonFaces2}.
+Although the linear dependence needs to be on the whole wiggly configuration, we first construct an  equilibrium stress in the simplified case where the only points of the configuration are the extremes of the arcs in the non-face. We do so in our next result. Figure~\ref{fig:minimalNonFaces2} illustrates the stresses we construct for the five cases of minimal non-faces from Figure~\ref{fig:minimalNonFaces2}.
 
 \begin{figure}[!h]
 	\centerline{
@@ -989,13 +1009,26 @@ Although the linear dependence needs to be on the whole wiggly configuration, we
 \label{fig:minimalNonFaces2}
 \end{figure}
 
+In what follows a dependence or, more generally, a linear combination of wiggly rigidity vectors in a configuration $P$, will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
+$D^+$ and $D^-$ the \defn{positive} and \defn{negative} part of $D$.
+%Let $D$ be such a vector. By forgetting the $L$ and $R$ in each wiggly arc $(p,q,L,R)$, any such $D$ induces also a vector $D_{\lon} \in \R^{\binom{P}{2}}$. More explicitly, the map $D \mapsto D_{\lon}$ is a linear projection that adds together the coefficients of $D$ according to the end-points of their wiggly arcs. 
+
 
 \begin{proposition}
 \label{prop:fundamentalDependence}
-Let~$P$ be a configuration consisting only of the three (for the double-I) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
-%For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
+Let~$Q$ be a configuration consisting only of the three (for the double-I) or four (for the rest) points of a minimal non-face. If $\epsilon$ is positive but sufficiently small then 
+%For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_Q$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
-the wiggly rigidity vectors of~$P$ have a linear dependence whose negative part is exactly~$F$.
+the wiggly rigidity vectors of~$Q$ have a linear dependence $D\in \R^{\wigglySegments(Q)}$ with the following two properties:
+\begin{enumerate}
+\item The negative part $D^-$ of the dependence equals $F$.
+\item The positive part $D^+$ of the dependence includes all the external wiggly arcs of $Q$.
+\item The coefficients in $D$ do not depend on $\epsilon$ except in the case of the trident; 
+in this case the only dependence is that the coefficients of $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ are, respectively, $-\tfrac\nu\epsilon - \kappa$ and $\tfrac\nu\epsilon - \kappa$, where $\nu$ and $\kappa$ are constants depending only on the geometry of $Q$. 
+%In particular, $D_{\lon}$ does not depend on $\epsilon$.
+%\paco{Does the ``in particular'' need a proof?}
+%In particular, $\Meps(Q)^T D$ converges to $\Mmatrix(Q)^T D_{\lon}$ as $\epsilon$ goes to zero.
+\end{enumerate}
 \end{proposition}
 
 \begin{proof}
@@ -1074,20 +1107,26 @@ namely
 We then compute the same combination for the longitudinal parts:
 \begin{multline*}
 (1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
-= \bigl( (1-\mu)(1-\lambda+\mu) \one_p + \lambda (1-\lambda+\mu) \one_q - \mu (1+\lambda-\mu) \one_r - (1-\lambda)(1+\lambda-\mu) \one_s \bigr) \cdot (s-p).
+= \bigl( (1-\mu)(1-\lambda+\mu) \one_p + \lambda (1-\lambda+\mu) \one_q - \mu (1+\lambda-\mu) \one_r - (1-\lambda)(1+\lambda-\mu) \one_s \bigr) \cdot (s-p),
 \end{multline*}
-If~$\lambda(1-\lambda) \le \mu(1-\mu)$, 
-\paco{Isn't this equivalent to $\lambda\le \mu$?}
-then we obtain
+from which we obtain
 \begin{multline*}
 (1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
-= (1+\lambda-\mu)(1-\lambda)\Rvector(p, s) + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{\mu}\Rvector(p, r) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Rvector(q, r),
+= (1+\lambda-\mu)(1-\lambda)\Rvector(p, s) + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{\mu}\Rvector(p, r) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Rvector(q, r).
 \end{multline*}
-from which we conclude that
-\begin{multline*}
+
+Putting together the longitudinal and transversal parts on the left-hand sides and rewriting the longitudinal right-hand terms in the fashion of~\cref{lema:partial_rigidity} leads to
+\begin{multline}
 \frac{\mu(1-\mu)-\lambda(1-\lambda)+2\lambda\mu}{2\mu} \Reps(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Reps(q, s, \varnothing, \{r\}) = \\ \lambda(1-\lambda+\mu) \Reps(p, s, \varnothing, \{q,r\}) + (1-\lambda)(1+\lambda-\mu) \Reps(p, s, \{q,r\}, \varnothing) \\ + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Reps(q, r, \varnothing, \varnothing).
-\end{multline*}
-If~$\lambda(1-\lambda) \ge \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
+\label{eq:doubleU}
+\end{multline}
+The only coefficient that may not be positive in this equation is
+\[
+\frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} =
+\frac{(1-\mu -\lambda)(\mu-\lambda)}{2\mu} =
+\frac{(\mu +\lambda-1)}{2\mu} (\lambda - \mu),
+\]
+which has the sign of $\lambda - \mu$ since $\mu +\lambda > 1$. Thus, if $\lambda \ge \mu$ then~\cref{eq:doubleU} is a dependence in the required form. If $\lambda < \mu$, that is, if~$\lambda(1-\lambda) > \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
 
 \medskip
 The last case, the \emph{trident}, is more complicated. Let $s'$ be the orthogonal projection of $s$ to the line $pqr$.
@@ -1104,12 +1143,12 @@ To construct the appropriate dependence, we first notice that there is unique (m
 = &\lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
 = &\lambda (s-p) \one_p  - (s-q) \one_q + (1-\lambda) (s-r) \one_r.
 \end{align*}
-Rewriting each $s-x$ as $(s-s')+(s'-x)$ decomposes $\Rvector_1$ into a transversal  part $\Rvector_1^{\operatorname{t}}$ and a longitudinal part  $\Rvector_1^{\operatorname{l}}$ that we evaluate separately:
+Rewriting each $s-x$ as $(s-s')+(s'-x)$ decomposes $\Rvector_1$ into a transversal  part $\Rvector_1^{\trans}$ and a longitudinal part  $\Rvector_1^{\lon}$ that we evaluate separately:
 \begin{align*}
-\Rvector_1^{\operatorname{l}}= & \lambda (s'-p) \one_p  - (s'-q) \one_q + (1-\lambda) (s'-r) \one_r\\
+\Rvector_1^{\lon}= & \lambda (s'-p) \one_p  - (s'-q) \one_q + (1-\lambda) (s'-r) \one_r\\
 = &\lambda (1-\mu) (r-p) \one_p   - (\lambda - \mu) (r-p) \one_q  + (1-\lambda) \mu (p-r) \one_r\\
 = &[\lambda (1-\mu)  \one_p   - (\lambda - \mu) \one_q  - (1-\lambda) \mu \one_r](r-p),\\
- \Rvector_1^{\operatorname{t}}=&  (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
+ \Rvector_1^{\trans}=&  (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
 = &  \nu[(r-q)^\perp \one_p -  (r-p)^\perp \one_q + (q-p)^\perp \one_r]\\
 = &  -\nu \Rtrans(p,r;q).
 \end{align*}
@@ -1147,16 +1186,16 @@ let us assume that $\mu > \lambda$ (we will later say how things change if $\mu 
 = &(1-\lambda) \mu \Rlong(p,r) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
 = &\left( (1-\lambda) \mu - \tfrac{\nu}{\epsilon} \right)\Rlong(p,r).
 \end{align*}
-Multiplying both sides by $-2\epsilon$:
+Multiplying both sides by $-2$:
 \begin{align*}
-- 2\epsilon \Rvector_3 
-= &2(\nu-  (1-\lambda) \mu \epsilon) 2 \Rlong(p,r) \\
-= &( \nu-   (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big). 
+- 2 \Rvector_3 
+= &2(\tfrac{\nu}{\epsilon} -  (1-\lambda) \mu )  \Rlong(p,r) \\
+= &( \tfrac{\nu}{\epsilon} -   (1-\lambda) \mu ) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big). 
 \end{align*}
 
 So, the final linear dependence that we are looking for is 
 \[
-\Rvector_4 \eqdef 2\epsilon \Rvector_3  + ( \nu-  (1-\lambda) \mu \epsilon) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big) =0.
+\Rvector_4 \eqdef 2 \Rvector_3  + ( \tfrac{\nu}{\epsilon}-  (1-\lambda) \mu ) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big) =0.
 \]
 Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used along the construction, to finally obtain those of the dependence.
 
@@ -1169,8 +1208,8 @@ $
 \Rvector_1 & \lambda & -1 & 1-\lambda & 0 & 0 & 0 & 0 \\
 \Rvector_2 &\lambda & -1 & 1-\lambda & 0 & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
 \Rvector_3 &\lambda & -1 & 1-\lambda &  \tfrac{\mu-\lambda}{1-\lambda} & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
-2\epsilon \Rvector_3 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -2\nu & 0 \\
-0 =  \Rvector_4 &2\epsilon\lambda & -2\epsilon & 2\epsilon(1-\lambda) &  2\epsilon\tfrac{\mu-\lambda}{1-\lambda} & 0 & -  \nu-  (1-\lambda) \mu \epsilon &  \nu-  (1-\lambda) \mu \epsilon \\
+2 \Rvector_3 &2\lambda & -2 & 2(1-\lambda) &  2\tfrac{\tfrac{\nu}{\epsilon}-\lambda}{1-\lambda} & 0 & -2\tfrac{\nu}{\epsilon} & 0 \\
+0 =  \Rvector_4 &2\lambda & -2 & 2(1-\lambda) &  2\tfrac{\mu-\lambda}{1-\lambda} & 0 & -  \tfrac{\nu}{\epsilon}-  (1-\lambda) \mu  &  \tfrac{\nu}{\epsilon}-  (1-\lambda) \mu  \\
  \hline
  \text{sign} & + & - & + & + & 0 & - & + \\
 \end{array}
@@ -1190,31 +1229,79 @@ The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$
 When $\mu-\lambda < 0$, adding to $ \Rvector_4$ the appropriate positive multiple of this dependence so as to make the coefficient of $\Rlong(p,q)$ vanish,  the following coefficients change:  
 that of  $\Rlong(q,r)$ becomes $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in those of $\Reps(p,r; \varnothing, \{q\})$ and  $\Reps(p,r; \{q\}, \varnothing)$ the summand containing $\epsilon$  changes to  $-\lambda(1-\mu)\epsilon$ instead of $-(1-\lambda)\mu\epsilon$.
 %\end{itemize}
+
+The only dependence of the final $D$ on $\epsilon$ is the one for the trident, but the dependence is only in the summands $\pm\tfrac{\nu}{\epsilon}$ that appear in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$, as said in the statement. 
 \end{proof}
 
-In what follows we use the following notation. A dependence or, more generally, a linear combination of wiggly rigidity vectors in a configuration $P$, will be represented as its vector of coefficients, which we normally denote $D$. That is, $D \in \R^{\{\text{wiggly arcs in $P$}\}}$. By forgetting the $L$ and $R$ in each wiggly arc $(p,q,L,R)$, any such $D$ induces also a vector $D_{\operatorname{l}} \in \R^{\binom{P}{2}}$. The vectors $D$ and $D_{\operatorname{l}}$ induce loads $\Meps(P)^T D$ and $\Mmatrix(P)^T D_{\operatorname{l}}$ in $P$. 
+We now consider an arbitrary configuration $P$ and a minimal non-face $F$ of its wiggly complex. We call $Q$ the subconfiguration of end-points in $F$ and $D\in \R^{\wigglySegments(Q)}$ the linear dependence $D$ among the wiggly arcs of $Q$ constructed in~\cref{prop:fundamentalDependence}.
+By choosing whether to consider each $p\in P\setminus Q$ to lie on the left or the right part of each wiggly arc used in $D$, we can think of $D$ as a vector of coefficients for a linear combination of wiggly arcs in $P$, which we still denote $D$. This $D\in \R^{\wigglySegments(P)}$ is no longer a dependence in $P$, since new transversal forces appear at the new points, but the fact that these forces are multiplied by $\epsilon$ allow us to cancel them for small $\epsilon$. Observe that we have a choice on how to turn the $D\in \R^{\wigglySegments(Q)}$ into a $D\in \R^{\wigglySegments(P)}$.
+
 
 \begin{corollary}
-\label{coro:spanNonFace}
-Let $F$ be a minimal non-face in an arbitrary configuration $P$. Let $P_F$ be the configuration of three or four points consisting of the extremal points in $F$ and let $P' = P \cap \conv(P_F)$. Then, $\Equil_+^\epsilon(P')$ together with $\{-\Reps(\arc): \arc\in F\}$ positively span $\Equil^\epsilon(P')$.
+\label{coro:fgeneralDependence}
+\paco{I made this statement quite explicit since the construction of the height function needs to assume that the linear dependence for each nonface $F$ is an $\epsilon$ perturbation of the one from~\cref{prop:fundamentalDependence}}
+With the above notation, there is some choice of wiggly arcs in $P$ for the support of $D$ and a certain vector $D' \in \R^{\wigglySegments(P)}$ such that for $\epsilon$ sufficiently small:
+\begin{enumerate}
+\item $D+\epsilon D'$ is a wiggly self-stress for $P$.
+\item the negative part of $D+\epsilon D'$ is exactly $F$.
+\end{enumerate}
+Moreover, both $D$ and $D'$ use only arcs from the subconfiguration $P\cap \conv(Q)$.
 \end{corollary}
 
 \begin{proof}
-TO DO
+We first observe that there is no loss of generality in assuming that $P\subset \conv(Q)$, that is, $\conv(P)= \conv(Q)$. Indeed, calling $P_F := P\cap \conv(Q)$, if we can prove the statement for $P_F$ then the same $D$ and $D'$ work in $P$.
+So, for the rest of the proof we assume this.
+
+Let $D^+$ and $D^-$ be the positive and negative parts of $D$.
+We first deal with the four types of non-faces other than the trident, in which $D$ is independent of $\epsilon$.
+
+Since $\Meps(Q)^T D = 0$, we have that
+\[
+\Meps(Q)^T D^+ = \Meps(Q)^T D^- = f_{\lon} + f_{\trans} \epsilon,
+\]
+where $f_{\lon}$ and $f_{\trans}$ do not depend on $\epsilon$ and represent the longitudinal and transversal loads produced by $D^-$ and $D^+$.
+
+When considering $D$ in $P$ rather than $Q$, new transversal forces appear at the new points, but tsince $D$ does not depend  on $\epsilon$ we have
+\[
+\Meps(P)^T D^+ = f_{\lon} + \epsilon f_{\trans}  + \epsilon f^+, \qquad
+\Meps(P)^T D^- = f_{\lon} + \epsilon f_{\trans} + \epsilon f^-,
+\]
+for certain loads $f^+,f^- \in \R^{2n}$ that do not  depend on $\epsilon$. 
+This is true for any choice of how to consider $D$ in $P$ (that is, of which points of $P\setminus Q$ we consider to the left or to the right of each wiggly arc from $Q$. For what follows the only important thing is to make the choice in $D^-$ to be precisely  the minimal non-face $F$ that we are looking at. 
+
+Let $\Ematrix_{D^+}(P)$ denote the set of semi-external arcs used in $D^+$, which includes at least one representative for each boundary edge of $\conv(P)= \conv(Q)$. 
+~\cref{coro:equil_cone_epsilon} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly arcs in $\Ematrix_{D^+}(P)$. Let $D'$ be such an expression. We then have:
+\[
+\Meps(P)^T (D^+ + \epsilon D') = f_{\lon} + \epsilon f_{\trans}  + \epsilon f^-, \qquad
+\Meps(P)^T (D^-) = f_{\lon} + \epsilon f_{\trans} + \epsilon f^-.
+\]
+Hence, $D + \epsilon D'$ is a linear dependence in $\Meps(P_F)^T$.
+The fact that $D^+$ has already a non-zero coefficient at every wiggly arc in which $D'$ has it negative, implies that for $\epsilon$ sufficiently small  $D^+ + \epsilon D'$ is still non-negative $D^-$ is still strictly negative and supported on $F$, so we are done. 
+
+In the case of the trident we need to take into account that $D$, hence $\Meps(P)^T D^+$ and $\Meps(P)^T D^-$ depend on $\epsilon$. 
+But this dependence is quite explicit, consisting only of the term $\pm\tfrac\nu\epsilon$ that appears in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$. That is, we can write
+\[
+\Meps(Q)^T D^+ = \Meps(Q)^T D^- = \tfrac\nu\epsilon + f_{0} + f_{1} \epsilon,
+\]
+where $f_{0}$ and $f_{1}$ are essentially the former $f_{\lon}$ and $f_{\trans}$ except for two things: the longitudinal load produced by $\tfrac\nu\epsilon$ is now explicitly written out, and the transversal load produced by $\tfrac\nu\epsilon$ now goes to $f_0$ rather than $f_1$.
+
+One additional precaution needs to be taken. In order for $\tfrac\nu\epsilon$ not to produce any net load in the points of $P\setminus Q$, when deciding how to turn the original $D\in \R^{\wigglySegments(Q)}$ into a vector in $\R^{\wigglySegments(P)}$ we make exactly the same choice in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point in $P\setminus Q$. Observe that the choice in $\Reps(p,r; \varnothing, \{q\})$ must be the original wiggly arc from $F$, but in the choice for $\Reps(p,r; \{q\}, \varnothing)$ we had complete freedom.
+
+With this precaution we have
+\[
+\Meps(P)^T D^+ = \tfrac\nu\epsilon + f_{0} + \epsilon f'_{1}  + \epsilon f^+, \qquad
+\Meps(P)^T D^- = \tfrac\nu\epsilon + f_{0} + \epsilon f'_{1} + \epsilon f^-,
+\]
+for certain loads $f^+, f^- \in \R^{2n}$ that do not  depend on $\epsilon$, where $f'_1$ now absorbes the transversal effect of the term $\tfrac\nu\epsilon$ in the points of $P \setminus Q$. (This effect may be big, but is the same for $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point, so it contributes the same to the positive and negative sides of the dependence).
+The rest of the proof goes through: calling $\Ematrix_{D^+}(P)$  the set of semi-external arcs used in $D^+$,  
+~\cref{??} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly arcs in $\Ematrix_{D^+}(P)$. We let $D'$ be such an expression and we have have:
+\[
+\Meps(P)^T (D^+ + \epsilon D') = \tfrac\nu\epsilon +f_{0} + \epsilon f'_{1}  + \epsilon f^-, \qquad
+\Meps(P)^T (D^-) = \tfrac\nu\epsilon +f_{0} + \epsilon f'_{1} + \epsilon f^-,
+\]
+giving us the desired $D'$.
 \end{proof}
 
-
-\begin{proposition}
-\label{prop:fgeneralDependence}
-Let~$P$ be arbitrary. 
-For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_P$, 
-there exists a sufficiently small~$\epsilon >0$ such that 
-there is a linear dependence on the rigidity vectors~$\Reps(\arc)$ of all wiggly arcs~$\arc$ on~$P$ whose negative part is~$F$.
-\end{proposition}
-
-\begin{proof}
-TO DO
-\end{proof}
 
 {\color{blue}
 \begin{proof}
