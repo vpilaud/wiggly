@@ -132,6 +132,7 @@
 \newcommand{\david}[1]{\todo[size=\scriptsize, color=violet!30]{\rm #1 \\ \hfill --- D.}}
 \newcommand{\David}[1]{\todo[size=\tiny,inline,color=violet!30]{#1 \hfill --- D.}}
 
+
 % lattices
 \newcommand{\meet}{\wedge} % meet
 \newcommand{\join}{\vee} % join
@@ -375,7 +376,7 @@ A few observations about \cref{def:wigglySegments,def:compatible,def:wigglyDisse
 \item When wiggly segments are encoded by quadruples~$(p, q, L, R)$ with~$p,q \in P$ and~$L \sqcup R  = {]p,q[} \cap P$, modulo reorientation~$(p, q, L, R) \sim (q, p, R, L)$, the non-crossing and pointedness conditions can be expressed in purely combinatorial terms (see~\cite{BapatPilaud}). In this paper, we find it more intuitive and convenient to also define and visualize wiggly arcs and the wiggly complex in terms of isotopy classes of arcs.
 \item As the $n_1$ external wiggly segments are compatible with any other wiggly segments, it is convenient to ignore them in the definition of the wiggly complex~$\reducedWigglyComplex_P$, but to include them in all wiggly dissections.
 In other words, the \defn{extended wiggly complex}~$\extendedWigglyComplex_P$, defined as the simplicial complex of compatible subsets of all wiggly segments on~$P$, is a $n_1$-fold cone over the wiggly complex~$\reducedWigglyComplex_P$.
-\item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
+\item \cref{def:compatible,def:wigglyDissection,def:wigglyComplex} were already largely studied in two specific situations. Namely, we refer to~\cite{BapatPilaud-wigglyaligned} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
 \end{enumerate}
 \end{remark}
 
@@ -1112,6 +1113,21 @@ Hence, we still have~$\nu_{\arc} < 0$ if and only if~$\arc \in F$.
 
 
 \vincent{Add a remark that there would be another possible realization of the wigglyhedron using iterative face truncations of pseudotriangulation polytopes, by deformation of the point set from general position. Thanks Spencer!}
+
+\section{Categorical interpretation and further questions}
+The aim of this section is to explain the representation theoretic and categorical motivation for wiggly pseudotriangulations.
+This section ties together the content of the present paper with the paper~\cite{BapatDeopurkarLicata}, as well as the similar discussion in~\cite[Section 5]{BapatPilaud-wigglyaligned}.
+
+We suppress the full definitions of the categorical machinery we require, and instead refer the reader to~\cite[\S~5]{BapatDeopurkarLicata} where it is discussed.
+We work with the 2-Calabi--Yau triangulated category \(\mathcal{C}_n\) associated to the type \(A_n\) graph, as defined in~\cite[\S5.2]{BapatDeopurkarLicata}.
+This category has a particular bounded \(t\)-structure called the standard \(t\)-structure.
+The heart of this \(t\)-structure is called the~\defn{standard heart} on \(\mathcal{C}_n\).
+This standard heart supports several Bridgeland stability conditions, which we call~\defn{standard stability conditions}.
+
+The main point relevant to the present paper is that a point set of \(n+1\) points in the plane uniquely specifies a standard stability condition on \(\mathcal{C}_n\) (see~\cite[Prop.~6.3]{BapatDeopurkarLicata}).
+In order to do this, we use an auxiliary labelling of the points as \((p_0, p_1, \ldots, p_n)\) uniquely specified by the property that for \(i < j\), the vector \(p_ip_j\) lies either on the positive horizontal \(\mathbb{R}_{> 0}\) or strictly in the upper half plane \(\mathbb{R} \times \mathbb{R}_{> 0}\).
+After fixing this labelling, arbitrary arcs (as in~\cref{def:wigglySegments}) on the point set correspond to spherical objects in \(\mathcal{C}_n\) up to triangulated shift (see~\cite[Prop.~5.4]{BapatDeopurkarLicata}).
+\asilata{I started writing this section and will fill it out as I have time.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
