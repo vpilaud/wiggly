@@ -1680,6 +1680,7 @@ Then the following are equivalent:
 \section{Categorical interpretation and further questions}
 The aim of this section is to explain the representation theoretic and categorical motivation for wiggly pseudotriangulations.
 This section ties together the content of the present paper with the paper~\cite{BapatDeopurkarLicata}, as well as the similar discussion in~\cite[\S5]{BapatPilaud-wigglyaligned}.
+Specifically, we discuss how wiggly pseudotriangulations as well as the boundary of the extended wiggly complex appear naturally from the categorical point of view.
 
 We suppress the full definitions of the categorical machinery we require, and instead refer the reader to~\cite[\S5]{BapatDeopurkarLicata} where they are detailed.
 We work with the 2-Calabi--Yau triangulated category \(\mathcal{C}_n\) associated to the type \(A_n\) graph, as defined in~\cite[\S5.2]{BapatDeopurkarLicata}.
@@ -1698,7 +1699,22 @@ In fact, the assignment of arcs to spherical objects only depends on the total o
 The second relevant idea is that the precise locations of the \(p_i\) specifies the additional structure of a standard stability condition on \(\mathcal{C}_n\) (see~\cite[Prop.~6.3]{BapatDeopurkarLicata}).
 The stability condition is constructed via the assignment \(\alpha_i \mapsto \overline{p_ip_{i+1}}\) that maps simple roots of type \(A_n\) to vectors in \(\mathbb{R}^2\), which gives a central charge on the standard heart.
 
-The translation from point sets to objects and stability conditions allows us to interpret Harder--Narasimhan filtrations in terms of operations on arcs.
+The translation from point sets to objects and stability conditions allows us to interpret semistable objects and Harder--Narasimhan filtrations in terms of operations on arcs.
+It is proved in~\cite[Prop~6.4]{BapatDeopurkarLicata} that the spherical semistable objects of a fixed standard stability condition are precisely the wiggly arcs in the associated point set.
+
+Further, given any arc on a point set, snapping the arc tight like a rubberband around the points decomposes it into a finite sequence of wiggly arcs.
+Moreover, the endpoint of each wiggly arc in this sequence is the start point of the next one.
+The connection in the original arc between two adjacent wiggly arcs goes in a reflex angle (greater than \(\pi\)) around the common endpoint.
+It is proved in~\cite[Thm~6.10]{BapatDeopurkarLicata} that the Harder--Narasimhan factors of any arc are precisely the wiggly arcs appearing in the decomposition explained above, with multiplicity and up to triangulated shifts.
+
+It is not hard to see from the construction that if \(\beta\) is any arc that decomposes into a sequence of wiggly arcs \((\beta_1, \ldots, \beta_r)\), then the set \(\{\beta_1, \ldots, \beta_n\}\):
+\begin{enumerate}
+\item is pointed;
+\item is non-crossing; and 
+\item misses at least one of the external wiggly segments.
+\end{enumerate}
+Thus each arc \(\beta\) corresponds to some face of the extended wiggly complex of codimension at least \(1\).
+
 \asilata{I started writing this section and will fill it out as I have time.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
