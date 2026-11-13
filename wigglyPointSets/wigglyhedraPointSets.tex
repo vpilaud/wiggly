@@ -1679,17 +1679,26 @@ Then the following are equivalent:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Categorical interpretation and further questions}
 The aim of this section is to explain the representation theoretic and categorical motivation for wiggly pseudotriangulations.
-This section ties together the content of the present paper with the paper~\cite{BapatDeopurkarLicata}, as well as the similar discussion in~\cite[Section 5]{BapatPilaud-wigglyaligned}.
+This section ties together the content of the present paper with the paper~\cite{BapatDeopurkarLicata}, as well as the similar discussion in~\cite[\S5]{BapatPilaud-wigglyaligned}.
 
-We suppress the full definitions of the categorical machinery we require, and instead refer the reader to~\cite[\S~5]{BapatDeopurkarLicata} where it is discussed.
+We suppress the full definitions of the categorical machinery we require, and instead refer the reader to~\cite[\S5]{BapatDeopurkarLicata} where they are detailed.
 We work with the 2-Calabi--Yau triangulated category \(\mathcal{C}_n\) associated to the type \(A_n\) graph, as defined in~\cite[\S5.2]{BapatDeopurkarLicata}.
 This category has a particular bounded \(t\)-structure called the standard \(t\)-structure.
 The heart of this \(t\)-structure is called the~\defn{standard heart} on \(\mathcal{C}_n\).
 This standard heart supports several Bridgeland stability conditions, which we call~\defn{standard stability conditions}.
+These are specified via a map, called a~\defn{central charge}, from the objects of the standard heart to \(\mathbb{R}^2\) that satisfies certain properties.
+Having specified a Bridgeland stability condition, some objects are~\defn{semistable} with respect to this stability condition.
+An arbitrary object has a canonical~\defn{Harder--Narasimhan filtration} with semistable factors.
 
-The main point relevant to the present paper is that a point set of \(n+1\) points in the plane uniquely specifies a standard stability condition on \(\mathcal{C}_n\) (see~\cite[Prop.~6.3]{BapatDeopurkarLicata}).
-In order to do this, we use an auxiliary labelling of the points as \((p_0, p_1, \ldots, p_n)\) uniquely specified by the property that for \(i < j\), the vector \(p_ip_j\) lies either on the positive horizontal \(\mathbb{R}_{> 0}\) or strictly in the upper half plane \(\mathbb{R} \times \mathbb{R}_{> 0}\).
-After fixing this labelling, arbitrary arcs (as in~\cref{def:wigglySegments}) on the point set correspond to spherical objects in \(\mathcal{C}_n\) up to triangulated shift (see~\cite[Prop.~5.4]{BapatDeopurkarLicata}).
+The first idea relevant to the present paper is that a point set of \(n+1\) points induces a correspondence between arbitrary arcs on the point set and spherical objects in \(\mathcal{C}_n\) up to triangulated shift (see, e.g.~\cite[Prop.~5.4]{BapatDeopurkarLicata}).
+In order to do this, we use an auxiliary labelling of the points as \((p_0, p_1, \ldots, p_n)\) uniquely specified by the property that for \(i < j\), the vector \(\overrightarrow{p_ip_j}\) lies either on the positive horizontal \(\mathbb{R}_{> 0} \times \{0\}\) or strictly in the upper half plane \(\mathbb{R} \times \mathbb{R}_{> 0}\).
+That is, we label the points in ascending order by ordinate, breaking ties in the direction of the positive real axis.
+In fact, the assignment of arcs to spherical objects only depends on the total order of the points by ordinate, and not on the precise locations of the points \(p_i\).
+
+The second relevant idea is that the precise locations of the \(p_i\) specifies the additional structure of a standard stability condition on \(\mathcal{C}_n\) (see~\cite[Prop.~6.3]{BapatDeopurkarLicata}).
+The stability condition is constructed via the assignment \(\alpha_i \mapsto \overline{p_ip_{i+1}}\) that maps simple roots of type \(A_n\) to vectors in \(\mathbb{R}^2\), which gives a central charge on the standard heart.
+
+The translation from point sets to objects and stability conditions allows us to interpret Harder--Narasimhan filtrations in terms of operations on arcs.
 \asilata{I started writing this section and will fill it out as I have time.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
