@@ -342,7 +342,7 @@ An \defn{arc} is an oriented arc modulo reorientation.
 
 Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left and a subset $R$ to the right of the (oriented) arc.
 For this reason we encode each wiggly segment as a quadruple~$\arc = (p, q, L, R)$ and, slightly abusing notation, will call $\arc$ itself a wiggly segment. Observe that $(p, q, L, R)$ and $(q, p, R, L)$ are considered the same wiggly segment.
-We denote by $\wigglySegments(P)$ the set of all wiggly segments in $P$. Observe that if $P$ is in general position then we can identify $\wigglySegments(P)$ with $\binom{P}{2}$.
+We denote by $\wigglySegments(P)$ the set of all wiggly segments in $P$. If $P$ is in general position then we can identify $\wigglySegments(P)$ with $\binom{P}{2}$.
 
 
 An \defn{external} wiggly segment is one of the form~$(p, q, L, \varnothing)$ where $p$ and $q$ are consecutive vertices of $\conv(P)$ in counter-clockwise order. All other wiggly segments are \defn{internal}.
@@ -437,9 +437,10 @@ Minimal non-faces are minimal sets of arcs which are
 \end{itemize}
 Note that \cref{fig:minimalNonFaces} is a simplification of the general situation.
 Namely, each of the arcs in the figures may have additional points along it.
-\Eg if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly segments with end points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. We call such additional points \defn{superfluous}.
+\Eg if in the ``wye'' picture the segments $[p,s]$, $[q,s]$, and $[r,s]$ contain $a$, $b$ and $c$ additional points of $P$ respectively, then there are $2^{a+b+c}$ minimal non-faces supported in wiggly segments with end-points $\{p,s\}$, $\{q,s\}$, and $\{r,s\}$. %We call such additional points \defn{superfluous}.
 \paco{Not sure I like the name superfluous. They are not superfluous at all...}
 \asilata{How about~\defn{waypoints}?}
+\paco{maybe we do not need a ``definition''. These points are already called ``intermediate'' in a couple of places}
 \end{proof}
 
 The goal of this paper is to prove the following statement, already proved for aligned points in~\cite{BapatPilaud} and for points in general position in~\cite{RoteSantosStreinu-polytope}.
@@ -546,7 +547,7 @@ Our construction of the wiggly fan is based on rigidity considerations, similar 
 In fact, for point sets in general position our construction restricts to the one in that paper.
 Before looking at the case of wiggly segments, let us briefly recall the basics of (infinitesimal) rigidity theory. Two general sources on the topic are~\cite{GraverServatiusServatius,Jordan-rigidity}. 
 
-Almost everything we say in this section extends to arbitrary dimension, but we work out the two-dimensional case.
+Almost everything we say in this section extends to arbitrary dimension, but let us only work out the two-dimensional case.
 Let $P \subset \R^2$ be a point set, consisting of $n$ points $p_1,\dots,p_n$. The~\defn{infinitesimal rigidity matrix} of $P$ is the following $\binom{n}{2} \times 2n$ matrix:%
 \footnote{Note that signs in our matrix are the opposite to the standard choice. We find this choice more convenient for our purposes.}
 \[
@@ -561,17 +562,17 @@ p_n-p_1 & 0 & 0 & \cdots & 0 & p_1-p_n \\
 0 & 0 & 0 & \cdots & p_{n}-p_{n-1} & p_{n-1}-p_{n}
 \end{pmatrix}
 \]
-That is to say, we have a row vector $\Rvector(p,q)\in (\R^2)^n \cong (\R^2)^P$ associated to each pair of points~${p,q\in P}$.
+That is to say, we have a row vector $\Rvector(p,q)\in (\R^2)^P \cong (\R^2)^n$ associated to each pair of points~${p,q\in P}$.
 All entries in $\Rvector(p,q)$ are zero except for two blocks of size two: the block corresponding to $p$ has the vector $q-p \in \R^2$ and the block corresponding to $q$ has the block $p-q \in \R^2$.
 
-As a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, the matrix $\Mmatrix(P)$ has the following physical interpretation: each~${v = (v_p)_{p\in P} \in (\R^2)^P}$ represents an~\defn{infinitesimal motion} of the point set~\(P\), that is, an assignment of a velocity vector \(v_p \in \R^2\) to each point \(p \in P\). Then, the vector~$\Mmatrix(P)\, v \in \R^{\binom{n}{2}}$ records, for each pair $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_j-p_i)\cdot (v_i-v_j)$, which equals the rate by which the length of the segment $[p_i,q_i]$ increases (if the value is negative) or decreases (if positive) under that motion.
+As a linear map $(\R^2)^n\to \R^{\binom{n}{2}}$, the matrix $\Mmatrix(P)$ has the following physical interpretation: each~${v = (v_p)_{p\in P} \in (\R^2)^n}$ represents an~\defn{infinitesimal motion} of the point set~\(P\), that is, an assignment of a velocity vector \(v_p \in \R^2\) to each point \(p \in P\). Then, the vector~$\Mmatrix(P)\, v \in \R^{\binom{n}{2}}$ records, for each pair $\{i,j\} \in \R^{\binom{n}{2}}$ the value~$(p_j-p_i)\cdot (v_i-v_j)$, which equals the rate by which the length of the segment $[p_i,q_i]$ increases (if the value is negative) or decreases (if positive) under that motion.
 
 In particular, the kernel of $\Mmatrix(P)$ are the infinitesimal motions that do not change any distance between points. 
 These include the~\defn{trivial infinitesimal motions}, that is, those moving the whole point set as if it was a rigid block. Trivial motions form a three-dimensional linear subspace of $\R^{2n}$ generated by the~\defn{infinitesimal translations}, of the form $(v,...,v)$ for an arbitrary $v\in \R^2$, plus the~\defn{infinitesimal rotation} around the origin, which is the infinitesimal motion
 \[
 (p^\perp)_{p\in P} = (p_1^\perp, \dots, p_n^\perp),
 \]
-where $(x,y)^\perp\eqdef(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{\circ}\) in the positive direction\footnote{The kernel contains also the rotations with centers at points other than the origin, since the rotation with center at $q\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (q^\perp,\dots,q^\perp)$.}.
+where $(x,y)^\perp\eqdef(-y,x)$ denotes the rotation of an~$(x,y)\in \R^2$ by \(90^{\circ}\) in the positive direction\footnote{Trivial motions include also the rotations with centers at points other than the origin, since the rotation with center at $q\in \R^2$ produces as infinitesimal motion of $P$ the vector $(p^\perp)_{p\in P} - (q^\perp,\dots,q^\perp)$.}.
 We denote the space of trivial infinitesimal motions by $\Triv(P)$.
 If $P$ affinely spans $\R^2$ then $\ker(\Mmatrix(P))$ \emph{equals} \(\Triv(P)\), so that $\Mmatrix(P)$ has rank $2n-3$.
 But if $\conv(P)$ is contained in a line $\ell$, then $\ker(\Mmatrix(P))$ is the sum of \(\Triv(P)\) with the $n$-dimensional space $(\R\,\ell^\perp)^n$ of motions orthogonal to $\ell$. In this case $\Mmatrix(P)$ has rank $n-1$ and its kernel has dimension $n+1$.
@@ -586,8 +587,6 @@ Let us see an important example:
 
 \begin{lemma}
 \label{lem:affineDependenceGivesEquilibriumStress}
-\vincent{Not sure this was a good idea to place this lemma here. It cuts a little bit the flow...}
-\paco{I think it is good.  I now refer to it in~\cref{rem:trident_example} and~\cref{foot:matroid}}
 If~$(\lambda_p)_{p\in P}$ is an affine dependence on~$P$, then~$(\lambda_p \lambda_q)_{\{p,q\}\in \binom{P}2}$ is a self-stress of~$P$. That is, 
 \[
 \sum_{p\in P} \lambda_p p =0, \quad \sum_{p\in P} \lambda_p =0
@@ -636,19 +635,19 @@ In rigidity theory one often considers a subset of edges $G \subseteq \binom{P}{
 For example,~\cref{lem:affineDependenceGivesEquilibriumStress} says that if $S\subset P$ is affinely dependent then the complete graph $K_S$ on $S$ is also dependent in the rigidity matroid of $P$. An easy rank computation shows that if $S$ is minimally affinely dependent (a circuit, in matroid terminology) then $K_S$ is a circuit too.}%
 
 Although not usually present in elementary treatments of rigidity, it will be very important for us to have in consideration the signs of coefficients in the stresses we use. 
-To see why, observe that~{coro:selfStressWyeCross} has two cases, the point sets of the wye and the cross of Figure~\ref{fig:minimalNonFaces}.
+To see why, observe that~\cref{coro:selfStressWyeCross} has two cases, the point sets of the wye and the cross of Figure~\ref{fig:minimalNonFaces}.
 It is crucial for us that in both cases the stress has negative sign on the edges forming a non-face and positive in the rest.
 
 In particular, we are interested in which loads can be obtained with non-negative stresses. We call them \defn{compression loads} and denote the set of them by $\Comp(P)$.
 \vincent{I would use $\operatorname{Comp}(P)$.}\paco{Done}
-$\Comp(P)$ is a full-dimensional pointed cone in $\Ima(\Mmatrix(P)^T)$, since every row of $\Mmatrix(P)$ has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:
+$\Comp(P)$ is a full-dimensional pointed cone in $\Ima(\Mmatrix(P)^T)$, since every row of $\Mmatrix(P)$ has negative scalar product with the expansive motion $(p_1, \dots, p_n)$. Indeed:%
+\footnote{Farkas Lemma implies more: $\Comp(P)$ is the outer polar cone of the cone of \defn{expansive motions}, where expansive motions are the $v=(v_i)_{i\in [n]}$ with $\Mmatrix(P) v \le 0$.}
 \[
 \langle \Rvector(p_i,p_j), (p_1,\dots, p_n)\rangle =
 (p_j-p_i) p_i + (p_i-p_j) p_j = - (p_i-p_j)^2.
 \]
-(Observe that Farkas Lemma implies more: $\Comp(P)$ is the outer polar cone of the cone of \defn{expansive motions}, where expansive motions are the $v=(v_i)_{i\in [n]}$ with $\Mmatrix(P) v \le 0$).
 
-Let $\Ematrix(P)$ denote the set of external rigidity vectors (\ie rigidity vectors $\Rvector(p_i,p_j)$ where $p_i$ and $p_j$ are consecutive vertices of $\conv(P)$, so that $|\Ematrix_-(P)| = n_\circ$ if $P$ spans $\R^2$ and $|\Ematrix_-(P)| = 1$ if it spans a line).
+Let $\Ematrix(P)$ denote the set of external rigidity vectors; that is,~rigidity vectors $\Rvector(p_i,p_j)$ where $p_i$ and $p_j$ are consecutive vertices of $\conv(P)$, so that $|\Ematrix_-(P)| = n_\circ$ if $P$ spans $\R^2$ and $|\Ematrix_-(P)| = 1$ if it spans a line.
 
 \begin{lemma}
 \label{lem:equil_cone}
@@ -662,7 +661,7 @@ Let $p_1,\dots, p_{n_\circ}\in P$ denote the extremal points, that is, the verti
 If $p\in P$ is not extremal, our assumption is that it lies in the interior of $\conv(P)$. 
 This implies there exist  $\lambda_1,\dots,\lambda_n \in \R_{\ge 0}^{n_\circ}$ such that $\sum_{i=1}^{n_\circ} \lambda_i (p_i-p) = f_p$. 
 Then, subtracting from $f$ the linear combination $\sum_{i=1}^{n_\circ} \lambda_i \Rvector(p,p_i)$ we get a new load in equilibrium with zero force at $p$. 
-Repeating the process with all the non-vertices of $P$ we get a load which is non-zero only at vertices, which implies we can assume without loss of generality that $P=\{p_1,\dots, p_{n_\circ}\}$, \ie that $P$ is in convex position and $n=n_\circ$.
+Repeating the process with all the non-vertices of $P$ we get a load which is non-zero only at vertices. So, for the rest of the proof we can assume without loss of generality that $P=\{p_1,\dots, p_{n_\circ}\}$, \ie that $P$ is in convex position and $n=n_\circ$.
 
 In the convex-position case we prove the following claim, equivalent to our lemma: For every $i,j\in [n]$, the vector $-\Rvector(p_i,p_j)$ can be written as a linear combination of external rigidity vectors plus a nonnegative combination of the rest. Induction on $n$ allows us to assume the following: every $-\Rvector(p_i,p_j)$ with $i,j\in[n-1]$ can be written in the form we want except we may perhaps need a negative coefficient also in $\Rvector(p_1,p_{n-1})$, which is external in the configuration $\{p_1,\dots, p_{n-1}\}$. 
 
@@ -682,9 +681,9 @@ $p_j-p_i$ is a positive combination of $p_{i-1}-p_i$ and $p_{i+1}-p_i$ implies t
 
 \begin{remark}
 \label{rem:trident_example}
-The lemma is not true when $P$ has additional boundary points, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
+\cref{lem:equil_cone} fails when $P$ has additional boundary points, as the following example shows: Let $p,q,r,s$ be the points in the trident configuration of \cref{fig:minimalNonFaces}. 
 Its rigidity matrix has six rows and rank five, so the only linear dependence among rows (that is, the unique selfs-stress) is the one expressing $\Rvector(p,r)$ as a positive combination of $\Rvector(p,q)$ and $\Rvector(r,s)$, as given by \cref{lem:affineDependenceGivesEquilibriumStress}. 
-Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But, then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding to the cone the negative external rigidity vectors does not positively span the whole linear space, only the half-space containing that facet in its boundary.
+Geometrically, this means that $\Comp(P)$ is the cone over a $4$-simplex with vertices the five rigidity vectors except $\Rvector(p,r)$. But, then, the three external rigidity vectors are contained in a facet of the cone, namely the facet opposite to $\Rvector(q,s)$. Hence, adding to the cone the negative external rigidity vectors does not positively span the whole linear space, only the half-space having that facet on its boundary.
 \end{remark}
 
 
@@ -698,10 +697,11 @@ We here generalize that construction to non-general position, for which we need 
 \footnote{
 A different generalization of the construction of \cite{RoteSantosStreinu-polytope}, based on removing the pointedness assumption, is in~\cite{OrdenSantos}. It would be interesting to find a common generalization of that one and the one in this paper.}
 
-Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly segment}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union is not necessarily~${]p,q[} \cap P$.
-%We introduce the following notation: 
+We introduce the following useful notation: 
 For each $p\in P$ let $\one_p$ denote the matrix in $(\R^{2\times 2})^P \cong \R^{2\times 2n}$ having an identity $2\times 2$ matrix in the block of $p$ and zeroes elsewhere. Observe that for an $x\in \R^2$ we have that $x \one_p \in (\R^2)^P$ equals the vector that has $x$ in the $p$th block and zeroes elsewhere.
 Hence, the classical rigidity vector $\Rvector(p,q)$ as defined above can be expressed as follows:
+
+Let $\arc=(p, q, L, R)$ be a \defn{partial wiggly segment}, by which we mean that $L$ and $R$ are disjoint subsets of ${]p,q[} \cap P$, but their union is not necessarily~${]p,q[} \cap P$.
 
 \begin{definition}\label{def:lrv}
 The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usual rigidity vector of~$[p,q]$ in~$P$. That is,
@@ -712,7 +712,7 @@ The~\defn{longitudinal rigidity vector} \(\Rlong(\arc)\) of \(\arc\) is the usua
 
 To this vector we add a transversal part depending on the intermediate points along the segment~$[p,q]$.
 Here, a vector in $(\R^2)^P$ is called \defn{transversal} to the segment $[p,q]$ if it is of the form
-$w \left(\sum_{r\in P} \lambda_r \one_r\right)$ with $w\in \R^2$ orthogonal to $q-p$ and $\lambda_r = 0$ if $r\not\in [p,q]$.
+$(q-p)^\perp \left(\sum_{r\in P} \lambda_r \one_r\right)$ with $\lambda_r = 0$ if $r\not\in [p,q]$.
 
 \begin{definition}\label{def:trv}
 For each $r\in P \cap {]p,q[}$ consider the following vector, transversal to $[p,q]$:
@@ -817,7 +817,7 @@ The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(\Mtrans(P)\) whos
 The~\defn{(total) wiggly-rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
 \end{definition}
 
-We keep all the rigidity notation and nomenclature from the classical (longitudinal) case. The main difference with the classical setting is that stresses, in particular self-stresses, now live in $\R^{\wigglySegments(P)}$ rather than $\R^{\binom{P}{2}}$.
+We keep all the rigidity notation and nomenclature from the classical (longitudinal) case except that stresses, in particular self-stresses, now live in $\R^{\wigglySegments(P)}$ rather than $\R^{\binom{P}{2}}$.
 In contrast with the classical setting, now \(\Meps(P)\) has rank~\(2n - 3\) even if $P$ does not affinely span $\R^2$.
 
 \begin{proposition}
@@ -837,7 +837,7 @@ Then, to the row-span of $\Meps(P)$, of dimension $n-1$ and containing only long
 \[
 \Reps(p_1,p_k; \{p_2,\dots,p_{k-1}\}, \varnothing), \qquad k=3,\dots, n.
 \]
-These are clearly independent of one another and of the longitudinal vectors in $\Meps(P)$, since the transversal part of the $k$-th one is supported exactly in the points $\{p_2,\dots, p_{k-1}$.
+These are clearly independent of one another and of the longitudinal vectors in $\Meps(P)$, since the transversal part of the $k$-th one is supported exactly in the points $\{p_2,\dots, p_{k-1}\}$.
 \end{proof}
 
 As in the previous section, let us now look at the positive part of $\Equil(P)$, that is, the cone $\Comp^\epsilon(P)$ generated by the wiggly-rigidity vectors. 
@@ -856,18 +856,17 @@ Observe that in this step we are allowed to use partial wiggly segments since, b
 With this in mind we can cancel forces at non-extremal points with a small variation of what we did in \cref{lem:equil_cone}: 
 if $p$ lies in the interior of $\conv{P}$ we cancel the force at $p$ using the longitudinal rigidity vectors $\Rlong(p,p_i)$ for the extremal points $p_i$; 
 if $p$ lies in the relative interior of an edge $\{p_i,p_{i+1}\}$ of $\conv(P)$ we cancel the force at $p$ using the longitudinal vectors $\Rlong(p,p_i)$ and $\Rlong(p,p_{i+1})$, plus the (perhaps partial) wiggly vectors $\Reps(p_i,p_{i+1}, \{p\},\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  \{p\})$. 
+This can be done even when $\conv(P)$ is a segment $[p_1,p_2]$. 
 
-Observe that this can be done even when $\conv(P)$ is a segment $[p_1,p_2]$. Moreover, in this case the final load is automatically a multiple of $\Rlong(p_1,p_2)$, which finishes the proof for this case.
-
-So, we can now  assume without loss of generality that $P$ affinely spans $\R^2$ and that the load we want to resolve  vanishes except at extremal points. \cref{lema:partial_rigidity} implies that this load is a linear combination of  $\Ematrix(P)$.
+Now we have two cases: if  $\conv(P)$ is a segment the final load obtaiend in the previous paragraph is automatically a multiple of $\Rlong(p_1,p_2)$, which finishes the proof. If $P$ affinely spans $\R^2$ then the load we have vanishes except at extremal points. \cref{lema:partial_rigidity} implies that this load is a linear combination of  $\Ematrix(P)$.
 \end{proof}
 
-For our next proof and in other parts of the paper we use the following elementary fact:
+For our next proof and in other parts of the paper we use the following elementary fact about cones in real vector spaces:
 
 \begin{lemma}
 \label{lemma:spanning}
 \paco{does this need a proof?}
-Let $C$ be a convex cone linearly spanning $V\cong \R^n$ then for any finite subset $S\subset C$ the following properties are equivalent: 
+Let $C$ be a convex cone linearly spanning $V\cong \R^n$. Then, for any finite subset $S\subset C$ the following properties are equivalent: 
 \begin{enumerate}
 \item $(-S)\cup C$ positively spans $V$.
 \item $\sum_{v\in S} \lambda_v v$ lies in the interior of $C$ for some $(\lambda_v)_{v\in S} \in \R_{>0}^S$.
@@ -1172,11 +1171,11 @@ The following three parameters  describe the configuration $\{p,q,r,s\}$ up to r
 \begin{itemize}
 \item $\lambda\in {]0,1[}$, the barycentric position of $q$ along $[p,r]$, so that $q=\lambda p + (1-\lambda) r$.
 \item $\mu\in \R$, the barycentric position of $s'$ with respect to  $p$ and $r$, so that $s'=\mu p + (1-\mu) r$. Observe that $s'$ may not be in $[p,r]$. That is, we cannot assume $\mu\in [0,1]$.
-\item $\nu \in \R_{>0}$, the unique scalar such that $(s-s') = \nu (r-p)^\perp$. We assume $\nu >0$ since we can label the points $p,q,r$ so that $s$ is to the left of the (oriented) line $pqr$.
+\item $\nu \in \R_{>0}$, the unique scalar such that $(s'-s) = \nu (r-p)^\perp$. We assume $\nu >0$ since we can label the points $p,q,r$ so that $s$ is to the right of the (oriented) line $pqr$, as in~\cref{fig:minimalNonFaces2}.
 \end{itemize}
 
 To construct the appropriate dependence, we first notice that there is unique (modulo a scalar) way to combine the three vectors $\Rlong(\cdot, s)$ that cancels the force at $s$, namely:
-\paco{The new figure has L and R exchanged wrt the text; we have to either change the text or rename $p,q,r \to r,q,p$ in Figure}
+\paco{Corrected, to take into account that the new figure has L and R exchanged wrt the old;}
 \begin{align*}
 \Rvector_1\eqdef &\lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
 = &\lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
@@ -1188,8 +1187,8 @@ Rewriting each $s-x$ as $(s-s')+(s'-x)$ decomposes $\Rvector_1$ into a transvers
 = &\lambda (1-\mu) (r-p) \one_p   - (\lambda - \mu) (r-p) \one_q  + (1-\lambda) \mu (p-r) \one_r\\
 = &[\lambda (1-\mu)  \one_p   - (\lambda - \mu) \one_q  - (1-\lambda) \mu \one_r](r-p),\\
  \Rvector_1^{\trans}=&  (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
-= &  \nu[(r-q)^\perp \one_p -  (r-p)^\perp \one_q + (q-p)^\perp \one_r]\\
-= &  -\nu \Rtrans(p,r;q).
+= &  \nu[-(r-q)^\perp \one_p +  (r-p)^\perp \one_q - (q-p)^\perp \one_r]\\
+= &  \nu \Rtrans(p,r;q).
 \end{align*}
 In the longitudinal part we have used that
 \begin{align*} 
@@ -1199,13 +1198,13 @@ In the longitudinal part we have used that
 \end{align*}
 and in the transversal part that
 \[
-s-s' =\nu (r-p)^\perp =\frac\nu{\lambda} (r-q)^\perp = \frac\nu{1-\lambda} (q-p)^\perp.
+s-s' = - \nu (r-p)^\perp = - \frac\nu{\lambda} (r-q)^\perp = - \frac\nu{1-\lambda} (q-p)^\perp.
 \]
 
-In order to cancel the transversal part we subtract $\tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing,\{q\}) =
-\tfrac{\nu}{\epsilon} \Rlong(p,r) -  {\nu} \Rtrans(p,r;q)$ from $\Rvector_1$, to obtain:
+In order to cancel the transversal part we subtract $\tfrac{\nu}{\epsilon} \Reps(p,r;\{q\},\varnothing) =
+\tfrac{\nu}{\epsilon} \Rlong(p,r) +  {\nu} \Rtrans(p,r;q)$ from $\Rvector_1$, to obtain:
 \begin{align*}
-\Rvector_2\eqdef & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\varnothing, \{q\}) \\
+\Rvector_2\eqdef & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\{q\},\varnothing) \\
 =&[\lambda (1-\mu)  \one_p   + (\mu - \lambda) \one_q  - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r).
 \end{align*}
 
@@ -1242,7 +1241,7 @@ Table \ref{table:trident} chases the coefficients of the $\Rvector_i$'s used alo
 \begin{center}
 $
 \begin{array}{r|ccccccc}
-&\Rlong(p,s)&\Rlong(q,s)&\Rlong(r,s)&\Rlong(p,q)&\Rlong(q,r)&\Reps(p,r; \varnothing, \{q\})& \Reps(p,r; \{q\}, \varnothing)\\
+&\Rlong(p,s)&\Rlong(q,s)&\Rlong(r,s)&\Rlong(p,q)&\Rlong(q,r)&\Reps(p,r; \{q\}, \varnothing)& \Reps(p,r; \varnothing, \{q\})\\
 \hline
 \Rvector_1 & \lambda & -1 & 1-\lambda & 0 & 0 & 0 & 0 \\
 \Rvector_2 &\lambda & -1 & 1-\lambda & 0 & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
@@ -1266,7 +1265,7 @@ The signs are correct only if $\mu-\lambda\ge 0$, but the case $\mu-\lambda < 0$
 -   \lambda(1-\lambda)\Reps(p, r, \{q\}, \varnothing) - \lambda(1-\lambda)\Reps(p, r, \varnothing, \{q\}) .
 \end{align*}
 When $\mu-\lambda < 0$, adding to $ \Rvector_4$ the appropriate positive multiple of this dependence so as to make the coefficient of $\Rlong(p,q)$ vanish,  the following coefficients change:  
-that of  $\Rlong(q,r)$ becomes $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in those of $\Reps(p,r; \varnothing, \{q\})$ and  $\Reps(p,r; \{q\}, \varnothing)$ the summand containing $\epsilon$  changes to  $-\lambda(1-\mu)\epsilon$ instead of $-(1-\lambda)\mu\epsilon$.
+that of  $\Rlong(q,r)$ becomes $2\epsilon\tfrac{\lambda-\mu}{\lambda}$, and in those of $\Reps(p,r; \varnothing, \{q\})$ and  $\Reps(p,r; \{q\}, \varnothing)$ the summand not containing $\epsilon$  changes to  $-\lambda(1-\mu)$ instead of $-(1-\lambda)\mu$.
 %\end{itemize}
 
 The only dependence of the final $D$ on $\epsilon$ is the one for the trident, but the dependence is only in the summands $\pm\tfrac{\nu}{\epsilon}$ that appear in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$, as said in the statement. 
@@ -1325,14 +1324,14 @@ But this dependence is quite explicit, consisting only of the term $\pm\tfrac\nu
 \]
 where $f_{0}$ and $f_{1}$ are essentially the former $f_{\lon}$ and $f_{\trans}$ except for two things: the longitudinal load produced by $\tfrac\nu\epsilon$ is now explicitly written out, and the transversal load produced by $\tfrac\nu\epsilon$ now goes to $f_0$ rather than $f_1$.
 
-One additional precaution needs to be taken. In order for $\tfrac\nu\epsilon$ not to produce any net load in the points of $P\setminus Q$, when deciding how to turn the original $D\in \R^{\wigglySegments(Q)}$ into a vector in $\R^{\wigglySegments(P)}$ we make exactly the same choice in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point in $P\setminus Q$. Observe that the choice in $\Reps(p,r; \varnothing, \{q\})$ must be the original wiggly segment from $F$, but in the choice for $\Reps(p,r; \{q\}, \varnothing)$ we had complete freedom.
+One additional precaution needs to be taken. In order for $\tfrac\nu\epsilon$ not to produce any net load in the points of $P\setminus Q$, when deciding how to turn the original $D\in \R^{\wigglySegments(Q)}$ into a vector in $\R^{\wigglySegments(P)}$ we make exactly the same choice in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point in $P\setminus Q$. Observe that the choice in $\Reps(p,r; \{q\},\varnothing)$ must be the original wiggly segment from $F$, but in the choice for $\Reps(p,r; \varnothing, \{q\})$ we had complete freedom.
 
 With this precaution we have
 \[
 \Meps(P)^T D^+ = \tfrac\nu\epsilon + f_{0} + \epsilon f'_{1}  + \epsilon f^+, \qquad
 \Meps(P)^T D^- = \tfrac\nu\epsilon + f_{0} + \epsilon f'_{1} + \epsilon f^-,
 \]
-for certain loads $f^+, f^- \in \R^{2n}$ that do not  depend on $\epsilon$, where $f'_1$ now absorbes the transversal effect of the term $\tfrac\nu\epsilon$ in the points of $P \setminus Q$. (This effect may be big, but is the same for $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point, so it contributes the same to the positive and negative sides of the dependence).
+for certain loads $f^+, f^- \in \R^{2n}$ that do not  depend on $\epsilon$, where $f'_1$ now absorbs the transversal effect of the term $\tfrac\nu\epsilon$ in the points of $P \setminus Q$. (This effect may be big, but is the same in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point, so it contributes the same to the positive and negative sides of the dependence).
 The rest of the proof goes through: calling $\Ematrix_{D^+}(P)$  the set of semi-external arcs used in $D^+$,  
 ~\cref{coro:equil_cone_epsilon} implies that $f^- - f^+$ can be rewritten as a linear combination of rows of $\Meps(P)^T$ with all coefficients nonnegative except perhaps at the wiggly segments in $\Ematrix_{D^+}(P)$. We let $D'$ be such an expression and we have have:
 \[
@@ -1532,24 +1531,24 @@ As we aim to realize one such simplicial sphere, this is the notion that we will
 
 Thus, proving that a fan is polytopal is the same as proving that it is a regular subdivision. The next result is our key way of showing that:
 
-%\David{Lifting version of the theorem, we prefer the scaling version below}
-%\begin{theorem}
+% \David{Lifting version of the theorem, we prefer the scaling version below}
+% \begin{theorem}
 %  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-%  let~$\b{R} : V \to \R^d$ be a vector embedding and let~$f : V \to \R^+$ be a height function.
+%  let~$\b{R} : A \to \R^d$ be a vector embedding and let~$f : A \to \R^+$ be a height function.
 %  Then the following are equivalent:
 %  \begin{itemize}
 %    %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in A$,
-%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
+%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(a), f(a))$ for all~$a \in A$,
+%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
 %    \[
-%      F = \set{v \in V}{\lambda(v) < 0},
+%      F = \set{a \in A}{\lambda(a) < 0},
 %      \qquad
-%      \sum_{v \in V} \lambda(v) \, \b{R}(v) = \b{0},
+%      \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
 %      \qquad\text{and}\qquad
-%      \sum_{v \in V} \lambda(v) \, f(v) < 0.
+%      \sum_{a \in A} \lambda(a) \, f(a) < 0.
 %    \]
 %  \end{itemize}
-%\end{theorem}
+% \end{theorem}
 %
 %\begin{proof}
 %  %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
@@ -1598,34 +1597,34 @@ Thus, proving that a fan is polytopal is the same as proving that it is a regula
 \begin{theorem}
 \label{thm:regularDilationVersion}
 Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-let~$\b{R} : V \to \R^d$ be a vector embedding of $A$ and~$f : V \to \R^+$ be a scaling choice for $A$.
+let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$f : A \to \R^+$ be a scaling choice for $A$.
 Then the following are equivalent:
 \begin{itemize}
   %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in A$,
-  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(a) \, \b{R}(a)$ for all~$a \in A$,
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
   configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
   \[
-    F = \set{v \in V}{\lambda(v) < 0},
+    F = \set{a \in A}{\lambda(a) < 0},
     \qquad
-    \sum_{v \in V} \lambda(v) \, \b{R}(v) = \b{0},
+    \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
     \qquad\text{and}\qquad
-    \sum_{v \in V} \tfrac{\lambda(v)}{f(v)} < 0.
+    \sum_{a \in A} \tfrac{\lambda(a)}{f(a)} < 0.
   \]
 \end{itemize}
 \end{theorem}
 
 \begin{proof}
 %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
-  Let $T$ be the regular triangulation of $\b{R}(V)$ given by $f$.
-  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
+  Let $T$ be the regular triangulation of $\b{R}(A)$ given by $f$.
+  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(A)$ forms a simplicial fan covering $\cone(\b{R}(A))$.
   
   Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
-  the points~$f(v) \, \b{R}(v)$ for all~$v\in A$.
+  the points~$f(a) \, \b{R}(a)$ for all~$a\in A$.
   Consider $F$, a minimal non-face of $\simplex$.
 
   Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
-  Since $T$ is a triangulation covering $\cone{\b{R}(V)} = \cone{f\, \b{R}(V)}$,
+  Since $T$ is a triangulation covering $\cone{\b{R}(A)} = \cone{f\, \b{R}(A)}$,
   there is a unique $G\in T$ such that $x\in \relint{\cone{G}}$.
 
   As $x\in \cone{f\, \b{R}(F)} \cap \cone{G}$, there are two conic combinations
@@ -1634,15 +1633,15 @@ Then the following are equivalent:
   \]
   with all $\lambda_i, \mu_j \geq 0$, unique.
 
-  Since $F$ is a non-face of $T$, $\relint{\conv{f\, \b{R}(F)}} \subseteq \relint{\conv{f\, \b{R}(V)}}$
+  Since $F$ is a non-face of $T$, $\relint{\conv{f\, \b{R}(F)}} \subseteq \relint{\conv{f\, \b{R}(A)}}$
   and, along the ray of $x$, $\conv{G}$, a face of the convex hull, lies
   strictly above $\conv{f\, \b{R}(F)}$.
 
   We can write the intersection of the ray $x$ with either face as
   the unique convex combinations
   \begin{align*}
-    c_F\cdot x &= \tfrac{1}{\sum_{q_j\in F} \mu'_j}     \sum_{q_j\in F} \mu'_j     f(q_j) R(q_j), \\
-    c_G\cdot x &= \tfrac{1}{\sum_{p_i\in G} \lambda'_j} \sum_{p_i\in G} \lambda'_i f(p_i) R(p_i),
+    c_F\cdot x &= \tfrac{1}{\sum_{q_j\in F} \mu'_j}     \sum_{q_j\in F} \mu'_j     f(q_j) R(q_j)\;, &
+    c_G\cdot x &= \tfrac{1}{\sum_{p_i\in G} \lambda'_j} \sum_{p_i\in G} \lambda'_i f(p_i) R(p_i)\;,
   \end{align*}
   where $\mu'_j = \tfrac{\mu_j}{f(q_j)}$ and $\lambda'_i = \tfrac{\lambda_i}{f(p_i)}$.
 
