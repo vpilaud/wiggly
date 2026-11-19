@@ -1018,7 +1018,7 @@ Although the self-stress needs to be on the whole wiggly configuration, we first
 			\defn{cross}			
 		\end{tabular}
 	}
-\caption{The self-stresses in the five minimal non-face configurations. Black and blue edges in the picture indicate edges that get  negative and positive coefficient, respectively.  In the double-U and trident some blue edges are dashed, indicating that they may get a zero, instead of positive, coefficient.
+\caption{The self-stresses in the five minimal non-face of the wiggly complex~$\extendedWigglyComplex_P$ presented in~\cref{fig:minimalNonFaces}. Red and blue edges in the picture indicate edges that get negative and positive coefficient, respectively.  In the double-U and trident some blue edges are dashed, indicating that they may get a zero, instead of positive, coefficient.
 %Note that there might be some additional points of~$P$ in the convex hull of each.
 }
 \label{fig:minimalNonFaces2}
@@ -1094,8 +1094,6 @@ which implies
 
 \medskip
 In the \emph{double-U}, let~$\lambda,\mu \in {]0,1[}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
-We assume $\mu+\lambda >1$, which is equivalent to $p,q,r$ and $s$ being in that order along the line containing them.
-\vincent{I would rather say: As $p,q,r$ and $s$ appear in that order along the segment~$[p,s]$, we have~$\mu+\lambda >1$. And I would put that after the computations}
 Hence
 \[
 q-p = (1-\lambda)(s-p), \quad
@@ -1104,8 +1102,9 @@ s-r = (1-\mu)(s-p), \quad
 r-p = \mu(s-p), \quad
 s-q = \lambda(s-p).
 \]
-\paco{The new figure has L and R exchanged wrt the text; we have to either change the text or rename $p,q,r,s \to s,r,q,p$ in Figure}
+As $p,q,r$ and $s$ appear in that order along the segment~$[p,s]$, we have~$\mu+\lambda >1$. 
 We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
+\vincent{Corrected, to take into account that the new figure has L and R exchanged wrt the old;}
 \begin{align*}
 \Rtrans(p, r, \{q\}, \varnothing) & = \bigl( \mu \one_q - (\lambda+\mu-1) \one_p - (1-\lambda) \one_r \bigr) \cdot (s-p)^\perp, \\
 \Rtrans(q, s, \{r\}, \varnothing) & = \bigl( \lambda \one_r - (1-\mu) \one_q - (\lambda+\mu-1) \one_s \bigr) \cdot (s-p)^\perp, \\
