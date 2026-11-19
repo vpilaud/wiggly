@@ -1539,24 +1539,24 @@ As we aim to realize one such simplicial sphere, this is the notion that we will
 
 Thus, proving that a fan is polytopal is the same as proving that it is a regular subdivision. The next result is our key way of showing that:
 
-%\David{Lifting version of the theorem, we prefer the scaling version below}
-%\begin{theorem}
+% \David{Lifting version of the theorem, we prefer the scaling version below}
+% \begin{theorem}
 %  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-%  let~$\b{R} : V \to \R^d$ be a vector embedding and let~$f : V \to \R^+$ be a height function.
+%  let~$\b{R} : A \to \R^d$ be a vector embedding and let~$f : A \to \R^+$ be a height function.
 %  Then the following are equivalent:
 %  \begin{itemize}
 %    %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(v), f(v))$ for all~$v \in A$,
-%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
+%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(a), f(a))$ for all~$a \in A$,
+%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
 %    \[
-%      F = \set{v \in V}{\lambda(v) < 0},
+%      F = \set{a \in A}{\lambda(a) < 0},
 %      \qquad
-%      \sum_{v \in V} \lambda(v) \, \b{R}(v) = \b{0},
+%      \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
 %      \qquad\text{and}\qquad
-%      \sum_{v \in V} \lambda(v) \, f(v) < 0.
+%      \sum_{a \in A} \lambda(a) \, f(a) < 0.
 %    \]
 %  \end{itemize}
-%\end{theorem}
+% \end{theorem}
 %
 %\begin{proof}
 %  %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
@@ -1605,34 +1605,34 @@ Thus, proving that a fan is polytopal is the same as proving that it is a regula
 \begin{theorem}
 \label{thm:regularDilationVersion}
 Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-let~$\b{R} : V \to \R^d$ be a vector embedding of $A$ and~$f : V \to \R^+$ be a scaling choice for $A$.
+let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$f : A \to \R^+$ be a scaling choice for $A$.
 Then the following are equivalent:
 \begin{itemize}
   %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(v) \, \b{R}(v)$ for all~$v \in A$,
-  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: V \to \R$ of the vector
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(a) \, \b{R}(a)$ for all~$a \in A$,
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
   configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
   \[
-    F = \set{v \in V}{\lambda(v) < 0},
+    F = \set{a \in A}{\lambda(a) < 0},
     \qquad
-    \sum_{v \in V} \lambda(v) \, \b{R}(v) = \b{0},
+    \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
     \qquad\text{and}\qquad
-    \sum_{v \in V} \tfrac{\lambda(v)}{f(v)} < 0.
+    \sum_{a \in A} \tfrac{\lambda(a)}{f(a)} < 0.
   \]
 \end{itemize}
 \end{theorem}
 
 \begin{proof}
 %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
-  Let $T$ be the regular triangulation of $\b{R}(V)$ given by $f$.
-  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
+  Let $T$ be the regular triangulation of $\b{R}(A)$ given by $f$.
+  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(A)$ forms a simplicial fan covering $\cone(\b{R}(A))$.
   
   Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
-  the points~$f(v) \, \b{R}(v)$ for all~$v\in A$.
+  the points~$f(a) \, \b{R}(a)$ for all~$a\in A$.
   Consider $F$, a minimal non-face of $\simplex$.
 
   Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
-  Since $T$ is a triangulation covering $\cone{\b{R}(V)} = \cone{f\, \b{R}(V)}$,
+  Since $T$ is a triangulation covering $\cone{\b{R}(A)} = \cone{f\, \b{R}(A)}$,
   there is a unique $G\in T$ such that $x\in \relint{\cone{G}}$.
 
   As $x\in \cone{f\, \b{R}(F)} \cap \cone{G}$, there are two conic combinations
@@ -1641,15 +1641,15 @@ Then the following are equivalent:
   \]
   with all $\lambda_i, \mu_j \geq 0$, unique.
 
-  Since $F$ is a non-face of $T$, $\relint{\conv{f\, \b{R}(F)}} \subseteq \relint{\conv{f\, \b{R}(V)}}$
+  Since $F$ is a non-face of $T$, $\relint{\conv{f\, \b{R}(F)}} \subseteq \relint{\conv{f\, \b{R}(A)}}$
   and, along the ray of $x$, $\conv{G}$, a face of the convex hull, lies
   strictly above $\conv{f\, \b{R}(F)}$.
 
   We can write the intersection of the ray $x$ with either face as
   the unique convex combinations
   \begin{align*}
-    c_F\cdot x &= \tfrac{1}{\sum_{q_j\in F} \mu'_j}     \sum_{q_j\in F} \mu'_j     f(q_j) R(q_j), \\
-    c_G\cdot x &= \tfrac{1}{\sum_{p_i\in G} \lambda'_j} \sum_{p_i\in G} \lambda'_i f(p_i) R(p_i),
+    c_F\cdot x &= \tfrac{1}{\sum_{q_j\in F} \mu'_j}     \sum_{q_j\in F} \mu'_j     f(q_j) R(q_j)\;, &
+    c_G\cdot x &= \tfrac{1}{\sum_{p_i\in G} \lambda'_j} \sum_{p_i\in G} \lambda'_i f(p_i) R(p_i)\;,
   \end{align*}
   where $\mu'_j = \tfrac{\mu_j}{f(q_j)}$ and $\lambda'_i = \tfrac{\lambda_i}{f(p_i)}$.
 
