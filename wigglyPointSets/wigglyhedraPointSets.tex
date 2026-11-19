@@ -338,6 +338,7 @@ Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q
 For~$p,q \in P$, an \defn{oriented arc} from~$p$ to~$q$ is an isotopy class in the set of continuous maps~${\alpha : [0,1] \mapsto \R^2}$ that satisfy~$\alpha(0) = p$, $\alpha(1) = q$ and~$\alpha(]0,1[) \subseteq \R^2 \ssm P$.
 %We say that~$p$ and~$q$ are the \defn{endpoints} of~$\arc$, and that $\arc$ is \defn{incident} to $p$ and~$q$.
 An \defn{arc} is an oriented arc modulo reorientation.
+\vincent{search for arc and replace by segment when appropriate... Arcs can be arbitrarily complicated, segments follow a segment.}
 
 Let $p,q\in P$ and~$S = P \cap {]p,q[}$ be the subset of points of~$P$ along the open segment~$]p,q[$. A \defn{wiggly segment} is an arc between~$p$ and~$q$ obtained  perturbing the straightline arc $\alpha(t)\mapsto (1-t) p+t q$ so as to avoid each of the points of $S$ in the topologically simplest manner (\eg for each $r \in {]p,q[}$ substitute a small half-circle with center at $r$ for the portion of $\alpha$ going over $r$). Wiggly segments with endpoints $\{p, q\}$ are in bijection with partitions of $S$ into a subset $L$ of points to the left and a subset $R$ to the right of the (oriented) arc.
 For this reason we encode each wiggly segment as a quadruple~$\arc = (p, q, L, R)$ and, slightly abusing notation, will call $\arc$ itself a wiggly segment. Observe that $(p, q, L, R)$ and $(q, p, R, L)$ are considered the same wiggly segment.
@@ -822,7 +823,7 @@ In contrast with the classical setting, now \(\Meps(P)\) has rank~\(2n - 3\) eve
 \begin{proposition}
 \label{prop:kernel}
 As long as $n\ge 2$, the wiggly-rigidity matrix $\Meps(P)$ has rank~\(2n - 3\) for any \(\epsilon > 0\).
-Its kernel is the space $\Triv(P)$ of infinitesimal rigid motions and its row-span (i.e., the image of \(\Meps(P)^T\)) is the space of loads in equilibrium $\Equil(P)$.
+Its kernel is the space $\Triv(P)$ of infinitesimal rigid motions and its row-span (\ie the image of \(\Meps(P)^T\)) is the space of loads in equilibrium $\Equil(P)$.
 \end{proposition}
 
 \begin{proof}
@@ -997,21 +998,20 @@ Then the following are equivalent:
 
 Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly-rigidity vectors.
 
-In what follows a dependence or, more generally, a linear combination of wiggly-rigidity vectors in a configuration $P$ (i.e., a stress), will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
+In what follows a dependence or, more generally, a linear combination of wiggly-rigidity vectors in a configuration $P$ (\ie a stress), will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
 $D^+$ and $D^-$ the \defn{positive} and \defn{negative} part of $D$.
 %Let $D$ be such a vector. By forgetting the $L$ and $R$ in each wiggly segment $(p,q,L,R)$, any such $D$ induces also a vector $D_{\lon} \in \R^{\binom{P}{2}}$. More explicitly, the map $D \mapsto D_{\lon}$ is a linear projection that adds together the coefficients of $D$ according to the end-points of their wiggly segments. 
-
 
 Although the self-stress needs to be on the whole wiggly configuration, we first construct a self-stress in the simplified case where the only points of the configuration are the extremes of the arcs in the non-face. Figure~\ref{fig:minimalNonFaces2} illustrates the stresses we construct for the five cases of minimal non-faces from Figure~\ref{fig:minimalNonFaces2}.
 
 \begin{figure}[!h]
 	\centerline{
 		\begin{tabular}{c@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad}c}
-			\includegraphics[scale=1]{doubleI} &
-			\includegraphics[scale=1]{wye} &
-			\raisebox{.5cm}{\includegraphics[scale=1]{doubleU}} &
-			\includegraphics[scale=.75]{phi-stress} &
-			\includegraphics[scale=1]{cross} \\
+			\includegraphics[scale=1]{doubleIColored} &
+			\includegraphics[scale=1]{wyeColored} &
+			\raisebox{.2cm}{\includegraphics[scale=1]{doubleUColored}} &
+			\includegraphics[scale=1]{phiColored} &
+			\includegraphics[scale=1]{crossColored} \\
 			\defn{double-I} &
 			\defn{wye} &
 			\defn{double-U} &
@@ -1024,7 +1024,6 @@ Although the self-stress needs to be on the whole wiggly configuration, we first
 }
 \label{fig:minimalNonFaces2}
 \end{figure}
-
 
 \begin{proposition}
 \label{prop:fundamentalDependence}
@@ -1095,7 +1094,9 @@ which implies
 %}}
 
 \medskip
-In the \emph{double-U}, let~$\lambda,\mu \in ]0,1[$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$. We assume $\mu+\lambda >1$, which is equivalent to $p,q,r$ and $s$ being in that order along the line containing them.
+In the \emph{double-U}, let~$\lambda,\mu \in {]0,1[}$ be such that~$q = \lambda p + (1-\lambda) s$ and~$r = \mu s + (1-\mu) p$.
+We assume $\mu+\lambda >1$, which is equivalent to $p,q,r$ and $s$ being in that order along the line containing them.
+\vincent{I would rather say: As $p,q,r$ and $s$ appear in that order along the segment~$[p,s]$, we have~$\mu+\lambda >1$. And I would put that after the computations}
 Hence
 \[
 q-p = (1-\lambda)(s-p), \quad
@@ -1107,15 +1108,15 @@ s-q = \lambda(s-p).
 \paco{The new figure has L and R exchanged wrt the text; we have to either change the text or rename $p,q,r,s \to s,r,q,p$ in Figure}
 We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
 \begin{align*}
-\Rtrans(p, r, \varnothing, \{q\}) & = \bigl( (\lambda+\mu-1) \one_p - \mu \one_q + (1-\lambda) \one_r \bigr) \cdot (s-p)^\perp, \\
-\Rtrans(q, s, \varnothing, \{r\}) & = \bigl( (1-\mu) \one_q - \lambda \one_r + (\lambda+\mu-1) \one_s \bigr) \cdot (s-p)^\perp, \\
-\text{and} \quad \Rtrans(p, s, \varnothing, \{q,r\}) & = \bigl( (1+\lambda-\mu) \one_p + \one_r + \one_q + (1-\lambda+\mu) \one_s  \bigr) \cdot (s-p)^\perp,
+\Rtrans(p, r, \{q\}, \varnothing) & = \bigl( \mu \one_q - (\lambda+\mu-1) \one_p - (1-\lambda) \one_r \bigr) \cdot (s-p)^\perp, \\
+\Rtrans(q, s, \{r\}, \varnothing) & = \bigl( \lambda \one_r - (1-\mu) \one_q - (\lambda+\mu-1) \one_s \bigr) \cdot (s-p)^\perp, \\
+\text{and} \quad \Rtrans(p, s, \{q,r\}, \varnothing) & = \bigl( \one_r + \one_q - (1+\lambda-\mu) \one_p - (1-\lambda+\mu) \one_s  \bigr) \cdot (s-p)^\perp,
 \end{align*}
 namely
 \[
-(1+\lambda-\mu) \Rtrans(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Rtrans(q, s, \varnothing, \{r\}) + (1-\lambda-\mu) \Rtrans(p, s, \varnothing, \{q,r\}) = 0.
+(1+\lambda-\mu) \Rtrans(p, r, \{q\}, \varnothing) + (1-\lambda+\mu) \Rtrans(q, s, \{r\}, \varnothing) + (1-\lambda-\mu) \Rtrans(p, s, \{q,r\}, \varnothing) = 0.
 \]
-We then compute the same combination for the longitudinal parts:
+We then compute the same combination for the longitudinal parts
 \begin{multline*}
 (1+\lambda-\mu) \Rvector(p, r) + (1-\lambda+\mu) \Rvector(q, s) + (1-\lambda-\mu) \Rvector(p, s) = \\
 = \bigl( (1-\mu)(1-\lambda+\mu) \one_p + \lambda (1-\lambda+\mu) \one_q - \mu (1+\lambda-\mu) \one_r - (1-\lambda)(1+\lambda-\mu) \one_s \bigr) \cdot (s-p),
@@ -1128,27 +1129,21 @@ from which we obtain
 
 Putting together the longitudinal and transversal parts on the left-hand sides and rewriting the longitudinal right-hand terms in the fashion of~\cref{lema:partial_rigidity} leads to
 \begin{multline}
-\frac{\mu(1-\mu)-\lambda(1-\lambda)+2\lambda\mu}{2\mu} \Reps(p, r, \varnothing, \{q\}) + (1-\lambda+\mu) \Reps(q, s, \varnothing, \{r\}) = \\ \lambda(1-\lambda+\mu) \Reps(p, s, \varnothing, \{q,r\}) + (1-\lambda)(1+\lambda-\mu) \Reps(p, s, \{q,r\}, \varnothing) \\ + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} \Reps(p, r, \{q\}, \varnothing) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Reps(q, r, \varnothing, \varnothing).
+\frac{\mu(1-\mu)-\lambda(1-\lambda)+2\lambda\mu}{2\mu} \Reps(p, r, \{q\}, \varnothing) + (1-\lambda+\mu) \Reps(q, s, \{r\}, \varnothing) = \\ \lambda(1-\lambda+\mu) \Reps(p, s, \{q,r\}, \varnothing) + (1-\lambda)(1+\lambda-\mu) \Reps(p, s, \varnothing, \{q,r\}) \\ + \frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} \Reps(p, r, \varnothing, \{q\}) + \frac{\lambda(1-\lambda+\mu)}{\lambda+\mu-1} \Reps(q, r, \varnothing, \varnothing).
 \label{eq:doubleU}
 \end{multline}
-\paco{we also need to show that $\mu(1-\mu)-\lambda(1-\lambda)+2\lambda\mu$ is positive}
-The only coefficient that may not be positive in this equation is
-\[
-\frac{\mu(1-\mu)-\lambda(1-\lambda)}{2\mu} =
-\frac{(1-\mu -\lambda)(\mu-\lambda)}{2\mu} =
-\frac{(\mu +\lambda-1)}{2\mu} (\lambda - \mu),
-\]
-which has the sign of $\lambda - \mu$ since $\mu +\lambda > 1$. Thus, if $\lambda \ge \mu$ then~\cref{eq:doubleU} is a dependence in the required form.
+Note that~$\mu(1-\mu)-\lambda(1-\lambda) = (\lambda + \mu -1)(\lambda - \mu)$.
+As~$\lambda, \mu \in {]0,1[}$ and~$\lambda + \mu > 1$, we thus obtain that, if $\lambda \ge \mu$, then all coefficients in~\cref{eq:doubleU} are non-negative, so that~\cref{eq:doubleU} is a dependence in the required form.
 Table \ref{table:double-U} shows the coefficients of the final dependence.
 
-If $\lambda < \mu$, that is, if~$\lambda(1-\lambda) > \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
+If $\lambda \le \mu$, that is, if~$\lambda(1-\lambda) > \mu(1-\mu)$, we obtain a similar linear dependence, involving $\Reps(q, s, \{r\}, \varnothing)$ instead of~$\Reps(p, r, \{q\}, \varnothing)$.
 
 \begin{table}[htb]
-\begin{center}
+\centerline{
 $
 \begin{array}{cccccc}
-\Reps(p, r, \varnothing, \{q\})&\Reps(q, s, \varnothing, \{r\}) &
-\Reps(p, s, \varnothing, \{q,r\})&\Reps(p, s, \{q,r\}, \varnothing) &  \Reps(p, r, \{q\}, \varnothing) &  \Reps(q, r, \varnothing, \varnothing)\\
+\Reps(p, r,  \{q\}, \varnothing)&\Reps(q, s, \{r\}, \varnothing) &
+\Reps(p, s, \{q,r\}, \varnothing)&\Reps(p, s, \varnothing, \{q,r\}) &  \Reps(p, r, \varnothing, \{q\}) &  \Reps(q, r, \varnothing, \varnothing)\\
 \hline
 %\Rvector_1 & \lambda & -1 & 1-\lambda & 0 & 0 & 0 & 0 \\
 %\Rvector_2 &\lambda & -1 & 1-\lambda & 0 & 0 & -\tfrac{\nu}{\epsilon} & 0 \\
@@ -1164,10 +1159,8 @@ $
   - & - & + & + & + &  + \\
 \end{array}
 $
-\end{center}
-\caption{The linear dependence $\Rvector_4$ of \cref{prop:fundamentalDependence} for a trident, assuming $\mu > \lambda$.
-The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-\lambda) \mu\epsilon| <\nu$.
 }
+\caption{The linear dependence~\eqref{eq:doubleU} of \cref{prop:fundamentalDependence} for a double-U, assuming $\lambda \ge \mu$.}
 \label{table:double-U}
 \end{table}
 
@@ -1177,7 +1170,7 @@ The signs of the coefficients are as shown whenever $\epsilon>0$ satisfies $|(1-
 The last case, the \emph{trident}, is more complicated. Let $s'$ be the orthogonal projection of $s$ to the line $pqr$.
 The following three parameters  describe the configuration $\{p,q,r,s\}$ up to rigid motion and dilation: 
 \begin{itemize}
-\item $\lambda\in [0,1]$, the barycentric position of $q$ along $[p,r]$, so that $q=\lambda p + (1-\lambda) r$.
+\item $\lambda\in {]0,1[}$, the barycentric position of $q$ along $[p,r]$, so that $q=\lambda p + (1-\lambda) r$.
 \item $\mu\in \R$, the barycentric position of $s'$ with respect to  $p$ and $r$, so that $s'=\mu p + (1-\mu) r$. Observe that $s'$ may not be in $[p,r]$. That is, we cannot assume $\mu\in [0,1]$.
 \item $\nu \in \R_{>0}$, the unique scalar such that $(s-s') = \nu (r-p)^\perp$. We assume $\nu >0$ since we can label the points $p,q,r$ so that $s$ is to the left of the (oriented) line $pqr$.
 \end{itemize}
