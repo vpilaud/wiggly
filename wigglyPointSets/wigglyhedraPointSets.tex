@@ -1019,7 +1019,7 @@ Although the self-stress needs to be on the whole wiggly configuration, we first
 			\defn{cross}			
 		\end{tabular}
 	}
-\caption{The self-stresses in the five minimal non-face of the wiggly complex~$\extendedWigglyComplex_P$ presented in~\cref{fig:minimalNonFaces}. Red and blue edges in the picture indicate edges that get negative and positive coefficient, respectively.  In the double-U and trident some blue edges are dashed, indicating that they may get a zero, instead of positive, coefficient.
+\caption{The self-stresses in the five types of minimal non-face of the wiggly complex~$\extendedWigglyComplex_P$, presented in~\cref{fig:minimalNonFaces}. Red and blue edges in the picture indicate edges that get negative and positive coefficients, respectively.  In the double-U and trident some blue edges are dashed, indicating that they may get a zero, instead of positive, coefficient.
 %Note that there might be some additional points of~$P$ in the convex hull of each.
 }
 \label{fig:minimalNonFaces2}
@@ -1035,7 +1035,7 @@ the wiggly-rigidity vectors of~$Q$ admit a self-stress $D\in \R^{\wigglySegments
 \item The support of $D^-$ equals $F$.
 \item The support of $D^+$ includes all the external wiggly segments of $Q$.
 \item The coefficients in $D$ do not depend on $\epsilon$ except in the case of the trident; 
-in this case the only dependence on $\epsilon$ is that the coefficients of $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ are, respectively, $-\tfrac\nu\epsilon - \kappa$ and $\tfrac\nu\epsilon - \kappa$, where $\nu$ and $\kappa$ depend on $Q$ but not on $\epsilon$. 
+in this case the only dependence on $\epsilon$ is that the coefficients of $\Reps(p,r; \{q\}, \varnothing)$ and $\Reps(p,r; \varnothing, \{q\})$ are, respectively, $-\tfrac\nu\epsilon - \kappa$ and $\tfrac\nu\epsilon - \kappa$, where $\nu$ and $\kappa$ are positive numbers depending only on $Q$. 
 %In particular, $D_{\lon}$ does not depend on $\epsilon$.
 %\paco{Does the ``in particular'' need a proof?}
 %In particular, $\Meps(Q)^T D$ converges to $\Mmatrix(Q)^T D_{\lon}$ as $\epsilon$ goes to zero.
@@ -1272,7 +1272,7 @@ The only dependence of the final $D$ on $\epsilon$ is the one for the trident, b
 \end{proof}
 
 We now consider an arbitrary configuration $P$ and a minimal non-face $F$ of its wiggly complex. We call $Q$ the subconfiguration of end-points in $F$ and $D\in \R^{\wigglySegments(Q)}$ the linear dependence $D$ among the wiggly segments of $Q$ constructed in~\cref{prop:fundamentalDependence}.
-By choosing whether to consider each $p\in P\setminus Q$ to lie on the left or the right part of each wiggly segment used in $D$, we can think of $D$ as a vector of coefficients for a linear combination of wiggly segments in $P$, which we still denote $D$. This $D\in \R^{\wigglySegments(P)}$ is no longer a dependence in $P$, since new transversal forces appear at the new points, but we now show that the fact that these forces are multiplied by $\epsilon$ allows us to cancel them for small $\epsilon$. Observe that we have a choice on how to turn the $D\in \R^{\wigglySegments(Q)}$ into a $D\in \R^{\wigglySegments(P)}$.
+By choosing whether to consider each $s\in P\setminus Q$ to lie on the left or the right part of each wiggly segment used in $D$, we can think of $D$ as a vector of coefficients for a linear combination of wiggly segments in $P$, which we still denote $D$. This $D\in \R^{\wigglySegments(P)}$ is no longer a dependence in $P$, since new transversal forces appear at the new points, but we now show that the fact that these forces are multiplied by $\epsilon$ allows us to cancel them for small $\epsilon$. Observe that we have a choice on how to turn the $D\in \R^{\wigglySegments(Q)}$ into a $D\in \R^{\wigglySegments(P)}$.
 
 
 \begin{corollary}
@@ -1290,17 +1290,17 @@ Moreover, both $D$ and $D'$ use only arcs from the subconfiguration $P\cap \conv
 \begin{proof}
 We first observe that there is no loss of generality in assuming that $P\subset \conv(Q)$, that is, $\conv(P)= \conv(Q)$. Indeed, calling $P' := P\cap \conv(Q)$, if we can prove the statement for $P'$ then the same $D$ and $D'$ work in $P$.
 So, for the rest of the proof we assume this.
-
 Let $D^+$ and $D^-$ be the positive and negative parts of $D$.
-We first deal with the four types of non-faces other than the trident, in which $D$ is independent of $\epsilon$.
 
+We first deal with the four types of non-faces other than the trident, so for the time being $D$ is independent of $\epsilon$.
+%
 Since $\Meps(Q)^T D = 0$, we have that
 \[
 \Meps(Q)^T D^+ = \Meps(Q)^T D^- = f_{\lon} + f_{\trans} \epsilon,
 \]
 where $f_{\lon}$ and $f_{\trans}$ do not depend on $\epsilon$ and represent the longitudinal and transversal loads produced by $D^-$ and $D^+$.
 
-When considering $D$ in $P$ rather than $Q$, new transversal forces appear at the new points, but we have
+When considering $D$ in $P$ rather than $Q$, new forces appear at the new points, but they are all scaled by $\epsilon$. Hence we have
 \[
 \Meps(P)^T D^+ = f_{\lon} + \epsilon f_{\trans}  + \epsilon f^+, \qquad
 \Meps(P)^T D^- = f_{\lon} + \epsilon f_{\trans} + \epsilon f^-,
@@ -1322,7 +1322,7 @@ But this dependence is quite explicit, consisting only of the term $\pm\tfrac\nu
 \[
 \Meps(Q)^T D^+ = \Meps(Q)^T D^- = \tfrac\nu\epsilon + f_{0} + f_{1} \epsilon,
 \]
-where $f_{0}$ and $f_{1}$ are essentially the former $f_{\lon}$ and $f_{\trans}$ except for two things: the longitudinal load produced by $\tfrac\nu\epsilon$ is now explicitly written out, and the transversal load produced by $\tfrac\nu\epsilon$ now goes to $f_0$ rather than $f_1$.
+where $f_{0}$ and $f_{1}$ are essentially the former $f_{\lon}$ and $f_{\trans}$ except for two things: the longitudinal load produced by $\tfrac\nu\epsilon$ is now explicitly written out, and the transversal load produced by $\tfrac\nu\epsilon$ on the point $q\in Q$ now goes to $f_0$ rather than $f_1$.
 
 One additional precaution needs to be taken. In order for $\tfrac\nu\epsilon$ not to produce any net load in the points of $P\setminus Q$, when deciding how to turn the original $D\in \R^{\wigglySegments(Q)}$ into a vector in $\R^{\wigglySegments(P)}$ we make exactly the same choice in $\Reps(p,r; \varnothing, \{q\})$ and $\Reps(p,r; \{q\}, \varnothing)$ for each point in $P\setminus Q$. Observe that the choice in $\Reps(p,r; \{q\},\varnothing)$ must be the original wiggly segment from $F$, but in the choice for $\Reps(p,r; \varnothing, \{q\})$ we had complete freedom.
 
