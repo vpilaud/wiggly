@@ -151,8 +151,8 @@
 % specific wiggly
 \newcommandx{\arc}[1][1=\alpha]{\b{#1}} % arc
 \newcommand{\wigglySegments}{\mathcal{W}} % set of wiggly segments
-\newcommand{\extendedWigglyComplex}{\overline{\mathrm{WC}}} % wiggly complex
-\newcommand{\reducedWigglyComplex}{\mathrm{WC}} % wiggly complex
+\newcommand{\extendedWigglyComplex}{\mathrm{WC}} % wiggly complex
+\newcommand{\reducedWigglyComplex}{\overline{\mathrm{WC}}} % wiggly complex
 \newcommand{\wigglyFlipGraph}{\mathrm{WFG}} % wiggly flip graph
 \newcommand{\wigglyIncreasingFlipGraph}{\mathrm{WIFG}} % wiggly increasing flip graph
 \newcommand{\wigglyLattice}{\mathrm{WL}} % wiggly lattice
@@ -331,15 +331,39 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 \section{Introduction}
 \label{sec:introduction}
 
+\vincent{I am still working on this introduction...}
 Fix an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
 A \defn{wiggly segment} of~$P$ is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point of~$P$ along the open segment~$]p,q[$.
-The \defn{wiggly complex}~$\extendedWigglyComplex_P$ is the simplicial complex of subsets~$D$ of wiggly segments of~$P$ which are \defn{pointed} (for any point~$p$ of~$P$, the set of points~$q \in P$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$) and pairwise \defn{non-crossing} (no two wiggly segments of~$D$ cross in their relative interior).
-See \cref{fig:wigglyComplexSquarre} for an illustration.
-The wiggly complex was introduced in~\cite{BapatDeopurkarLicata}, and it generalizes two specific situations previously considered in the literature: we refer to~\cite{BapatPilaud-wigglyaligned} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
+The \defn{extended wiggly complex}~$\extendedWigglyComplex_P$ is the simplicial complex of subsets~$D$ of wiggly segments of~$P$ which are \defn{pointed} (for any point~$p$ of~$P$, the set of points~$q \in P$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$) and pairwise \defn{non-crossing} (no two wiggly segments of~$D$ cross in their relative interior).
+Note that,  the external wiggly segments of~$P$ are pointed and non-crossing with any other wiggly segment.
+In other words, the extended wiggly complex~$\extendedWigglyComplex_P$ is the join of the simplex formed by these external wiggly arcs with the \defn{reduced wiggly complex}~$\reducedWigglyComplex_P$.
+See \cref{sec:wigglyComplex} for details, and \cref{fig:wigglyComplexSquarre,fig:wigglyComplexTriangle} for illustrations.
 
-Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
-To state this result more precisely, we need the following wiggly variations of the construction~\cite{RoteSantosStreinu-polytope}.
+The wiggly complex for arbitrary point sets was introduced in~\cite{BapatDeopurkarLicata}.
+Their motivations from stability conditions in representation theory are briefly presented in \cref{sec:repth}.
+This general definition extends three particular relevant situations which already appeared in the literature:
+\begin{itemize}
+\item  When~$P$ is in convex position, the wiggly complex is the simplicial \defn{associahedron}.
+Its facets are given by triangulations of~$P$, and are in bijection with binary trees, or with $312$-avoiding permutations, which define a sublattice of the weak order.
+Its dual is the boundary complex of the classical associahedron, which admits several possible realizations, in particular as a secondary polytope~\cite{GelfandKapranovZelevinsky,BilleraSturmfels,DeLoeraRambauSantos}, as a deformed permutahedron~\cite{Loday,PilaudSantos-quotientopes,PilaudSantosZiegler}, or as a generalized associahedron from cluster algebras~\cite{ChapotonFominZelevinsky,HohlwegPilaudStella}.
 
+\item More generally, when~$P$ is in general position, the wiggly segments are just standard segments, and the facets of the wiggly complex of~$P$ are the \defn{pointed pseudotriangulations} of~$P$.
+These were introduced in computational geometry as a data structure to compute the visibility complex of a collection of convex bodies~\cite{PocchiolaVegter}.
+They were later connected to minimally rigid frameworks on~$P$, which was instrumental to prove that the dual complex as the boundary complex of a convex polytope~\cite{RoteSantosStreinu-polytope}.
+See also the survey~\cite{RoteSantosStreinu-pseudotriangulations}.
+
+\item When~$P$ is a set of aligned points, the wiggly complex was studied in detail in~\cite{BapatPilaud-wigglyaligned}.
+Its facets were shown to be in bijection with certain \defn{wiggly permutations} of~$[2n]$, which define a sublattice of the weak order.
+Its dual was also realized as the boundary complex of a convex polytope in~\cite{BapatPilaud-wigglyaligned}.
+\end{itemize}
+
+Generalizing these three situations, our main result is the following.
+
+\begin{theorem}
+For every point set $P$ in the plane, the reduced wiggly complex~$\reducedWigglyComplex_P$ is the boundary complex of a simplicial convex polytope.
+\end{theorem}
+
+To state this construction more precisely, we need the following wiggly variations of the construction~\cite{RoteSantosStreinu-polytope}.
 For a wiggly segment~$\arc = (p,q,L,R)$, and some parameters~$\epsilon, \zeta \in \R$ and~$a,b \in \R^2$, we define 
 \begin{itemize}
 \item the \defn{wiggly rigidity vector} of  as~$\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc)$, where
@@ -356,11 +380,11 @@ For a wiggly segment~$\arc = (p,q,L,R)$, and some parameters~$\epsilon, \zeta \i
 \]
 \end{itemize}
 The longitudinal parts~$\Rlong(\arc)$ and~$\hlong(\arc)$ are the standard rigidity vector and height of the segment~$[p,q]$, and we add transversal parts~$\Rtrans(\arc)$ and~$\htrans(\arc)$ depending on the intermediate points~$L,R$ along the segment~$[p,q]$.
-We then define by~$\Rbareps$
+We then define by~$\Rbareps(\arc)$ the projection of~$\Reps(\arc)$ orthogonal to the space generated by the rigidity vectors of the external segments of~$P$.
 
 \begin{theorem}
 \label{thm:main}
-For any point set~$P$ in the plane~$\R^2$, the wiggly complex of~$P$ is the boundary complex of the convex hull of the points~$\Rbareps(\arc)/\hzeta(\arc)$ for all internal wiggly arcs~$\arc$ of~$P$ for a suitable choice of parameters~$\epsilon, \zeta \in \R$ and~$a = b \in \R^2$.
+For any point set~$P$ in the plane~$\R^2$, the reduced wiggly complex of~$P$ is the boundary complex of the convex hull of the points~$\Rbareps(\arc)/\hzeta(\arc)$ for all internal wiggly arcs~$\arc$ of~$P$ for a suitable choice of parameters~$\epsilon, \zeta \in \R$ and~$a = b \in \R^2$.
 \end{theorem}
 
 Our main tool to show \cref{thm:main} is the following statement, proved in \cref{sec:regularSubdivisions}.
@@ -390,6 +414,7 @@ Then the following are equivalent:
 \section{Wiggly complex}
 \label{sec:wigglyComplex}
 
+\vincent{We decided to change wiggly complex to reduced wiggly complex, and I still need to do the changes in this section...}
 Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
 A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
 We denote by~$n = n_\circ + n_\bullet$ the number of points of~$P$, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
@@ -582,6 +607,14 @@ Otherwise, the diagonals of~$Q$ are the two wiggly segments in the interior of~$
 
 \begin{definition}
 The \defn{wiggly flip graph}~$\wigglyFlipGraph_P$ of~$P$ is the graph with a vertex for each wiggly triangulation of~$P$, and with an edge between two wiggly triangulations~$T$ and~$T'$ of~$P$ if and only if there are wiggly segments~$\arc \in T$ and~$\arc' \in T'$ such that~$T \ssm \{\arc\} = T' \ssm \{\arc'\}$.
+See \cref{fig:wigglyComplexSquarre}\,(left) and \cref{fig:wigglyComplexTriangle}.
+%
+\begin{figure}[!h]
+\centerline{\includegraphics[scale=.85]{wigglyComplexTriangle}}
+\caption{The wiggly flip graph~$\wigglyFlipGraph_P$ of a point set~$P$.}
+\label{fig:wigglyComplexTriangle}
+\end{figure}
+%
 \end{definition}
 
 \begin{proposition}
@@ -1716,6 +1749,8 @@ Let~$\hzeta$ be the function on wiggly segments defined by~$\hzeta = \hlong + \z
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Categorical interpretation and further questions}
+\label{sec:repth}
+
 The aim of this section is to explain the representation theoretic and categorical motivation for wiggly pseudotriangulations.
 This section ties together the content of the present paper with the paper~\cite{BapatDeopurkarLicata}, as well as the similar discussion in~\cite[\S5]{BapatPilaud-wigglyaligned}.
 Specifically, we discuss how wiggly pseudotriangulations as well as the boundary of the extended wiggly complex appear naturally from the categorical point of view.
