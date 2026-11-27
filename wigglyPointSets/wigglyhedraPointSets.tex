@@ -331,10 +331,12 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 \section{Introduction}
 \label{sec:introduction}
 
-\Paco{Theorems~\ref{thm:main} and \ref{thm:regularLiftingVersion} should probably go to the introduction. I am putting them here for now just to explain why we want to contruct the dependences}
-\Vincent{I actually thought that we should have a section "The wiggly fan and wigglyhedron" including the statement about the height function. Then three sections for the proof called "A dependence for each minimal non-face", "An appropriate height function", and "Regular subdivisions and polytopal fans".}
+Fix an arbitrary point set~$P$ in the plane~$\R^2$ (neither necessarily aligned, nor necessarily in general position).
+A \defn{wiggly segment} of~$P$ is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point of~$P$ along the open segment~$]p,q[$.
+The \defn{wiggly complex}~$\extendedWigglyComplex_P$ is the simplicial complex of subsets~$D$ of wiggly segments of~$P$ which are \defn{pointed} (for any point~$p$ of~$P$, the set of points~$q \in P$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$) and pairwise \defn{non-crossing} (no two wiggly segments of~$D$ cross in their relative interior).
+See \cref{fig:wigglyComplexSquarre} for an illustration.
+The wiggly complex was introduced in~\cite{BapatDeopurkarLicata}, and it generalizes two specific situations previously considered in the literature: we refer to~\cite{BapatPilaud-wigglyaligned} for the case of aligned points, and to the original article of~\cite{PocchiolaVegter} and to the survey~\cite{RoteSantosStreinu-pseudotriangulations} for the case of points in general position.
 
-Introduce the wiggly complex. \\
 Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
 To state this result more precisely, we need the following wiggly variations of the construction~\cite{RoteSantosStreinu-polytope}.
 
@@ -392,7 +394,7 @@ Throughout this paper, we consider an arbitrary point set~$P$ in the plane~$\R^2
 A point~$p \in P$ is \defn{extremal} if it is a vertex of the convex hull of~$P$.
 We denote by~$n = n_\circ + n_\bullet$ the number of points of~$P$, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
 We first define the wiggly segments of~$P$.
-Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point in the open segment~$]p,q[$.
+Intuitively, a wiggly segment is like a segment~$[p,q]$ between two points~$p, q \in P$, except that the path locally deviates to one side or the other of every point of~$P$ along the open segment~$]p,q[$.
 
 \begin{definition}
 \label{def:wigglySegments}
@@ -416,7 +418,7 @@ An \defn{external} wiggly segment is one of the form~$(p, q, L, \varnothing)$ wh
 A set~$D\subseteq \wigglySegments(P)$ of wiggly segments is
 \begin{itemize}
 \item \defn{non-crossing} if there exists a set of representatives of the arcs of~$D$ with pairwise disjoint relative interiors,
-\item \defn{pointed} if for any point~$p \in P$, the set of points~$q \in Q$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$,
+\item \defn{pointed} if for any point~$p \in P$, the set of points~$q \in P$ so that~$D$ contains a wiggly segment with endpoints~$\{p,q\}$ is contained in an open half-space at~$p$,
 \item \defn{compatible} if it is both non-crossing and pointed.
 \end{itemize}
 \end{definition}
@@ -610,7 +612,7 @@ In this section we review the main results about regular triangulations, and the
 \paco{the point set is $A$, not $V$. some occurences may still need change}
 \david{different letters: liftings now use $h$ and scaling factors use $f$}
 
-\begin{definition}[Regular triangulation of a vector set; see, \eg \cite{DeLoeraRambauSantos}]
+\begin{definition}%[Regular triangulation of a vector set; see, \eg \cite{DeLoeraRambauSantos}]
 \label{def:lifting}
   Let $A$ be a finite vector set in $\R^d$. A \defn{height function} for $A$ is a
   function $h\in \R_+^A$.
@@ -1695,7 +1697,7 @@ giving us the desired $D'$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{The height function}
+\section{A suitable height function}
 \label{sec:heightFunction}
 
 In this section, we exhibit a height function~$h$ satisfying the conditions of \cref{thm:regularLiftingVersion}\,(ii) for the linear dependences described in \cref{sec:circuit}.
