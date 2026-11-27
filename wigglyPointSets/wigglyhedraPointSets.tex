@@ -1108,7 +1108,6 @@ s-q = \lambda(s-p).
 \]
 As $p,q,r$ and $s$ appear in that order along the segment~$[p,s]$, we have~$\mu+\lambda >1$. 
 We first observe that there is a unique (modulo a scalar) linear dependence between the transversal rigidity vectors
-\vincent{Corrected, to take into account that the new figure has L and R exchanged wrt the old;}
 \begin{align*}
 \Rtrans(p, r, \{q\}, \varnothing) & = \bigl( \mu \one_q - (\lambda+\mu-1) \one_p - (1-\lambda) \one_r \bigr) \cdot (s-p)^\perp, \\
 \Rtrans(q, s, \{r\}, \varnothing) & = \bigl( \lambda \one_r - (1-\mu) \one_q - (\lambda+\mu-1) \one_s \bigr) \cdot (s-p)^\perp, \\
@@ -1178,26 +1177,25 @@ The following three parameters  describe the configuration $\{p,q,r,s\}$ up to r
 \end{itemize}
 
 To construct the appropriate dependence, we first notice that there is unique (modulo a scalar) way to combine the three vectors $\Rlong(\cdot, s)$ that cancels the force at $s$, namely:
-\paco{Corrected, to take into account that the new figure has L and R exchanged wrt the old;}
 \begin{align*}
-\Rvector_1\eqdef &\lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
-= &\lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
-= &\lambda (s-p) \one_p  - (s-q) \one_q + (1-\lambda) (s-r) \one_r.
+\Rvector_1 & \eqdef \lambda \Rlong(p,s) -  \Rlong(q,s) + (1-\lambda)\Rlong(r,s) \\
+& = \lambda (s-p) (\one_p  - \one_s) - (s-q) (\one_q  - \one_s) + (1-\lambda) (s-r) (\one_r  - \one_s)\\
+& = \lambda (s-p) \one_p  - (s-q) \one_q + (1-\lambda) (s-r) \one_r.
 \end{align*}
 Rewriting each $s-x$ as $(s-s')+(s'-x)$ decomposes $\Rvector_1$ into a transversal  part $\Rvector_1^{\trans}$ and a longitudinal part  $\Rvector_1^{\lon}$ that we evaluate separately:
 \begin{align*}
-\Rvector_1^{\lon}= & \lambda (s'-p) \one_p  - (s'-q) \one_q + (1-\lambda) (s'-r) \one_r\\
-= &\lambda (1-\mu) (r-p) \one_p   - (\lambda - \mu) (r-p) \one_q  + (1-\lambda) \mu (p-r) \one_r\\
-= &[\lambda (1-\mu)  \one_p   - (\lambda - \mu) \one_q  - (1-\lambda) \mu \one_r](r-p),\\
- \Rvector_1^{\trans}=&  (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
-= &  \nu[-(r-q)^\perp \one_p +  (r-p)^\perp \one_q - (q-p)^\perp \one_r]\\
-= &  \nu \Rtrans(p,r;q).
+\Rvector_1^{\lon} & = \lambda (s'-p) \one_p  - (s'-q) \one_q + (1-\lambda) (s'-r) \one_r\\
+& = \lambda (1-\mu) (r-p) \one_p   - (\lambda - \mu) (r-p) \one_q  + (1-\lambda) \mu (p-r) \one_r\\
+& = [\lambda (1-\mu)  \one_p   - (\lambda - \mu) \one_q  - (1-\lambda) \mu \one_r](r-p),\\
+\Rvector_1^{\trans} & = (s-s') [\lambda \one_p - \one_q + (1-\lambda)  \one_r]\\
+& = \nu[-(r-q)^\perp \one_p +  (r-p)^\perp \one_q - (q-p)^\perp \one_r]\\
+& = \nu \Rtrans(p,r;q).
 \end{align*}
 In the longitudinal part we have used that
 \begin{align*} 
-(s'-p) \one_q =& [ (\mu p + (1-\mu) r)- p ] \one_p =  (1 - \mu) (r-p) \one_p, \\
-(s'-q) \one_q =& [ (\mu p + (1-\mu) r)- (\lambda p + (1-\lambda) r) ] \one_q =  (\lambda - \mu) (r-p) \one_q, \\
-(s'-r) \one_r =& [ (\mu p + (1-\mu) r)-  r) ] \one_r =  - \mu (r-p) \one_r,
+(s'-p) \one_q & = [ (\mu p + (1-\mu) r)- p ] \one_p =  (1 - \mu) (r-p) \one_p, \\
+(s'-q) \one_q & = [ (\mu p + (1-\mu) r)- (\lambda p + (1-\lambda) r) ] \one_q =  (\lambda - \mu) (r-p) \one_q, \\
+(s'-r) \one_r & = [ (\mu p + (1-\mu) r)-  r) ] \one_r =  - \mu (r-p) \one_r,
 \end{align*}
 and in the transversal part that
 \[
@@ -1207,31 +1205,31 @@ s-s' = - \nu (r-p)^\perp = - \frac\nu{\lambda} (r-q)^\perp = - \frac\nu{1-\lambd
 In order to cancel the transversal part we subtract $\tfrac{\nu}{\epsilon} \Reps(p,r;\{q\},\varnothing) =
 \tfrac{\nu}{\epsilon} \Rlong(p,r) +  {\nu} \Rtrans(p,r;q)$ from $\Rvector_1$, to obtain:
 \begin{align*}
-\Rvector_2\eqdef & \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\{q\},\varnothing) \\
-=&[\lambda (1-\mu)  \one_p   + (\mu - \lambda) \one_q  - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r).
+\Rvector_2 & \eqdef \Rvector_1 - \tfrac{\nu}{\epsilon} \Reps(p,r;\{q\},\varnothing) \\
+& = [\lambda (1-\mu)  \one_p   + (\mu - \lambda) \one_q  - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r).
 \end{align*}
 
 The coefficient of $\one_q$ in this expression is zero if and only if $\lambda=\mu$; that is, if $q=s'$. In case this does not happen we cancel that coefficient with $\Rlong(p,q)$ or $\Rlong(q,r)$, depending on the sign of $\lambda - \mu$. For this observe that
 \begin{align*}
-\Rlong(q,r) &= (r-q)(\one_q-\one_r) =  \lambda (r -p)(\one_q-\one_r),\\
-\Rlong(p,q) &= (q-p)(\one_p-\one_q) = (1-\lambda) (r -p)(\one_p-\one_q).
+\Rlong(q,r) & = (r-q)(\one_q-\one_r) =  \lambda (r -p)(\one_q-\one_r),\\
+\Rlong(p,q) & = (q-p)(\one_p-\one_q) = (1-\lambda) (r -p)(\one_p-\one_q).
 \end{align*}
 
 For the time being 
 let us assume that $\mu > \lambda$ (we will later say how things change if $\mu < \lambda$. Then, the coefficient of $\one_q$ in $\Rvector_2$ is a \emph{positive} multiple of $(r-p)$. To cancel it we need to add to $\Rvector_2$ a positive multiple of $\Rlong(p,q)$, namely:
 \begin{align*}
-\Rvector_3 \eqdef & \Rvector_2 + \tfrac{\mu-\lambda}{1-\lambda} \Rlong(p,q) 
+\Rvector_3 & \eqdef \Rvector_2 + \tfrac{\mu-\lambda}{1-\lambda} \Rlong(p,q) 
 	 =\Rvector_2 + (\mu-\lambda)(r -p)(\one_p-\one_q)\\
-= &[\lambda (1-\mu)  \one_p   - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) + (\mu-\lambda)(r -p) \one_p \\
-= &(1-\lambda) \mu (\one_p   - \one_r)(r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
-= &(1-\lambda) \mu \Rlong(p,r) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
-= &\left( (1-\lambda) \mu - \tfrac{\nu}{\epsilon} \right)\Rlong(p,r).
+& = [\lambda (1-\mu)  \one_p   - (1-\lambda) \mu \one_r](r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) + (\mu-\lambda)(r -p) \one_p \\
+& = (1-\lambda) \mu (\one_p   - \one_r)(r-p) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
+& = (1-\lambda) \mu \Rlong(p,r) - \tfrac{\nu}{\epsilon} \Rlong(p,r) \\
+& = \left( (1-\lambda) \mu - \tfrac{\nu}{\epsilon} \right)\Rlong(p,r).
 \end{align*}
 Multiplying both sides by $-2$:
 \begin{align*}
 - 2 \Rvector_3 
-= &2(\tfrac{\nu}{\epsilon} -  (1-\lambda) \mu )  \Rlong(p,r) \\
-= &( \tfrac{\nu}{\epsilon} -   (1-\lambda) \mu ) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big). 
+& = 2(\tfrac{\nu}{\epsilon} -  (1-\lambda) \mu )  \Rlong(p,r) \\
+& = ( \tfrac{\nu}{\epsilon} -   (1-\lambda) \mu ) \big(\Reps(p,r; \varnothing,\{q\} + \Reps(p,r; \{q\}, \varnothing)\big). 
 \end{align*}
 
 So, the final linear dependence that we are looking for is 
@@ -1398,15 +1396,15 @@ Let~$\hzeta$ be the function on wiggly segments defined by~$\hzeta = \hlong + \z
 \label{sec:regularSubdivisions}
 
 In this section we review the main results about regular triangulations, and their relation to polytopality, in the spritit of \cite[Chapter 9]{DeLoeraRambauSantos}. 
-%For this, we need to distinguish between \emph{points} and \emph{vectors}. Both are elements of $\R^d$, but in the case of points  we regard  $\R^d$ as an affine space and in the second case as a vector space.
+%For this, we need to distinguish between \defn{points} and \defn{vectors}. Both are elements of $\R^d$, but in the case of points  we regard  $\R^d$ as an affine space and in the second case as a vector space.
 \paco{the point set is $A$, not $V$. some occurences may still need change}
 \david{different letters: liftings now use $h$ and scaling factors use $f$}
 
 \begin{definition}[Regular triangulation of a vector set; see, \eg \cite{DeLoeraRambauSantos}]
 \label{def:lifting}
-  Let $A$ be a finite vector set in $\R^d$. A \emph{height function} for $A$ is a
+  Let $A$ be a finite vector set in $\R^d$. A \defn{height function} for $A$ is a
   function $h\in \R_+^A$.
-  This choice induces a \emph{lifting} of $A$, which is the vector set $A^h \eqdef \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
+  This choice induces a \defn{lifting} of $A$, which is the vector set $A^h \eqdef \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
   $h$ assigns positive heights in $\R^{d+1}$ to  vectors of $A$.
   
 %\end{definition}
@@ -1414,7 +1412,7 @@ In this section we review the main results about regular triangulations, and the
 %\begin{definition}
 %  \label{def:lower-hull}
   %Let $A^h$ be a finite point set in $\R^{d+1}$. 
-  The \emph{lower hull} (resp. upper hull)
+  The \defn{lower hull} (resp. upper hull)
   of $A^h$ is the geometric polyhedral fan given by the faces of the positive span of $A^h$
   contained in some facet whose outward normal vector has a negative
   (resp. positive) last coordinate.
@@ -1426,11 +1424,11 @@ In this section we review the main results about regular triangulations, and the
   An abstract polyhedral complex $C$ with
   vertex set $A$ is a regular subdivision of $A$ if it can be realized as the lower hull
   of a lifting of $A^h$ for some lifting function $h$.
-  When $C$ is simplicial, it is called a \emph{regular triangulation}.
+  When $C$ is simplicial, it is called a \defn{regular triangulation}.
   %, and we will denote it by $\simplex$.
 \end{definition}
 
-% In a regular subdivision, we say that non-faces are \emph{above} faces of the triangulation
+% In a regular subdivision, we say that non-faces are \defn{above} faces of the triangulation
 % because they are with respect to the projection that forgets the height when embedded in
 % the lifting.
 
@@ -1444,9 +1442,9 @@ A related notion of regular subdivisions can be derived from assigning lengths t
 \david{renamed length choice to scaling (factor) choice}
 \begin{definition}
   \label{def:scaling-choice}
-  Let $R$ be a finite set of vectors in $\R^d$. A \emph{scaling function} for $R$ is a
+  Let $R$ be a finite set of vectors in $\R^d$. A \defn{scaling function} for $R$ is a
   function $f\in \R_+^R$.
-  This choice induces a \emph{scaling} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$, 
+  This choice induces a \defn{scaling} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$, 
   which is the vector set $f R \eqdef \{(f p\}\subset \R^{d}$; put differently,  
   $f$ scales vectors of $R$.
 %\end{definition}
@@ -1455,7 +1453,7 @@ A related notion of regular subdivisions can be derived from assigning lengths t
 %\begin{definition}
 %   \label{def:outer-hull}
  %  Let $R$ be a finite set of vectors in $\R^d$. 
-   The \emph{outer hull} of $fR$ is the
+   The \defn{outer hull} of $fR$ is the
    geometric polyhedral complex given by the faces of the convex hull of $R \cup \{\zero\}$
    that don't contain the origin.
 %\end{definition}
@@ -1463,11 +1461,11 @@ A related notion of regular subdivisions can be derived from assigning lengths t
 %\begin{definition}
 %  \label{def:regular-fan-subdivision}
 %  Let $R$ be a finite set of vectors. 
-  A fan $F$ with rays $R$ is a \emph{scaling subdivision}
+  A fan $F$ with rays $R$ is a \defn{scaling subdivision}
   of $R$ if it can be obtained as the outer hull of some positive scaling of $R$.
-  \emph{scaling} of $R$.
+  \defn{scaling} of $R$.
 %
-  When $F$ is simplicial, we say it is a \emph{scaling triangulation} of $R$.
+  When $F$ is simplicial, we say it is a \defn{scaling triangulation} of $R$.
 %  and we denote it by $\simplex$.
 \end{definition}
 
@@ -1475,7 +1473,7 @@ A related notion of regular subdivisions can be derived from assigning lengths t
 \begin{lemma}[{\cite[Corollary 9.5.3]{DeLoeraRambauSantos}}]
    \label{lemma:point-triangulation-as-vector-triangulation}
    Let $R$ be a finite vector set.
-   Then, the regular subdicision of $R$ obtained with a certain a \emph{height choice}  $h\in \R^P$ coincides
+   Then, the regular subdicision of $R$ obtained with a certain a \defn{height choice}  $h\in \R^P$ coincides
    with the scaling subdivision of $R$ obtained with the scaling factor $f(p) \eqdef \tfrac{1}{h(P)}$.
 \end{lemma}
 \begin{proof}
@@ -1539,7 +1537,7 @@ It is clear that when a finite set of vectors $R$ is totally cyclic,
 and its regular triangulations are simplicial spheres.
 As we aim to realize one such simplicial sphere, this is the notion that we will use.
 
-% In this setting, we say that non-faces of a regular triangulation are \emph{below}
+% In this setting, we say that non-faces of a regular triangulation are \defn{below}
 % faces of the subdivision because, in every direction, a face is further from the
 % origin than non-faces when embedded in the length choice.
 
@@ -1612,9 +1610,9 @@ Thus, proving that a fan is polytopal is the same as proving that it is a regula
 \begin{theorem}
 \label{thm:regularDilationVersion}
 Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$f : A \to \R^+$ be a scaling choice for $A$.
+let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$f : A \to \R^{>0}$ be a \defn{scaling choice} for $A$.
 Then the following are equivalent:
-\begin{itemize}
+\begin{enumerate}[(i)]
   %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
   \item $\simplex$ is the boundary complex of the convex hull of the points~$f(a) \, \b{R}(a)$ for all~$a \in A$,
   \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
@@ -1626,7 +1624,7 @@ Then the following are equivalent:
     \qquad\text{and}\qquad
     \sum_{a \in A} \tfrac{\lambda(a)}{f(a)} < 0.
   \]
-\end{itemize}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
