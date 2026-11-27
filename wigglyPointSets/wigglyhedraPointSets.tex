@@ -327,6 +327,50 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Introduction}
+\label{sec:introduction}
+
+\Paco{Theorems~\ref{thm:main} and \ref{thm:regularLiftingVersion} should probably go to the introduction. I am putting them here for now just to explain why we want to contruct the dependences}
+\Vincent{I actually thought that we should have a section "The wiggly fan and wigglyhedron" including the statement about the height function. Then three sections for the proof called "A dependence for each minimal non-face", "An appropriate height function", and "Regular subdivisions and polytopal fans".}
+
+Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
+More precisely, we show the following:
+
+\begin{theorem}
+\label{thm:main}
+Let $P$ be a set of~$n$ points, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
+Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly segment~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
+\begin{enumerate}
+\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Comp^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
+\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly-rigidity vectors.
+\end{enumerate}
+\vincent{Add here the polytopal realization, either with explicit height function, or saying that it exists.}
+\end{theorem}
+
+In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly segments are independent. So, we only need to prove (2). For that we use the following result proved in \cref{sec:regularSubdivisions}.
+
+\begin{theorem}
+\label{thm:regularLiftingVersion}
+Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
+let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$h : A \to \R^{>0}$ be a \defn{weight choice} for $A$.
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+  %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$\left\{\tfrac1{h(\arc)} \, \b{R}(\arc) : \arc \in A\right\}$,
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
+  configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$h$, that is,
+  \[
+    F = \set{\arc \in A}{\lambda(\arc) < 0},
+    \qquad
+    \sum_{\arc \in A} \lambda(\arc) \, \b{R}(\arc) = \b{0},
+    \qquad\text{and}\qquad
+    \sum_{\arc \in A} {\lambda(\arc)}{h(\arc)} < 0.
+  \]
+\end{enumerate}
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Wiggly complex}
 \label{sec:wigglyComplex}
 
@@ -949,50 +993,6 @@ Hence, using~\cref{lemma:spanning} again, $\Comp^\epsilon(P)$ together with $\{ 
 %\]
 %\end{proof}
 %}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{The wiggly fan and the wigglyhedron}
-\label{sec:wigglyFanWigglyhedron}
-
-\Paco{Theorems~\ref{thm:main} and \ref{thm:regularLiftingVersion} should probably go to the introduction. I am putting them here for now just to explain why we want to contruct the dependences}
-\Vincent{I actually thought that we should have a section "The wiggly fan and wigglyhedron" including the statement about the height function. Then three sections for the proof called "A dependence for each minimal non-face", "An appropriate height function", and "Regular subdivisions and polytopal fans".}
-
-Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
-More precisely, we show the following:
-
-\begin{theorem}
-\label{thm:main}
-Let $P$ be a set of~$n$ points, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
-Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly segment~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
-\begin{enumerate}
-\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Comp^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
-\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly-rigidity vectors.
-\end{enumerate}
-\vincent{Add here the polytopal realization, either with explicit height function, or saying that it exists.}
-\end{theorem}
-
-In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly segments are independent. So, we only need to prove (2). For that we use the following result proved in \cref{sec:regularSubdivisions}.
-
-\begin{theorem}
-\label{thm:regularLiftingVersion}
-Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$h : A \to \R^{>0}$ be a \defn{weight choice} for $A$.
-Then the following are equivalent:
-\begin{enumerate}[(i)]
-  %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$\left\{\tfrac1{h(\arc)} \, \b{R}(\arc) : \arc \in A\right\}$,
-  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
-  configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$h$, that is,
-  \[
-    F = \set{\arc \in A}{\lambda(\arc) < 0},
-    \qquad
-    \sum_{\arc \in A} \lambda(\arc) \, \b{R}(\arc) = \b{0},
-    \qquad\text{and}\qquad
-    \sum_{\arc \in A} {\lambda(\arc)}{h(\arc)} < 0.
-  \]
-\end{enumerate}
-\end{theorem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
