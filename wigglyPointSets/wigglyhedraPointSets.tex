@@ -165,6 +165,9 @@
 \newcommand{\Rlong}{\Rvector_{\lon}} % longitudinal rigidity vector
 \newcommand{\Rtrans}{\Rvector_{\trans}} % transversol rigidity vector
 \newcommand{\Reps}{\Rvector^\epsilon} % total rigidity vector
+\newcommand{\hlong}{h_{\lon}^{a,b}} % longitudinal height function
+\newcommand{\htrans}{h_{\trans}} % transversol height function
+\newcommand{\hzeta}{h_\zeta^{a,b}} % total height function
 \newcommand{\Mmatrix}{\b{\rm M}} % rigidity matrix
 \newcommand{\Ematrix}{\b{\rm E}} % boundary rows in rigidity matrix
 \newcommand{\Mlong}{\Mmatrix_{\lon}} % longitudinal rigidity vector
@@ -976,7 +979,7 @@ In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ ext
 Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
 let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$h : A \to \R^{>0}$ be a \defn{weight choice} for $A$.
 Then the following are equivalent:
-\begin{itemize}
+\begin{enumerate}[(i)]
   %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
   \item $\simplex$ is the boundary complex of the convex hull of the points~$\left\{\tfrac1{h(\arc)} \, \b{R}(\arc) : \arc \in A\right\}$,
   \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
@@ -988,7 +991,7 @@ Then the following are equivalent:
     \qquad\text{and}\qquad
     \sum_{\arc \in A} {\lambda(\arc)}{h(\arc)} < 0.
   \]
-\end{itemize}
+\end{enumerate}
 \end{theorem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -996,7 +999,7 @@ Then the following are equivalent:
 \section{A self-stress for each minimal non-face in the wiggly complex}
 \label{sec:circuit}
 
-Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion} for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly-rigidity vectors.
+Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion}\,(ii) for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly-rigidity vectors.
 
 In what follows a dependence or, more generally, a linear combination of wiggly-rigidity vectors in a configuration $P$ (\ie a stress), will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
 $D^+$ and $D^-$ the \defn{positive} and \defn{negative} part of $D$.
@@ -1376,6 +1379,18 @@ giving us the desired $D'$.
 \section{The height function}
 \label{sec:heightFunction}
 
+In this section, we exhibit a height function~$h$ satisfying the conditions of \cref{thm:regularLiftingVersion}\,(ii) for the linear dependences described in \cref{sec:circuit}.
+This function depends on a real parameter~$\zeta \in \R$ and on two points~$a,b \in \R^2$, whose choices will be discussed a posteriori.
+It is obtained as the sum of two functions~$\hzeta = \hlong + \zeta\htrans$, where~$\hlong$ handles the longitudinal part of the dependence and was already defined in~\cite{RoteSantosStreinu-polytope} while~$\htrans$ handles the transversal part of the dependence.
+
+\begin{definition}
+Let~$\hzeta$ be the function on wiggly segments defined by~$\hzeta = \hlong + \zeta\htrans$, where
+\[
+\hlong(p,q,L,R) \eqdef \det(a,p,q) \cdot \det(b,p,q)
+\qquad\text{and}
+\htrans(p,q,L,R) = \|p-q\|.
+\]
+\end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
