@@ -165,6 +165,7 @@
 \newcommand{\Rlong}{\Rvector_{\lon}} % longitudinal rigidity vector
 \newcommand{\Rtrans}{\Rvector_{\trans}} % transversol rigidity vector
 \newcommand{\Reps}{\Rvector^\epsilon} % total rigidity vector
+\newcommand{\Rbareps}{\overline{\b{\rm R}^\epsilon}} % total rigidity vector
 \newcommand{\hlong}{h_{\lon}^{a,b}} % longitudinal height function
 \newcommand{\htrans}{h_{\trans}} % transversol height function
 \newcommand{\hzeta}{h_\zeta^{a,b}} % total height function
@@ -333,21 +334,34 @@ We provide a polytopal realization of the wiggly complex of a planar point set.
 \Paco{Theorems~\ref{thm:main} and \ref{thm:regularLiftingVersion} should probably go to the introduction. I am putting them here for now just to explain why we want to contruct the dependences}
 \Vincent{I actually thought that we should have a section "The wiggly fan and wigglyhedron" including the statement about the height function. Then three sections for the proof called "A dependence for each minimal non-face", "An appropriate height function", and "Regular subdivisions and polytopal fans".}
 
+Introduce the wiggly complex. \\
 Our main result is that the wiggly complex~$\reducedWigglyComplex_P$ is polytopal for every point set $P$ in the plane.
-More precisely, we show the following:
+To state this result more precisely, we need the following wiggly variations of the construction~\cite{RoteSantosStreinu-polytope}.
+
+For a wiggly segment~$\arc = (p,q,L,R)$, and some parameters~$\epsilon, \zeta \in \R$ and~$a,b \in \R^2$, we define 
+\begin{itemize}
+\item the \defn{wiggly rigidity vector} of  as~$\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc)$, where
+\[
+\Rlong(\arc) \eqdef (q-p) (\one_p  - \one_q)
+\qquad\text{and}\qquad
+\Rtrans(p,q;r) \eqdef (q-p)^\perp \one_r - (q-r)^\perp  \one_p - (r-p)^\perp  \one_q.
+\]
+\item its \defn{height}~$\hzeta(\arc) \eqdef \hlong(\arc) + \zeta\htrans(\arc)$, where
+\[
+\hlong(\arc) \eqdef \det(a,p,q) \cdot \det(b,p,q)
+\qquad\text{and}\qquad
+\htrans(\arc) \eqdef \|p-q\|.
+\]
+\end{itemize}
+The longitudinal parts~$\Rlong(\arc)$ and~$\hlong(\arc)$ are the standard rigidity vector and height of the segment~$[p,q]$, and we add transversal parts~$\Rtrans(\arc)$ and~$\htrans(\arc)$ depending on the intermediate points~$L,R$ along the segment~$[p,q]$.
+We then define by~$\Rbareps$
 
 \begin{theorem}
 \label{thm:main}
-Let $P$ be a set of~$n$ points, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
-Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly segment~$\arc$ its corresponding wiggly-rigidity vector $\Rvector^\epsilon(\arc)$. Then:
-\begin{enumerate}
-\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.\Paco{For the time being I am not stating that the fan covers (\ie it is a triangulation of) $\Comp^\epsilon(P)$. We only get that if we can find circuits not needing to use the negative external.}
-\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly-rigidity vectors.
-\end{enumerate}
-\vincent{Add here the polytopal realization, either with explicit height function, or saying that it exists.}
+For any point set~$P$ in the plane~$\R^2$, the wiggly complex of~$P$ is the boundary complex of the convex hull of the points~$\Rbareps(\arc)/\hzeta(\arc)$ for all internal wiggly arcs~$\arc$ of~$P$ for a suitable choice of parameters~$\epsilon, \zeta \in \R$ and~$a = b \in \R^2$.
 \end{theorem}
 
-In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly segments are independent. So, we only need to prove (2). For that we use the following result proved in \cref{sec:regularSubdivisions}.
+Our main tool to show \cref{thm:main} is the following statement, proved in \cref{sec:regularSubdivisions}.
 
 \begin{theorem}
 \label{thm:regularLiftingVersion}
@@ -420,7 +434,7 @@ See \cref{fig:wigglyComplexSquarre}\,(left).
 %
 \begin{figure}[!h]
 \centerline{\includegraphics[scale=.85]{wigglyComplexSquare}}
-\caption{The wiggly complex~$\extendedWigglyComplex_P$ (left) and wiggly flip graph~$\wigglyFlipGraph_P$ (right) of a point set~$P$.}
+\caption{The wiggly complex~$\reducedWigglyComplex_P$ (left) and wiggly flip graph~$\wigglyFlipGraph_P$ (right) of a point set~$P$.}
 \label{fig:wigglyComplexSquarre}
 \end{figure}
 %
@@ -584,6 +598,297 @@ We prove by induction on~$i$ that any wiggly triangulation of~$P_i$ is connected
 For any wiggly triangulation~$T_i$ of~$P_i$, consider the wiggly triangulation~$T_{i-1}$ obtained from~$T_i$ by flipping all internal wiggly segments incident to~$p_i$, and then deleting~$p_i$ and its two incident external wiggly segments.
 Then~$T_{i-1}$ is a wiggly triangulation of~$P_{i-1}$, which is connected by flips to~$T_{i-1}^\circ$ by induction.
 We conclude that~$T_i$ is connected by flip to~$T_i^\circ$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Regular subdivisions and polytopal fans}
+\label{sec:regularSubdivisions}
+
+In this section we review the main results about regular triangulations, and their relation to polytopality, in the spritit of \cite[Chapter 9]{DeLoeraRambauSantos}. 
+%For this, we need to distinguish between \defn{points} and \defn{vectors}. Both are elements of $\R^d$, but in the case of points  we regard  $\R^d$ as an affine space and in the second case as a vector space.
+\paco{the point set is $A$, not $V$. some occurences may still need change}
+\david{different letters: liftings now use $h$ and scaling factors use $f$}
+
+\begin{definition}[Regular triangulation of a vector set; see, \eg \cite{DeLoeraRambauSantos}]
+\label{def:lifting}
+  Let $A$ be a finite vector set in $\R^d$. A \defn{height function} for $A$ is a
+  function $h\in \R_+^A$.
+  This choice induces a \defn{lifting} of $A$, which is the vector set $A^h \eqdef \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
+  $h$ assigns positive heights in $\R^{d+1}$ to  vectors of $A$.
+  
+%\end{definition}
+%
+%\begin{definition}
+%  \label{def:lower-hull}
+  %Let $A^h$ be a finite point set in $\R^{d+1}$. 
+  The \defn{lower hull} (resp. upper hull)
+  of $A^h$ is the geometric polyhedral fan given by the faces of the positive span of $A^h$
+  contained in some facet whose outward normal vector has a negative
+  (resp. positive) last coordinate.
+%\end{definition}
+%
+%\begin{definition}
+%  \label{def:regular-subdivision}
+  %Let $A$ be a finite point set in $\R^d$. 
+  An abstract polyhedral complex $C$ with
+  vertex set $A$ is a regular subdivision of $A$ if it can be realized as the lower hull
+  of a lifting of $A^h$ for some lifting function $h$.
+  When $C$ is simplicial, it is called a \defn{regular triangulation}.
+  %, and we will denote it by $\simplex$.
+\end{definition}
+
+% In a regular subdivision, we say that non-faces are \defn{above} faces of the triangulation
+% because they are with respect to the projection that forgets the height when embedded in
+% the lifting.
+
+A related notion of regular subdivisions can be derived from assigning lengths to the elements of the set.
+%through homogenization.
+%\david{new notation for homogenization: $\tilde x$}
+%If $A$ is a finite point set, denote by $\tilde V \coloneqq \{\tilde v \coloneqq (v, 1) \;|\; v \in V\}$
+%its canonical homogenization, attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
+%hyperplane with last coordinate equal to $1$.
+
+\david{renamed length choice to scaling (factor) choice}
+\begin{definition}
+  \label{def:scaling-choice}
+  Let $R$ be a finite set of vectors in $\R^d$. A \defn{scaling function} for $R$ is a
+  function $f\in \R_+^R$.
+  This choice induces a \defn{scaling} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$, 
+  which is the vector set $f R \eqdef \{(f p\}\subset \R^{d}$; put differently,  
+  $f$ scales vectors of $R$.
+%\end{definition}
+%
+%\david{new definition for the lemma below}
+%\begin{definition}
+%   \label{def:outer-hull}
+ %  Let $R$ be a finite set of vectors in $\R^d$. 
+   The \defn{outer hull} of $fR$ is the
+   geometric polyhedral complex given by the faces of the convex hull of $R \cup \{\zero\}$
+   that don't contain the origin.
+%\end{definition}
+%
+%\begin{definition}
+%  \label{def:regular-fan-subdivision}
+%  Let $R$ be a finite set of vectors. 
+  A fan $F$ with rays $R$ is a \defn{scaling subdivision}
+  of $R$ if it can be obtained as the outer hull of some positive scaling of $R$.
+  \defn{scaling} of $R$.
+%
+  When $F$ is simplicial, we say it is a \defn{scaling triangulation} of $R$.
+%  and we denote it by $\simplex$.
+\end{definition}
+
+\david{new lemma}
+\begin{lemma}[{\cite[Corollary 9.5.3]{DeLoeraRambauSantos}}]
+   \label{lemma:point-triangulation-as-vector-triangulation}
+   Let $R$ be a finite vector set.
+   Then, the regular subdicision of $R$ obtained with a certain a \defn{height choice}  $h\in \R^P$ coincides
+   with the scaling subdivision of $R$ obtained with the scaling factor $f(p) \eqdef \tfrac{1}{h(P)}$.
+\end{lemma}
+\begin{proof}
+\paco{The book does only the case $f\equiv h \equiv 1$.}
+   To make our arguments clearer,
+   denote by $S_P$ the geometric embedding of $S$ induced by $P$, by $S_H$
+   the geometric embedding given by the lower hull of $(P, h(P))$, and by $S_A$
+   the geometric embedding of $S$ given by the outer hull of the scaling
+   $\tfrac{1}{h} \cdot \tilde P$.
+
+   We will prove that non-faces of $S_H$ coincide with those of $S_A$.
+   This equivalence is trivial for non-faces that are contained in a larger face.
+
+   Consider a non-face of $S$, $E$, not contained in any face.
+   Let $E_P$ be the geometric embedding of $E$ in $S_P$.
+   Since affine maps preserve convex hulls, assume wlog that $\zero\in \relint(E_P)$.
+   Since $S$ is a regular subdivision of $P$,
+   there is also a unique minimal face $F$ with geometric embedding $F_P$
+   such that $\zero\in \relint(F_P)$.
+
+   % Let $\tilde \zero \eqdef (\zero, 1) \in \R^{d+1}$ be the homogenization of the zero vector.
+   Now, consider the expression of $\zero$ as convex combinations of the vertices
+   of $E_P$ and $F_P$, and the corresponding expressions of multiples of $\tilde \zero$ on the scaling of $\tilde P$,
+   \[
+      \zero = \sum_{p\in E_P} \lambda_p p = \sum_{p\in F_P} \mu_p p,
+      \quad\quad
+      \tilde \zero = \lambda \sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda}\cdot \tfrac{\tilde p}{h(p)} =
+      \mu \sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu}\cdot \tfrac{\tilde p}{h(p)},
+   \]
+   % where $\lambda = \sum_{p\in E_P} \lambda_p h(p)$, $\mu = \sum_{p\in F_P} \mu_p h(p)$ are the factors
+   where $\lambda = \sum \lambda_p h(p)$, $\mu = \sum \mu_p h(p)$ are the factors
+   needed to obtain convex combinations.
+
+   The fact that $E$ is a non-face of $S_H$ not contained in any face is equivalent to the existence
+   of $F$, a face strictly below, with the following inequality on the lifting axis, $\tilde \zero$,
+   \[
+      \tilde \zero \cdot \left(\sum_{p\in E_P} \lambda_p (p, h(p))\right) =
+      \sum_{p\in E_P} \lambda_p h(p) = \lambda > \mu = \sum_{p\in F_P} \mu_p h(p) =
+      \tilde \zero \cdot \left(\sum_{p\in F_P} \mu_p (p, h(p))\right).
+   \]
+
+   This is equivalent to the following inequality on $S_A$ along the ray of $\tilde \zero$,
+   \[
+      \tilde \zero \cdot \left(\sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda} \tfrac{\tilde p}{h(p)}\right) =
+      \tfrac{1}{\lambda} < \tfrac{1}{\mu} =
+      \tilde \zero \cdot \left(\sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu} \tfrac{\tilde p}{h(p)}\right).
+   \]
+   which in turn, with the existence of $F$, is equivalent to $E$ being a non-face of $S_A$
+   not contained in a face, since, by definition, a face of the outer hull of $S_A$ that intersects
+   a ray cannot do so at the origin, and hence must attain the maximum along
+   this ray among all potential faces.
+\end{proof}
+
+This lemma shows that both notions of regular subdivisions are equivalent, however,
+the notion for vectors is more general in the sense that it also applies to
+cyclic sets of vectors (spanning a non-trivial lineality space),
+which cannot be dehomogenized.
+
+It is clear that when a finite set of vectors $R$ is totally cyclic,
+\ie its cone spans $\R^{d+1}$, all of its regular subdivisions are complete fans,
+and its regular triangulations are simplicial spheres.
+As we aim to realize one such simplicial sphere, this is the notion that we will use.
+
+% In this setting, we say that non-faces of a regular triangulation are \defn{below}
+% faces of the subdivision because, in every direction, a face is further from the
+% origin than non-faces when embedded in the length choice.
+
+
+Thus, proving that a fan is polytopal is the same as proving that it is a regular subdivision. The next result is our key way of showing that:
+
+% \David{Lifting version of the theorem, we prefer the scaling version below}
+% \begin{theorem}
+%  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
+%  let~$\b{R} : A \to \R^d$ be a vector embedding and let~$f : A \to \R^+$ be a height function.
+%  Then the following are equivalent:
+%  \begin{itemize}
+%    %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
+%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(a), f(a))$ for all~$a \in A$,
+%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
+%    \[
+%      F = \set{a \in A}{\lambda(a) < 0},
+%      \qquad
+%      \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
+%      \qquad\text{and}\qquad
+%      \sum_{a \in A} \lambda(a) \, f(a) < 0.
+%    \]
+%  \end{itemize}
+% \end{theorem}
+%
+%\begin{proof}
+%  %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
+%  Let $T$ be the regular triangulation of $\b{R}(V)$ given by the height function $f$.
+%  %That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
+%
+%  Assume $\simplex=T$; that is, $\Delta$ is the lower convex hull of the points~$(\b{R}(v), f(v))$
+%  for all~$v\in A$.
+%  Consider $F$, a minimal non-face of $\simplex$.
+%
+%  Choose a point $x\in \relint{\conv{\b{R}(F)}}$.
+%  Since $T$ is a triangulation covering $\conv{\b{R}(V)}$, there is a unique $G\in T$ such that
+%  $x\in \relint{G}$.
+%  As $x\in \conv{\b{R}(F)} \cap\conv{G}$, there are two convex combinations
+%  \[
+%    x = \sum_{p_i\in G} \lambda_i p_i = \sum_{q_j\in F} \mu_j q_j,
+%  \]
+%  with all $\lambda_i, \mu_j \geq 0$, unique up to scaling.
+%  Consider the linear dependence $\lambda - \mu$. %$\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$.
+%
+%  Since $F$ is a non-face of $T$, $\relint{\conv{\{(\b{R}(v), f(v)): v\in F\}}} \subseteq \relint{\conv{\{(\b{R}(v), f(v)): v\in V\}}}$
+%  and, when restricted to $x$, $\conv{(\b{R}(G), f(G))}$, a face of the convex hull,
+%  lies strictly below $\conv{(\b{R}(F), f(F))}$, so
+%  the relative interior of a non-face of $T$ is part of the convex hull.
+%  \[
+%    \sum_{p_i \in G} \lambda_i f(p_i) < \sum_{q_j\in F} \mu_j f(q_j),
+%  \]
+%  \ie $\lambda - \mu$ evaluates negatively with $f$.
+%
+%  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
+%  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
+%  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
+%
+%  For the converse, assume this is true for all minimal non-faces.
+%  For each minimal non-face $F$, consider the positive support of its linear dependence,
+%  $G = \lambda^+$.
+%  While $G$ is not necessarily a face of $T$, it is below $F$, so $F$ is not a face of $T$.
+%
+%  As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
+%  Now, two connected pseudo-manifolds (without boundary) of the same dimension cannot be properly contained in one another, so  $T = \simplex$.
+%
+%\end{proof}
+
+\David{Dilation version of the theorem}
+\Paco{In fact, the version we use in the rigidity configuration is (I think) the **height** version. What was important form the previous discussion is showing that  "regular subdivision" = "polytopal fan"}
+\begin{theorem}
+\label{thm:regularDilationVersion}
+Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
+let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$f : A \to \R^{>0}$ be a \defn{scaling choice} for $A$.
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+  %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
+  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(a) \, \b{R}(a)$ for all~$a \in A$,
+  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
+  configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
+  \[
+    F = \set{a \in A}{\lambda(a) < 0},
+    \qquad
+    \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
+    \qquad\text{and}\qquad
+    \sum_{a \in A} \tfrac{\lambda(a)}{f(a)} < 0.
+  \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+%\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
+  Let $T$ be the regular triangulation of $\b{R}(A)$ given by $f$.
+  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(A)$ forms a simplicial fan covering $\cone(\b{R}(A))$.
+  
+  Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
+  the points~$f(a) \, \b{R}(a)$ for all~$a\in A$.
+  Consider $F$, a minimal non-face of $\simplex$.
+
+  Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
+  Since $T$ is a triangulation covering $\cone{\b{R}(A)} = \cone{f\, \b{R}(A)}$,
+  there is a unique $G\in T$ such that $x\in \relint{\cone{G}}$.
+
+  As $x\in \cone{f\, \b{R}(F)} \cap \cone{G}$, there are two conic combinations
+  \[
+    x = \sum_{p_i\in G} \lambda_i f(p_i) R(p_i) = \sum_{q_j\in F} \mu_j f(q_j) R(q_j),
+  \]
+  with all $\lambda_i, \mu_j \geq 0$, unique.
+
+  Since $F$ is a non-face of $T$, $\relint{\conv{f\, \b{R}(F)}} \subseteq \relint{\conv{f\, \b{R}(A)}}$
+  and, along the ray of $x$, $\conv{G}$, a face of the convex hull, lies
+  strictly above $\conv{f\, \b{R}(F)}$.
+
+  We can write the intersection of the ray $x$ with either face as
+  the unique convex combinations
+  \begin{align*}
+    c_F\cdot x &= \tfrac{1}{\sum_{q_j\in F} \mu'_j}     \sum_{q_j\in F} \mu'_j     f(q_j) R(q_j)\;, &
+    c_G\cdot x &= \tfrac{1}{\sum_{p_i\in G} \lambda'_j} \sum_{p_i\in G} \lambda'_i f(p_i) R(p_i)\;,
+  \end{align*}
+  where $\mu'_j = \tfrac{\mu_j}{f(q_j)}$ and $\lambda'_i = \tfrac{\lambda_i}{f(p_i)}$.
+
+  Since $\conv{G}$ lies above $\conv{f\, \b{R}(F)}$, $c_G > c_F$, and we have that
+  \[
+    \sum_{q_j\in F} \tfrac{\mu_j}{f(q_j)} > \sum_{p_i\in G} \tfrac{\lambda_i}{f(p_i)}
+  \]
+  so we say that $\lambda - \mu$ evaluates negatively with respecct to $\tfrac{1}{f}$.
+
+  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
+  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
+  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
+  
+  For the converse, assume this is true for all minimal non-faces.
+  For each minimal non-face $F$, consider the positive support of its linear dependence,
+  $G = \lambda^+$, and the vector $x$ represented by both of its sides.
+
+  As shown, that the linear dependence evaluates negatively with $\tfrac{1}{f}$
+  is equivalent to saying that $f\, G$ is above $f\, \b{R}(F)$.
+  While $G$ is not necessarily be a face of $T$, this implies $F$ is not a face of $T$.
+  
+  As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
+  Now, two connected pseudo-manifolds (without boundary) of the same dimension
+  cannot be properly contained in one another, so $T = \simplex$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -773,7 +1078,7 @@ The~\defn{transversal rigidity vector} \(\Rtrans(\arc)\) of $\arc=(p, q, L, R)$ 
 \[
 \Rtrans(\arc) \eqdef \sum_{r\in L} \Rtrans(p,q;r) - \sum_{r\in R} \Rtrans(p,q;r).
 \]
-For \(\epsilon > 0\), the~\defn{(total) wiggly-rigidity vector} \(\Reps(\arc)\) is defined as
+For \(\epsilon > 0\), the~\defn{(total) wiggly rigidity vector} \(\Reps(\arc)\) is defined as
 \vincent{should we say here that \(\Reps(\arc)\) is a load in equilibrium?}\paco{This is~\cref{lemma:kernel}}
 \[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
 \end{definition}
@@ -793,7 +1098,7 @@ It is straightforward that
 \[
 \Rtrans(p,q;r)  = (q-p)^\perp (\one_r - \lambda \one_p - \mu \one_q).
 \]
-This rewrite of $\Rtrans(p,q;r)$ makes it very easy to verify that it is a load in equilibrium, which implies the same for the wiggly-rigidity vectors:
+This rewrite of $\Rtrans(p,q;r)$ makes it very easy to verify that it is a load in equilibrium, which implies the same for the wiggly rigidity vectors:
 
 \begin{lemma}
 \label{lemma:kernel}
@@ -830,7 +1135,7 @@ In fact, the vectors $\{\Rtrans(p,q;r)\}_{r\in L\cup R}$ are a basis for the  li
 
 
 %\begin{definition}\label{def:rv}
-%For \(\epsilon > 0\), the~\defn{wiggly-rigidity vector} \(\Reps(\arc)\) is defined as
+%For \(\epsilon > 0\), the~\defn{wiggly rigidity vector} \(\Reps(\arc)\) is defined as
 %\vincent{should we say here that \(\Reps(\arc)\) is a load in equilibrium?}\paco{Done}
 %\[\Reps(\arc) = \Rlong(\arc) + \epsilon \Rtrans(\arc).\]
 %\end{definition}
@@ -862,7 +1167,7 @@ Each row is a rigidity vector, and thus lies in \((\R^2)^P\).
 \begin{definition}\label{def:rm}
 The~\defn{longitudinal rigidity matrix} of \(P\) is the matrix \(\Mlong(P)\) whose row indexed by~\(\arc\) is \(\Rlong(\arc)\).
 The~\defn{transverse rigidity matrix} of \(P\) is the matrix \(\Mtrans(P)\) whose row indexed by~\(\arc\) is~\(\Rtrans(\arc)\).
-The~\defn{(total) wiggly-rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
+The~\defn{(total) wiggly rigidity matrix} of \(P\) is the matrix \(\Meps(P)\) defined as \(\Mlong(P) + \epsilon \Mtrans(P)\).
 \end{definition}
 
 We keep all the rigidity notation and nomenclature from the classical (longitudinal) case except that stresses, in particular self-stresses, now live in $\R^{\wigglySegments(P)}$ rather than $\R^{\binom{P}{2}}$.
@@ -870,7 +1175,7 @@ In contrast with the classical setting, now \(\Meps(P)\) has rank~\(2n - 3\) eve
 
 \begin{proposition}
 \label{prop:kernel}
-As long as $n\ge 2$, the wiggly-rigidity matrix $\Meps(P)$ has rank~\(2n - 3\) for any \(\epsilon > 0\).
+As long as $n\ge 2$, the wiggly rigidity matrix $\Meps(P)$ has rank~\(2n - 3\) for any \(\epsilon > 0\).
 Its kernel is the space $\Triv(P)$ of infinitesimal rigid motions and its row-span (\ie the image of \(\Meps(P)^T\)) is the space of loads in equilibrium $\Equil(P)$.
 \end{proposition}
 
@@ -888,7 +1193,7 @@ Then, to the row-span of $\Meps(P)$, of dimension $n-1$ and containing only long
 These are clearly independent of one another and of the longitudinal vectors in $\Meps(P)$, since the transversal part of the $k$-th one is supported exactly in the points $\{p_2,\dots, p_{k-1}\}$.
 \end{proof}
 
-As in the previous section, let us now look at the positive part of $\Equil(P)$, that is, the cone $\Comp^\epsilon(P)$ generated by the wiggly-rigidity vectors. 
+As in the previous section, let us now look at the positive part of $\Equil(P)$, that is, the cone $\Comp^\epsilon(P)$ generated by the wiggly rigidity vectors. 
 Again, it turns out that a  result similar to what we had in classical rigidity (\cref{lem:equil_cone}) holds without the  assumptions on $P$ needed there.
 We keep the notation $\Ematrix(P)$ to denote the set of \emph{classical} (\ie longitudinal) rigidity vectors corresponding to boundary edges of $\conv(P)$.
 
@@ -899,8 +1204,8 @@ $-\Ematrix(P)$ together with $\Comp^\epsilon(P)$ positively spans the whole of $
 \end{lemma}
 
 \begin{proof}
-As in the proof of \cref{lem:equil_cone}, our first goal is to show that from any load in equilibrium, subtracting nonnegative combinations of wiggly-rigidity vectors we can get another load that vanishes at all points that are not extremal. 
-Observe that in this step we are allowed to use partial wiggly segments since, by~\cref{lema:partial_rigidity}, any partial wiggly-rigidity vector is a positive combination of total ones. 
+As in the proof of \cref{lem:equil_cone}, our first goal is to show that from any load in equilibrium, subtracting nonnegative combinations of wiggly rigidity vectors we can get another load that vanishes at all points that are not extremal. 
+Observe that in this step we are allowed to use partial wiggly segments since, by~\cref{lema:partial_rigidity}, any partial wiggly rigidity vector is a positive combination of total ones. 
 With this in mind we can cancel forces at non-extremal points with a small variation of what we did in \cref{lem:equil_cone}: 
 if $p$ lies in the interior of $\conv{P}$ we cancel the force at $p$ using the longitudinal rigidity vectors $\Rlong(p,p_i)$ for the extremal points $p_i$; 
 if $p$ lies in the relative interior of an edge $\{p_i,p_{i+1}\}$ of $\conv(P)$ we cancel the force at $p$ using the longitudinal vectors $\Rlong(p,p_i)$ and $\Rlong(p,p_{i+1})$, plus the (perhaps partial) wiggly vectors $\Reps(p_i,p_{i+1}, \{p\},\varnothing)$ and $\Reps(p_i,p_{i+1},\varnothing,  \{p\})$. 
@@ -994,14 +1299,30 @@ Hence, using~\cref{lemma:spanning} again, $\Comp^\epsilon(P)$ together with $\{ 
 %\end{proof}
 %}
 
+Our main result is the following.
+
+\begin{theorem}
+\label{thm:wigglyFan}
+Let $P$ be a set of~$n$ points, where~$n_\circ$ are extremal and~$n_\bullet$ are not.
+Consider the extended wiggly complex~$\extendedWigglyComplex_P$ realized as a family of cones in $\Equil(P) \cong \R^{2n-3}$ by assigning to each wiggly segment~$\arc$ its corresponding wiggly rigidity vector $\Rvector^\epsilon(\arc)$. Then:
+\begin{enumerate}
+\item $\extendedWigglyComplex_P$, so embedded, is a simplicial fan.
+\item In this construction $\reducedWigglyComplex_P$, realized as the link of the $n_\circ$ external arcs, is a complete simplicial polytopal fan in the quotient space  $\Equil(P) / \Ext(P) \cong \R^{2n_\bullet+n_\circ-3}$, where $\Ext(P)$ is the linear span of the $n_\circ$ external wiggly rigidity vectors.
+\end{enumerate}
+\vincent{Add here the polytopal realization, either with explicit height function, or saying that it exists.}
+\end{theorem}
+
+In fact, part (1) follows from (2) and the (obvious) fact that the $n_\circ$ external wiggly segments are independent. So, we only need to prove (2). 
+In the next two sections, we will apply the criterion of \cref{thm:regularLiftingVersion}\,(ii) to prove the following statement: we describe the linear dependences on the wiggly rigidity vectors of the minimal non-faces of the wiggly complex in \cref{sec:circuit}, and we exhibit the height function in \cref{sec:heightFunction}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{A self-stress for each minimal non-face in the wiggly complex}
 \label{sec:circuit}
 
-Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion}\,(ii) for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly-rigidity vectors.
+Our goal in this section is to construct a linear dependence as in \cref{thm:regularLiftingVersion}\,(ii) for each minimal non-face of the wiggly complex~$\reducedWigglyComplex_P$. In our context, linear dependences are self-stresses among the wiggly rigidity vectors.
 
-In what follows a dependence or, more generally, a linear combination of wiggly-rigidity vectors in a configuration $P$ (\ie a stress), will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
+In what follows a dependence or, more generally, a linear combination of wiggly rigidity vectors in a configuration $P$ (\ie a stress), will be represented as its vector of coefficients in $\R^{\wigglySegments(P)}$. Every such vector $D$ decomposes uniquely as $D=D^+ - D^-$ with $D^+$ and $D^-$ nonnegative and of disjoint supports. We call 
 $D^+$ and $D^-$ the \defn{positive} and \defn{negative} part of $D$.
 %Let $D$ be such a vector. By forgetting the $L$ and $R$ in each wiggly segment $(p,q,L,R)$, any such $D$ induces also a vector $D_{\lon} \in \R^{\binom{P}{2}}$. More explicitly, the map $D \mapsto D_{\lon}$ is a linear projection that adds together the coefficients of $D$ according to the end-points of their wiggly segments. 
 
@@ -1033,7 +1354,7 @@ Although the self-stress needs to be on the whole wiggly configuration, we first
 Let~$Q$ be a configuration consisting only of the three (for the double-I) or four (for the rest) points of a minimal non-face $F$. If $\epsilon$ is positive but sufficiently small then 
 %For any minimal non-face~$F$ of the wiggly complex~$\extendedWigglyComplex_Q$, 
 %there exists a sufficiently small~$\epsilon >0$ such that 
-the wiggly-rigidity vectors of~$Q$ admit a self-stress $D\in \R^{\wigglySegments(Q)}$ with the following properties:
+the wiggly rigidity vectors of~$Q$ admit a self-stress $D\in \R^{\wigglySegments(Q)}$ with the following properties:
 \begin{enumerate}
 \item The support of $D^-$ equals $F$.
 \item The support of $D^+$ includes all the external wiggly segments of $Q$.
@@ -1392,296 +1713,6 @@ Let~$\hzeta$ be the function on wiggly segments defined by~$\hzeta = \hlong + \z
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Regular subdivisions and polytopal fans}
-\label{sec:regularSubdivisions}
-
-In this section we review the main results about regular triangulations, and their relation to polytopality, in the spritit of \cite[Chapter 9]{DeLoeraRambauSantos}. 
-%For this, we need to distinguish between \defn{points} and \defn{vectors}. Both are elements of $\R^d$, but in the case of points  we regard  $\R^d$ as an affine space and in the second case as a vector space.
-\paco{the point set is $A$, not $V$. some occurences may still need change}
-\david{different letters: liftings now use $h$ and scaling factors use $f$}
-
-\begin{definition}[Regular triangulation of a vector set; see, \eg \cite{DeLoeraRambauSantos}]
-\label{def:lifting}
-  Let $A$ be a finite vector set in $\R^d$. A \defn{height function} for $A$ is a
-  function $h\in \R_+^A$.
-  This choice induces a \defn{lifting} of $A$, which is the vector set $A^h \eqdef \{(p, h(p))_{p\in A}\}\subset \R^{d+1}$; put differently,  
-  $h$ assigns positive heights in $\R^{d+1}$ to  vectors of $A$.
-  
-%\end{definition}
-%
-%\begin{definition}
-%  \label{def:lower-hull}
-  %Let $A^h$ be a finite point set in $\R^{d+1}$. 
-  The \defn{lower hull} (resp. upper hull)
-  of $A^h$ is the geometric polyhedral fan given by the faces of the positive span of $A^h$
-  contained in some facet whose outward normal vector has a negative
-  (resp. positive) last coordinate.
-%\end{definition}
-%
-%\begin{definition}
-%  \label{def:regular-subdivision}
-  %Let $A$ be a finite point set in $\R^d$. 
-  An abstract polyhedral complex $C$ with
-  vertex set $A$ is a regular subdivision of $A$ if it can be realized as the lower hull
-  of a lifting of $A^h$ for some lifting function $h$.
-  When $C$ is simplicial, it is called a \defn{regular triangulation}.
-  %, and we will denote it by $\simplex$.
-\end{definition}
-
-% In a regular subdivision, we say that non-faces are \defn{above} faces of the triangulation
-% because they are with respect to the projection that forgets the height when embedded in
-% the lifting.
-
-A related notion of regular subdivisions can be derived from assigning lengths to the elements of the set.
-%through homogenization.
-%\david{new notation for homogenization: $\tilde x$}
-%If $A$ is a finite point set, denote by $\tilde V \coloneqq \{\tilde v \coloneqq (v, 1) \;|\; v \in V\}$
-%its canonical homogenization, attained by embedding $\R^d$ into $\R^{d+1}$ as the affine
-%hyperplane with last coordinate equal to $1$.
-
-\david{renamed length choice to scaling (factor) choice}
-\begin{definition}
-  \label{def:scaling-choice}
-  Let $R$ be a finite set of vectors in $\R^d$. A \defn{scaling function} for $R$ is a
-  function $f\in \R_+^R$.
-  This choice induces a \defn{scaling} of $R$, $\{f(r) \cdot r \;|\; r \in R\}$, 
-  which is the vector set $f R \eqdef \{(f p\}\subset \R^{d}$; put differently,  
-  $f$ scales vectors of $R$.
-%\end{definition}
-%
-%\david{new definition for the lemma below}
-%\begin{definition}
-%   \label{def:outer-hull}
- %  Let $R$ be a finite set of vectors in $\R^d$. 
-   The \defn{outer hull} of $fR$ is the
-   geometric polyhedral complex given by the faces of the convex hull of $R \cup \{\zero\}$
-   that don't contain the origin.
-%\end{definition}
-%
-%\begin{definition}
-%  \label{def:regular-fan-subdivision}
-%  Let $R$ be a finite set of vectors. 
-  A fan $F$ with rays $R$ is a \defn{scaling subdivision}
-  of $R$ if it can be obtained as the outer hull of some positive scaling of $R$.
-  \defn{scaling} of $R$.
-%
-  When $F$ is simplicial, we say it is a \defn{scaling triangulation} of $R$.
-%  and we denote it by $\simplex$.
-\end{definition}
-
-\david{new lemma}
-\begin{lemma}[{\cite[Corollary 9.5.3]{DeLoeraRambauSantos}}]
-   \label{lemma:point-triangulation-as-vector-triangulation}
-   Let $R$ be a finite vector set.
-   Then, the regular subdicision of $R$ obtained with a certain a \defn{height choice}  $h\in \R^P$ coincides
-   with the scaling subdivision of $R$ obtained with the scaling factor $f(p) \eqdef \tfrac{1}{h(P)}$.
-\end{lemma}
-\begin{proof}
-\paco{The book does only the case $f\equiv h \equiv 1$.}
-   To make our arguments clearer,
-   denote by $S_P$ the geometric embedding of $S$ induced by $P$, by $S_H$
-   the geometric embedding given by the lower hull of $(P, h(P))$, and by $S_A$
-   the geometric embedding of $S$ given by the outer hull of the scaling
-   $\tfrac{1}{h} \cdot \tilde P$.
-
-   We will prove that non-faces of $S_H$ coincide with those of $S_A$.
-   This equivalence is trivial for non-faces that are contained in a larger face.
-
-   Consider a non-face of $S$, $E$, not contained in any face.
-   Let $E_P$ be the geometric embedding of $E$ in $S_P$.
-   Since affine maps preserve convex hulls, assume wlog that $\zero\in \relint(E_P)$.
-   Since $S$ is a regular subdivision of $P$,
-   there is also a unique minimal face $F$ with geometric embedding $F_P$
-   such that $\zero\in \relint(F_P)$.
-
-   % Let $\tilde \zero \eqdef (\zero, 1) \in \R^{d+1}$ be the homogenization of the zero vector.
-   Now, consider the expression of $\zero$ as convex combinations of the vertices
-   of $E_P$ and $F_P$, and the corresponding expressions of multiples of $\tilde \zero$ on the scaling of $\tilde P$,
-   \[
-      \zero = \sum_{p\in E_P} \lambda_p p = \sum_{p\in F_P} \mu_p p,
-      \quad\quad
-      \tilde \zero = \lambda \sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda}\cdot \tfrac{\tilde p}{h(p)} =
-      \mu \sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu}\cdot \tfrac{\tilde p}{h(p)},
-   \]
-   % where $\lambda = \sum_{p\in E_P} \lambda_p h(p)$, $\mu = \sum_{p\in F_P} \mu_p h(p)$ are the factors
-   where $\lambda = \sum \lambda_p h(p)$, $\mu = \sum \mu_p h(p)$ are the factors
-   needed to obtain convex combinations.
-
-   The fact that $E$ is a non-face of $S_H$ not contained in any face is equivalent to the existence
-   of $F$, a face strictly below, with the following inequality on the lifting axis, $\tilde \zero$,
-   \[
-      \tilde \zero \cdot \left(\sum_{p\in E_P} \lambda_p (p, h(p))\right) =
-      \sum_{p\in E_P} \lambda_p h(p) = \lambda > \mu = \sum_{p\in F_P} \mu_p h(p) =
-      \tilde \zero \cdot \left(\sum_{p\in F_P} \mu_p (p, h(p))\right).
-   \]
-
-   This is equivalent to the following inequality on $S_A$ along the ray of $\tilde \zero$,
-   \[
-      \tilde \zero \cdot \left(\sum_{p\in E_P} \tfrac{\lambda_p h(p)}{\lambda} \tfrac{\tilde p}{h(p)}\right) =
-      \tfrac{1}{\lambda} < \tfrac{1}{\mu} =
-      \tilde \zero \cdot \left(\sum_{p\in F_P} \tfrac{\mu_p h(p)}{\mu} \tfrac{\tilde p}{h(p)}\right).
-   \]
-   which in turn, with the existence of $F$, is equivalent to $E$ being a non-face of $S_A$
-   not contained in a face, since, by definition, a face of the outer hull of $S_A$ that intersects
-   a ray cannot do so at the origin, and hence must attain the maximum along
-   this ray among all potential faces.
-\end{proof}
-
-This lemma shows that both notions of regular subdivisions are equivalent, however,
-the notion for vectors is more general in the sense that it also applies to
-cyclic sets of vectors (spanning a non-trivial lineality space),
-which cannot be dehomogenized.
-
-It is clear that when a finite set of vectors $R$ is totally cyclic,
-\ie its cone spans $\R^{d+1}$, all of its regular subdivisions are complete fans,
-and its regular triangulations are simplicial spheres.
-As we aim to realize one such simplicial sphere, this is the notion that we will use.
-
-% In this setting, we say that non-faces of a regular triangulation are \defn{below}
-% faces of the subdivision because, in every direction, a face is further from the
-% origin than non-faces when embedded in the length choice.
-
-
-Thus, proving that a fan is polytopal is the same as proving that it is a regular subdivision. The next result is our key way of showing that:
-
-% \David{Lifting version of the theorem, we prefer the scaling version below}
-% \begin{theorem}
-%  Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-%  let~$\b{R} : A \to \R^d$ be a vector embedding and let~$f : A \to \R^+$ be a height function.
-%  Then the following are equivalent:
-%  \begin{itemize}
-%    %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-%    \item $\simplex$ is the boundary complex of the conical hull of the vectors~$(\b{R}(a), f(a))$ for all~$a \in A$,
-%    \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector embedding~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$f$, that is,
-%    \[
-%      F = \set{a \in A}{\lambda(a) < 0},
-%      \qquad
-%      \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
-%      \qquad\text{and}\qquad
-%      \sum_{a \in A} \lambda(a) \, f(a) < 0.
-%    \]
-%  \end{itemize}
-% \end{theorem}
-%
-%\begin{proof}
-%  %\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
-%  Let $T$ be the regular triangulation of $\b{R}(V)$ given by the height function $f$.
-%  %That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(V)$ forms a simplicial fan covering $\cone(\b{R}(V))$.
-%
-%  Assume $\simplex=T$; that is, $\Delta$ is the lower convex hull of the points~$(\b{R}(v), f(v))$
-%  for all~$v\in A$.
-%  Consider $F$, a minimal non-face of $\simplex$.
-%
-%  Choose a point $x\in \relint{\conv{\b{R}(F)}}$.
-%  Since $T$ is a triangulation covering $\conv{\b{R}(V)}$, there is a unique $G\in T$ such that
-%  $x\in \relint{G}$.
-%  As $x\in \conv{\b{R}(F)} \cap\conv{G}$, there are two convex combinations
-%  \[
-%    x = \sum_{p_i\in G} \lambda_i p_i = \sum_{q_j\in F} \mu_j q_j,
-%  \]
-%  with all $\lambda_i, \mu_j \geq 0$, unique up to scaling.
-%  Consider the linear dependence $\lambda - \mu$. %$\sum_{p_i \in G} \lambda_i p_i - \sum_{q_j\in F} \mu_j q_j$.
-%
-%  Since $F$ is a non-face of $T$, $\relint{\conv{\{(\b{R}(v), f(v)): v\in F\}}} \subseteq \relint{\conv{\{(\b{R}(v), f(v)): v\in V\}}}$
-%  and, when restricted to $x$, $\conv{(\b{R}(G), f(G))}$, a face of the convex hull,
-%  lies strictly below $\conv{(\b{R}(F), f(F))}$, so
-%  the relative interior of a non-face of $T$ is part of the convex hull.
-%  \[
-%    \sum_{p_i \in G} \lambda_i f(p_i) < \sum_{q_j\in F} \mu_j f(q_j),
-%  \]
-%  \ie $\lambda - \mu$ evaluates negatively with $f$.
-%
-%  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
-%  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
-%  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
-%
-%  For the converse, assume this is true for all minimal non-faces.
-%  For each minimal non-face $F$, consider the positive support of its linear dependence,
-%  $G = \lambda^+$.
-%  While $G$ is not necessarily a face of $T$, it is below $F$, so $F$ is not a face of $T$.
-%
-%  As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
-%  Now, two connected pseudo-manifolds (without boundary) of the same dimension cannot be properly contained in one another, so  $T = \simplex$.
-%
-%\end{proof}
-
-\David{Dilation version of the theorem}
-\Paco{In fact, the version we use in the rigidity configuration is (I think) the **height** version. What was important form the previous discussion is showing that  "regular subdivision" = "polytopal fan"}
-\begin{theorem}
-\label{thm:regularDilationVersion}
-Let~$\simplex$ be a connected $(d-1)$-dimensional pseudomanifold without boundary, with vertex set $A$,
-let~$\b{R} : A \to \R^d$ be a vector embedding of $A$ and~$f : A \to \R^{>0}$ be a \defn{scaling choice} for $A$.
-Then the following are equivalent:
-\begin{enumerate}[(i)]
-  %\item $\simplex$ is the coherent triangulation of the vector embedding~$\b{R}$ with respect to the height function~$f$,
-  \item $\simplex$ is the boundary complex of the convex hull of the points~$f(a) \, \b{R}(a)$ for all~$a \in A$,
-  \item For every minimal non-face~$F$ of~$\simplex$, there is a linear dependence~$\lambda: A \to \R$ of the vector
-  configuration~$\b{R}$ whose negative part is~$F$ and which evaluates negatively with~$\tfrac{1}{f}$, that is,
-  \[
-    F = \set{a \in A}{\lambda(a) < 0},
-    \qquad
-    \sum_{a \in A} \lambda(a) \, \b{R}(a) = \b{0},
-    \qquad\text{and}\qquad
-    \sum_{a \in A} \tfrac{\lambda(a)}{f(a)} < 0.
-  \]
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-%\paco{revisar que est\'a claro cuando se consideran $T$ y $\simplex$ como ``complejos simpliciales abstractos'' y cuando como abanico y complejo simplicial geométrico, respectivamente}
-  Let $T$ be the regular triangulation of $\b{R}(A)$ given by $f$.
-  That is, $T$ is a simplicial complex which embedded geometrically on $\b{R}(A)$ forms a simplicial fan covering $\cone(\b{R}(A))$.
-  
-  Assume $\simplex=T$; that is, $\Delta$ is the boundary complex of the convex hull of
-  the points~$f(a) \, \b{R}(a)$ for all~$a\in A$.
-  Consider $F$, a minimal non-face of $\simplex$.
-
-  Choose a vector $x\in \relint{\cone{\b{R}(F)}}$.
-  Since $T$ is a triangulation covering $\cone{\b{R}(A)} = \cone{f\, \b{R}(A)}$,
-  there is a unique $G\in T$ such that $x\in \relint{\cone{G}}$.
-
-  As $x\in \cone{f\, \b{R}(F)} \cap \cone{G}$, there are two conic combinations
-  \[
-    x = \sum_{p_i\in G} \lambda_i f(p_i) R(p_i) = \sum_{q_j\in F} \mu_j f(q_j) R(q_j),
-  \]
-  with all $\lambda_i, \mu_j \geq 0$, unique.
-
-  Since $F$ is a non-face of $T$, $\relint{\conv{f\, \b{R}(F)}} \subseteq \relint{\conv{f\, \b{R}(A)}}$
-  and, along the ray of $x$, $\conv{G}$, a face of the convex hull, lies
-  strictly above $\conv{f\, \b{R}(F)}$.
-
-  We can write the intersection of the ray $x$ with either face as
-  the unique convex combinations
-  \begin{align*}
-    c_F\cdot x &= \tfrac{1}{\sum_{q_j\in F} \mu'_j}     \sum_{q_j\in F} \mu'_j     f(q_j) R(q_j)\;, &
-    c_G\cdot x &= \tfrac{1}{\sum_{p_i\in G} \lambda'_j} \sum_{p_i\in G} \lambda'_i f(p_i) R(p_i)\;,
-  \end{align*}
-  where $\mu'_j = \tfrac{\mu_j}{f(q_j)}$ and $\lambda'_i = \tfrac{\lambda_i}{f(p_i)}$.
-
-  Since $\conv{G}$ lies above $\conv{f\, \b{R}(F)}$, $c_G > c_F$, and we have that
-  \[
-    \sum_{q_j\in F} \tfrac{\mu_j}{f(q_j)} > \sum_{p_i\in G} \tfrac{\lambda_i}{f(p_i)}
-  \]
-  so we say that $\lambda - \mu$ evaluates negatively with respecct to $\tfrac{1}{f}$.
-
-  Finally, no $\mu_j$ can be $0$ since $F$ is minimal among non-faces of $\simplex$,
-  and no $\lambda_i$ can be $0$ because $G$ is the minimal face of $T$ containing $x$,
-  so the linear dependence $\lambda - \mu$ has $F$ as its negative part.
-  
-  For the converse, assume this is true for all minimal non-faces.
-  For each minimal non-face $F$, consider the positive support of its linear dependence,
-  $G = \lambda^+$, and the vector $x$ represented by both of its sides.
-
-  As shown, that the linear dependence evaluates negatively with $\tfrac{1}{f}$
-  is equivalent to saying that $f\, G$ is above $f\, \b{R}(F)$.
-  While $G$ is not necessarily be a face of $T$, this implies $F$ is not a face of $T$.
-  
-  As this is true for all minimal non-faces, we have that $T \subseteq \simplex$.
-  Now, two connected pseudo-manifolds (without boundary) of the same dimension
-  cannot be properly contained in one another, so $T = \simplex$.
-\end{proof}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Categorical interpretation and further questions}
 The aim of this section is to explain the representation theoretic and categorical motivation for wiggly pseudotriangulations.
 This section ties together the content of the present paper with the paper~\cite{BapatDeopurkarLicata}, as well as the similar discussion in~\cite[\S5]{BapatPilaud-wigglyaligned}.
@@ -1728,6 +1759,11 @@ Thus each arc \(\beta\) corresponds to some face of the extended wiggly complex 
 Spencer Backmann. \\
 This research was partially conducted during the Intensive Research Program on Combinatorial Geometries and Geometric Combinatorics, held at the Centre de Recerca Matemàtica in October-November 2025, and funded by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), the Institute de Matemàtica de la Universitat de Barcelona, and the Spanish projects PID2022-137283NB-C21 and RED2024-153572-T of MICIU/AEI /10.13039/501100011033.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{AI statement}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\clearpage
 %\addtocontents{toc}{ \vspace{.1cm} }
